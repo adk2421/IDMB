@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>관리자 메인페이지</title>
 </head>
 <body>
-
+	Hello
 </body>
 </html>
