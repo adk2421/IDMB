@@ -1,4 +1,4 @@
-package idmb.common.Controller;
+package idmb.common.controller;
 
 public class MainController {
 
