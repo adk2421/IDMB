@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+
+	<!-- 메인페이지 상품리스트 -->
+	<select id="mainpageProductList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				P_NAME,
+				P_IMAGE,
+				P_PRICE,
+				P_STOCK,
+				P_SELL,
+				P_KIND,
+				P_DATE,
+				P_ZIM
+			FROM (
+				SELECT
+					*
+				FROM
+					PRODUCT
+				WHERE
+					P_DELFLAG = 'N'
+				ORDER BY
+					P_ZIM DESC
+				WHERE DELFLAG ='N')
+			WHERE
+				ROWNUM <= 3
+		]]>
+	</select>
+	
+	<!-- 상품 검색 -->
+	<select id="searchProduct" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				P_NAME,
+				P_IMAGE,
+				P_PRICE,
+				P_STOCK,
+				P_SELL,
+				P_KIND,
+				P_DATE,
+				P_ZIM
+			FROM
+				PRODUCT
+			WHERE
+				P_DELFLAG = 'N' AND
+				P_NAME LIKE '%#{searchValue}%' AND
+				P_PRICE BETWEEN #{priceValue1} AND
+				#{priceValue2}
+			ORDER BY
+				P_PRICE ASC
+	</select>
+	
+
+</mapper>
