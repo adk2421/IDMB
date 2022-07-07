@@ -3,7 +3,7 @@
 
 <mapper namespace="product">
 
-	<!-- 메인페이지 상품리스트 -->
+	<!-- 메인페이지 상품 리스트 -->
 	<select id="mainpageProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -54,5 +54,98 @@
 		]]>
 	</select>
 	
-
+	<!-- 신상품순 상품 리스트 -->
+	<select id="newProductList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				P_NAME,
+				P_IMAGE,
+				P_PRICE,
+				P_STOCK,
+				P_SELL,
+				P_KIND,
+				P_DATE,
+				P_ZIM
+			FROM
+				PRODUCT
+			WHERE
+				P_DELFLAG = 'N' AND
+				P_NAME LIKE '%#{searchValue}%' AND
+				P_PRICE BETWEEN #{priceValue1} AND
+				#{priceValue2}
+			ORDER BY
+				P_DATE DESC
+		]]>
+	</select>
+	
+	<!-- 인기순 상품 리스트 -->
+	<select id="bestProductList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				P_NAME,
+				P_IMAGE,
+				P_PRICE,
+				P_STOCK,
+				P_SELL,
+				P_KIND,
+				P_DATE,
+				P_ZIM
+			FROM
+				PRODUCT
+			WHERE
+				P_DELFLAG = 'N' AND
+				P_NAME LIKE '%#{searchValue}%' AND
+				P_PRICE BETWEEN #{priceValue1} AND
+				#{priceValue2}
+			ORDER BY
+				P_ZIM DESC
+		]]>
+	</select>
+	
+	<!-- 종류별 상품 리스트 -->
+	<select id="bestProductList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				P_NAME,
+				P_IMAGE,
+				P_PRICE,
+				P_STOCK,
+				P_SELL,
+				P_KIND,
+				P_DATE,
+				P_ZIM
+			FROM
+				PRODUCT
+			WHERE
+				P_DELFLAG = 'N' AND
+				P_KIND = #{P_KIND} AND
+				P_NAME LIKE '%#{searchValue}%' AND
+				P_PRICE BETWEEN #{priceValue1} AND
+				#{priceValue2}
+			ORDER BY
+				P_PRICE DESC
+		]]>
+	</select>
+	
+	<!-- 상품 상세 -->
+	<select id="bestProductList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				P_NAME,
+				P_IMAGE,
+				P_PRICE,
+				P_STOCK,
+				P_SELL,
+				P_KIND,
+				P_DATE,
+				P_ZIM,
+				P_DETAIL
+			FROM
+				PRODUCT
+			WHERE
+				P_DELFLAG = 'N' AND
+				P_CODE = #{P_CODE}
+		]]>
+	</select>
+	
 </mapper>

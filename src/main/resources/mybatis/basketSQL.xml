@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="basket">
+
+	<!-- 장바구니 추가 -->
+	<insert id="insertBasket" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO BASKET
+			(
+				B_NUM,
+				B_ID,
+				B_CODE,
+				B_NAME,
+				B_PRICE,
+				B_COUNT,
+				B_IMAGE,
+				B_KIND
+			)
+			VALUES
+			(
+				B_SEQ.NEXTVAL,
+				#{B_ID},
+				#{B_CODE},
+				#{B_NAME},
+				#{B_PRICE},
+				#{B_COUNT},
+				#{B_IMAGE},
+				#{B_KIND});
+			)
+		]]>
+	</insert>
+	
+	<!-- 장바구니 추가 -->
+	<insert id="insertBasket" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO BASKET
+			(
+				B_NUM,
+				B_ID,
+				B_CODE,
+				B_NAME,
+				B_PRICE,
+				B_COUNT,
+				B_IMAGE,
+				B_KIND
+			)
+			VALUES
+			(
+				B_SEQ.NEXTVAL,
+				#{B_ID},
+				#{B_CODE},
+				#{B_NAME},
+				#{B_PRICE},
+				#{B_COUNT},
+				#{B_IMAGE},
+				#{B_KIND});
+			)
+		]]>
+	</insert>
+	
+</mapper>
