@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna">
+
+	<!-- 문의 등록 -->
+	<insert id="insertQna" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO QNA_BOARD
+			(
+				Q_NUM,
+				Q_ID,
+				Q_CODE,
+				Q_TITLE,
+				Q_CONTENTS,
+				Q_DATE,
+				Q_PRODUCT,
+				Q_STATUS
+			)
+			VALUES
+			(
+				Q_SEQ.NEXTVAL,
+				#{Q_ID},
+				#{Q_CODE},
+				#{Q_TITLE},
+				#{Q_CONTENTS,
+				SYSDATE,
+				#{Q_PRODUCT},
+				'답변대기'
+			)
+		]]>
+	</insert>
+
+	<!-- 문의 리스트 출력 -->
+	<select id="qnaList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				Q_ID,
+				Q_CODE,
+				Q_TITLE,
+				Q_DATE,
+				Q_PRODUCT,
+				Q_STATUS
+			FROM
+				QNA_BOARD
+			ORDER BY
+				Q_NUM DESC
+		]]>
+	</select>
+	
+	<!-- 문의 상세 페이지 -->
+	<select id="qnaDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				Q_ID,
+				Q_CODE,
+				Q_TITLE,
+				Q_CONTENTS,
+				Q_DATE,
+				Q_PRODUCT,
+				Q_STATUS
+			FROM
+				QNA_BOARD
+			ORDER BY
+				Q_NUM = #{Q_NUM}
+		]]>
+	</select>
+	
+	<!-- 문의 수정 -->
+	<update id="updateQna" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				QNA_BOARD
+			SET
+				Q_CONTENTS = #{Q_CONTENTS},
+				Q_DATE = SYSDATE
+			WHERE
+				Q_NUM = #{Q_NUM}
+		]]>
+	</update>
+	
+	<!-- 문의 삭제 -->
+	<delete id="deleteQna" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM
+				QNA_BOARD
+			WHERE
+				Q_NUM = #{Q_NUM}
+		]]>
+	</delete>
+	
+	<!-- 나의 문의 내역 -->
+	<select id="myQnaList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				Q_CODE,
+				Q_TITLE,
+				Q_DATE,
+				Q_PRODUCT,
+				Q_STATUS
+			FROM
+				QNA_BOARD
+			WHERE
+				Q_ID = #{Q_ID}
+		]]>
+	</select>
+
+</mapper>
