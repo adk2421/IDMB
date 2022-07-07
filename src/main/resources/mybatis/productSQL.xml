@@ -51,6 +51,7 @@
 				#{priceValue2}
 			ORDER BY
 				P_PRICE ASC
+		]]>
 	</select>
 	
 
