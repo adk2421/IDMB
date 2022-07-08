@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+
+	<!-- 공지사항 리스트 출력 -->
+	<select id="noticeList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				N_TITLE,
+				N_ID,
+				N_DATE,
+				N_HIT
+			FROM
+				NOTICE
+			ORDER BY
+				N_NUM DESC
+		]]>
+	</select>
+	
+	<!-- 공지사항 상세 페이지 -->
+	<select id="noticeDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				N_TITLE,
+				N_CONTENTS,
+				N_ID,
+				N_DATE,
+				N_HIT,
+			FROM
+				NOTICE
+			WHERE
+				N_NUM = #{N_NUM}
+		]]>
+	</select>
+	
+	<!-- 공지사항 조회수 증가 -->
+	<update id="updateNoticeHit" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				NOTICE
+			SET
+				N_HIT = N_HIT + 1
+			WHERE
+				N_NUM = #{N_NUM}
+		]]>
+	</update>
+
+</mapper>
