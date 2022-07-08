@@ -38,7 +38,8 @@
 				O_ADDRESS1,
 				O_ADDRESS2,
 				O_STATUS,
-				O_DELFLAG
+				O_DELFLAG,
+				O_RECIEVER
 			)
 			VALUES
 			(
@@ -54,7 +55,8 @@
 				#{O_ADDRESS1},
 				#{O_ADDRESS2},
 				'배송대기',
-				'N'
+				'N',
+				#{O_RECIEVER}
 			)
 		]]>
 	</insert>

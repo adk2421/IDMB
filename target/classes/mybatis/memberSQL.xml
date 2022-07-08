@@ -22,6 +22,7 @@
 			(
 				ID,
 				PASSWD,
+				NAME,
 				PHONE,
 				BIRTH,
 				EMAIL,
@@ -36,6 +37,7 @@
 			(
 				#{ID},
 				#{PASSWD},
+				#{NAME},
 				#{PHONE},
 				#{BIRTH},
 				#{EMAIL},
