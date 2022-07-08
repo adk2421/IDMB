@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+	<!-- 사용자 리스트 -->
+	<select id="adminMemberList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select ID, NAME, JOINDATE, DELFLAG from MEMBER
+		]]>
+	</select>
+	
+	<!-- 사용자 상세정보 -->
+	<select id="adminMemberDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from MEMBER where ID = #{ID}
+		]]>
+	</select>
+	
+	<!-- 사용자 검색 -->
+	<select id="adminSearchMember" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from MEMBER where ID like '%#{searchValue}%'
+				or NAME like '%#{searchValue}%'
+    			and JOINDATE between '%#{searchDate1}%' and '%#{searchDate2}%'
+		]]>
+	</select>
+	
+	<!-- 사용자 정보 수정 -->
+	<select id="adminUpdateMember" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			update MEMBER set DELFLAG = #{DELFLAG}
+    		where ID = #{ID}
+		]]>
+	</select>
+	
+	<!-- 상품 리스트 --> 
+	<select id="adminProductList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select P_CODE, P_KIND, P_IMAGE, P_NAME, P_PRICE, P_STOCK from PRODUCT
+			where P_DELFLAG = 'N'
+		]]>
+	</select>
+	
+	<!-- 상품 검색 -->
+	<select id="adminSearchProduct" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select P_CODE, P_KIND, P_IMAGE, P_NAME, P_PRICE, P_STOCK from PRODUCT
+			where P_DELFLAG = 'N'
+			and P_KIND = #{P_KIND}
+		]]>
+	</select>
+	
+	<!-- 상품 등록 -->
+	<select id="adminInsertProduct" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			insert into PRODUCT values(p_seq.nextval, #{P_NAME}, #{P_IMAGE}, #{P_PRICE},
+				#{P_STOCK}, #{P_SELL}, #{P_KIND}, SYSDATE, #{P_DETAIL}, '0', 'N')
+		]]>
+	</select>
+	
+	<!-- 상품 정보 수정 -->
+	<select id="adminUpdateProduct" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			update PRODUCT set P_NAME = #{P_NAME}, P_IMAGE = #{P_IMAGE},
+				P_PRICE = #{P_PRICE}, P_STOCK = #{P_STOCK}, P_SELL = #{P_SELL},
+				P_KIND = #{P_KIND}, P_DATE = SYSDATE, P_DETAIL = #{P_DETAIL}
+		]]>
+	</select>
+	
+	<!-- 상품 삭제(비활성) -->
+	<select id="adminDeleteProduct" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			update PRODUCT set P_DELFLAG = 'Y'
+		]]>
+	</select>
+	
+	<!-- 주문 관리 리스트 -->
+	<select id="adminOrderList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select O_ID, O_CODE, O_NAME, O_DATE, O_COUNT, O_PRICE, O_TOTAL, O_STATUS
+			from ORDERCOMMAND
+		]]>
+	</select>
+	
+	<!-- 주문 검색 -->
+	<select id="adminSearchOrder" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select O_ID, O_CODE, O_NAME, O_DATE, O_COUNT, O_PRICE, O_TOTAL, O_STATUS
+			from ORDERCOMMAND where O_STATUS = '#{O_STATUS}%'
+			and O_NUM = '%#{searchValue}%'
+			and O_DATE between '%#{searchDate1}%' and '%#{searchDate2}%'
+		]]>
+	</select>
+	
+	<!-- 주문 상세 정보 -->
+	<select id="adminOrderDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from ORDERCOMMAND where O_NUM = #{O_NUM}
+		]]>
+	</select>
+	
+	<!-- 주문 상태 수정 -->
+	<select id="adminUpdateOrder" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			update ORDERCOMMAND set O_STATUS = #{O_STATUS} where O_NUM = #{O_NUM}
+		]]>
+	</select>
+	
+	<!-- 공지 리스트 -->
+	<select id="adminNoticeList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select N_TITLE, N_DATE, N_HIT from NOTICE
+		]]>
+	</select>
+	
+	<!-- 공지 상세 정보 -->
+	<select id="adminNoticeDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select N_TITLE,N_CONTENTS, N_DATE, N_HIT from NOTICE where N_NUM = #{N_NUM}
+		]]>
+	</select>
+	
+	<!-- 공지 작성 -->
+	<select id="adminInsertNotice" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			insert into NOTICE values(n_seq.nextval, #{N_TITLE}, #{N_CONTENTS}, SYSDATE, '0')
+		]]>
+	</select>
+	
+	<!-- 공지 수정 -->
+	<select id="adminUpdateNotice" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			update NOTICE set N_TITLE = #{N_TITLE}, N_CONTENTS = #{N_CONTENTS} where N_NUM = #{N_NUM}
+		]]>
+	</select>
+	
+	<!-- 공지 삭제 -->
+	<select id="adminDeleteNotice" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			delete from NOTICE where N_NUM = #{N_NUM}
+		]]>
+	</select>
+
+	<!-- 후기 리스트 -->
+	<select id="adminReviewList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select R_ID, R_NAME, R_DATE, R_CONTENTS, R_RATE, R_RECOMMEND from REVIEW
+			where R_RELEVEL = '0'
+		]]>
+	</select>
+	
+	<!-- 후기 검색 -->
+	<select id="adminSearchReview" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select R_ID, R_NAME, R_DATE, R_CONTENTS, R_RATE, R_RECOMMEND from REVIEW
+			where R_DATE between '%#{searchDate1}%' and '%#{searchDate2}%'
+			and R_RELEVEL = '0'
+		]]>
+	</select>
+	
+	<!-- 후기 답변 작성 -->
+	<select id="adminInsertReview" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			insert into REVIEW values(
+				r_seq.nextval, '관리자', #{R_CODE}, SYSDATE,
+				#{R_NAME}, '#{R_CONTENTS}', 5, 0, 1, #{R_GROUPNUM});
+		]]>
+	</select>
+	
+	<!-- 후기 삭제(처리) -->
+	<select id="adminDeleteReview" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			UPDATE REVIEW SET R_ID = ' ', R_DATE = ' ', R_NAME = ' ',
+			R_CONTENTS = '[삭제됨]', R_RATE = ' ', R_RECOMMAND = ' '
+			where R_NUM = #{R_NUM}
+		]]>
+	</select>
+	
+	<!-- QNA 리스트 -->
+	<select id="adminQnaList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select Q_ID, Q_CODE, Q_PRODUCT, Q_TITLE, Q_DATE, Q_STATUS from QNA_BOARD
+			order by Q_GROUPNUM DESC, Q_RELEVEL ASC
+		]]>
+	</select>
+	
+	<!-- QNA 검색 -->
+	<!-- AND Q_PRODUCT like '%#{searchValue}%' -->
+	<!-- AND Q_TITLE like '%#{searchValue}%' -->
+	<select id="adminSearchQna" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select Q_ID, Q_CODE, Q_PRODUCT, Q_TITLE, Q_DATE, Q_STATUS from QNA_BOARD
+			where Q_CATEGORY = #{Q_CATEGORY}
+			AND Q_RELEVEL = '0'
+			AND Q_DATE between '%#{searchDate1}%' and '%#{searchDate2}%'
+			AND Q_ID like '%#{searchValue}%'
+		]]>
+	</select>
+
+	<!-- QNA 상세 정보 -->
+	<select id="adminQnaDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select Q_ID, Q_CODE, Q_TITLE, Q_CONTENTS, Q_DATE, Q_PRODUCT, Q_STATUS
+			from QNA_BOARD
+			where Q_NUM = #{Q_NUM}
+		]]>
+	</select>
+	
+	<!-- QNA 답변 작성 -->
+	<select id="adminInsertQna" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			insert into QNA_BOARD values(q_seq.nextval, '관리자', #{Q_CODE}, #{Q_CATEGORY}, #{Q_TITLE},
+			#{Q_CONTENTS}, SYSDATE, #{Q_PRODUCT}, '', '', 1, #{Q_GROUPNUM})
+		]]>
+	</select>
+	
+	<!-- QNA 답변 상태 변경 -->
+	<select id="adminUpdateQna" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			update QNA_BOARD set Q_STATUS = #{Q_STATUS} where Q_NUM = #{Q_NUM}
+		]]>
+	</select>
+	
+	<!-- QNA 삭제(처리) -->
+	<select id="adminDeleteQna" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			update QNA_BOARD set Q_ID = ' ', Q_CODE = ' ',
+			Q_TITLE = '[삭제됨]', Q_PRODUCT = ' ', Q_STATUS = '', Q_CONTENTPW = ''
+			where Q_NUM = #{Q_NUM}
+		]]>
+	</select>
+	
+	<!-- FAQ 리스트. 카테고리별 -->
+	<select id="adminFaqList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select F_TITLE, F_CONTENTS from FAQ_BOARD where F_CATEGORY = #{F_CATEGORY}
+		]]>
+	</select>
+	
+	<!-- FAQ 작성 -->
+	<select id="adminInsertFaq" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			insert into FAQ_BOARD values(f_seq.nextval, #{F_CATEGORY}, #{F_TITLE}, #{F_CONTENTS})
+		]]>
+	</select>
+	
+	<!-- FAQ 수정 -->
+	<select id="adminUpdateFaq" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			update FAQ_BOARD set F_CATEGORY = #{F_CATEGORY}, F_TITLE = #{F_TITLE}, F_CONTENTS = #{F_CONTENTS}
+		]]>
+	</select>
+	
+	
+</mapper>
