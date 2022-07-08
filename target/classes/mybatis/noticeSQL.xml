@@ -8,7 +8,6 @@
 		<![CDATA[
 			SELECT
 				N_TITLE,
-				N_ID,
 				N_DATE,
 				N_HIT
 			FROM
@@ -24,7 +23,6 @@
 			SELECT
 				N_TITLE,
 				N_CONTENTS,
-				N_ID,
 				N_DATE,
 				N_HIT,
 			FROM

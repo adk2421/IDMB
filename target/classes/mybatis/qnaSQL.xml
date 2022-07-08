@@ -11,22 +11,30 @@
 				Q_NUM,
 				Q_ID,
 				Q_CODE,
+				Q_CATEGORY,
 				Q_TITLE,
 				Q_CONTENTS,
 				Q_DATE,
 				Q_PRODUCT,
 				Q_STATUS
+				Q_CONTENTSPW,
+				Q_RELEVEL,
+				Q_GROUPNUM
 			)
 			VALUES
 			(
 				Q_SEQ.NEXTVAL,
 				#{Q_ID},
 				#{Q_CODE},
+				#{Q_CATEGORY},
 				#{Q_TITLE},
 				#{Q_CONTENTS,
 				SYSDATE,
 				#{Q_PRODUCT},
-				'답변대기'
+				'답변대기',
+				#{Q_CONTENTSPW},
+				0,
+				Q_SEQ.CURRVAL
 			)
 		]]>
 	</insert>
@@ -37,14 +45,17 @@
 			SELECT
 				Q_ID,
 				Q_CODE,
+				Q_CATEGORY,
 				Q_TITLE,
 				Q_DATE,
 				Q_PRODUCT,
-				Q_STATUS
+				Q_STATUS,
+				Q_RELEVEL,
+				Q_GROUPNUM
 			FROM
 				QNA_BOARD
 			ORDER BY
-				Q_NUM DESC
+				Q_NUM DESC, Q_RELEVEL ASC
 		]]>
 	</select>
 	
@@ -54,6 +65,7 @@
 			SELECT
 				Q_ID,
 				Q_CODE,
+				Q_CATEGORY,
 				Q_TITLE,
 				Q_CONTENTS,
 				Q_DATE,
@@ -72,6 +84,7 @@
 			UPDATE
 				QNA_BOARD
 			SET
+				Q_CATEGORY = #{Q_CATEGORY},
 				Q_CONTENTS = #{Q_CONTENTS},
 				Q_DATE = SYSDATE
 			WHERE
@@ -97,11 +110,15 @@
 				Q_TITLE,
 				Q_DATE,
 				Q_PRODUCT,
-				Q_STATUS
+				Q_STATUS,
+				Q_RELEVEL,
+				Q_GROUPNUM
 			FROM
 				QNA_BOARD
 			WHERE
 				Q_ID = #{Q_ID}
+			ORDER BY
+				Q_NUM DESC, Q_RELEVEL ASC
 		]]>
 	</select>
 

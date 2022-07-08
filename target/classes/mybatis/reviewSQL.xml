@@ -13,6 +13,8 @@
 				R_CONTENTS,
 				R_RATE,
 				R_RECOMMEND
+				R_RELEVEL,
+				R_GROUPNUM
 			FROM
 				REVIEW
 			WHERE
@@ -20,7 +22,7 @@
 		]]>
 	</select>
 	
-	<!-- 상품 리뷰 리스트 -->
+	<!-- 상품 리뷰 상세 페이지 -->
 	<select id="productReview" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -31,12 +33,14 @@
 				R_CONTENTS,
 				R_RATE,
 				R_RECOMMEND
+				R_RELEVEL,
+				R_GROUPNUM
 			FROM
 				REVIEW
 			WHERE
 				R_CODE = #{R_CODE}
 			ORDER BY
-				R_DATE DESC
+				R_DATE DESC, R_GROUPNUM DESC, R_RELEVEL ASC
 		]]>
 	</select>
 	
@@ -53,6 +57,8 @@
 				R_CONTENTS,
 				R_RATE,
 				R_RECOMMEND
+				R_RELEVEL,
+				R_GROUPNUM
 			)
 			VALUES
 			(
@@ -63,7 +69,9 @@
 				SYSDATE,
 				#{R_CONTENTS},
 				#{R_RATE},
-				0
+				0,
+				0,
+				R_SEQ.CURRVAL
 			)
 		]]>
 	</insert>
