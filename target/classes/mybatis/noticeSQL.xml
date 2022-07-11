@@ -28,7 +28,7 @@
 			FROM
 				NOTICE
 			WHERE
-				N_NUM = #{N_NUM}
+				N_NUM = #{n_num}
 		]]>
 	</select>
 	
@@ -40,7 +40,7 @@
 			SET
 				N_HIT = N_HIT + 1
 			WHERE
-				N_NUM = #{N_NUM}
+				N_NUM = #{n_num}
 		]]>
 	</update>
 

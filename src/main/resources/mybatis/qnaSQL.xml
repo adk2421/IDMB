@@ -24,15 +24,15 @@
 			VALUES
 			(
 				Q_SEQ.NEXTVAL,
-				#{Q_ID},
-				#{Q_CODE},
-				#{Q_CATEGORY},
-				#{Q_TITLE},
-				#{Q_CONTENTS,
+				#{q_id},
+				#{q_code},
+				#{q_category},
+				#{q_title},
+				#{q_contents},
 				SYSDATE,
-				#{Q_PRODUCT},
+				#{q_product},
 				'답변대기',
-				#{Q_CONTENTSPW},
+				#{q_contentspw},
 				0,
 				Q_SEQ.CURRVAL
 			)
@@ -74,7 +74,7 @@
 			FROM
 				QNA_BOARD
 			ORDER BY
-				Q_NUM = #{Q_NUM}
+				Q_NUM = #{q_num}
 		]]>
 	</select>
 	
@@ -84,11 +84,11 @@
 			UPDATE
 				QNA_BOARD
 			SET
-				Q_CATEGORY = #{Q_CATEGORY},
-				Q_CONTENTS = #{Q_CONTENTS},
+				Q_CATEGORY = #{q_category},
+				Q_CONTENTS = #{q_contents},
 				Q_DATE = SYSDATE
 			WHERE
-				Q_NUM = #{Q_NUM}
+				Q_NUM = #{q_num}
 		]]>
 	</update>
 	
@@ -98,7 +98,7 @@
 			DELETE FROM
 				QNA_BOARD
 			WHERE
-				Q_NUM = #{Q_NUM}
+				Q_NUM = #{q_num}
 		]]>
 	</delete>
 	
@@ -116,7 +116,7 @@
 			FROM
 				QNA_BOARD
 			WHERE
-				Q_ID = #{Q_ID}
+				Q_ID = #{q_id}
 			ORDER BY
 				Q_NUM DESC, Q_RELEVEL ASC
 		]]>

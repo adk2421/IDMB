@@ -17,7 +17,7 @@
 			FROM
 				ORDERCOMMAND
    	 		WHERE
-   	 			O_ID = #{O_ID}
+   	 			O_ID = #{o_id}
 		]]>
 	</select>
 	
@@ -44,19 +44,19 @@
 			VALUES
 			(
 				O_SEQ.NEXTVAL,
-				#{O_ID},
-				#{O_CODE},
-				#{O_NAME},
+				#{o_id},
+				#{o_code},
+				#{o_name},
 				SYSDATE,
-				#{O_COUNT},
-				#{O_PRICE},
-				#{O_TOTAL},
-				#{O_POSTCODE},
-				#{O_ADDRESS1},
-				#{O_ADDRESS2},
+				#{o_count},
+				#{o_price},
+				#{o_total},
+				#{o_postcode},
+				#{o_address1},
+				#{o_address2},
 				'배송대기',
 				'N',
-				#{O_RECIEVER}
+				#{o_reciever}
 			)
 		]]>
 	</insert>
@@ -69,7 +69,7 @@
 			SET
 				O_DELFLAG = 'Y'
 			WHERE
-				O_NUM = #{O_NUM}
+				O_NUM = #{o_num}
 		]]>
 	</update>
 

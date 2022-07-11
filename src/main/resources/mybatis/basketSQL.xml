@@ -20,13 +20,13 @@
 			VALUES
 			(
 				B_SEQ.NEXTVAL,
-				#{B_ID},
-				#{B_CODE},
-				#{B_NAME},
-				#{B_PRICE},
-				#{B_COUNT},
-				#{B_IMAGE},
-				#{B_KIND});
+				#{b_id},
+				#{b_code},
+				#{b_name},
+				#{b_price},
+				#{b_count},
+				#{b_image},
+				#{b_kind});
 			)
 		]]>
 	</insert>
@@ -39,7 +39,7 @@
 			FROM
 				BASKET
 			WHERE
-				B_ID = #{B_ID}
+				B_ID = #{b_id}
 			ORDER BY
 				B_NUM DESC
 		]]>
@@ -51,10 +51,10 @@
 			UPDATE
 				BASKET
 			SET
-				B_COUNT = #{B_COUNT}
+				B_COUNT = #{b_count}
 			WHERE
-				B_ID = #{B_ID} AND
-				B_CODE = #{B_CODE}	
+				B_ID = #{b_id} AND
+				B_CODE = #{b_code}	
 		]]>
 	</update>
 	
@@ -64,8 +64,8 @@
 			DELETE FROM
 				BASKET
 			WHERE
-				B_ID = #{B_ID} AND
-				B_CODE = #{B_CODE}	
+				B_ID = #{b_id} AND
+				B_CODE = #{b_code}	
 		]]>
 	</delete>
 	

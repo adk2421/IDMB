@@ -144,7 +144,7 @@
 				PRODUCT
 			WHERE
 				P_DELFLAG = 'N' AND
-				P_CODE = #{P_CODE}
+				P_CODE = #{p_code}
 		]]>
 	</select>
 	

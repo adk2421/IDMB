@@ -3,7 +3,7 @@
 
 <mapper namespace="member">
 
-	<!-- 아이디 중복 확인 -->
+	<!-- 아이디 확인 -->
 	<select id="confirmId" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -11,7 +11,19 @@
 			FROM
 				MEMBER
 			WHERE
-				ID = #{ID}
+				ID = #{id}
+		]]>
+	</select>
+
+	<!-- 패스워드 확인 -->
+	<select id="checkPw" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				PASSWD
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
 		]]>
 	</select>
 	
@@ -35,15 +47,15 @@
 			)
 			VALUES
 			(
-				#{ID},
-				#{PASSWD},
-				#{NAME},
-				#{PHONE},
-				#{BIRTH},
-				#{EMAIL},
-				#{POSTCODE},
-				#{ADDRESS1},
-				#{ADDRESS2},
+				#{id},
+				#{passwd},
+				#{name},
+				#{phone},
+				#{birth},
+				#{email},
+				#{postcode},
+				#{address1},
+				#{address2},
 				0,
 				SYSDATE,
 				'N'
@@ -59,29 +71,29 @@
 			FROM
 				MEMBER
 			WHERE
-				NAME = #{NAME} AND
-				PHONE = #{PHONE} AND
+				NAME = #{name} AND
+				PHONE = #{phone} AND
 				DELFLAG = 'N'
 		]]>
 	</select>
 	
 	<!-- 패스워드 찾기 -->
-	<select id="searchId" parameterType="hashmap" resultType="hashmap">
+	<select id="searchPw" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				PASSWD
 			FROM
 				MEMBER
 			WHERE
-				ID = #{ID} AND
-				NAME = #{NAME} AND
-				PHONE = #{PHONE} AND
+				ID = #{id} AND
+				NAME = #{name} AND
+				PHONE = #{phone} AND
 				DELFLAG = 'N'
 		]]>
 	</select>
 	
 	<!-- 회원 찾기 -->
-	<select id="searchId" parameterType="hashmap" resultType="hashmap">
+	<select id="selectMember" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				ID,
@@ -98,7 +110,7 @@
 			FROM
 				MEMBER
 			WHERE
-				ID = #{ID} AND
+				ID = #{id} AND
 				DELFLAG = 'N'
 		]]>
 	</select>
@@ -109,28 +121,16 @@
 			UPDATE
 				MEMBER 
 			SET
-				PASSWD = #{PASSWD},
-				PHONE = #{PHONE},
-				EMAIL = #{EMAIL},
-				POSTCODE = #{POSTCODE},
-				ADDRESS1 = #{ADDRESS1},
-				ADDRESS2 = #{ADDRESS2}
+				PASSWD = #{passwd},
+				PHONE = #{phone},
+				EMAIL = #{email},
+				POSTCODE = #{postcode},
+				ADDRESS1 = #{address1},
+				ADDRESS2 = #{address2}
 			WHERE
-				ID = #{ID}	
+				ID = #{id}	
 		]]>
 	</update>
-	
-	<!-- 패스워드 확인 -->
-	<select id="checkPw" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-				PASSWD
-			FROM
-				MEMBER
-			WHERE
-				ID = #{ID}
-		]]>
-	</select>
 	
 	<!-- 회원 삭제 -->
 	<update id="dropMember" parameterType="hashmap">
@@ -140,7 +140,7 @@
 			SET
 				DELFLAG = 'Y'
 			WHERE
-				ID = #{ID}
+				ID = #{id}
 		]]>
 	</update>
 	

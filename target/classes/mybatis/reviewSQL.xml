@@ -18,7 +18,7 @@
 			FROM
 				REVIEW
 			WHERE
-				R_ID = #{R_ID}
+				R_ID = #{r_id}
 		]]>
 	</select>
 	
@@ -38,7 +38,7 @@
 			FROM
 				REVIEW
 			WHERE
-				R_CODE = #{R_CODE}
+				R_CODE = #{r_code}
 			ORDER BY
 				R_DATE DESC, R_GROUPNUM DESC, R_RELEVEL ASC
 		]]>
@@ -63,12 +63,12 @@
 			VALUES
 			(
 				R_SEQ.NEXTVAL,
-				#{R_ID},
-				#{R_CODE},
-				#{R_NAME},
+				#{r_id},
+				#{r_code},
+				#{r_name},
 				SYSDATE,
-				#{R_CONTENTS},
-				#{R_RATE},
+				#{r_contents},
+				#{r_rate},
 				0,
 				0,
 				R_SEQ.CURRVAL
