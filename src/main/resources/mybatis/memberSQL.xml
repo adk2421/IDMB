@@ -3,7 +3,7 @@
 
 <mapper namespace="member">
 
-	<!-- 아이디 중복 확인 -->
+	<!-- 아이디 확인 -->
 	<select id="confirmId" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -66,7 +66,7 @@
 	</select>
 	
 	<!-- 패스워드 찾기 -->
-	<select id="searchId" parameterType="hashmap" resultType="hashmap">
+	<select id="searchPw" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				PASSWD
@@ -81,7 +81,7 @@
 	</select>
 	
 	<!-- 회원 찾기 -->
-	<select id="searchId" parameterType="hashmap" resultType="hashmap">
+	<select id="selectMember" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				ID,
