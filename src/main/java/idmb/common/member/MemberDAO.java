@@ -38,5 +38,15 @@ public class MemberDAO {
 	public Map<String, Object> searchPw(Map<String, Object> map) throws Exception {
 		return sqlSessionTemplate.selectOne("member.searchPw", map);
 	}
+
+	// 회원 정보 변경
+	public void updateMember(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.update("member.updateMember",map);
+	}
+
+	// 회원 탈퇴
+	public void dropMember(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.update("member.dropMember",map);
+	}
 	
 }
