@@ -14,6 +14,18 @@
 				ID = #{ID}
 		]]>
 	</select>
+
+	<!-- 패스워드 확인 -->
+	<select id="checkPw" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				PASSWD
+			FROM
+				MEMBER
+			WHERE
+				ID = #{ID}
+		]]>
+	</select>
 	
 	<!-- 회원 등록 -->
 	<insert id="insertMember" parameterType="hashmap">
@@ -119,18 +131,6 @@
 				ID = #{ID}	
 		]]>
 	</update>
-	
-	<!-- 패스워드 확인 -->
-	<select id="checkPw" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-				PASSWD
-			FROM
-				MEMBER
-			WHERE
-				ID = #{ID}
-		]]>
-	</select>
 	
 	<!-- 회원 삭제 -->
 	<update id="dropMember" parameterType="hashmap">
