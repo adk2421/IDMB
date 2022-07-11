@@ -9,7 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 
-@Repository("AdminProductDAO")
+@Repository("adminProductDAO")
 public class AdminProductDAO {
 	
 	@Resource(name="sqlSessionTemplate")

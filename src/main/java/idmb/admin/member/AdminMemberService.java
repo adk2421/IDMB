@@ -1,6 +1,5 @@
 package idmb.admin.member;
-
-import java.util.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +14,5 @@ public interface AdminMemberService {
 	public List<Map<String, Object>> adminSearchMember(String searchValue, Date searchDate1, Date searchDate2) throws Exception;
 	
 	public void adminUpdateMember(MemberBean member) throws Exception;
-	
 	
 }
