@@ -1,5 +1,14 @@
 package idmb.common.member;
 
-public class MyInfoService {
+import java.util.Map;
 
+import idmb.model.MemberBean;
+
+public interface MyInfoService {
+
+    public Map<String, Object> checkPw(MemberBean member) throws Exception;
+
+    public Map<String, Object> updateMember(MemberBean member) throws Exception;
+
+    public void dropMember(MemberBean member) throws Exception;
 }
