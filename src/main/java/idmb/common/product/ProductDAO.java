@@ -15,34 +15,34 @@ public class ProductDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	// ¸ŞÀÎÆäÀÌÁö »óÇ° ¸®½ºÆ®
+	// ë©”ì¸í˜ì´ì§€ ìƒí’ˆë¦¬ìŠ¤íŠ¸
 	public List<Map<String, Object>> mainpageProductList() throws Exception {
 		return sqlSessionTemplate.selectList("product.mainpageProductList");
 	}
 	
-	//»óÇ° °Ë»ö
+	//ìƒí’ˆ ê²€ìƒ‰
 	public List<Map<String, Object>> searchProduct(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("product.searchProduct", map);
 		
 	}
 	
-	// ½Å»óÇ°¼ø »óÇ° ¸®½ºÆ®
+	// ì‹ ìƒí’ˆìˆœ ìƒí’ˆë¦¬ìŠ¤íŠ¸
 	public List<Map<String, Object>> newProductList(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("product.newProductList", map);
 	}
 	
-	// ÀÎ±â¼ø »óÇ° ¸®½ºÆ® 
+	// ì¸ê¸°ìˆœ ìƒí’ˆë¦¬ìŠ¤íŠ¸
 	public List<Map<String, Object>> bestProductList(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("product.bestProductList", map);
 
 	}
 	
-	// Á¾·ùº° »óÇ° ¸®½ºÆ®
+	// ì¢…ë¥˜ë³„ ìƒí’ˆë¦¬ìŠ¤íŠ¸
 	public List<Map<String, Object>> kindProductList(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("product.kindProductList", map);
 	}
 	
-	// »óÇ° »ó¼¼
+	// ìƒí’ˆìƒì„¸
 	public Map<String, Object> productDetail(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectOne("product.productDetail", map);
 	

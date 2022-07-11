@@ -7,22 +7,22 @@ import idmb.model.ProductBean;
 
 public interface ProductService {
 	
-	// ¸ŞÀÎÆäÀÌÁö »óÇ° ¸®½ºÆ®
+	// ë©”ì¸í˜ì´ì§€ ìƒí’ˆë¦¬ìŠ¤íŠ¸
 	public List<Map<String, Object>> mainpageProductList() throws Exception;
 	
-	//»óÇ° °Ë»ö
+	//ìƒí’ˆ ê²€ìƒ‰
 	public List<Map<String, Object>> searchProduct(String searchValue, int priceValue1, int priceValue2);
 	
-	// ½Å»óÇ°¼ø »óÇ° ¸®½ºÆ®
+	// ì‹ ìƒí’ˆìˆœ ìƒí’ˆë¦¬ìŠ¤íŠ¸
 	public List<Map<String, Object>> newProductList(String searchValue, int priceValue1, int priceValue2);
 	
-	// ÀÎ±â¼ø »óÇ° ¸®½ºÆ® 
+	// ì¸ê¸°ìˆœ ìƒí’ˆë¦¬ìŠ¤íŠ¸
 	public List<Map<String, Object>> bestProductList (String searchValue, int priceValue1, int priceValue2);
 	
-	// Á¾·ùº° »óÇ° ¸®½ºÆ®
+	// ì¢…ë¥˜ë³„ ìƒí’ˆë¦¬ìŠ¤íŠ¸
 	public List<Map<String, Object>> kindProductList (ProductBean product, String searchValue, int priceValue1, int priceValue2 );
 	
-	// »óÇ° »ó¼¼
+	// ìƒí’ˆ ìƒì„¸
 	public Map<String, Object> productDetail(ProductBean product) throws Exception;
 	
 
