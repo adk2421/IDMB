@@ -3,7 +3,7 @@
 
 <mapper namespace="member">
 
-	<!-- ID 중복 확인 -->
+	<!-- 아이디 중복 확인 -->
 	<select id="confirmId" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -15,13 +15,14 @@
 		]]>
 	</select>
 	
-	<!-- 회원등록 -->
+	<!-- 회원 등록 -->
 	<insert id="insertMember" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO MEMBER
 			(
 				ID,
 				PASSWD,
+				NAME,
 				PHONE,
 				BIRTH,
 				EMAIL,
@@ -36,6 +37,7 @@
 			(
 				#{ID},
 				#{PASSWD},
+				#{NAME},
 				#{PHONE},
 				#{BIRTH},
 				#{EMAIL},
@@ -49,7 +51,7 @@
 		]]>
 	</insert>
 	
-	<!-- ID 찾기 -->
+	<!-- 아이디 찾기 -->
 	<select id="searchId" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -63,7 +65,7 @@
 		]]>
 	</select>
 	
-	<!-- PW 찾기 -->
+	<!-- 패스워드 찾기 -->
 	<select id="searchId" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -104,7 +106,8 @@
 	<!-- 회원 정보 변경 (id, 이름, 생년월일, 적립금, 가입날짜는 변경불가) -->
 	<update id="updateMember" parameterType="hashmap">
 		<![CDATA[
-			UPDATE MEMBER 
+			UPDATE
+				MEMBER 
 			SET
 				PASSWD = #{PASSWD},
 				PHONE = #{PHONE},
@@ -117,7 +120,7 @@
 		]]>
 	</update>
 	
-	<!-- PW 확인 -->
+	<!-- 패스워드 확인 -->
 	<select id="checkPw" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -132,11 +135,12 @@
 	<!-- 회원 삭제 -->
 	<update id="dropMember" parameterType="hashmap">
 		<![CDATA[
-			UPDATE MEMBER 
+			UPDATE
+				MEMBER
 			SET
 				DELFLAG = 'Y'
 			WHERE
-				ID = #{ID}	
+				ID = #{ID}
 		]]>
 	</update>
 	

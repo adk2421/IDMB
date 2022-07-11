@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="review">
+
+	<!-- 내가 작성한 리뷰 리스트 출력 -->
+	<select id="myReviewList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				R_CODE,
+				R_NAME,
+				R_DATE,
+				R_CONTENTS,
+				R_RATE,
+				R_RECOMMEND
+				R_RELEVEL,
+				R_GROUPNUM
+			FROM
+				REVIEW
+			WHERE
+				R_ID = #{R_ID}
+		]]>
+	</select>
+	
+	<!-- 상품 리뷰 상세 페이지 -->
+	<select id="productReview" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				R_NUM,
+				R_CODE,
+				R_NAME,
+				R_DATE,
+				R_CONTENTS,
+				R_RATE,
+				R_RECOMMEND
+				R_RELEVEL,
+				R_GROUPNUM
+			FROM
+				REVIEW
+			WHERE
+				R_CODE = #{R_CODE}
+			ORDER BY
+				R_DATE DESC, R_GROUPNUM DESC, R_RELEVEL ASC
+		]]>
+	</select>
+	
+	<!-- 리뷰 등록 -->
+	<insert id="insertReview" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO REVIEW
+			(
+				R_NUM,
+				R_ID,
+				R_CODE,
+				R_NAME,
+				R_DATE,
+				R_CONTENTS,
+				R_RATE,
+				R_RECOMMEND
+				R_RELEVEL,
+				R_GROUPNUM
+			)
+			VALUES
+			(
+				R_SEQ.NEXTVAL,
+				#{R_ID},
+				#{R_CODE},
+				#{R_NAME},
+				SYSDATE,
+				#{R_CONTENTS},
+				#{R_RATE},
+				0,
+				0,
+				R_SEQ.CURRVAL
+			)
+		]]>
+	</insert>
+
+</mapper>

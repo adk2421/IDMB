@@ -1,5 +1,7 @@
 package idmb.admin.member;
 
-public class AdminMemberService {
+import java.util.Map;
 
+public interface AdminMemberService {
+	
 }

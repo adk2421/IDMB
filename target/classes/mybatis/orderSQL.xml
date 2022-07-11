@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+
+	<!-- 주문 리스트 출력 -->
+	<select id="myOrderList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				O_CODE,
+				O_NAME,
+				O_DATE,
+				O_COUNT,
+				O_PRICE,
+				O_TOTAL,
+				O_STATUS
+			FROM
+				ORDERCOMMAND
+   	 		WHERE
+   	 			O_ID = #{O_ID}
+		]]>
+	</select>
+	
+	<!-- 주문 등록 -->
+	<insert id="insertOrder" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO ORDERCOMMAND
+			(
+				O_NUM,
+				O_ID,
+				O_CODE,
+				O_NAME,
+				O_DATE,
+				O_COUNT,
+				O_PRICE,
+				O_TOTAL,
+				O_POSTCODE,
+				O_ADDRESS1,
+				O_ADDRESS2,
+				O_STATUS,
+				O_DELFLAG,
+				O_RECIEVER
+			)
+			VALUES
+			(
+				O_SEQ.NEXTVAL,
+				#{O_ID},
+				#{O_CODE},
+				#{O_NAME},
+				SYSDATE,
+				#{O_COUNT},
+				#{O_PRICE},
+				#{O_TOTAL},
+				#{O_POSTCODE},
+				#{O_ADDRESS1},
+				#{O_ADDRESS2},
+				'배송대기',
+				'N',
+				#{O_RECIEVER}
+			)
+		]]>
+	</insert>
+	
+	<!-- 주문 취소 -->
+	<update id="deleteOrder" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				ORDERCOMMAND
+			SET
+				O_DELFLAG = 'Y'
+			WHERE
+				O_NUM = #{O_NUM}
+		]]>
+	</update>
+
+</mapper>
