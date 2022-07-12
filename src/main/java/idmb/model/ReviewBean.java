@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class ReviewBean {
 
-    private int r_num;
-    private String r_id;
-    private int r_code;
-    private Date r_date;
-    private String r_name;
-    private String r_contents;
-    private int r_rate;
-    private int r_recommend;
-    private int r_relevel;
-    private int r_groupnum;
+    private int r_num;              // 리뷰 번호
+	private String r_id;            // 구매자 (= 리뷰 작성자)
+	private int r_code;             // 구매 상품 코드
+	private Date r_date;            // 후기 작성 날짜
+	private String r_name;          // 구매 상품 이름
+	private String r_contents;      // 리뷰 내용
+	private int r_rate;             // 별점
+	private int r_recommend;        // 추천수
+	private int r_relevel;          // 후기 답글 여부
+	private int r_groupnum;         // 후기 그룹 번호
     
 
     public int getR_num() {
