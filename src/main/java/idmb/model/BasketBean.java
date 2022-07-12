@@ -2,15 +2,15 @@ package idmb.model;
 
 public class BasketBean {
 
-	private int b_num;				// 장바구니번호
+	private int b_num;				// 장바구니 번호
 	private String b_id;			// 장바구니 주인
-	private int b_code;				// 상품코드
-	private String b_name;			// 상품이름
-	private int b_price;			// 상품가격
-	private int b_count;			// 상품수량
-	private String b_image; 		// 상품이미지
-	private String b_kind;			// 상품종류
-	
+	private int b_code;				// 상품 코드
+	private String b_name;			// 상품 이름
+	private int b_price;			// 상품 가격
+	private int b_count;			// 상품 수량
+	private String b_image; 		// 상품 이미지
+	private String b_kind;			// 상품 종류
+
 	
 	public int getB_num() {
 		return b_num;
