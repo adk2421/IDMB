@@ -1,16 +1,15 @@
 package idmb.model;
 
 public class BasketBean {
-	
-	private int b_num;     //장바구니번호 
-	private String b_id;   //장바구니 주인
-	private int b_code;	   //상품코드
-	private String b_name; //상품이름
-	private int b_price;   //상품가격
-	private int b_count;   //상품수량
-	private String b_image;  //상품이미지
-	private String b_kind; //상품종류
-	
+
+	private int b_num;				// 장바구니번호
+	private String b_id;			// 장바구니 주인
+	private int b_code;				// 상품코드
+	private String b_name;			// 상품이름
+	private int b_price;			// 상품가격
+	private int b_count;			// 상품수량
+	private String b_image; 		// 상품이미지
+	private String b_kind;			// 상품종류
 	
 	public int getB_num() {
 		return b_num;
@@ -48,11 +47,11 @@ public class BasketBean {
 	public void setB_count(int b_count) {
 		this.b_count = b_count;
 	}
-	public String getB_img() {
+	public String getB_image() {
 		return b_image;
 	}
-	public void setB_img(String b_img) {
-		this.b_image = b_img;
+	public void setB_image(String b_image) {
+		this.b_image = b_image;
 	}
 	public String getB_kind() {
 		return b_kind;
@@ -60,5 +59,5 @@ public class BasketBean {
 	public void setB_kind(String b_kind) {
 		this.b_kind = b_kind;
 	}
-	
+
 }

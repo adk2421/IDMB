@@ -81,4 +81,5 @@ public class ProductBean {
 		this.p_delflag = p_delflag;
 	}
 
+
 }
