@@ -44,14 +44,41 @@
 				P_ZIM
 			FROM
 				PRODUCT
-			WHERE
-				P_DELFLAG = 'N' AND
-				P_NAME LIKE '%#{searchValue}%' AND
-				P_PRICE BETWEEN #{priceValue1} AND
-				#{priceValue2}
-			ORDER BY
+			]]>
+			<trim prefix="WHERE" prefixOverrides="AND">
+				P_DELFLAG = 'N'
+				<if test="searchValue != NULL">
+				AND P_NAME LIKE '%'||#{searchValue}||'%'
+				</if>
+				<if test="priceValue1 != NULL">
+					<if test="priceValue2 != NULL">
+					AND P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
+					</if>
+					AND P_PRICE >= #{priceValue1}
+				</if>
+				<if test="priceValue1 == NULL">
+					<if test="priceValue2 != NULL">
+					AND P_PRICE BETWEEN 0 AND #{priceValue2}
+					</if>
+				</if>	
+			</trim>
+			<trim prefix="ORDER BY">
+				<if test="#{SORT} == NULL">
+				P_NUM DESC
+				</if>
+				<if test="#{SORT} == 1">
+				P_DATE DESC  
+				</if>
+	        	<if test="#{SORT} == 2">
+				P_ZIM DESC 
+	            </if>
+	            <if test="#{SORT} == 3">
+				P_PRICE DESC 
+	            </if>
+	            <if test="#{SORT} == 4">
 				P_PRICE ASC
-		]]>
+	            </if>
+			</trim>
 	</select>
 	
 	<!-- 신상품순 상품 리스트 -->
@@ -68,14 +95,26 @@
 				P_ZIM
 			FROM
 				PRODUCT
-			WHERE
-				P_DELFLAG = 'N' AND
-				P_NAME LIKE '%#{searchValue}%' AND
-				P_PRICE BETWEEN #{priceValue1} AND
-				#{priceValue2}
-			ORDER BY
-				P_DATE DESC
 		]]>
+		<trim prefix="WHERE" prefixOverrides="AND">
+				P_DELFLAG = 'N'
+				<if test="searchValue != NULL">
+				AND P_NAME LIKE '%'||#{searchValue}||'%'
+				</if>
+				<if test="priceValue1 != NULL">
+					<if test="priceValue2 != NULL">
+					AND P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
+					</if>
+					AND P_PRICE >= #{priceValue1}
+				</if>
+				<if test="priceValue1 == NULL">
+					<if test="priceValue2 != NULL">
+					AND P_PRICE BETWEEN 0 AND #{priceValue2}
+					</if>
+				</if>
+			ORDER BY
+				P_DATE DESC	
+			</trim>
 	</select>
 	
 	<!-- 인기순 상품 리스트 -->
@@ -92,14 +131,26 @@
 				P_ZIM
 			FROM
 				PRODUCT
-			WHERE
-				P_DELFLAG = 'N' AND
-				P_NAME LIKE '%#{searchValue}%' AND
-				P_PRICE BETWEEN #{priceValue1} AND
-				#{priceValue2}
-			ORDER BY
-				P_ZIM DESC
 		]]>
+			<trim prefix="WHERE" prefixOverrides="AND">
+				P_DELFLAG = 'N'
+				<if test="searchValue != NULL">
+				AND P_NAME LIKE '%'||#{searchValue}||'%'
+				</if>
+				<if test="priceValue1 != NULL">
+					<if test="priceValue2 != NULL">
+					AND P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
+					</if>
+					AND P_PRICE >= #{priceValue1}
+				</if>
+				<if test="priceValue1 == NULL">
+					<if test="priceValue2 != NULL">
+					AND P_PRICE BETWEEN 0 AND #{priceValue2}
+					</if>
+				</if>
+			ORDER BY
+				P_ZIM DESC	
+			</trim>
 	</select>
 	
 	<!-- 종류별 상품 리스트 -->
@@ -116,15 +167,41 @@
 				P_ZIM
 			FROM
 				PRODUCT
-			WHERE
-				P_DELFLAG = 'N' AND
-				P_KIND = #{P_KIND} AND
-				P_NAME LIKE '%#{searchValue}%' AND
-				P_PRICE BETWEEN #{priceValue1} AND
-				#{priceValue2}
-			ORDER BY
-				P_PRICE DESC
-		]]>
+			]]>
+			<trim prefix="WHERE" prefixOverrides="AND">
+				P_DELFLAG = 'N'
+				<if test="searchValue != NULL">
+				AND P_NAME LIKE '%'||#{searchValue}||'%'
+				</if>
+				<if test="priceValue1 != NULL">
+					<if test="priceValue2 != NULL">
+					AND P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
+					</if>
+					AND P_PRICE >= #{priceValue1}
+				</if>
+				<if test="priceValue1 == NULL">
+					<if test="priceValue2 != NULL">
+					AND P_PRICE BETWEEN 0 AND #{priceValue2}
+					</if>
+				</if>	
+			</trim>
+			<trim prefix="ORDER BY">
+				<if test="#{SORT} == NULL">
+				P_NUM DESC
+				</if>
+				<if test="#{SORT} == 1">
+				P_DATE DESC  
+				</if>
+	        	<if test="#{SORT} == 2">
+				P_ZIM DESC 
+	            </if>
+	            <if test="#{SORT} == 3">
+				P_PRICE DESC 
+	            </if>
+	            <if test="#{SORT} == 4">
+				P_PRICE ASC
+	            </if>
+			</trim>
 	</select>
 	
 	<!-- 상품 상세 -->

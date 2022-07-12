@@ -20,10 +20,27 @@
 	<!-- 사용자 검색 -->
 	<select id="adminSearchMember" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from MEMBER where ID like '%#{searchValue}%'
-				or NAME like '%#{searchValue}%'
-    			and JOINDATE between '%#{searchDate1}%' and '%#{searchDate2}%'
+			select * from MEMBER
 		]]>
+		<trim prefix="WHERE" prefixOverrides="OR">
+			<if test="searchValue != NULL">		
+				OR ID like '%'||#{searchValue}||'%'
+				OR NAME like '%'||#{searchValue}||'%'
+			</if>
+			<if test="searchDate1 != NULL">
+				<if test="searchDate2 != NULL">
+				OR JOINDATE between #{searchDate1} and #{searchDate2}
+				</if>
+    			<if test="searchDate2 == NULL">
+				OR JOINDATE >= #{searchDate1}
+				</if>
+			</if>
+			<if test="searchDate1 == NULL">
+				<if test="searchDate2 != NULL">
+				OR JOINDATE between '00/01/01' and #{searchDate2}
+				</if>
+			</if>	
+		</trim>
 	</select>
 	
 	<!-- 사용자 정보 수정 -->

@@ -14,8 +14,8 @@ public class NoticeDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<Map<String, Object>> noticeList(Map<String,Object> map) throws Exception{
-		return sqlSessionTemplate.selectList("notice.noticeList", map);
+	public List<Map<String, Object>> noticeList() throws Exception{
+		return sqlSessionTemplate.selectList("notice.noticeList");
 	}
 	
 	public Map<String, Object> noticeDetail(Map<String,Object> map) throws Exception{

@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-
 @Repository("adminProductDAO")
 public class AdminProductDAO {
 	
@@ -24,11 +23,11 @@ public class AdminProductDAO {
 	}
 
 	public void adminInsertProduct(Map<String, Object> map) throws Exception{
-		sqlSessionTemplate.insert("admin.adminInsertProduct");
+		sqlSessionTemplate.insert("admin.adminInsertProduct", map);
 	}
 	
 	public void adminUpdateProduct(Map<String, Object> map) throws Exception{
-		sqlSessionTemplate.update("admin.adminUpdateProduct");
+		sqlSessionTemplate.update("admin.adminUpdateProduct", map);
 	}
 	
 	public void adminDeleteProduct() throws Exception{

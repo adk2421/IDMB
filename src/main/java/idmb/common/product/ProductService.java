@@ -11,7 +11,7 @@ public interface ProductService {
 	public List<Map<String, Object>> mainpageProductList() throws Exception;
 	
 	//상품 검색
-	public List<Map<String, Object>> searchProduct(String searchValue, int priceValue1, int priceValue2);
+	public List<Map<String, Object>> searchProduct(String searchValue, int priceValue1, int priceValue2, int SORT);
 	
 	// 신상품순 상품리스트
 	public List<Map<String, Object>> newProductList(String searchValue, int priceValue1, int priceValue2);
