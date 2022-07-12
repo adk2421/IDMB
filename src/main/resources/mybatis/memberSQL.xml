@@ -132,7 +132,7 @@
 		]]>
 	</update>
 	
-	<!-- 회원 삭제 -->
+	<!-- 회원 탈퇴 -->
 	<update id="dropMember" parameterType="hashmap">
 		<![CDATA[
 			UPDATE
