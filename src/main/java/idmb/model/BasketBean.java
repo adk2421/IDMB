@@ -11,6 +11,7 @@ public class BasketBean {
 	private String b_image; 		// 상품이미지
 	private String b_kind;			// 상품종류
 	
+	
 	public int getB_num() {
 		return b_num;
 	}
