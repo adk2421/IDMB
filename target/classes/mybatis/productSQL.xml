@@ -103,7 +103,7 @@
 	</select>
 	
 	<!-- 종류별 상품 리스트 -->
-	<select id="bestProductList" parameterType="hashmap" resultType="hashmap">
+	<select id="kindProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				P_NAME,
@@ -128,7 +128,7 @@
 	</select>
 	
 	<!-- 상품 상세 -->
-	<select id="bestProductList" parameterType="hashmap" resultType="hashmap">
+	<select id="productDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				P_NAME,
