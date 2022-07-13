@@ -11,7 +11,7 @@ public interface AdminQnaService {
 	public List<Map<String, Object>> adminQnaList() throws Exception;
 	
 	public List<Map<String, Object>> adminSearchQna(QNABean qna,
-			String searchValue, Date searchDate1, Date searchDate2) throws Exception;
+			String searchValue, Date searchDate1, Date searchDate2, String SORT) throws Exception;
 	
 	public Map<String, Object> adminQnaDetail(QNABean qna) throws Exception;
 	

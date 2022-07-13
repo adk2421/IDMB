@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: WinPC
-=======
-Built-By: EZEN
->>>>>>> 2e8f137c9a8bb34553c4618ba8eb42ccf9420299
 Build-Jdk: 11.0.14
 Created-By: Maven Integration for Eclipse
 

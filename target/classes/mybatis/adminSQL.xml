@@ -73,8 +73,12 @@
 		<![CDATA[
 			select P_CODE, P_KIND, P_IMAGE, P_NAME, P_PRICE, P_STOCK from PRODUCT
 			where P_DELFLAG = 'N'
-			and P_KIND = #{p_kind}
 		]]>
+		<trim prefix="AND">
+			<if test="searchValue != NULL">
+			P_NAME like '%'||#{searchValue}||'%'
+			</if>
+		</trim>
 	</select>
 	
 	<!-- 상품 등록 -->

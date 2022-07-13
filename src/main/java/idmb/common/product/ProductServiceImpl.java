@@ -31,9 +31,10 @@ public class ProductServiceImpl implements ProductService{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		map.put("searchValue",searchValue);
-		map.put("priceValue1",priceValue1);
-		map.put("priceValue2",priceValue2);
+		map.put("searchValue", searchValue);
+		map.put("priceValue1", priceValue1);
+		map.put("priceValue2", priceValue2);
+		map.put("SORT", SORT);
 		
 		return productDAO.searchProduct(map);
 		
@@ -67,7 +68,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<Map<String, Object>> kindProductList (ProductBean product, String searchValue, int priceValue1, int priceValue2, String SORT)throws Exception{
+	public List<Map<String, Object>> kindProductList (
+			ProductBean product, String searchValue, int priceValue1, int priceValue2, String SORT) throws Exception{
 	
 		Map<String,Object> map = new HashMap<String,Object>();
 	
@@ -75,6 +77,7 @@ public class ProductServiceImpl implements ProductService{
 		map.put("searchValue", searchValue);
 		map.put("priceValue1", priceValue1);
 		map.put("priceValue2", priceValue2);
+		map.put("SORT", SORT);
 	
 		return productDAO.kindProductList(map);
 	

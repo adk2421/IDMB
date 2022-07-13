@@ -9,7 +9,7 @@ public interface AdminProductService {
 	
 	public List<Map<String, Object>> adminProductList() throws Exception;
 	
-	public List<Map<String, Object>> adminSearchProduct(ProductBean product) throws Exception;
+	public List<Map<String, Object>> adminSearchProduct(ProductBean product, String searchValue) throws Exception;
 
 	public void adminInsertProduct(ProductBean product) throws Exception;
 	

@@ -68,19 +68,19 @@
 			</trim>
 			
 			<trim prefix="ORDER BY">
-				<if test="#{SORT} == NULL">
+				<if test="SORT == NULL">
 				P_CODE DESC
 				</if>
-				<if test="#{SORT} == 'newproduct'">
+				<if test="SORT == 'newproduct'">
 				P_DATE DESC  
 				</if>
-	        	<if test="#{SORT} == 'bestproduct'">
+	        	<if test="SORT == 'bestproduct'">
 				P_ZIM DESC 
 	            </if>
-	            <if test="#{SORT} == 'highproduct'">
+	            <if test="SORT == 'highproduct'">
 				P_PRICE DESC 
 	            </if>
-	            <if test="#{SORT} == 'lowproduct'">
+	            <if test="SORT == 'lowproduct'">
 				P_PRICE ASC
 	            </if>
 			</trim>
@@ -216,19 +216,19 @@
 			</trim>
 			
 			<trim prefix="ORDER BY">
-				<if test="#{SORT} == NULL">
+				<if test="SORT == NULL">
 				P_CODE DESC
 				</if>
-				<if test="#{SORT} == 'newproduct'">
+				<if test="SORT == 'newproduct'">
 				P_DATE DESC  
 				</if>
-	        	<if test="#{SORT} == 'bestproduct'">
+	        	<if test="SORT == 'bestproduct'">
 				P_ZIM DESC 
 	            </if>
-	            <if test="#{SORT} == 'highproduct'">
+	            <if test="SORT == 'highproduct'">
 				P_PRICE DESC 
 	            </if>
-	            <if test="#{SORT} == 'lowproduct'">
+	            <if test="SORT == 'lowproduct'">
 				P_PRICE ASC
 	            </if>
 			</trim>
