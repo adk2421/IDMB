@@ -16,7 +16,7 @@ public class ProductServiceImpl implements ProductService{
 	@Resource(name="productDAO")
 	private ProductDAO productDAO;
 	
-	// 메인 페이지 상품리스트
+
 	@Override
 	public List<Map<String, Object>> mainpageProductList() throws Exception{
 	
@@ -24,7 +24,6 @@ public class ProductServiceImpl implements ProductService{
 	
 	}
 		
-	//상품 검색
 	@Override
 	public List<Map<String, Object>> searchProduct(
 			String searchValue, int priceValue1, int priceValue2, String SORT) 
@@ -39,7 +38,7 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.searchProduct(map);
 		
 	}
-	// 신상품순 상품리스트
+
 	@Override
 	public List<Map<String, Object>> newProductList(String searchValue, int priceValue1, int priceValue2)
 			throws Exception{
@@ -52,9 +51,8 @@ public class ProductServiceImpl implements ProductService{
 	
 		return productDAO.newProductList(map);
 	
-	}
-	
-	// 인기순 상품리스트
+	}	
+
 	@Override
 	public List<Map<String, Object>> bestProductList (String searchValue, int priceValue1, int priceValue2) throws Exception{
 		
@@ -67,10 +65,9 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.bestProductList(map);
 		
 	}
-	
-	// 종류별 상품리스트
+
 	@Override
-	public List<Map<String, Object>> kindProductList (ProductBean product, String searchValue, int priceValue1, int priceValue2 )throws Exception{
+	public List<Map<String, Object>> kindProductList (ProductBean product, String searchValue, int priceValue1, int priceValue2, String SORT)throws Exception{
 	
 		Map<String,Object> map = new HashMap<String,Object>();
 	
@@ -83,7 +80,6 @@ public class ProductServiceImpl implements ProductService{
 	
 	}
 	
-	// 상품 상세
 	@Override
 	public Map<String, Object> productDetail(ProductBean product) throws Exception{
 		Map<String,Object> map = new HashMap<String,Object>();
