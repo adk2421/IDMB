@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<!-- 아이디 확인 -->
+	<select id="confirmId" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				ID
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+		]]>
+	</select>
+
+	<!-- 패스워드 확인 -->
+	<select id="checkPw" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				PASSWD
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+		]]>
+	</select>
+	
+	<!-- 회원 등록 -->
+	<insert id="insertMember" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO MEMBER
+			(
+				ID,
+				PASSWD,
+				NAME,
+				PHONE,
+				BIRTH,
+				EMAIL,
+				POSTCODE,
+				ADDRESS1,
+				ADDRESS2,
+				RESERVE,
+				JOINDATE,
+				DELFLAG
+			)
+			VALUES
+			(
+				#{id},
+				#{passwd},
+				#{name},
+				#{phone},
+				#{birth},
+				#{email},
+				#{postcode},
+				#{address1},
+				#{address2},
+				0,
+				SYSDATE,
+				'N'
+			)
+		]]>
+	</insert>
+	
+	<!-- 아이디 찾기 -->
+	<select id="searchId" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				ID
+			FROM
+				MEMBER
+			WHERE
+				NAME = #{name} AND
+				PHONE = #{phone} AND
+				DELFLAG = 'N'
+		]]>
+	</select>
+	
+	<!-- 패스워드 찾기 -->
+	<select id="searchPw" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				PASSWD
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id} AND
+				NAME = #{name} AND
+				PHONE = #{phone} AND
+				DELFLAG = 'N'
+		]]>
+	</select>
+	
+	<!-- 회원 찾기 -->
+	<select id="selectMember" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				ID,
+				PASSWD,
+				NAME,
+				PHONE,
+				BIRTH,
+				EMAIL,
+				POSTCODE,
+				ADDRESS1,
+				ADDRESS2,
+				RESERVE,
+				JOINDATE
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id} AND
+				DELFLAG = 'N'
+		]]>
+	</select>
+	
+	<!-- 회원 정보 변경 (id, 이름, 생년월일, 적립금, 가입날짜는 변경불가) -->
+	<update id="updateMember" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				MEMBER 
+			SET
+				PASSWD = #{passwd},
+				PHONE = #{phone},
+				EMAIL = #{email},
+				POSTCODE = #{postcode},
+				ADDRESS1 = #{address1},
+				ADDRESS2 = #{address2}
+			WHERE
+				ID = #{id}	
+		]]>
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="dropMember" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				MEMBER
+			SET
+				DELFLAG = 'Y'
+			WHERE
+				ID = #{id}
+		]]>
+	</update>
+	
+</mapper>
