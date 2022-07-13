@@ -16,7 +16,7 @@ public class JoinServiceImpl implements JoinService {
     private MemberDAO memberDAO;
 
     @Override
-    public Map<String, Object> confirmId(MemberBean member) throws Exception {
+    public Map<String, Object> checkId(MemberBean member) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("id", member.getId());
