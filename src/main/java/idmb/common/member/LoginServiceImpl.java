@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
 
         map.put("id", member.getId());
 
-        return memberDAO.confirmId(map);
+        return memberDAO.checkId(map);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
 
         map.put("id", member.getId());
 
-        return memberDAO.confirmId(map);
+        return memberDAO.checkPw(map);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
         map.put("name", member.getName());
         map.put("phone", member.getPhone());
 
-        return memberDAO.confirmId(map);
+        return memberDAO.searchId(map);
     }
 
     @Override
@@ -51,8 +51,15 @@ public class LoginServiceImpl implements LoginService {
         map.put("name", member.getName());
         map.put("phone", member.getPhone());
 
-        return memberDAO.confirmId(map);
+        return memberDAO.searchPw(map);
     }
 
-    
+    @Override
+    public Map<String, Object> searchPhone(MemberBean member) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("phone", member.getPhone());
+
+        return memberDAO.searchPhone(map);
+    }
 }

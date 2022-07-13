@@ -15,7 +15,7 @@ public class MemberDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	// 아이디 확인
-	public Map<String, Object> confirmId(Map<String, Object> map) throws Exception {
+	public Map<String, Object> checkId(Map<String, Object> map) throws Exception {
 		return sqlSessionTemplate.selectOne("member.confirmId", map);
 	}
 
@@ -37,6 +37,11 @@ public class MemberDAO {
 	// 패스워드 찾기
 	public Map<String, Object> searchPw(Map<String, Object> map) throws Exception {
 		return sqlSessionTemplate.selectOne("member.searchPw", map);
+	}
+
+	// 패스워드 찾기
+	public Map<String, Object> searchPhone(Map<String, Object> map) throws Exception {
+		return sqlSessionTemplate.selectOne("member.searchPhone", map);
 	}
 
 	// 회원 정보 변경

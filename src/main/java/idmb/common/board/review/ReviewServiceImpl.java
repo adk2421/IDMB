@@ -31,7 +31,7 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		map.put("r_code", review.getR_code());
 
-        return reviewDAO.myReviewList(map);
+        return reviewDAO.productReview(map);
     }
 	
     @Override

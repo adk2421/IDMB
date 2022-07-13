@@ -21,7 +21,7 @@ public class JoinServiceImpl implements JoinService {
 
         map.put("id", member.getId());
 
-        return memberDAO.confirmId(map);
+        return memberDAO.checkId(map);
     }
 
     @Override

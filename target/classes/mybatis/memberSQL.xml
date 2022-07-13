@@ -91,6 +91,19 @@
 				DELFLAG = 'N'
 		]]>
 	</select>
+
+	<!-- 회원 폰 번호로 이름 찾기 -->
+	<select id="searchPhone" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NAME
+			FROM
+				MEMBER
+			WHERE
+				PHONE = #{phone} AND
+				DELFLAG = 'N'
+		]]>
+	</select>
 	
 	<!-- 회원 찾기 -->
 	<select id="selectMember" parameterType="hashmap" resultType="hashmap">
