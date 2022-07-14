@@ -71,7 +71,7 @@ public class MemberController {
 	
 	}
 	
-	@RequestMapping(value = "/confirmId.al")
+	@RequestMapping(value = "/confirmId.do")
 	public String confirmId(MemberBean member, Model model) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -96,7 +96,7 @@ public class MemberController {
 
 		if(map != null) { // 중복된 아이디 있음 
 			model.addAttribute("msg", "이미 가입된 아이디입니다.");
-			model.addAttribute("url", "/joinForm.al"); } else { //중복된 아이디 없음
+			model.addAttribute("url", "/joinForm.do"); } else { //중복된 아이디 없음
 			model.addAttribute("msg", "사용할 수 있는 아이디입니다."); model.addAttribute("url","/joinForm.do"); }
 
 		return "/member/confirmId";
@@ -153,9 +153,9 @@ public class MemberController {
 			if (member.getPasswd().equals(memberBean.getPasswd())) {
 				// 로그인 성공
 
-				// 정지유무 체크
+				// 탈퇴유무 체크
 				if (memberBean.getDelflag().equals("Y")) {
-					model.addAttribute("msg", "정지된 회원입니다.");
+					model.addAttribute("msg", "탈퇴한 회원입니다.");
 					model.addAttribute("url", "/loginForm.do");
 					return "/member/login";
 				}
@@ -178,13 +178,13 @@ public class MemberController {
 		return "/member/login";
 	}
 
-	@RequestMapping(value = "/logout.al")
+	@RequestMapping(value = "/logout.do")
 	public String logout(HttpServletRequest request, Model model) throws Exception {
 
 		request.getSession().invalidate();
 
 		model.addAttribute("msg", "로그아웃 하셨습니다.");
-		model.addAttribute("url", "/loginForm.al");
+		model.addAttribute("url", "/loginForm.do");
 
 		return "/member/logout";
 	}
@@ -194,7 +194,7 @@ public class MemberController {
 		return "findId";
 	}
 
-	@RequestMapping(value = "/findIdResult.al")
+	@RequestMapping(value = "/findIdResult.do")
 	public String findIdResult(MemberBean member, Model model) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		MemberBean memberBean = new MemberBean();
@@ -214,4 +214,50 @@ public class MemberController {
 		}
 		return "findIdResult";
 	}
+
+	@RequestMapping(value = "/findPw.do")
+	public String findPw(Model model) throws Exception {
+		return "findPw";
+	}
+
+	@RequestMapping(value = "/findPwResult.do")
+	public String findPwResult(MemberBean member, Model model) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		MemberBean memberBean = new MemberBean();
+
+		map = loginService.searchPhone(member);
+
+		// 폰 번호 일치 여부를 검사
+		if (map == null) {
+			// 폰 번호가 일치하지 않으므로 회원이 검색되지 않음
+			model.addAttribute("Find", "notFound");
+		} else {
+			memberBean = MapToBean.mapToMember(map);
+			// 아이디 일치 여부를 검사
+			if (member.getId().equals(memberBean.getId())) {
+				// 이름 일치 여부를 검사
+				if (member.getName().equals(memberBean.getName())) {
+					// 일치한 회원을 찾음
+					model.addAttribute("memberBean", memberBean);
+				} else {
+					// 이름이 일치하지 않음
+					model.addAttribute("invalidNAME", "invalidNAME");
+				}
+			} else {
+				// 아이디가 일치하지 않음
+				model.addAttribute("invalidEMAIL", "invalidEMAIL");
+			}
+		}
+
+		model.addAttribute("memberBean", memberBean);
+
+		return "findPwResult";
+	}
+
+	@RequestMapping(value = "/myPage.do")
+	public String myPage(Model model) throws Exception {
+		return "myPage";
+	}
+
+	
 }

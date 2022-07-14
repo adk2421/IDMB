@@ -9,6 +9,7 @@
 </head>
 <body>
 
+    <!--
    <script>
    if(${! empty msg}) {
       alert('${msg}');
@@ -16,6 +17,6 @@
    }
     location.href='${pageContext.request.contextPath}${url}';
     </script>
-
+    -->
 </body>
 </html>
