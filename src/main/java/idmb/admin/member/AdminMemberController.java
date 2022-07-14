@@ -25,30 +25,19 @@ public class AdminMemberController {
 	//RequestMapping 모음
 	@RequestMapping(value="/adminMemberList.do")
 	public String adminMemberList(
-			MemberBean member, HttpServletRequest request, Model model) throws Exception {
+			HttpServletRequest request, Model model) throws Exception {
 		
-		//검색 조건을 위한 값
-		String SORT = null;
-		SORT = request.getParameter("SORT");
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		//List<MemberBean> adminMemberBeanList = new ArrayList<MemberBean>();
 		
-		//검색어를 위한 값
-		String searchValue = null;
-		searchValue = request.getParameter("searchValue");
+		list = adminMemberService.adminMemberList();
+		//System.out.println(list);
+		/*
+		 * for(Map<String, Object> mapObject : list) {
+		 * adminMemberBeanList.add(MapToBean.mapToMember(mapObject)); }
+		 */
 		
-		List<Map<String, Object>> list = adminMemberService.adminMemberList();
-		
-		List<MemberBean> adminMemberBeanList = new ArrayList<MemberBean>();
-		for(Map<String, Object> mapObject : list) {
-			adminMemberBeanList.add(MapToBean.mapToMember(mapObject));	
-		}
-		
-		model.addAttribute("adminMemberBeanList", adminMemberBeanList);
-		
-		//select 태그에서 검색 조건을 위한 값
-		model.addAttribute("SORT", SORT);
-		
-		//input 태그에서 검색어를 위한 값
-		model.addAttribute("searchValue", searchValue);
+		model.addAttribute("adminMemberBeanList", list);
 		
 		return "adminMemberList";
 	}

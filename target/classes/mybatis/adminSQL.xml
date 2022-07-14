@@ -24,6 +24,7 @@
 			WHERE DELFLAG = 'N'
 		]]>
 		<trim prefix="AND">
+		<if test="SORT != NULL">
 			<if test="SORT == 'id'">
 				<if test="searchValue != NULL">		
 				ID like '%'||#{searchValue}||'%'
@@ -34,6 +35,7 @@
 				NAME like '%'||#{searchValue}||'%'
 				</if>
 			</if>
+		</if>
 		</trim>
 		<trim prefix="AND">	
 			<if test="searchDate1 != NULL">

@@ -26,13 +26,15 @@ public class MapToBean {
         memberBean.setPostcode((String) map.get("postcode"));
         memberBean.setAddress1((String) map.get("address1"));
         memberBean.setAddress2((String) map.get("address2"));
-        memberBean.setReserve(Integer.parseInt(String.valueOf(map.get("reserve"))));
+        if(map.get("reserve") != null) {
+        	memberBean.setReserve(Integer.parseInt(String.valueOf(map.get("reserve"))));
+		}
         memberBean.setJoindate((Date) map.get("joindate"));
         memberBean.setDelflag((String) map.get("delflag"));
 
         return memberBean;
     }
-
+    /*
     public static ProductBean mapToProduct(Map<String, Object> map) {
         ProductBean productBean = new ProductBean();
 
@@ -145,4 +147,5 @@ public class MapToBean {
 
         return faqBean;
     }
+    */
 }

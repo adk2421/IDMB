@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import idmb.model.MemberBean;
 
-@Service("adminMembreService")
+@Service("AdminMemberService")
 public class AdminMemberServiceImpl implements AdminMemberService{
 	
 	@Resource (name="adminMemberDAO")

@@ -389,7 +389,7 @@
     <build>
     	<defaultGoal>install</defaultGoal>
     	<directory>${basedir}/target</directory>
-		<finalName>first</finalName>
+		<finalName>IDMB</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>

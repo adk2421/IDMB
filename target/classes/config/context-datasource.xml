@@ -7,11 +7,12 @@
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-	<property name="username" value="IDMB" />
-	<property name="password" value="oracle" />
+		<property name="username" value="IDMB" />
+		<property name="password" value="oracle" />
     </bean>
     
-    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+    <bean id="dataSource"
+    	class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="dataSourceSpied" />
 		<property name="logFormatter">
 			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
@@ -20,4 +21,5 @@
 			</bean>
 		</property>
 	</bean>
+	
 </beans>
