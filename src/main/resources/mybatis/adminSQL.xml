@@ -6,7 +6,7 @@
 	<!-- 사용자 리스트 -->
 	<select id="adminMemberList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select ID, NAME, JOINDATE, DELFLAG from MEMBER
+			select * from MEMBER
 		]]>
 	</select>
 	
@@ -21,9 +21,8 @@
 	<select id="adminSearchMember" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			select * from MEMBER
-			WHERE DELFLAG = 'N'
 		]]>
-		<trim prefix="AND">
+		<trim prefix="WHERE">
 		<if test="SORT != NULL">
 			<if test="SORT == 'id'">
 				<if test="searchValue != NULL">		
@@ -35,22 +34,12 @@
 				NAME like '%'||#{searchValue}||'%'
 				</if>
 			</if>
-		</if>
-		</trim>
-		<trim prefix="AND">	
-			<if test="searchDate1 != NULL">
-				<if test="searchDate2 != NULL">
-				JOINDATE between #{searchDate1} and #{searchDate2}
-				</if>
-    			<if test="searchDate2 == NULL">
-				JOINDATE >= #{searchDate1}
+			<if test="SORT == 'phone'">
+				<if test="searchValue != NULL">		
+				PHONE like '%'||#{searchValue}||'%'
 				</if>
 			</if>
-			<if test="searchDate1 == NULL">
-				<if test="searchDate2 != NULL">
-				JOINDATE between '00/01/01' and #{searchDate2}
-				</if>
-			</if>	
+		</if>
 		</trim>
 	</select>
 	

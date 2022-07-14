@@ -1,6 +1,5 @@
 package idmb.admin.member;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,11 +34,9 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	//-- 사용자 검색 --
 	@Override
 	public List<Map<String, Object>> adminSearchMember(
-			String searchValue, Date searchDate1, Date searchDate2, String SORT) throws Exception{
+			String searchValue, String SORT) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchValue",searchValue);
-		map.put("searchDate1", searchDate1);
-		map.put("searchDate2", searchDate2);
 		map.put("SORT", SORT);
 		
 		return adminMemberDAO.adminSearchMember(map);		

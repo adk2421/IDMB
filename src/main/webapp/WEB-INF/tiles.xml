@@ -5,7 +5,9 @@
  
 <tiles-definitions>
 	<!-- main layout -->
-		
+	
+	
+	<!-- admin layout -->	
 	<definition name="admin_layout" template="/WEB-INF/jsp/layout/admin_layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
@@ -13,9 +15,16 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
 	</definition>
 	
+	
+	<!-- admin -->
 	<definition name="adminMemberList" extends="admin_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/adminMemberList.jsp" />
+	</definition>
+	
+	<definition name="adminMemberDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/adminMemberDetail.jsp" />
 	</definition>
 	
 </tiles-definitions>
