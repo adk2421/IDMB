@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
     <link rel="canonical" href="loginform.jsp">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 
     <title>IDMB</title>
 
@@ -17,15 +17,15 @@
         /* 로그인 유효성 체크 */
         function formCheck() {
             var form = document.getElementById("loginForm");
-            var EMAIL = document.getElementById("EMAIL");
-            var PASSWORD = document.getElementById("PASSWORD");
+            var id = document.getElementById("id");
+            var passwd = document.getElementById("passwd");
             
-            if (EMAIL.value.trim()=="") {
+            if (id.value.trim()=="") {
                 alert("이메일 주소를 입력해주세요.");
                 EMAIL.focus();
                 return false;
 
-            } else if (PASSWORD.value.trim()=="") {
+            } else if (passwd.value.trim()=="") {
                 alert("비밀번호를 입력해주세요.");
                 return false;
 
@@ -36,21 +36,23 @@
 
         /* 로그인 화면에서 엔터키 입력시 로그인 시도 */
         function keyPress() {
-            if (window.event.keyCode ==13) {
+            if (window.event.keyCode == 13) {
                 return formCheck();	
             }	
         }
 
         /* 첫 화면 로딩 시 포커스 */
         window.onload = function() {
-            document.getElementById("EMAIL").focus();
+            document.getElementById("id").focus();
         }
 
     </script>
 
     <script>
-        $(document).on("keyup", "input[noSpecial]", function() {$(this).val( $(this).val().replace(/[^ㄱ-힣a-zA-Z0-9@]/gi,"") );})
-        $(document).on("keyup", "input[noBlank]", function() {$(this).val( $(this).val().replace(/\s/gi,"") );})
+    	/* 특수문자 없이 한글, 영어, 숫자만 받기 */
+    	$(document).on("keyup", "input[noSpecial]", function() {$(this).val( $(this).val().replace(/[^ㄱ-힣a-zA-Z0-9@]/gi,"") );})
+        /* 공백 받지 않기 */
+    	$(document).on("keyup", "input[noBlank]", function() {$(this).val( $(this).val().replace(/\s/gi,"") );})
     </script>
 </head>
 
@@ -58,7 +60,7 @@
     <form id="loginForm" action="/IDMB/login.do" method="post">
         <div class="wrap">
             <div class="login">
-                <h2>로그인</h2>
+                <h2>IDMB</h2>
                 <div class="login_sns">
                     <li><a href=""><i class="fab fa-instagram"></i></a></li>
                     <li><a href=""><i class="fab fa-facebook-f"></i></a></li>

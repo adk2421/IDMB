@@ -28,7 +28,8 @@ public class MemberController {
 
 	@Resource(name = "myInfoService")
 	private MyInfoService myInfoService;
-
+	
+	// 회원가입 폼 이동
 	@RequestMapping(value = "/joinForm.do")
 	public String joinForm(Model model) {
 
@@ -130,9 +131,10 @@ public class MemberController {
 		return "/member/joinSuccess";
 	}
 	
+	// 로그인 폼 이동
 	@RequestMapping(value = "/loginForm.do")
 	public String loginForm(Model model) throws Exception {
-		return "loginForm";
+		return "/member/loginForm";
 	}
 
 	@RequestMapping(value = "/login.do")
