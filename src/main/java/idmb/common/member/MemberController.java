@@ -33,7 +33,7 @@ public class MemberController {
 	@RequestMapping(value = "/joinForm.do")
 	public String joinForm(Model model) {
 
-		return "joinFormAjax";
+		return "member/joinForm";
 	}
 
 	@RequestMapping(value = "/confirmIdAjax.do")

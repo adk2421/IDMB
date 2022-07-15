@@ -9,51 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
     <link rel="canonical" href="loginform.jsp">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css">
+
+	<script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 
     <title>IDMB</title>
-
-    <script>
-        /* 로그인 유효성 체크 */
-        function formCheck() {
-            var form = document.getElementById("loginForm");
-            var id = document.getElementById("id");
-            var passwd = document.getElementById("passwd");
-            
-            if (id.value.trim()=="") {
-                alert("이메일 주소를 입력해주세요.");
-                EMAIL.focus();
-                return false;
-
-            } else if (passwd.value.trim()=="") {
-                alert("비밀번호를 입력해주세요.");
-                return false;
-
-            } else {	
-                form.submit();
-            }
-        }
-
-        /* 로그인 화면에서 엔터키 입력시 로그인 시도 */
-        function keyPress() {
-            if (window.event.keyCode == 13) {
-                return formCheck();	
-            }	
-        }
-
-        /* 첫 화면 로딩 시 포커스 */
-        window.onload = function() {
-            document.getElementById("id").focus();
-        }
-
-    </script>
-
-    <script>
-    	/* 특수문자 없이 한글, 영어, 숫자만 받기 */
-    	$(document).on("keyup", "input[noSpecial]", function() {$(this).val( $(this).val().replace(/[^ㄱ-힣a-zA-Z0-9@]/gi,"") );})
-        /* 공백 받지 않기 */
-    	$(document).on("keyup", "input[noBlank]", function() {$(this).val( $(this).val().replace(/\s/gi,"") );})
-    </script>
+    
 </head>
 
 <body>
@@ -68,11 +29,11 @@
                 </div>
                 <div class="login_id">
                     <h4>ID</h4>
-                    <input type="text" name="id" id="id" placeholder="아이디" noSpecial>
+                    <input type="text" name="id" id="id" placeholder="아이디" oninput="inputNoSpecial(this)" />
                 </div>
                 <div class="login_pw">
                     <h4>Password</h4>
-                    <input type="password" name="passwd" id="passwd" placeholder="비밀번호" onkeypress="keyPress()" noBlank>
+                    <input type="password" name="passwd" id="passwd" placeholder="비밀번호" oninput="inputNoBlank(this)" onkeypress="keyPress()" />
                 </div>
                 <div class="login_etc">
                     <!--
