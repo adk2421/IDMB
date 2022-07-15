@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,18 +15,19 @@
 
 
 <nav style="width: 17.5%; float: left; margin-top: 70px">
-<tiles:insertAttribute name="left"/> 
+	<tiles:insertAttribute name="left"/> 
 </nav>
 <article>
 
 
 <div style="width: 82.5%; float: left;">
-<tiles:insertAttribute name="body" ignore="true"/> 
+	<tiles:insertAttribute name="body" ignore="true"/> 
 </div>
 </article>
+
 <footer style="width: 100%; float: left;">
  	<tiles:insertAttribute name="footer"/> 
- </footer> 
+</footer> 
       
 </body>
 </html>

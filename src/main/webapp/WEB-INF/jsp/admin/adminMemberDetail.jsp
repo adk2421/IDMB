@@ -8,22 +8,53 @@
 <head>
 <meta charset="UTF-8">
 <title>일단메봐</title>
+
+<script>
+function changeForm(val) {
+	if (val == "1") {
+		location.href = "/IDMB/adminMemberList.do";
+	} else if (val == "0") {}
+}
+</script>
+<script>
+function check() {
+	var memberDetailForm = document.getElementById("memberDetailForm");
+	if(confirm("수정하시겠습니까?") == true){
+		memberDetailForm.submit();
+		return true;
+	}
+}
+</script>
+
 </head>
 <body>
-	<!-- console창 접근은 가능한데 화면에 출력이 안됨. 
-	 그리고 adminMemberBean을 var = "memberbean" 처럼 짧게 줄일 방법이 있었으면 -->
-	아이디 : ${adminMemberBean.id}<br>
-	비밀번호 : ${adminMemberBean.passwd}<br>
-	이름 : ${adminMemberBean.name}<br>
-	전화번호 : ${adminMemberBean.phone}<br>
-	생년월일 : ${adminMemberBean.birth}<br>
-	이메일 : ${adminMemberBean.email}<br>
-	우편번호 : ${adminMemberBean.postcode}<br>
-	주소 : ${adminMemberBean.address1}<br>
-	상세주소 : ${adminMemberBean.address2}<br>
-	적립금 : ${adminMemberBean.reserve}<br>
-	가입날짜 : ${adminMemberBean.joindate}<br>
-	탈퇴유무 : ${adminMemberBean.delflag}<br>
+<form method="post" id="memberDetailForm" action="adminUpdateMember.do?id=${adminMemberBean.ID}">
 	
+	아이디 : ${adminMemberBean.ID}<br>
+	비밀번호 : ${adminMemberBean.PASSWD}<br>
+	이름 : ${adminMemberBean.NAME}<br>
+	전화번호 : ${adminMemberBean.PHONE}<br>
+	생년월일 : ${adminMemberBean.BIRTH}<br>
+	이메일 : ${adminMemberBean.EMAIL}<br>
+	우편번호 : ${adminMemberBean.POSTCODE}<br>
+	주소 : ${adminMemberBean.ADDRESS1}<br>
+	상세주소 : ${adminMemberBean.ADDRESS2}<br>
+	적립금 : ${adminMemberBean.RESERVE}<br>
+	가입날짜 : ${adminMemberBean.JOINDATE}<br>
+	
+	탈퇴유무 : 
+	<c:if test="${adminMemberBean.DELFLAG == 'N'}">
+		<input type="checkbox" size="100" name="delflag" value="Y"> 
+	</c:if>
+	<c:if test="${adminMemberBean.DELFLAG == 'Y'}">
+		<input type="checkbox" size="100" name="delflag" value="Y" checked> 
+	</c:if>
+	<br>
+	
+	<button type="button" onClick="check()">수 &emsp; 정</button>
+         &emsp;&emsp;
+	<button type="button" onclick="changeForm(1)">취 &emsp; 소</button>
+
+</form>	
 </body>
 </html>
