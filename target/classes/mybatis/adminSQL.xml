@@ -54,7 +54,7 @@
 	<!-- 상품 리스트 --> 
 	<select id="adminProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select P_CODE, P_KIND, P_IMAGE, P_NAME, P_PRICE, P_STOCK from PRODUCT
+			select * from PRODUCT
 			where P_DELFLAG = 'N'
 		]]>
 	</select>
@@ -62,7 +62,7 @@
 	<!-- 상품 검색 -->
 	<select id="adminSearchProduct" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select P_CODE, P_KIND, P_IMAGE, P_NAME, P_PRICE, P_STOCK from PRODUCT
+			select * from PRODUCT
 			where P_DELFLAG = 'N'
 		]]>
 		<trim prefix="AND">

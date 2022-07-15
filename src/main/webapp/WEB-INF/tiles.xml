@@ -19,12 +19,18 @@
 	<!-- admin -->
 	<definition name="adminMemberList" extends="admin_layout">
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/admin/adminMemberList.jsp" />
+			value="/WEB-INF/jsp/admin/member/adminMemberList.jsp" />
 	</definition>
 	
 	<definition name="adminMemberDetail" extends="admin_layout">
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/admin/adminMemberDetail.jsp" />
+			value="/WEB-INF/jsp/admin/member/adminMemberDetail.jsp" />
 	</definition>
+	
+	<definition name="adminProductList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/product/adminProductList.jsp" />
+	</definition>
+	
 	
 </tiles-definitions>

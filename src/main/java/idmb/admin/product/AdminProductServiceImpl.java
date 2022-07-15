@@ -25,11 +25,10 @@ public class AdminProductServiceImpl implements AdminProductService{
 
 	// 상품 검색
 	@Override
-	public List<Map<String, Object>> adminSearchProduct(ProductBean product,
-			String searchValue) throws Exception{
+	public List<Map<String, Object>> adminSearchProduct(String searchValue) throws Exception{
+		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		map.put("p_kind", product.getP_kind());
 		map.put("searchValue", searchValue);
 		
 		return adminProductDAO.adminSearchProduct(map);
@@ -38,7 +37,8 @@ public class AdminProductServiceImpl implements AdminProductService{
 	// 상품 등록
 	@Override
 	public void adminInsertProduct(ProductBean product) throws Exception{
-	Map<String,Object> map = new HashMap<String,Object>();
+	
+		Map<String,Object> map = new HashMap<String,Object>();
 	
 		map.put("p_name", product.getP_name());
 		map.put("p_image", product.getP_image());
