@@ -18,7 +18,7 @@ import idmb.model.MemberBean;
 public class AdminMemberController {
 	
 	//Resource 모음
-	@Resource(name="AdminMemberService")
+	@Resource(name="adminMemberService")
 	private AdminMemberService adminMemberService;
 	
 	
@@ -76,7 +76,7 @@ public class AdminMemberController {
 	public String adminUpdateMember(
 				MemberBean member, Model model) throws Exception{
 		
-		//delflag 체크박스가 빈상태면 null로 입력되어 넘어오기 때문에
+		//Delflag 체크박스가 빈상태면 null로 입력되어 넘어오기 때문에
 		//다시 그대로 "N"을 입력해 주어야 함.
 		if(member.getDelflag() == null) {
 			member.setDelflag("N");

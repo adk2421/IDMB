@@ -62,14 +62,22 @@
 	<!-- 상품 검색 -->
 	<select id="adminSearchProduct" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from PRODUCT
-			where P_DELFLAG = 'N'
+			select * from PRODUCT		
 		]]>
-		<trim prefix="AND">
+		<trim prefix="WHERE">
+			P_DELFLAG = 'N'
 			<if test="searchValue != NULL">
-			P_NAME like '%'||#{searchValue}||'%'
+			AND P_NAME like '%'||#{searchValue}||'%'
 			</if>
 		</trim>
+	</select>
+	
+	<!-- 상품 코드 검색 -->
+	<select id="adminSearchProductCode" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from PRODUCT
+			where P_CODE = #{p_code}		
+		]]>
 	</select>
 	
 	<!-- 상품 등록 -->
@@ -86,6 +94,7 @@
 			update PRODUCT set P_NAME = #{p_name}, P_IMAGE = #{p_image},
 				P_PRICE = #{p_price}, P_STOCK = #{p_stock}, P_SELL = #{p_sell},
 				P_KIND = #{p_kind}, P_DATE = SYSDATE, P_DETAIL = #{p_detail}
+			where P_CODE = #{p_code}
 		]]>
 	</update>
 	
@@ -93,6 +102,7 @@
 	<update id="adminDeleteProduct" parameterType="hashmap">
 		<![CDATA[
 			update PRODUCT set P_DELFLAG = 'Y'
+			where P_CODE = #{p_code}
 		]]>
 	</update>
 	

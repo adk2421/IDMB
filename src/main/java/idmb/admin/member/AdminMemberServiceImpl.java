@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import idmb.model.MemberBean;
 
-@Service("AdminMemberService")
+@Service("adminMemberService")
 public class AdminMemberServiceImpl implements AdminMemberService{
 	
 	@Resource (name="adminMemberDAO")
@@ -25,7 +25,9 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	//-- 사용자 상세정보 --
 	@Override
 	public Map<String, Object> adminMemberDetail(MemberBean member) throws Exception{
+		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		map.put("id", member.getId());
 		
 		return adminMemberDAO.adminMemberDetail(map);		

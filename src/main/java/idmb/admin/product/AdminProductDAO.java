@@ -21,6 +21,10 @@ public class AdminProductDAO {
 	public List<Map<String, Object>> adminSearchProduct(Map<String, Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("admin.adminSearchProduct", map);
 	}
+	
+	public Map<String, Object> adminSearchProductCode(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminSearchProductCode", map);
+	}
 
 	public void adminInsertProduct(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.insert("admin.adminInsertProduct", map);
@@ -30,8 +34,8 @@ public class AdminProductDAO {
 		sqlSessionTemplate.update("admin.adminUpdateProduct", map);
 	}
 	
-	public void adminDeleteProduct() throws Exception{
-		sqlSessionTemplate.delete("admin.adminDeleteProduct");
+	public void adminDeleteProduct(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.delete("admin.adminDeleteProduct", map);
 		
 	}
 

@@ -10,7 +10,7 @@
 <title>일단메봐</title>
 
 <script>
-function changeForm(val) {
+function cancel(val) {
 	if (val == "1") {
 		location.href = "/IDMB/adminMemberList.do";
 	} else if (val == "0") {}
@@ -49,11 +49,12 @@ function check() {
 	<c:if test="${adminMemberBean.DELFLAG == 'Y'}">
 		<input type="checkbox" size="100" name="delflag" value="Y" checked> 
 	</c:if>
+	(체크 = 탈퇴함)
 	<br>
 	
 	<button type="button" onClick="check()">수 &emsp; 정</button>
          &emsp;&emsp;
-	<button type="button" onclick="changeForm(1)">취 &emsp; 소</button>
+	<button type="button" onclick="cancel(1)">취 &emsp; 소</button>
 
 </form>	
 </body>

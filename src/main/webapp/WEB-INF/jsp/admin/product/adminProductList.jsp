@@ -8,12 +8,32 @@
 <head>
 <meta charset="UTF-8">
 <title>일단메봐</title>
+<script>
+function plist(val) {
+	if (val == "1") {
+		location.href = "/IDMB/adminProductList.do";
+	} else if (val == "0") {}
+}
+function pinsert(val) {
+	if (val == "1") {
+		location.href = "/IDMB/adminInsertProductForm.do";
+	} else if (val == "0") {}
+}
+
+</script>
+
 </head>
 <body>
+
 	<form action="adminProductList.do" method="get">
+		<button type="button" onClick="plist(1)">상품 목록</button>
+			&emsp;&emsp;
+		<button type="button" onClick="pinsert(1)">상품 등록</button>
+			&emsp;&emsp;
 		<input type="text" name="searchValue" id="searchValue" value="${searchValue}"/>
 		<button type="submit">검색</button>
 	</form>
+	
 	<table>
 		<thead>
 			<tr>
@@ -27,12 +47,17 @@
 		<tbody>
 		<c:forEach var="product" items="${adminProductList}">
 		<tr>
-			<td><a href="adminProductDetail.do?id=${product.ID}">
-				${product.P_KIND}</a></td>
-			<td>${product.P_NAME}</td>
+			<td>${product.P_KIND}</td>
+			<td><a href="adminProductDetail.do?p_code=${product.P_CODE}">
+				${product.P_NAME}</a></td>
 			<td>${product.P_PRICE}</td>
 			<td>${product.P_STOCK}</td>
 			<td>${product.P_SELL}</td>
+			<td><button type="button"
+					onClick="location.href='adminUpdateProductForm.do?p_code=${product.P_CODE}'">
+				수정</button>	
+			</td>
+			
 		</tr>
 		</c:forEach>
 	</tbody>

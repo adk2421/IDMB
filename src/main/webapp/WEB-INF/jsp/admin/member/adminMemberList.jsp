@@ -15,10 +15,7 @@
 		<select name="SORT" id="SORT">
 			<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
 			<option value="name" <c:if test="${SORT =='name'}">selected</c:if>>이 &emsp; 름</option>
-			<option value="phone" <c:if test="${SORT =='phone'}">selected</c:if>>전 화 번 호</option>
-			
-<!-- 		이름 검색시 한글입력 하면 깨지는 현상이 있음. 		-->	
-			
+			<option value="phone" <c:if test="${SORT =='phone'}">selected</c:if>>전 화 번 호</option>			
 		</select>
 		<input type="text" name="searchValue" id="searchValue" value="${searchValue}"/>
 		<button type="submit">검색</button>

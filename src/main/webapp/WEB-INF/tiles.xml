@@ -32,5 +32,15 @@
 			value="/WEB-INF/jsp/admin/product/adminProductList.jsp" />
 	</definition>
 	
+	<definition name="adminInsertProductForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/product/adminInsertProductForm.jsp" />
+	</definition>
+	
+	<definition name="adminUpdateProductForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/product/adminUpdateProductForm.jsp" />
+	</definition>
+	
 	
 </tiles-definitions>
