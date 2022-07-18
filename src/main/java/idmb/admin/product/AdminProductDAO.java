@@ -33,10 +33,5 @@ public class AdminProductDAO {
 	public void adminUpdateProduct(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.update("admin.adminUpdateProduct", map);
 	}
-	
-	public void adminDeleteProduct(Map<String, Object> map) throws Exception{
-		sqlSessionTemplate.delete("admin.adminDeleteProduct", map);
-		
-	}
 
 }

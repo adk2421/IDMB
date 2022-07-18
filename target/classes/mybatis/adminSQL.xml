@@ -93,18 +93,12 @@
 		<![CDATA[
 			update PRODUCT set P_NAME = #{p_name}, P_IMAGE = #{p_image},
 				P_PRICE = #{p_price}, P_STOCK = #{p_stock}, P_SELL = #{p_sell},
-				P_KIND = #{p_kind}, P_DATE = SYSDATE, P_DETAIL = #{p_detail}
+				P_KIND = #{p_kind}, P_DATE = SYSDATE, P_DETAIL = #{p_detail},
+				P_DELFLAG = #{p_delflag}
 			where P_CODE = #{p_code}
 		]]>
 	</update>
 	
-	<!-- 상품 삭제(비활성) -->
-	<update id="adminDeleteProduct" parameterType="hashmap">
-		<![CDATA[
-			update PRODUCT set P_DELFLAG = 'Y'
-			where P_CODE = #{p_code}
-		]]>
-	</update>
 	
 	<!-- 주문 관리 리스트 -->
 	<select id="adminOrderList" parameterType="hashmap" resultType="hashmap">

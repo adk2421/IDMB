@@ -136,7 +136,7 @@ function readImage(input) {
 					<b>상품 이미지 미리보기</b>
 				</td>
 				<td>
-					<img src="" width="300" border="0"
+					<img src="img/white.png" width="300" border="0"
 						id="previewImage">
 					<script>
 						const inputImage = document.getElementById("p_image");

@@ -17,5 +17,4 @@ public interface AdminProductService {
 	
 	public void adminUpdateProduct(ProductBean product) throws Exception;
 	
-	public void adminDeleteProduct(ProductBean product) throws Exception;
 }

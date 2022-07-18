@@ -97,7 +97,6 @@ public class AdminProductController {
 		//체크된 경우 "Y" 값 입력
 		else if(product.getP_delflag() == "Y") {
 			product.setP_delflag("Y");
-			adminProductService.adminDeleteProduct(product);
 		}
 		
 		//상품 수정
@@ -110,8 +109,5 @@ public class AdminProductController {
 		return "admin/product/adminUpdateProduct";
 		
 	}	
-	
-	
-	
 
 }

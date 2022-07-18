@@ -75,21 +75,8 @@ public class AdminProductServiceImpl implements AdminProductService{
 		map.put("p_sell", product.getP_sell());
 		map.put("p_kind", product.getP_kind());
 		map.put("p_detail",product.getP_detail());
+		map.put("p_delflag",product.getP_delflag());
 		
 		adminProductDAO.adminUpdateProduct(map);
-	}
-	
-
-	
-	// 상품 삭제(비활성)
-	@Override
-	public void adminDeleteProduct(ProductBean product) throws Exception{
-		
-		Map<String,Object> map = new HashMap<String,Object>();
-		
-		map.put("p_code", product.getP_code());
-		map.put("p_delflag", product.getP_delflag());
-		
-		adminProductDAO.adminDeleteProduct(map);
 	}
 }

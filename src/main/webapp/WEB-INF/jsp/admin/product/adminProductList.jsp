@@ -48,7 +48,7 @@ function pinsert(val) {
 		<c:forEach var="product" items="${adminProductList}">
 		<tr>
 			<td>${product.P_KIND}</td>
-			<td><a href="adminProductDetail.do?p_code=${product.P_CODE}">
+			<td><a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a></td>
 			<td>${product.P_PRICE}</td>
 			<td>${product.P_STOCK}</td>
