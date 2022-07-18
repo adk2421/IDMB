@@ -1,6 +1,6 @@
 package idmb.util;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Map;
 
 import idmb.model.BasketBean;
@@ -26,6 +26,7 @@ public class MapToBean {
         memberBean.setPostcode((String) map.get("postcode"));
         memberBean.setAddress1((String) map.get("address1"));
         memberBean.setAddress2((String) map.get("address2"));
+        
         if(map.get("reserve") != null) {
         	memberBean.setReserve(Integer.parseInt(String.valueOf(map.get("reserve"))));
 		}

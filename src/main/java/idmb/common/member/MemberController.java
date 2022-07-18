@@ -50,14 +50,14 @@ public class MemberController {
 		} 
 
 		/* 관리자 아이디를 입력 받았을 경우 */
-		 if(member.getId().trim().equals("ADMIN")) {
+		if(member.getId().trim().equals("ADMIN")) {
 			 msg.put("message", "이 아이디는 사용할 수 없습니다.");
 			
 			 return msg; 
 		 }
 		
-		 Map<String, Object> map = new HashMap<String, Object>();
-		map = joinService.checkId(member);		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map = joinService.checkId(member);
 		
 		if(map != null) { 
 			// 중복된 아이디 있음 
@@ -72,7 +72,7 @@ public class MemberController {
 	
 	}
 	
-	@RequestMapping(value = "/confirmId.al")
+	@RequestMapping(value = "/confirmId.do")
 	public String confirmId(MemberBean member, Model model) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -97,7 +97,7 @@ public class MemberController {
 
 		if(map != null) { // 중복된 아이디 있음 
 			model.addAttribute("msg", "이미 가입된 아이디입니다.");
-			model.addAttribute("url", "/joinForm.al"); } else { //중복된 아이디 없음
+			model.addAttribute("url", "/joinForm.do"); } else { //중복된 아이디 없음
 			model.addAttribute("msg", "사용할 수 있는 아이디입니다."); model.addAttribute("url","/joinForm.do"); }
 
 		return "/member/confirmId";
@@ -108,7 +108,7 @@ public class MemberController {
 
 		// new MemberValidator().validate(member, result);
 
-		if (result.hasErrors()) {
+		/*if (result.hasErrors()) {
 			// 회원가입 실패
 			model.addAttribute("msg", "회원가입에 실패했습니다.");
 			model.addAttribute("url", "/joinForm.do");
@@ -121,12 +121,12 @@ public class MemberController {
 			model.addAttribute("msg", "이미 가입된 아이디입니다.");
 			model.addAttribute("url", "/joinForm.do");
 
-		} else {
+		} else {*/
 			// 회원가입 성공
 			joinService.insertMember(member);
 			
 			model.addAttribute("url", "/loginForm.do");
-		}
+			/* } */
 
 		return "/member/joinSuccess";
 	}
@@ -180,13 +180,13 @@ public class MemberController {
 		return "/member/login";
 	}
 
-	@RequestMapping(value = "/logout.al")
+	@RequestMapping(value = "/logout.do")
 	public String logout(HttpServletRequest request, Model model) throws Exception {
 
 		request.getSession().invalidate();
 
 		model.addAttribute("msg", "로그아웃 하셨습니다.");
-		model.addAttribute("url", "/loginForm.al");
+		model.addAttribute("url", "/loginForm.do");
 
 		return "/member/logout";
 	}
@@ -196,7 +196,7 @@ public class MemberController {
 		return "findId";
 	}
 
-	@RequestMapping(value = "/findIdResult.al")
+	@RequestMapping(value = "/findIdResult.do")
 	public String findIdResult(MemberBean member, Model model) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		MemberBean memberBean = new MemberBean();
