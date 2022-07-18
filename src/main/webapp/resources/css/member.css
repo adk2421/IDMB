@@ -31,7 +31,7 @@
 	  background: rgba(0, 0, 0, 0.1);
 	}
 	
-	/* -- ·Î±×ÀÎ -- */
+	/* -- ë¡œê·¸ì¸ -- */
 	.login {
 	  width: 30%;
 	  height: 600px;
@@ -124,8 +124,8 @@
 	  cursor: pointer;
 	}
 	
-	/* -- È¸¿ø°¡ÀÔ -- */
-	.signup {
+	/* -- íšŒì›ê°€ì… -- */
+	.join {
 	  width: 30%;
 	  height: 700px;
 	  background: white;
@@ -136,7 +136,7 @@
 	  flex-direction: column;
 	}
 	
-	.signup_input {
+	.join_input {
 	  margin-top: 20px;
 	  width: 80%;
 	}
