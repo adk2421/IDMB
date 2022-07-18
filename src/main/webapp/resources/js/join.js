@@ -1,7 +1,7 @@
 // join.js
 	
 	/* 회원가입 입력 값 유효성 체크 */
-	function checks() {
+	function formCheck() {
 		var id = document.getElementById("id");
 		var passwd = document.getElementById("passwd");
 		var passwdcheck = document.getElementById("passwdcheck");
@@ -9,6 +9,7 @@
 		var phone = document.getElementById("phone");
 		var birth = document.getElementById("birth");
 		var email = document.getElementById("email");
+		var postcode = document.getElementById("postcode");
 		var address1 = document.getElementById("address1");
 		var address2 = document.getElementById("address2");
 		
@@ -65,12 +66,6 @@
 			address1.focus();
 			return false;
 		}
-		
-		if(address2.value.trim() == ""){
-			alert("상세 주소를 입력해주세요.");
-			address2.focus();
-			return false;
-		}
 	
 		document.joinForm.submit();
 	}
@@ -78,6 +73,11 @@
 	/* 특수문자 없이 영어, 숫자만 받기 */
 	function inputNoSpecial(key)  {
 		key.value = key.value.replace(/[^a-z0-9]/ig, '')
+	}
+	
+	/* 한글만 받기 */
+	function inputKoreanOnly(key)  {
+		key.value = key.value.replace(/^[가-힣]/ig, '')
 	}
 	
 	/* 공백 받지 않기 */
