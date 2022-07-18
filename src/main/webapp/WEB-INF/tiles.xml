@@ -5,7 +5,12 @@
  
 <tiles-definitions>
 	<!-- main layout -->
-	
+		<definition name="main_layout" template="/WEB-INF/jsp/layout/main_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+		<put-attribute name="left" value="/WEB-INF/jsp/layout/left.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
+	</definition>
 	
 	<!-- admin layout -->	
 	<definition name="admin_layout" template="/WEB-INF/jsp/layout/admin_layout.jsp">
@@ -14,7 +19,11 @@
 		<put-attribute name="left" value="/WEB-INF/jsp/layout/left.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
 	</definition>
-	
+
+	<!-- main -->
+
+
+
 	
 	<!-- admin -->
 	<definition name="adminMemberList" extends="admin_layout">
@@ -40,6 +49,11 @@
 	<definition name="adminUpdateProductForm" extends="admin_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/product/adminUpdateProductForm.jsp" />
+	</definition>
+	
+	<definition name="adminOrderList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/order/adminOrderList.jsp" />
 	</definition>
 	
 	

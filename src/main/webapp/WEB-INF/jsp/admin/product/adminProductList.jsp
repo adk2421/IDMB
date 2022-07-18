@@ -19,12 +19,9 @@ function pinsert(val) {
 		location.href = "/IDMB/adminInsertProductForm.do";
 	} else if (val == "0") {}
 }
-
 </script>
-
 </head>
 <body>
-
 	<form action="adminProductList.do" method="get">
 		<button type="button" onClick="plist(1)">상품 목록</button>
 			&emsp;&emsp;
