@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
     <link rel="canonical" href="loginform.jsp">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css?v=<%=System.currentTimeMillis()%>">
 
 	<script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 
@@ -26,11 +26,11 @@
                     <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
                     <li><a href=""><i class="fab fa-twitter"></i></a></li>
                 </div>
-                <div class="login_id">
+                <div class="login_div">
                     <h4>ID</h4>
                     <input type="text" name="id" id="id" placeholder="아이디" oninput="inputNoSpecial(this)" />
                 </div>
-                <div class="login_pw">
+                <div class="login_div">
                     <h4>Password</h4>
                     <input type="password" name="passwd" id="passwd" placeholder="비밀번호" oninput="inputNoBlank(this)" onkeypress="keyPress()" />
                 </div>
