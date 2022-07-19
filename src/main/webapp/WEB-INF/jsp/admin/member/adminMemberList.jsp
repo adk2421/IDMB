@@ -17,12 +17,12 @@
 			<option value="name" <c:if test="${SORT =='name'}">selected</c:if>>이 &emsp; 름</option>
 			<option value="phone" <c:if test="${SORT =='phone'}">selected</c:if>>전 화 번 호</option>			
 		</select>
-		<input type="text" name="searchValue" id="searchValue" value="${searchValue}"/>
+		<input type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
 		<button type="submit">검색</button>
 	</form>
 	
 	
-	<table>
+	<table border=1>
 		<thead>
 			<tr>
 				<th>아이디</th>

@@ -21,10 +21,16 @@
 	</definition>
 
 	<!-- main -->
-
-
-
 	
+	
+	
+	<!-- order -->
+	<definition name="myOrderList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/myOrderList.jsp" />
+	</definition>
+
+
 	<!-- admin -->
 	<definition name="adminMemberList" extends="admin_layout">
 		<put-attribute name="body"
@@ -56,5 +62,22 @@
 			value="/WEB-INF/jsp/admin/order/adminOrderList.jsp" />
 	</definition>
 	
+	<definition name="adminOrderDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/order/adminOrderDetail.jsp" />
+	</definition>
 	
+	<definition name="adminNoticeList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/notice/adminNoticeList.jsp" />
+	</definition>	
+	
+	<definition name="adminNoticeDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/notice/adminNoticeDetail.jsp" />
+	</definition>
+	
+	
+	
+			
 </tiles-definitions>

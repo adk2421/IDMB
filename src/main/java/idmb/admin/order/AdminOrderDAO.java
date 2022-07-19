@@ -29,5 +29,9 @@ public class AdminOrderDAO {
 	public void adminUpdateOrder(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.selectList("admin.adminUpdateOrder", map);
 	}
+	
+	public void adminCancelOrder(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.selectList("admin.adminCancelOrder", map);
+	}
 
 }

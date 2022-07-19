@@ -16,4 +16,6 @@ public interface AdminOrderService {
 	
 	public void adminUpdateOrder(OrderBean order) throws Exception;
 	
+	public void adminCancelOrder(OrderBean order) throws Exception;
+	
 }
