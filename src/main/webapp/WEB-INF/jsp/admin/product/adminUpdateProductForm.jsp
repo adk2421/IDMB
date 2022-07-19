@@ -81,12 +81,12 @@ function readImage(input) {
 				</td>
 				<td>
 					<select name="p_kind" id="p_kind">
-						<option value="숄더백">숄더백</option>
-						<option value="클러치백">클러치백</option>
-						<option value="크로스백">크로스백</option>
-						<option value="메신저백">메신저백</option>
-						<option value="레더백">레더백</option>
-						<option value="백팩">백팩</option>
+						<option value="숄더백" <c:if test="${adminProductBean.P_KIND == '숄더백'}">selected</c:if>>숄더백</option>
+						<option value="클러치백" <c:if test="${adminProductBean.P_KIND == '클러치백'}">selected</c:if>>클러치백</option>
+						<option value="크로스백" <c:if test="${adminProductBean.P_KIND == '크로스백'}">selected</c:if>>크로스백</option>
+						<option value="메신저백" <c:if test="${adminProductBean.P_KIND == '메신저백'}">selected</c:if>>메신저백</option>
+						<option value="레더백" <c:if test="${adminProductBean.P_KIND == '레더백'}">selected</c:if>>레더백</option>
+						<option value="백팩" <c:if test="${adminProductBean.P_KIND == '백팩'}">selected</c:if>>백팩</option>
 					</select>
 				</td>
 			</tr>	

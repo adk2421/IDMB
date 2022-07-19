@@ -77,8 +77,7 @@ public class AdminProductController {
 	}
 	
 	@RequestMapping(value="/adminUpdateProductForm.do")
-	public String adminUpdateProductForm(ProductBean product,
-			HttpServletRequest request, Model model) throws Exception {
+	public String adminUpdateProductForm(ProductBean product, Model model) throws Exception {
 		
 		//P_CODE 값을 파라미터로 넘겨받음
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -86,10 +85,12 @@ public class AdminProductController {
 		//P_CODE 값을 이용하여 상품 정보를 읽어와 전달
 		map = adminProductService.adminSearchProductCode(product);
 		
-		String pd = (String) product.getP_detail();		
-		pd = pd.replace("<br>","\r\n");
 		
-		map.put("p_detail", pd);  //????????????????? 자꾸 nullpointer뜸
+	//	String pd = (String) product.getP_detail();		
+	//	pd = pd.replace("<br>","\r\n");
+	//	map.put("p_detail", pd);
+	//	해결방법 못찾음
+		
 		
 		model.addAttribute("adminProductBean", map);
 		
@@ -99,8 +100,14 @@ public class AdminProductController {
 	
 	@RequestMapping(value="/adminUpdateProduct.do")
 	public String adminUpdateProduct(
-			ProductBean product, Model model) throws Exception {
-				
+			ProductBean product, HttpServletRequest request, Model model) throws Exception {
+		
+		//textarea 형식으로 상세정보를 입력받았기 때문에 enter를 문자 처리 해주어야함.
+		String p_detail = request.getParameter("p_detail");
+		p_detail = p_detail.replace("\r\n","<br>");
+		
+		product.setP_detail(p_detail);
+		
 		//Delflag 체크박스가 빈상태면 null로 입력되어 넘어오기 때문에
 		//다시 그대로 "N"을 입력해 주어야 함.
 		if(product.getP_delflag() == null) {

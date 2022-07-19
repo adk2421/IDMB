@@ -22,7 +22,7 @@ function qnaList() {
 	location.href = "/IDMB/adminQnaList.do";
 }
 function insertNotice()	{
-	location.href = "/IDMB/adminInsertNotice.do"
+	location.href = "/IDMB/adminInsertNoticeForm.do"
 }
 </script>
 </head>
@@ -55,7 +55,7 @@ function insertNotice()	{
 				<td><a href="adminNoticeDetail.do?n_num=${notice.N_NUM}">
 					${notice.N_TITLE}</a></td>
 				<td>${notice.N_HIT}</td>
-				<td><button type="button" onClick="location.href='adminUpdateNotice.do?n_num=${notice.N_NUM}'">
+				<td><button type="button" onClick="location.href='adminUpdateNoticeForm.do?n_num=${notice.N_NUM}'">
 						수정</button>	</td>
 			</tr>		
 		</c:forEach>

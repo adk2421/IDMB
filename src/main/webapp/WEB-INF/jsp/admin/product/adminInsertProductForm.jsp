@@ -153,10 +153,6 @@ function readImage(input) {
 				<td>
 					<textarea id="p_detail" name="p_detail" rows="40" cols="30">
 					</textarea>
-				
-					<!-- <input type="text" maxlength="500" id="p_detail" name="p_detail"
-						style="width:300px; height:200px; font-size:10px:">
-					 -->
 				</td>
 			</tr>
 		</tbody>

@@ -8,6 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>일단메봐</title>
+<script>
+function update() {
+	location.href = "/IDMB/adminUpdateNoticeForm.do?n_num=${adminNoticeBean.N_NUM}";
+}
+function cancel() {
+	location.href = "/IDMB/adminNoticeList.do";
+}
+</script>
 </head>
 <body>
 <table>
@@ -17,24 +25,24 @@
 			<td>${adminNoticeBean.N_TITLE}</td>
 		</tr>
 		<tr>
-			<td><b>작성일자</b></td>
+			<td><b>작성일</b></td>
 			<td>${adminNoticeBean.N_DATE}</td>
 		</tr>
 		<tr>
 			<td><b>조회수</b></td>
 			<td>${adminNoticeBean.N_HIT}</td>
-		</tr>
-	</tbody>
-</table>
-		
-<table border=1>
-	<tbody>		
+		</tr>	
 		<tr>
-			<td><b>내용</b></td>
-			<td>${adminNoticeBean.N_DETAIL}</td>
+			<td><b>내용</b></td>			
 		</tr>
 	</tbody>
 </table>
+
+<div style="width:490px; height:293px; border:1px solid black;">
+	${adminNoticeBean.N_CONTENTS}
+</div>
+
+<br>
 <button type="button" onclick="update()">수&emsp;정</button>
 	&emsp;&emsp;&emsp;&emsp;
 <button type="button" onclick="cancel()">돌 아 가 기</button>

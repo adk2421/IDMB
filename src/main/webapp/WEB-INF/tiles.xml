@@ -77,7 +77,17 @@
 			value="/WEB-INF/jsp/admin/board/notice/adminNoticeDetail.jsp" />
 	</definition>
 	
+	<definition name="adminInsertNoticeForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/notice/adminInsertNoticeForm.jsp" />
+	</definition>	
 	
+	<definition name="adminUpdateNoticeForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/notice/adminUpdateNoticeForm.jsp" />
+	</definition>
+	
+		
 	
 			
 </tiles-definitions>
