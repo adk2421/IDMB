@@ -56,5 +56,16 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		adminOrderDAO.adminUpdateOrder(map);
 		
 	}
+	
+	//-- 주문 취소 --
+	@Override
+	public void adminCancelOrder(OrderBean order) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("o_num", order.getO_num());
+		
+		adminOrderDAO.adminCancelOrder(map);
+		
+	}
 
 }

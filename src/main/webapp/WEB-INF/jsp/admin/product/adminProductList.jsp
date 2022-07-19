@@ -9,23 +9,19 @@
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
-function plist(val) {
-	if (val == "1") {
-		location.href = "/IDMB/adminProductList.do";
-	} else if (val == "0") {}
+function plist() {
+	location.href = "/IDMB/adminProductList.do";
 }
-function pinsert(val) {
-	if (val == "1") {
-		location.href = "/IDMB/adminInsertProductForm.do";
-	} else if (val == "0") {}
+function pinsert() {
+	location.href = "/IDMB/adminInsertProductForm.do";
 }
 </script>
 </head>
 <body>
 	<form action="adminProductList.do" method="get">
-		<button type="button" onClick="plist(1)">상품 목록</button>
+		<button type="button" onClick="plist()">상품 목록</button>
 			&emsp;&emsp;
-		<button type="button" onClick="pinsert(1)">상품 등록</button>
+		<button type="button" onClick="pinsert()">상품 등록</button>
 			&emsp;&emsp;
 		<input type="text" name="searchValue" id="searchValue" placeholder="상품명 ..." value="${searchValue}"/>
 		<button type="submit">검색</button>

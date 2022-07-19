@@ -46,10 +46,8 @@ function formCheck() {
 	}
 }
 
-function cancel(val) {
-	if (val == "1") {
-		location.href = "/IDMB/adminProductList.do";
-	} else if (val == "0") {}
+function cancel() {
+	location.href = "/IDMB/adminProductList.do";
 }
 
 function readImage(input) {
@@ -155,10 +153,9 @@ function readImage(input) {
 					<b>상품 상세 정보</b>
 				</td>
 				<td>
-					<input type="text" maxlength="500" id="p_detail" name="p_detail"
-						value="${adminProductBean.P_DETAIL}"
-						style="width:300px; height:200px; font-size:10px:">
-					 
+				<textarea id="p_detail" name="p_detail" rows="5" cols="80">
+					${adminProductBean.P_DETAIL}
+				</textarea>	
 				</td>
 			</tr>
 			<tr>
@@ -180,7 +177,7 @@ function readImage(input) {
 				<td>
 					<button type="button" onClick="formCheck()">수 &emsp; 정</button>
          			&emsp;&emsp;
-					<button type="button" onclick="cancel(1)">취 &emsp; 소</button>				
+					<button type="button" onclick="cancel()">취 &emsp; 소</button>				
 			</tr>		
 		</tbody>
 	</table>

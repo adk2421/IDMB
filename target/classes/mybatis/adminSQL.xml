@@ -145,17 +145,25 @@
 		]]>
 	</update>
 	
+	<!-- 주문 취소 -->
+	<update id="adminCancelOrder" parameterType="hashmap">
+		<![CDATA[
+			update ORDERCOMMAND set O_STATUS = '주문 취소'
+			where O_NUM = #{o_num}
+		]]>
+	</update>	
+	
 	<!-- 공지 리스트 -->
 	<select id="adminNoticeList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select N_TITLE, N_DATE, N_HIT from NOTICE
+			select N_NUM, N_TITLE, N_DATE, N_HIT from NOTICE
 		]]>
 	</select>
 	
 	<!-- 공지 상세 정보 -->
 	<select id="adminNoticeDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select N_TITLE,N_CONTENTS, N_DATE, N_HIT from NOTICE where N_NUM = #{n_num}
+			select * from NOTICE where N_NUM = #{n_num}
 		]]>
 	</select>
 	
@@ -169,7 +177,8 @@
 	<!-- 공지 수정 -->
 	<update id="adminUpdateNotice" parameterType="hashmap">
 		<![CDATA[
-			update NOTICE set N_TITLE = #{n_title}, N_CONTENTS = #{n_contents} where N_NUM = #{n_num}
+			update NOTICE set N_TITLE = #{n_title}, N_CONTENTS = #{n_contents}
+			where N_NUM = #{n_num}
 		]]>
 	</update>
 	

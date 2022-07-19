@@ -74,8 +74,7 @@ public class AdminOrderController {
 	}
 	
 	@RequestMapping(value="/adminUpdateOrder.do")
-	public String adminUpdateOrder(
-			OrderBean order, Model model) throws Exception{
+	public String adminUpdateOrder(OrderBean order, Model model) throws Exception{
 		
 		if(order.getO_status() == "배송대기") {
 			order.setO_status("배송대기");
@@ -96,6 +95,17 @@ public class AdminOrderController {
 		return "admin/order/adminUpdateOrder";
 	}
 	
-	
+	@RequestMapping(value="/adminCancelOrder.do")
+	public String adminCancelOrder(OrderBean order, Model model) throws Exception{
+		
+		adminOrderService.adminCancelOrder(order);
+		
+		model.addAttribute("msg", "주문이 취소되었습니다.");
+		model.addAttribute("url", "/adminOrderList.do");
+		
+		//tiles로 보내지 않고 바로 adminCancelOrder.jsp 실행.
+		return "admin/order/adminCancelOrder";
+		
+	}
 
 }

@@ -23,7 +23,9 @@ function check() {
 }
 
 function orderCancel(){
+	var orderCancel = document.getElementById("orderCancel")
 	if(confirm("주문을 취소 하시겠습니까?") == true){
+		orderCancel.submit();
 		return true;
 	}
 }
@@ -31,8 +33,7 @@ function orderCancel(){
 
 </head>
 <body>
-<form method="post" id="orderDetailForm" action="adminUpdateOrder.do?o_num=${adminOrderBean.O_NUM}">
-
+<form method="post" id="orderCancel" action="adminCancelOrder.do?o_num=${adminOrderBean.O_NUM}">
 	<table border=1>
 		<thead>
 			<tr>
@@ -57,9 +58,10 @@ function orderCancel(){
 			</tr>
 		</tbody>
 	</table>
-	
 	<br/>
+</form>
 	
+<form method="post" id="orderDetailForm" action="adminUpdateOrder.do?o_num=${adminOrderBean.O_NUM}">		
 	<table border=1>
 		<tbody>
 			<tr>
@@ -94,12 +96,11 @@ function orderCancel(){
 					배송 완료
 			</tr>
 		</tbody>
-	</table>
+	</table>	
 	<br/>
 	<button type="button" onClick="check()">수 &emsp; 정</button>
          &emsp;&emsp;
 	<button type="button" onclick="cancel()">취 &emsp; 소</button>	
-
 </form>
 </body>
 </html>

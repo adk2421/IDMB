@@ -8,9 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>일단메봐</title>
-<script>
-
-</script>
 </head>
 <body>
 	<form action="adminOrderList.do" method="get">
@@ -49,7 +46,7 @@
 				수정</button>	
 			</td>
 		</tr>
-		</c:forEach>
+	</c:forEach>
 	</tbody>
 	</table>
 
