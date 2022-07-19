@@ -13,6 +13,8 @@
 		var address1 = document.getElementById("address1");
 		var address2 = document.getElementById("address2");
 		
+		console.log("formCheck 실행");
+		
 		if(id.value.trim() == ""){
 			alert("아이디를 입력해주세요.");
 			id.focus();
@@ -55,19 +57,51 @@
 			return false;
 		}
 		
-		if(JUMIN2.value.length<7) {
-			alert("주민등록번호 뒷자리를 모두 입력해주세요.");
-			JUMIN2.focus();
-			return false;
-		}
-		
 		if(address1.value.trim() == ""){
 			alert("주소를 입력해주세요.");
 			address1.focus();
 			return false;
 		}
 	
-		document.joinForm.submit();
+		document.getElementById('joinForm').submit();
+	}
+	
+	/* Ajax */
+	
+	/* 아이디 중복 체크 */
+	function checkId() {
+	    
+	    var id = $("#id").val();
+	    
+	    if(id.search(/\s/) != -1) { 
+	        alert("아이디에는 공백이 들어갈 수 없습니다.");        
+	    } else {             
+	        if(id.trim().length != 0) {
+	        	
+	            $.ajax({
+	                url: "confirmIdAjax.do", //통신할 url
+	                data: { "id" : id, "message" : "" }, // 좌항-변수, 우항-입력된 데이터
+	                contentType: "application/json",
+	                success: function(data) {
+	                	if(data.message == "사용할 수 있는 아이디입니다.") {
+	                		alert(data.message);
+	                		$("#submit").removeAttr("id");
+	                	} else {
+	                		alert(data.message);
+	                        $("#submit").attr("id", "id");
+	                        window.location.reload();
+	                	}
+	                },
+	        		error:function(request, error) {
+	        			alert("fail");
+	        			// error 발생 이유를 알려준다.
+	        		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	        		}      
+	            });
+	        } else {
+	            alert("아이디를 입력해주세요.");
+	        }        
+	    }
 	}
 	
 	/* 특수문자 없이 영어, 숫자만 받기 */
@@ -77,12 +111,12 @@
 	
 	/* 한글만 받기 */
 	function inputKoreanOnly(key)  {
-		key.value = key.value.replace(/^[가-힣]/ig, '')
+		key.value = key.value.replace(/[^ㄱ-ㅎ|가-힣]/ig, '')
 	}
 	
 	/* 공백 받지 않기 */
 	function inputNoBlank(key)  {
-		key.value = key.value.replace(/\s/gi, '')
+		key.value = key.value.replace(/\s/ig, '')
 	}
 	
 	/* 숫자만 받기 */

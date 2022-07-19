@@ -52,10 +52,10 @@
 				#{name},
 				#{phone},
 				#{birth},
-				#{email},
+				#{email, jdbcType=VARCHAR},
 				#{postcode},
-				#{address1},
-				#{address2},
+				#{address1, jdbcType=VARCHAR},
+				#{address2, jdbcType=VARCHAR},
 				0,
 				SYSDATE,
 				'N'
