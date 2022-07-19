@@ -7,14 +7,7 @@
 	<select id="mainpageProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				P_NAME,
-				P_IMAGE,
-				P_PRICE,
-				P_STOCK,
-				P_SELL,
-				P_KIND,
-				P_DATE,
-				P_ZIM
+				*
 			FROM (
 				SELECT
 					*
@@ -24,7 +17,7 @@
 					P_DELFLAG = 'N'
 				ORDER BY
 					P_ZIM DESC
-				WHERE DELFLAG ='N')
+				)
 			WHERE
 				ROWNUM <= 3
 		]]>
@@ -34,14 +27,7 @@
 	<select id="searchProduct" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				P_NAME,
-				P_IMAGE,
-				P_PRICE,
-				P_STOCK,
-				P_SELL,
-				P_KIND,
-				P_DATE,
-				P_ZIM
+				*
 			FROM
 				PRODUCT
 			WHERE

@@ -11,9 +11,10 @@ public interface AdminProductService {
 	
 	public List<Map<String, Object>> adminSearchProduct(String searchValue) throws Exception;
 
+	public Map<String, Object> adminSearchProductCode(ProductBean product) throws Exception;
+	
 	public void adminInsertProduct(ProductBean product) throws Exception;
 	
 	public void adminUpdateProduct(ProductBean product) throws Exception;
 	
-	public void adminDeleteProduct() throws Exception;
 }

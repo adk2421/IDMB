@@ -62,14 +62,22 @@
 	<!-- 상품 검색 -->
 	<select id="adminSearchProduct" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from PRODUCT
-			where P_DELFLAG = 'N'
+			select * from PRODUCT		
 		]]>
-		<trim prefix="AND">
+		<trim prefix="WHERE">
+			P_DELFLAG = 'N'
 			<if test="searchValue != NULL">
-			P_NAME like '%'||#{searchValue}||'%'
+			AND P_NAME like '%'||#{searchValue}||'%'
 			</if>
 		</trim>
+	</select>
+	
+	<!-- 상품 코드 검색 -->
+	<select id="adminSearchProductCode" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from PRODUCT
+			where P_CODE = #{p_code}		
+		]]>
 	</select>
 	
 	<!-- 상품 등록 -->
@@ -85,53 +93,40 @@
 		<![CDATA[
 			update PRODUCT set P_NAME = #{p_name}, P_IMAGE = #{p_image},
 				P_PRICE = #{p_price}, P_STOCK = #{p_stock}, P_SELL = #{p_sell},
-				P_KIND = #{p_kind}, P_DATE = SYSDATE, P_DETAIL = #{p_detail}
+				P_KIND = #{p_kind}, P_DATE = SYSDATE, P_DETAIL = #{p_detail},
+				P_DELFLAG = #{p_delflag}
+			where P_CODE = #{p_code}
 		]]>
 	</update>
 	
-	<!-- 상품 삭제(비활성) -->
-	<update id="adminDeleteProduct" parameterType="hashmap">
-		<![CDATA[
-			update PRODUCT set P_DELFLAG = 'Y'
-		]]>
-	</update>
 	
 	<!-- 주문 관리 리스트 -->
 	<select id="adminOrderList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select O_ID, O_CODE, O_NAME, O_DATE, O_COUNT, O_PRICE, O_TOTAL, O_STATUS
-			from ORDERCOMMAND
+			select * from ORDERCOMMAND
 		]]>
 	</select>
 	
 	<!-- 주문 검색 -->
 	<select id="adminSearchOrder" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select O_ID, O_CODE, O_NAME, O_DATE, O_COUNT, O_PRICE, O_TOTAL, O_STATUS
-			from ORDERCOMMAND
-			WHERE O_STATUS = #{o_status}
-		]]>			
+			select * from ORDERCOMMAND
+			where O_ID like '%'||#{searchValue}||'%'
+		]]>
 		<trim prefix="AND">
-			<if test="searchValue != NULL">
-			O_ID like '%'||#{searchValue}||'%'
+		<if test="ostatus != NULL">
+			<if test="ostatus == 'wait'">
+				O_STATUS = '배송대기'
 			</if>
+			<if test="ostatus == 'ing'">
+				O_STATUS = '배송중'
+			</if>
+			<if test="ostatus == 'fin'">
+				O_STATUS = '배송완료'
+			</if>
+		</if>
 		</trim>	
-		<trim prefix="AND">
-			<if test="searchDate1 != NULL">
-				<if test="searchDate2 != NULL">
-				O_DATE between #{searchDate1} and #{searchDate2}
-				</if>
-    			<if test="searchDate2 == NULL">
-				O_DATE >= #{searchDate1}
-				</if>
-			</if>
-			<if test="searchDate1 == NULL">
-				<if test="searchDate2 != NULL">
-				O_DATE between '00/01/01' and #{searchDate2}
-				</if>
-			</if>
-		</trim>	
-
+	
 	</select>
 	
 	<!-- 주문 상세 정보 -->

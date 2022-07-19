@@ -1,6 +1,5 @@
 package idmb.admin.order;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,14 +24,12 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	
 	//-- 주문 검색 --
 	@Override
-	public List<Map<String, Object>> adminSearchOrder(OrderBean order,
-			String searchValue, Date searchDate1, Date searchDate2) throws Exception{
+	public List<Map<String, Object>> adminSearchOrder(String searchValue
+			,String ostatus) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("o_status", order.getO_status());
+
 		map.put("searchValue", searchValue);
-		map.put("searchDate1",searchDate1);
-		map.put("searchDate2", searchDate2);
+		map.put("ostatus", ostatus);
 		
 		return adminOrderDAO.adminSearchOrder(map);
 	}
