@@ -82,6 +82,7 @@ public class AdminProductController {
 		
 		model.addAttribute("adminProductBean", map);
 		
+		//tiles.xml의 definition name="adminUpdateProductForm"로 이동
 		return "adminUpdateProductForm";	
 	}
 	

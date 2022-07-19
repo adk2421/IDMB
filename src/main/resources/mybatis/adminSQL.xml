@@ -132,14 +132,16 @@
 	<!-- 주문 상세 정보 -->
 	<select id="adminOrderDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from ORDERCOMMAND where O_NUM = #{o_num}
+			select * from ORDERCOMMAND
+			where O_NUM = #{o_num}
 		]]>
 	</select>
 	
 	<!-- 주문 상태 수정 -->
 	<update id="adminUpdateOrder" parameterType="hashmap">
 		<![CDATA[
-			update ORDERCOMMAND set O_STATUS = #{o_status} where O_NUM = #{o_num}
+			update ORDERCOMMAND set O_STATUS = #{o_status}
+			where O_NUM = #{o_num}
 		]]>
 	</update>
 	

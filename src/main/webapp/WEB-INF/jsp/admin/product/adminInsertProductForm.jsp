@@ -77,7 +77,7 @@ function readImage(input) {
 
 <body>
 <form action="adminInsertProduct.do" method="post" id="insertForm">
-	<table>
+	<table border=1>
 		<tbody>
 			<tr>
 				<td>
@@ -158,15 +158,12 @@ function readImage(input) {
 					 
 				</td>
 			</tr>
-			
-			<tr>
-				<td>
-					<button type="button" onClick="formCheck()">등 &emsp; 록</button>
-         			&emsp;&emsp;
-					<button type="button" onclick="cancel(1)">취 &emsp; 소</button>				
-			</tr>		
 		</tbody>
 	</table>
+	<br/>
+	<button type="button" onClick="formCheck()">등 &emsp; 록</button>
+		&emsp;&emsp;
+	<button type="button" onclick="cancel(1)">취 &emsp; 소</button>
 </form>
 </body>
 </html>

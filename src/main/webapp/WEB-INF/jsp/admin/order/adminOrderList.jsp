@@ -20,17 +20,17 @@
 			<option value="ing" <c:if test="${ostatus =='ing'}">selected</c:if>>배송 중</option>
 			<option value="fin" <c:if test="${ostatus =='fin'}">selected</c:if>>배송 완료</option>			
 		</select>
-		<input type="text" name="searchValue" id="searchValue" value="${searchValue}"/>
+		<input type="text" name="searchValue" id="searchValue" placeholder="주문자명 ..." value="${searchValue}"/>
 		<button type="submit">검색</button>
 	</form>
 	
-	<table>
+	<table border=1>
 		<thead>
 			<tr>
 				<th>주문번호</th>
 				<th>주문일자</th>
 				<th>주문자</th>
-				<th>주문 상품명</th>
+				<th>상품명</th>
 				<th>주문금액</th>
 				<th>주문상태</th>
 			</tr>
@@ -45,7 +45,7 @@
 			<td>${order.O_TOTAL}</td>
 			<td>${order.O_STATUS}</td>
 			<td><button type="button"
-					onClick="location.href='adminUpdateOrderForm.do?o_num=${order.O_NUM}'">
+					onClick="location.href='adminOrderDetail.do?o_num=${order.O_NUM}'">
 				수정</button>	
 			</td>
 		</tr>

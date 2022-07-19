@@ -75,7 +75,7 @@ function readImage(input) {
 <body>
 <form method="post" id="updateForm"
 	action="adminUpdateProduct.do?p_code=${adminProductBean.P_CODE}">
-	<table>
+	<table border=1>
 		<tbody>
 			<tr>
 				<td>

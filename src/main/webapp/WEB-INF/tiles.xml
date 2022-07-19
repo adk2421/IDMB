@@ -56,5 +56,9 @@
 			value="/WEB-INF/jsp/admin/order/adminOrderList.jsp" />
 	</definition>
 	
+	<definition name="adminOrderDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/order/adminOrderDetail.jsp" />
+	</definition>	
 	
 </tiles-definitions>

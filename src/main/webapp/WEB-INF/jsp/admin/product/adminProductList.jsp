@@ -27,11 +27,11 @@ function pinsert(val) {
 			&emsp;&emsp;
 		<button type="button" onClick="pinsert(1)">상품 등록</button>
 			&emsp;&emsp;
-		<input type="text" name="searchValue" id="searchValue" value="${searchValue}"/>
+		<input type="text" name="searchValue" id="searchValue" placeholder="상품명 ..." value="${searchValue}"/>
 		<button type="submit">검색</button>
 	</form>
 	
-	<table>
+	<table border=1>
 		<thead>
 			<tr>
 				<th>종류</th>

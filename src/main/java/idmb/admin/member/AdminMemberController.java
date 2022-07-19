@@ -94,14 +94,5 @@ public class AdminMemberController {
 		//tiles로 보내지 않고 바로 adminUpdateMember.jsp 실행.
 		return "admin/member/adminUpdateMember";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
