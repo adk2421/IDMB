@@ -10,7 +10,7 @@
     <link rel="canonical" href="loginform.jsp">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css?v=<%=System.currentTimeMillis()%>">
 
-	<script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/login.js?v=<%=System.currentTimeMillis()%>"></script>
 
     <title>IDMB</title>
     
@@ -20,20 +20,25 @@
     <form id="loginForm" action="/IDMB/login.do" method="post">
         <div class="wrap">
             <div class="login">
-                <h2>IDMB</h2>
+            
+                <h2>로그인</h2>
+                
                 <div class="login_sns">
                     <li><a href=""><i class="fab fa-instagram"></i></a></li>
                     <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
                     <li><a href=""><i class="fab fa-twitter"></i></a></li>
                 </div>
+                
                 <div class="login_div">
                     <h4>ID</h4>
                     <input type="text" name="id" id="id" placeholder="아이디" oninput="inputNoSpecial(this)" />
                 </div>
+                
                 <div class="login_div">
                     <h4>Password</h4>
                     <input type="password" name="passwd" id="passwd" placeholder="비밀번호" oninput="inputNoBlank(this)" onkeypress="keyPress()" />
                 </div>
+                
                 <div class="login_etc">
                     <!--
                     <div class="checkbox">
@@ -50,9 +55,11 @@
                         <a href="/IDMB/findPw.do">PW 찾기</a>
                     </div>
                 </div>
+                
                 <div class="submit">
                     <input type="button" value="로그인" onclick="return formCheck()">
                 </div>
+                
             </div>
         </div>
     </form>

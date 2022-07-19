@@ -9,6 +9,8 @@ public interface LoginService {
     public Map<String, Object> checkId(MemberBean member) throws Exception;
 
     public Map<String, Object> checkPw(MemberBean member) throws Exception;
+    
+    public Map<String, Object> selectMember(MemberBean member) throws Exception;
 
     public Map<String, Object> searchId(MemberBean member) throws Exception;
 

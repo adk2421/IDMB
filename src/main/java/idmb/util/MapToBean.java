@@ -17,21 +17,20 @@ public class MapToBean {
     public static MemberBean mapToMember(Map<String, Object> map) {
         MemberBean memberBean = new MemberBean();
 
-        memberBean.setId((String) map.get("id"));
-        memberBean.setPasswd((String) map.get("passwd"));
-        memberBean.setName((String) map.get("name"));
-        memberBean.setPhone((String) map.get("phone"));
-        memberBean.setBirth((Date) map.get("birth"));
-        memberBean.setEmail((String) map.get("email"));
-        memberBean.setPostcode((String) map.get("postcode"));
-        memberBean.setAddress1((String) map.get("address1"));
-        memberBean.setAddress2((String) map.get("address2"));
-        
-        if(map.get("reserve") != null) {
-        	memberBean.setReserve(Integer.parseInt(String.valueOf(map.get("reserve"))));
+        memberBean.setId((String) map.get("ID"));
+        memberBean.setPasswd((String) map.get("PASSWD"));
+        memberBean.setName((String) map.get("NAME"));
+        memberBean.setPhone((String) map.get("PHONE"));
+        memberBean.setBirth(Date.valueOf(((String) map.get("BIRTH")).replace("/", "-")));
+        memberBean.setEmail((String) map.get("EMAIL"));
+        memberBean.setPostcode((String) map.get("POSTCODE"));
+        memberBean.setAddress1((String) map.get("ADDRESS1"));
+        memberBean.setAddress2((String) map.get("ADDRESS2"));
+        if(map.get("RESERVE") != null) {
+        	memberBean.setReserve(Integer.parseInt(String.valueOf(map.get("RESERVE"))));
 		}
-        memberBean.setJoindate((Date) map.get("joindate"));
-        memberBean.setDelflag((String) map.get("delflag"));
+        memberBean.setJoindate(Date.valueOf(((String) map.get("JOINDATE")).replace("/", "-")));
+        memberBean.setDelflag((String) map.get("DELFLAG"));
 
         return memberBean;
     }

@@ -68,36 +68,41 @@
 	
 	/* Ajax */
 	
-	/* 아이디 중복 체크 */
+	/* 아이디 중복확인 */
 	function checkId() {
 	    
 	    var id = $("#id").val();
 	    
 	    if(id.search(/\s/) != -1) { 
-	        alert("아이디에는 공백이 들어갈 수 없습니다.");        
-	    } else {             
+	        alert("아이디에는 공백이 들어갈 수 없습니다.");
+	        
+	    } else {
 	        if(id.trim().length != 0) {
 	        	
 	            $.ajax({
 	                url: "confirmIdAjax.do", //통신할 url
 	                data: { "id" : id, "message" : "" }, // 좌항-변수, 우항-입력된 데이터
 	                contentType: "application/json",
+	                
 	                success: function(data) {
 	                	if(data.message == "사용할 수 있는 아이디입니다.") {
 	                		alert(data.message);
 	                		$("#submit").removeAttr("id");
+	                		
 	                	} else {
 	                		alert(data.message);
 	                        $("#submit").attr("id", "id");
 	                        window.location.reload();
 	                	}
 	                },
+	                
 	        		error:function(request, error) {
 	        			alert("fail");
 	        			// error 발생 이유를 알려준다.
-	        		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	        		alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 	        		}      
 	            });
+	            
 	        } else {
 	            alert("아이디를 입력해주세요.");
 	        }        
@@ -109,7 +114,7 @@
 		key.value = key.value.replace(/[^a-z0-9]/ig, '')
 	}
 	
-	/* 한글만 받기 */
+	/* 한글만 받기 - 수정해야함 */
 	function inputKoreanOnly(key)  {
 		key.value = key.value.replace(/[^ㄱ-ㅎ|가-힣]/ig, '')
 	}

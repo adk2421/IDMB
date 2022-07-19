@@ -16,12 +16,17 @@ public class MemberDAO {
 	
 	// 아이디 확인
 	public Map<String, Object> checkId(Map<String, Object> map) throws Exception {
-		return sqlSessionTemplate.selectOne("member.confirmId", map);
+		return sqlSessionTemplate.selectOne("member.checkId", map);
 	}
 
     // 패스워드 확인
 	public Map<String, Object> checkPw(Map<String, Object> map) throws Exception {
 		return sqlSessionTemplate.selectOne("member.checkPw", map);
+	}
+	
+	 // 회원 검색
+	public Map<String, Object> selectMember(Map<String, Object> map) throws Exception {
+		return sqlSessionTemplate.selectOne("member.selectMember", map);
 	}
 	
 	// 회원 등록
