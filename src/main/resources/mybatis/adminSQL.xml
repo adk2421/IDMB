@@ -203,31 +203,41 @@
 	<!-- 후기 리스트 -->
 	<select id="adminReviewList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select R_ID, R_NAME, R_DATE, R_CONTENTS, R_RATE, R_RECOMMEND from REVIEW
+			select * from REVIEW
 			where R_RELEVEL = '0'
+			ORDER BY R_GROUPNUM DESC
 		]]>
 	</select>
+	
+	<!-- 후기 상세 -->
+	<select id="adminReviewDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from REVIEW
+			where R_NUM = #{r_num}
+		]]>
+	</select>
+	
 	
 	<!-- 후기 검색 -->
 	<select id="adminSearchReview" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select R_ID, R_NAME, R_DATE, R_CONTENTS, R_RATE, R_RECOMMEND from REVIEW
+			select * from REVIEW
 			WHERE R_RELEVEL = '0'
 		]]>
 		<trim prefix="AND">
-			<if test="searchDate1 != NULL">
-				<if test="searchDate2 != NULL">
-				R_DATE between #{searchDate1} AND #{searchDate2}
+			<if test="SORT != NULL">
+				<if test="SORT == 'id'">
+					<if test="searchValue != NULL">		
+						R_ID like '%'||#{searchValue}||'%'
+					</if>
 				</if>
-    			<if test="searchDate2 == NULL">
-				R_DATE >= #{searchDate1}
+				<if test="SORT == 'product'">
+					<if test="searchValue != NULL">		
+						R_NAME like '%'||#{searchValue}||'%'
+					</if>
 				</if>
 			</if>
-			<if test="searchDate1 == NULL">
-				<if test="searchDate2 != NULL">
-				R_DATE between '00/01/01' and #{searchDate2}
-				</if>
-			</if>
+			ORDER BY R_GROUPNUM DESC 
 		</trim>
 	</select>
 	
@@ -236,15 +246,15 @@
 		<![CDATA[
 			insert into REVIEW values(
 				r_seq.nextval, '관리자', #{r_code}, SYSDATE,
-				#{r_name}, '#{r_contents}', 5, 0, 1, #{r_groupnum});
+				#{r_name}, '#{r_contents}', '', 0, 1, #{r_groupnum});
 		]]>
 	</insert>
 	
 	<!-- 후기 삭제(처리) -->
 	<update id="adminDeleteReview" parameterType="hashmap">
 		<![CDATA[
-			UPDATE REVIEW SET R_ID = ' ', R_DATE = ' ', R_NAME = ' ',
-			R_CONTENTS = '[삭제됨]', R_RATE = ' ', R_RECOMMAND = ' '
+			UPDATE REVIEW SET R_ID = '', R_DATE = '', R_NAME = '',
+			R_CONTENTS = '[삭제된 후기입니다.]', R_RATE = '', R_RECOMMEND = ''
 			where R_NUM = #{r_num}
 		]]>
 	</update>

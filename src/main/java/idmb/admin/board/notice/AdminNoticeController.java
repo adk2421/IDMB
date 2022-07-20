@@ -30,6 +30,7 @@ public class AdminNoticeController {
 		
 		model.addAttribute("adminNoticeList",list);
 		
+		//tiles.xml의 definition name="adminNoticeList"로 이동
 		return "adminNoticeList";
 	}
 	

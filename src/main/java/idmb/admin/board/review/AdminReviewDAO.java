@@ -18,6 +18,10 @@ public class AdminReviewDAO {
 		return sqlSessionTemplate.selectList("admin.adminReviewList");
 	}
 	
+	public Map<String, Object> adminReviewDetail(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminReviewDetail", map);
+	}
+	
 	public List<Map<String, Object>> adminSearchReview(Map<String, Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("admin.adminSearchReview", map);
 	}

@@ -1,6 +1,5 @@
 package idmb.admin.board.review;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +9,9 @@ public interface AdminReviewService {
 	
 	public List<Map<String, Object>> adminReviewList() throws Exception;
 	
-	public List<Map<String, Object>> adminSearchReview(Date searchDate1, Date searchDate2) throws Exception;
+	public Map<String, Object> adminReviewDetail(ReviewBean review) throws Exception;
+	
+	public List<Map<String, Object>> adminSearchReview(String SORT, String searchValue) throws Exception;
 	
 	public void adminInsertReview(ReviewBean review) throws Exception;
 	

@@ -1,5 +1,6 @@
 package idmb.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class ReviewBean {
@@ -7,7 +8,7 @@ public class ReviewBean {
     private int r_num;              // 리뷰 번호
 	private String r_id;            // 구매자 (= 리뷰 작성자)
 	private int r_code;             // 구매 상품 코드
-	private Date r_date;            // 후기 작성 날짜
+	private Timestamp r_date;            // 후기 작성 날짜
 	private String r_name;          // 구매 상품 이름
 	private String r_contents;      // 리뷰 내용
 	private int r_rate;             // 별점
@@ -44,7 +45,7 @@ public class ReviewBean {
         return r_date;
     }
 
-    public void setR_date(Date r_date) {
+    public void setR_date(Timestamp r_date) {
         this.r_date = r_date;
     }
 

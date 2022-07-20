@@ -1,6 +1,5 @@
 package idmb.admin.board.review;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,14 +22,25 @@ public class AdminReviewServiceImpl implements AdminReviewService{
 		return adminReviewDAO.adminReviewList();	
 	}
 	
-	// 후기 검색
+	// 후기 상세 정보
 	@Override
-	public List<Map<String, Object>> adminSearchReview(Date searchDate1, Date searchDate2) throws Exception{
+	public Map<String, Object> adminReviewDetail(ReviewBean review) throws Exception{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		map.put("searchDate1", searchDate1);
-		map.put("searchDate2", searchDate1);
+		map.put("r_num", review.getR_num());
+		
+		return adminReviewDAO.adminReviewDetail(map);	
+	}
+	
+	// 후기 검색
+	@Override
+	public List<Map<String, Object>> adminSearchReview(String SORT, String searchValue) throws Exception{
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("SORT", SORT);
+		map.put("searchValue", searchValue);
 		
 		return adminReviewDAO.adminSearchReview(map);
 	}
