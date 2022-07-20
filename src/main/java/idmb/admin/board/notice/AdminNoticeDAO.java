@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-
 @Repository("adminNoticeDAO")
 public class AdminNoticeDAO {
 	
@@ -33,6 +32,10 @@ public class AdminNoticeDAO {
 	
 	public void adminDeleteNotice(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.delete("admin.adminDeleteNotice", map);
+	}
+	
+	public void adminNoticeHit(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.update("admin.adminNoticeHit", map);
 	}
 
 }

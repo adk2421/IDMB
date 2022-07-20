@@ -38,7 +38,10 @@ public class AdminNoticeController {
 		
 		//특정 Notice의 map만 필요하므로 HashMap형태의 'map' 생성
 		Map<String, Object> map = new HashMap<String, Object>();
-	    
+	   	
+		//특정 Notice의 조회수를 1 증가
+		adminNoticeService.adminNoticeHit(notice);
+		
 		map = adminNoticeService.adminNoticeDetail(notice);
 		
 		model.addAttribute("adminNoticeBean",map);
@@ -50,7 +53,7 @@ public class AdminNoticeController {
 	@RequestMapping(value="/adminInsertNoticeForm.do")
 	public String Insert(NoticeBean notice, Model model) throws Exception{
 		
-		//tiles.xml의 definition name="aadminUpdateNoticeForm"로 이동
+		//tiles.xml의 definition name="aadminInsertNoticeForm"로 이동
 		return "adminInsertNoticeForm";		
 	}
 	
@@ -73,12 +76,7 @@ public class AdminNoticeController {
 		return "admin/board/notice/adminInsertNotice";
 	}	
 	
-	
-	
-	
-	
-	
-	
+
 	@RequestMapping(value="/adminUpdateNoticeForm.do")
 	public String adminUpdateNoticeForm(NoticeBean notice, Model model) throws Exception{
 		

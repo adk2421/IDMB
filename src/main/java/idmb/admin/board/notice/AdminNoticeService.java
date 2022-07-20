@@ -17,5 +17,6 @@ public interface AdminNoticeService {
 	
 	public void adminDeleteNotice(NoticeBean notice) throws Exception;
 	
+	public void adminNoticeHit(NoticeBean notice) throws Exception;
 
 }

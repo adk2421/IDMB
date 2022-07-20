@@ -191,7 +191,15 @@
 			delete from NOTICE where N_NUM = #{n_num}
 		]]>
 	</delete>
-
+	
+	<!-- 공지 조회수 증가 -->
+	<update id="adminNoticeHit" parameterType="hashmap">
+		<![CDATA[
+			update NOTICE set N_HIT = N_HIT+1
+			where N_NUM = #{n_num}
+		]]>
+	</update>
+	
 	<!-- 후기 리스트 -->
 	<select id="adminReviewList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[

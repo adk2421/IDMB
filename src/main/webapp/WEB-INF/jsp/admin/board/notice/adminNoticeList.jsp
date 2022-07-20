@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -51,7 +51,10 @@ function insertNotice()	{
 		<c:forEach var="notice" items="${adminNoticeList}">
 			<tr>
 				<td>${notice.N_NUM}</td>
-				<td>${notice.N_DATE}</td>
+				<td>
+					<fmt:formatDate value="${notice.N_DATE}"
+						pattern="yyyy년 MM월 dd일"/>
+				</td>
 				<td><a href="adminNoticeDetail.do?n_num=${notice.N_NUM}">
 					${notice.N_TITLE}</a></td>
 				<td>${notice.N_HIT}</td>

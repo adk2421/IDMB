@@ -22,7 +22,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		return adminNoticeDAO.adminNoticeList();
 	}
 	
-//공지 상세 정보	
+	//공지 상세 정보	
 	@Override
 	public Map<String, Object>adminNoticeDetail(NoticeBean notice)throws Exception{
 		Map<String, Object>map = new HashMap<String, Object>();
@@ -32,7 +32,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		return adminNoticeDAO.adminNoticeDetail(map);
 	
 	}
-//공징 작성	
+	//공지 작성	
 	@Override
 	public void adminInsertNotice(NoticeBean notice)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -42,7 +42,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		
 		adminNoticeDAO.adminInsertNotice(map);
 	}
-//공지 수정	
+	//공지 수정	
 	@Override
 	public void adminUpdateNotice(NoticeBean notice) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -54,7 +54,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		adminNoticeDAO.adminUpdateNotice(map);
 	}
 	
-//	공지삭제
+	//	공지삭제
 	@Override
 	public void adminDeleteNotice(NoticeBean notice)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -63,14 +63,13 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		
 		adminNoticeDAO.adminDeleteNotice(map);
 	}
+	
+	@Override
+	public void adminNoticeHit(NoticeBean notice) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("n_num", notice.getN_num());
+		
+		adminNoticeDAO.adminNoticeHit(map);
+	}
 }
-
-
-
-
-
-
-
-
-
-
