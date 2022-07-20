@@ -38,6 +38,7 @@
 		padding-bottom: 3px;
 	}
 	
+	
 	/* -- 로그인 -- */
 	.login {
 		width: 30%;
@@ -99,6 +100,7 @@
 		font-weight: bold;
 	}
 	
+	
 	/* -- 회원가입 -- */
 	.join {
 		width: 30%;
@@ -129,6 +131,11 @@
 		font-size: 14px;
 	}
 	
+	.button {
+		padding-top: 3px;
+	}
+	
+	
 	/* -- 생년월일 버튼 -- */
 	input[type='date']::before {
 		content: attr(data-placeholder);
@@ -140,6 +147,7 @@
 	input[type='date']:valid::before {
 		display: none;
 	}
+	
 	
 	/* -- 공통 -- */
 	.submit {

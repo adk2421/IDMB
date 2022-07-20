@@ -64,10 +64,11 @@
 	</insert>
 	
 	<!-- 아이디 찾기 -->
-	<select id="searchId" parameterType="hashmap" resultType="hashmap">
+	<select id="findId" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				ID
+				ID,
+				NAME
 			FROM
 				MEMBER
 			WHERE
@@ -78,7 +79,7 @@
 	</select>
 	
 	<!-- 패스워드 찾기 -->
-	<select id="searchPw" parameterType="hashmap" resultType="hashmap">
+	<select id="findPw" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				PASSWD

@@ -55,24 +55,24 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Map<String, Object> searchId(MemberBean member) throws Exception {
+    public Map<String, Object> findId(MemberBean member) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("name", member.getName());
         map.put("phone", member.getPhone());
 
-        return memberDAO.searchId(map);
+        return memberDAO.findId(map);
     }
 
     @Override
-    public Map<String, Object> searchPw(MemberBean member) throws Exception {
+    public Map<String, Object> findPw(MemberBean member) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("id", member.getId());
         map.put("name", member.getName());
         map.put("phone", member.getPhone());
 
-        return memberDAO.searchPw(map);
+        return memberDAO.findPw(map);
     }
 
     @Override

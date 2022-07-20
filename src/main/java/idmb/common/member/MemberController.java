@@ -108,6 +108,8 @@ public class MemberController {
 
 		// new MemberValidator().validate(member, result);
 		
+		System.out.println("joinSuccess 실행");
+		
 		if (result.hasErrors()) {
 			// 회원가입 실패
 			model.addAttribute("msg", "회원가입에 실패했습니다.");
@@ -167,14 +169,15 @@ public class MemberController {
 				}
 
 				// 세션 등록
-				session.setAttribute("id", memberBean.getId());
+				session.setAttribute("name", memberBean.getName());
+				session.setAttribute("reserve", memberBean.getReserve());
 
 				// 관리자 체크
 				if (memberBean.getId().equals("ADMIN")) {
 					model.addAttribute("url", "/adminMain.do");
 				
 				} else {
-					model.addAttribute("url", "/main.do");
+					model.addAttribute("url", "/myPage.do");
 				}
 				
 			} else {
@@ -202,7 +205,7 @@ public class MemberController {
 	// 아이디 찾기
 	@RequestMapping(value = "/findId.do")
 	public String findId(Model model) throws Exception {
-		return "findId";
+		return "/member/findId";
 	}
 
 	// 찾기 결과
@@ -211,20 +214,72 @@ public class MemberController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		MemberBean memberBean = new MemberBean();
 
-		map = loginService.searchPhone(member);
+		System.out.println("findIdResult.do 실행");
+		
+		map = loginService.findId(member);
 
 		if (map == null) {
 			model.addAttribute("Find", "notFound");
+			System.out.println("notFound 실행");
+			
 		} else {
 			memberBean = MapToBean.mapToMember(map);
 
 			if (member.getName().equals(memberBean.getName())) {
 				model.addAttribute("memberBean", memberBean);
+				System.out.println("아이디 찾기 성공");
 			} else {
 				model.addAttribute("Find", "invalidName");
+				System.out.println("invalidName 실행");
 			}
 		}
-		return "findIdResult";
+		
+		return "/member/findIdResult";
+	}
+	
+	@RequestMapping(value = "/findPw.do")
+	public String findPw(Model model) throws Exception {
+		return "/member/findPw";
+	}
+
+	@RequestMapping(value = "/findPwResult.do")
+	public String findPwResult(MemberBean member, Model model) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		MemberBean memberBean = new MemberBean();
+
+		map = loginService.findId(member);
+
+		// 주민번호 일치 여부를 검사
+		if (map == null) {
+			// 주민번호가 일치하지 않으므로 회원이 검색되지 않음
+			model.addAttribute("Find", "notFound");
+		} else {
+			memberBean = MapToBean.mapToMember(map);
+			// 아이디 일치 여부를 검사
+			if (member.getName().equals(memberBean.getName())) {
+				// 폰 번호 일치 여부를 검사
+				if (member.getPhone().equals(memberBean.getPhone())) {
+					// 일치한 회원을 찾음
+					model.addAttribute("memberBean", memberBean);
+				} else {
+					// 이름이 일치하지 않음
+					model.addAttribute("invalidNAME", "invalidNAME");
+				}
+			} else {
+				// 이메일이 일치하지 않음
+				model.addAttribute("invalidEMAIL", "invalidEMAIL");
+			}
+		}
+
+		model.addAttribute("memberBean", memberBean);
+
+		return "/member/findPwResult";
+	}
+
+	// 마이페이지 이동
+	@RequestMapping(value = "/myPage.do")
+	public String myPage(Model model) throws Exception {
+		return "/member/myPage";
 	}
 	
 	// 메인페이지 이동

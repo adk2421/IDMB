@@ -12,9 +12,9 @@ public interface LoginService {
     
     public Map<String, Object> selectMember(MemberBean member) throws Exception;
 
-    public Map<String, Object> searchId(MemberBean member) throws Exception;
+    public Map<String, Object> findId(MemberBean member) throws Exception;
 
-    public Map<String, Object> searchPw(MemberBean member) throws Exception;
+    public Map<String, Object> findPw(MemberBean member) throws Exception;
 
     public Map<String, Object> searchPhone(MemberBean member) throws Exception;
 

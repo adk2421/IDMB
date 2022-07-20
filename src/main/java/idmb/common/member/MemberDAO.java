@@ -35,13 +35,13 @@ public class MemberDAO {
 	}
 	
 	// 아이디 찾기
-	public Map<String, Object> searchId(Map<String, Object> map) throws Exception {
-		return sqlSessionTemplate.selectOne("member.searchId", map);
+	public Map<String, Object> findId(Map<String, Object> map) throws Exception {
+		return sqlSessionTemplate.selectOne("member.findId", map);
 	}
 	
 	// 패스워드 찾기
-	public Map<String, Object> searchPw(Map<String, Object> map) throws Exception {
-		return sqlSessionTemplate.selectOne("member.searchPw", map);
+	public Map<String, Object> findPw(Map<String, Object> map) throws Exception {
+		return sqlSessionTemplate.selectOne("member.findPw", map);
 	}
 
 	// 패스워드 찾기

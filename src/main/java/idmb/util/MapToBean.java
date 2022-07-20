@@ -17,21 +17,19 @@ public class MapToBean {
     public static MemberBean mapToMember(Map<String, Object> map) {
         MemberBean memberBean = new MemberBean();
 
-        memberBean.setId((String) map.get("ID"));
-        memberBean.setPasswd((String) map.get("PASSWD"));
-        memberBean.setName((String) map.get("NAME"));
-        memberBean.setPhone((String) map.get("PHONE"));
-        memberBean.setBirth(Date.valueOf(((String) map.get("BIRTH")).replace("/", "-")));
-        memberBean.setEmail((String) map.get("EMAIL"));
-        memberBean.setPostcode((String) map.get("POSTCODE"));
-        memberBean.setAddress1((String) map.get("ADDRESS1"));
-        memberBean.setAddress2((String) map.get("ADDRESS2"));
-        if(map.get("RESERVE") != null) {
-        	memberBean.setReserve(Integer.parseInt(String.valueOf(map.get("RESERVE"))));
-		}
-        memberBean.setJoindate(Date.valueOf(((String) map.get("JOINDATE")).replace("/", "-")));
-        memberBean.setDelflag((String) map.get("DELFLAG"));
-
+        if (map.get("ID") != null)			{ memberBean.setId((String) map.get("ID")); }
+        if (map.get("PASSWD") != null)		{ memberBean.setPasswd((String) map.get("PASSWD")); }
+        if (map.get("NAME") != null)		{ memberBean.setName((String) map.get("NAME")); }
+        if (map.get("PHONE") != null)		{ memberBean.setPhone((String) map.get("PHONE")); }
+        if (map.get("BIRTH") != null)		{ memberBean.setBirth(Date.valueOf(((String) map.get("BIRTH")).replace("/", "-"))); }
+        if (map.get("EMAIL") != null)		{ memberBean.setEmail((String) map.get("EMAIL")); }
+        if (map.get("POSTCODE") != null)	{ memberBean.setPostcode((String) map.get("POSTCODE")); }
+        if (map.get("ADDRESS1") != null)	{ memberBean.setAddress1((String) map.get("ADDRESS1")); }
+        if (map.get("ADDRESS2") != null)	{ memberBean.setAddress2((String) map.get("ADDRESS2")); }
+        if (map.get("RESERVE") != null)		{ memberBean.setReserve(Integer.parseInt(String.valueOf(map.get("RESERVE")))); }
+        if (map.get("JOINDATE") != null)	{ memberBean.setJoindate(Date.valueOf(((String) map.get("JOINDATE")).replace("/", "-"))); }
+        if (map.get("DELFLAG") != null)		{ memberBean.setDelflag((String) map.get("DELFLAG")); }
+        
         return memberBean;
     }
     /*

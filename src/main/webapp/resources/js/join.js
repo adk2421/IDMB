@@ -92,7 +92,6 @@
 	                	} else {
 	                		alert(data.message);
 	                        $("#submit").attr("id", "id");
-	                        window.location.reload();
 	                	}
 	                },
 	                
@@ -107,6 +106,12 @@
 	            alert("아이디를 입력해주세요.");
 	        }        
 	    }
+	}
+	
+	// 가입 취소하고 메인 페이지로 이동
+	function joincancle(Path) {
+		console.log("joincancle 실행")
+		location.href = Path + "/main.do";
 	}
 	
 	/* 특수문자 없이 영어, 숫자만 받기 */
