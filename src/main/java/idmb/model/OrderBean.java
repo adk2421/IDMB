@@ -1,5 +1,6 @@
 package idmb.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class OrderBean {
@@ -7,7 +8,7 @@ public class OrderBean {
 	private int o_num;				// 주문 번호
 	private String o_id;			// 주문자
 	private int o_code;				// 주문 상품 코드
-	private Date o_date;			// 주문 날짜
+	private Timestamp o_date;			// 주문 날짜
 	private String o_name;			// 주문 상품 이름
 	private int o_count;			// 주문 상품 수량
 	private int o_price;			// 주문 상품 가격
@@ -48,7 +49,7 @@ public class OrderBean {
 		return o_date;
 	}
 
-	public void setO_date(Date o_date) {
+	public void setO_date(Timestamp o_date) {
 		this.o_date = o_date;
 	}
 

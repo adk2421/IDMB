@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -68,19 +68,28 @@ function orderCancel(){
 				<td><b>주문번호</b></td>
 				<td>${adminOrderBean.O_NUM}</td>
 				<td><b>주문일자</b></td>
-				<td>${adminOrderBean.O_DATE}</td>
+				<td>
+					<fmt:formatDate value="${adminOrderBean.O_DATE}"
+						pattern="yyyy년 MM월 dd일 a hh:mm"/>
+				</td>
 			</tr>
 			<tr>
 				<td><b>수취인</b></td>
 				<td>${adminOrderBean.O_RECIEVER}</td>
-				<td><b>우편번호</b></td>
-				<td>${adminOrderBean.O_POSTCODE}</td>
+				<td><b>연락처</b></td>
+				<td>
+					01011112222
+				</td>
 			</tr>
 			<tr>
+				<td><b>우편번호</b></td>
+				<td>${adminOrderBean.O_POSTCODE}</td>
 				<td><b>주소</b></td>
 				<td>${adminOrderBean.O_ADDRESS1}</td>
+			</tr>
+			<tr>
 				<td><b>상세주소</b></td>
-				<td>${adminOrderBean.O_ADDRESS2}</td>
+				<td colspan="3">${adminOrderBean.O_ADDRESS2}</td>
 			</tr>
 			<tr>
 				<td><b>처리상태</b></td>
