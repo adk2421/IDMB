@@ -109,9 +109,9 @@
 	}
 	
 	// 가입 취소하고 메인 페이지로 이동
-	function joincancle(Path) {
-		console.log("joincancle 실행")
-		location.href = Path + "/main.do";
+	function cancle(form) {
+		console.log("cancle 실행")
+		location.href = "/IDMB/main.do";
 	}
 	
 	/* 특수문자 없이 영어, 숫자만 받기 */

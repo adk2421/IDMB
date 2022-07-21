@@ -95,7 +95,7 @@
 				
                 <div class="button">
                     <input type="button" class="btn btn-outline-secondary" value="가입" onclick="return formCheck()" />
-                    <input type="button" class="btn btn-outline-secondary" value="취소" onclick="joincancle('${pageContext.request.contextPath}')" />
+                    <input type="button" class="btn btn-outline-secondary" value="취소" onclick="cancle(this.form)" />
                 </div>
             </div>
         </div>
