@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/admintop.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -42,15 +43,35 @@ function cancel() {
 </script>
 </head>
 <body>
+<!-- 상단카테고리 -->
+	<div id="nav_menu">
+	<ul style="list-style-type:none">
+		<li style="display:inline"><a href="loginForm.do">LOGIN</a></li>
+		<li style="display:inline"><a href="joinForm.do">JOIN</a></li>
+		<li style="display:inline"><a href="basketList.do">CART</a></li>
+		<li style="display:inline"><a href="mypage.do">MY PAGE</a></li>
+		<li style="display:inline"><a href="myOrderList.do">ORDER</a></li>
+		<li style="display:inline"><a href="community.do">COMMUNITY</a></li>
+		<input type="search" name="search"><input type="button" class="img-button"></button>
+	</ul>	
+	</div>
+	<br><br>
+	
+<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+<hr>
+<a><img alt="noticelogo" src="img/notice.png" ></a>
+<br>
+
 <form method="post" id="noticeUpdateForm"
 	action="adminUpdateNotice.do?n_num=${adminNoticeBean.N_NUM}">
 	<table>
 		<tbody>
 			<tr>
 				<td><b>제목 </b></td>
-				<td><input type="text" maxlength="50" id="n_title" name="n_title"
-					value="${adminNoticeBean.N_TITLE}">
-				</td>
+					<td>
+						<input type="text" maxlength="50" id="n_title" name="n_title" value="${adminNoticeBean.N_TITLE}">
+					</td>
+				
 			</tr>
 			<tr>
 				<td><b>작성일</b></td>
@@ -76,11 +97,14 @@ function cancel() {
 	</div>
 
 	<br>
-	<button type="button" onClick="updateCheck()">수 &emsp; 정</button>
-       &emsp;&emsp;
-    <button type="button" onClick="deleteCheck()">삭 &emsp; 제</button>
-       &emsp;&emsp;
-	<button type="button" onclick="cancel()">취 &emsp; 소</button>	
+	
+	
+		<button type="button" onClick="updateCheck()">수 &emsp; 정</button>
+	       &emsp;&emsp;
+	    <button type="button" onClick="deleteCheck()">삭 &emsp; 제</button>
+	       &emsp;&emsp;
+		<button type="button" onclick="cancel()">취 &emsp; 소</button>	
+	</div>
 </form>
 </body>
 </html>
