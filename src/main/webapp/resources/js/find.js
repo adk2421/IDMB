@@ -2,7 +2,7 @@
 
 	/* 아이디 찾기 유효성 체크 */
 	function formCheck() {
-		var form = document.getElementById("findIdForm");
+		var form = document.getElementById("findPwForm");
 		var name = document.getElementById("name");
 		var phone = document.getElementById("phone");
 		var id = document.getElementById("id");
@@ -23,8 +23,10 @@
 			return false;
 		
 		} else {
-			if(id.value == "@@@@")
-				document.getElementById("id").value = null;
+			// findIdForm 실행
+			if(id.value == "@@@@") {
+				form = document.getElementById("findIdForm");
+			}
 				
 			form.submit();
 		}

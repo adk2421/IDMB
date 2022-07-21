@@ -67,8 +67,7 @@
 	<select id="findId" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				ID,
-				NAME
+				ID
 			FROM
 				MEMBER
 			WHERE

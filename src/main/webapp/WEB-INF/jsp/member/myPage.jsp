@@ -25,7 +25,7 @@
 	<div class="wrap">
 		<div>
 			<h2>마이페이지</h2>
-			<p style="text-align:right">회원정보 수정 | 배송주소록 관리</p>
+			<p style="text-align:right"><a href="/IDMB/myInfoModifyForm.do">회원정보 수정</a> | 배송주소록 관리</p>
 		</div>
 		
 		<div>

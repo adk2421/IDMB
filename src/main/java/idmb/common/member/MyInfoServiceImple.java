@@ -23,6 +23,26 @@ public class MyInfoServiceImple implements MyInfoService {
 		
 		return memberDAO.checkPw(map);
     }
+    
+    @Override
+    public Map<String, Object> selectMember(MemberBean member) throws Exception {
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	
+    	map.put("id", member.getId());
+    	map.put("passwd", member.getPasswd());
+    	map.put("name", member.getName());
+        map.put("phone", member.getPhone());
+        map.put("birth", member.getBirth());
+        map.put("email", member.getEmail());
+        map.put("postcode", member.getPostcode());
+        map.put("address1", member.getAddress1());
+        map.put("address2", member.getAddress2());
+        map.put("reserve", member.getReserve());
+        map.put("joindate", member.getJoindate());
+        map.put("delflag", member.getDelflag());
+        
+        return memberDAO.selectMember(map);
+    }
 
     @Override
     public void updateMember(MemberBean member) throws Exception {
