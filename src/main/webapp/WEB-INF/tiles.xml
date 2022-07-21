@@ -95,7 +95,21 @@
 	<definition name="adminReviewDetail" extends="admin_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/board/review/adminReviewDetail.jsp" />
-	</definition>		
+	</definition>
 	
+	<definition name="adminFaqList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/faq/adminFaqList.jsp" />
+	</definition>			
+	
+	<definition name="adminInsertFaqForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/faq/adminInsertFaqForm.jsp" />
+	</definition>
+	
+	<definition name="adminUpdateFaqForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/faq/adminUpdateFaqForm.jsp" />
+	</definition>
 			
 </tiles-definitions>

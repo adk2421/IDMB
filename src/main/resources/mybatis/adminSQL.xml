@@ -345,14 +345,21 @@
 	<!-- FAQ 리스트. 카테고리별 -->
 	<select id="adminFaqList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select F_TITLE, F_CONTENTS from FAQ_BOARD where F_CATEGORY = #{f_category}
+			select * from FAQ_BOARD where F_CATEGORY = #{f_category}
+		]]>
+	</select>
+	
+	<!-- FAQ 질문 정보 -->
+	<select id="adminFaqDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from FAQ_BOARD where F_NUM = #{f_num}
 		]]>
 	</select>
 	
 	<!-- FAQ 작성 -->
 	<insert id="adminInsertFaq" parameterType="hashmap">
 		<![CDATA[
-			insert into FAQ_BOARD values(f_seq.nextval, #{f_category}, #{F_TITLE}, #{f_contents})
+			insert into FAQ_BOARD values(f_seq.nextval, #{f_category}, #{f_title}, #{f_contents})
 		]]>
 	</insert>
 	
@@ -360,8 +367,15 @@
 	<update id="adminUpdateFaq" parameterType="hashmap" >
 		<![CDATA[
 			update FAQ_BOARD set F_CATEGORY = #{f_category}, F_TITLE = #{f_title}, F_CONTENTS = #{f_contents}
+			where F_NUM = #{f_num}
 		]]>
 	</update>
 	
+	<!-- FAQ 삭제 -->
+	<delete id="adminDeleteFaq" parameterType="hashmap">
+		<![CDATA[
+			delete from FAQ_BOARD where F_NUM = #{f_num} 
+		]]>
+	</delete>
 	
 </mapper>

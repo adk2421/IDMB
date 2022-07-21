@@ -54,7 +54,7 @@ public class AdminNoticeController {
 	@RequestMapping(value="/adminInsertNoticeForm.do")
 	public String Insert(NoticeBean notice, Model model) throws Exception{
 		
-		//tiles.xml의 definition name="aadminInsertNoticeForm"로 이동
+		//tiles.xml의 definition name="adminInsertNoticeForm"로 이동
 		return "adminInsertNoticeForm";		
 	}
 	

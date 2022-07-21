@@ -16,7 +16,7 @@ function reviewList() {
 	location.href = "/IDMB/adminReviewList.do";
 }
 function faqList() {
-	location.href = "/IDMB/adminFaqList.do";
+	location.href = "/IDMB/adminFaqList.do?f_category=cost";
 }
 function qnaList() {
 	location.href = "/IDMB/adminQnaList.do";
@@ -25,14 +25,16 @@ function qnaList() {
 </script>
 </head>
 <body>
+		&emsp;
 	<button type="button" onClick="noticeList()">공지 사항</button>
-		&emsp;&emsp;
+		&emsp;&emsp;&emsp;&emsp;
 	<button type="button" onClick="reviewList()">상품 후기</button>
-		&emsp;&emsp;
+		&emsp;&emsp;&emsp;&emsp;
 	<button type="button" onClick="faqList()">자주 묻는 질문</button>
-		&emsp;&emsp;
+		&emsp;&emsp;&emsp;&emsp;
 	<button type="button" onClick="qnaList()">1:1 문의</button>
-		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	
+	<br><br>
 	
 	<form action="adminReviewList.do" method="get">
 		<select name="SORT" id="SORT">
@@ -42,6 +44,8 @@ function qnaList() {
 		<input type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
 		<button type="submit">검색</button>
 	</form>
+	
+	<br>
 	
 	<table border=1>
 		<thead>
@@ -74,7 +78,9 @@ function qnaList() {
 				<td>${review.R_CONTENTS}</td>
 				<td>${review.R_ID}</td>
 				<td>
-					<button type="button" onClick="location.href='adminDeleteReview.do?r_num=${review.R_NUM}'">삭제</button>	
+					<c:if test="${review.R_ID != null}">
+						<button type="button" onClick="location.href='adminDeleteReview.do?r_num=${review.R_NUM}'">삭제</button>	
+					</c:if>
 				</td>
 			</tr>		
 		</c:forEach>

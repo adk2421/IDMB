@@ -26,6 +26,15 @@ public class AdminFaqServiceImpl implements AdminFaqService{
 	}
 	
 	@Override
+	//-- FAQ 질문 정보
+	public Map<String, Object> adminFaqDetail(FAQBean faq) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("f_num", faq.getF_num());
+		
+		return adminFaqDAO.adminFaqDetail(map);
+	}
+	
+	@Override
 	//-- FAQ 작성 --
 	public void adminInsertFaq(FAQBean faq) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -42,10 +51,22 @@ public class AdminFaqServiceImpl implements AdminFaqService{
 	public void adminUpdateFaq(FAQBean faq) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		map.put("f_num", faq.getF_num());
 		map.put("f_category",faq.getF_category());
 		map.put("f_title", faq.getF_title());
 		map.put("f_contents", faq.getF_contents());
 		
 		adminFaqDAO.adminUpdateFaq(map);
 	}
+	
+	@Override
+	//-- FAQ 삭제 --
+	public void adminDeleteFaq(FAQBean faq) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("f_num", faq.getF_num());
+		
+		adminFaqDAO.adminDeleteFaq(map);
+	}
+
 }

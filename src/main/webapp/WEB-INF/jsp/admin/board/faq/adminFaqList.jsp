@@ -21,8 +21,8 @@ function faqList() {
 function qnaList() {
 	location.href = "/IDMB/adminQnaList.do";
 }
-function insertNotice()	{
-	location.href = "/IDMB/adminInsertNoticeForm.do"
+function insertFaq()	{
+	location.href = "/IDMB/adminInsertFaqForm.do"
 }
 </script>
 </head>
@@ -37,37 +37,41 @@ function insertNotice()	{
 	<button type="button" onClick="qnaList()">1:1 문의</button>
 	
 	<br><br>
-		
-	<button type="button" onClick="insertNotice()">공지작성</button>
 	
-	<br><br>
+	<form action="adminFaqList.do" method="get">
+			&emsp;
+		<button type="submit" name="f_category" id="f_category" value="cost">주문/결제</button>
+			&emsp;
+		<button type="submit" name="f_category" id="f_category" value="shipping">배송문의</button>
+			&emsp;
+		<button type="submit" name="f_category" id="f_category" value="cancel">배송변경/취소</button>
+			&emsp;
+		<button type="submit" name="f_category" id="f_category" value="exchange">교환/반품</button>
+			&emsp;
+		<button type="submit" name="f_category" id="f_category" value="logon">회원가입/로그인</button>	
+	</form>
+	
+	<br>
 	
 	<table border=1>
-		<thead>
-			<tr>
-				<th>공지번호</th>
-				<th>작성일자</th>
-				<th>제목</th>
-				<th>조회수</th>
-				<th>기능</th>
-			</tr>
-		</thead>
 		<tbody>
-		<c:forEach var="notice" items="${adminNoticeList}">
+		<c:forEach var="faq" items="${adminFaqList}">
 			<tr>
-				<td>${notice.N_NUM}</td>
-				<td>
-					<fmt:formatDate value="${notice.N_DATE}"
-						pattern="yyyy년 MM월 dd일"/>
+				<td><b>Q. ${faq.F_TITLE}</b>
+					<br>
+					A. ${faq.F_CONTENTS}
 				</td>
-				<td><a href="adminNoticeDetail.do?n_num=${notice.N_NUM}">
-					${notice.N_TITLE}</a></td>
-				<td>${notice.N_HIT}</td>
-				<td><button type="button" onClick="location.href='adminUpdateNoticeForm.do?n_num=${notice.N_NUM}'">
-						수정</button>	</td>
-			</tr>		
+				<td>
+					<button type="button" onClick="location.href='adminUpdateFaqForm.do?f_num=${faq.F_NUM}'">수정</button>
+				</td>
+			</tr>
 		</c:forEach>
 		</tbody>
 	</table>
+	
+	<br><br>
+	
+	<button type="button" onClick="insertFaq()">FAQ 작성</button>
+	
 </body>
 </html>
