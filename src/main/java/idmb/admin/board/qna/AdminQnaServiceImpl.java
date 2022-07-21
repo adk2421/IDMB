@@ -1,6 +1,5 @@
 package idmb.admin.board.qna;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,21 +18,22 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 	
 	//Qna리스트
 	@Override
-	public List<Map<String, Object>> adminQnaList()throws Exception{
+	public List<Map<String, Object>> adminQnaList(QNABean qna)throws Exception{
+		Map<String, Object> map = new HashMap<String,Object>();
 		
-		return adminQnaDAO.adminQnaList();
+		map.put("q_category",qna.getQ_category());
+		
+		return adminQnaDAO.adminQnaList(map);
 	}
 	
 	@Override
 	public List<Map<String, Object>> adminSearchQna(QNABean qna,
-			String searchValue, Date searchDate1, Date searchDate2, String SORT) throws Exception
+			String searchValue, String SORT) throws Exception
 	{
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 		map.put("q_category",qna.getQ_category());
 		map.put("searchValue", searchValue);
-		map.put("searchDate1", searchDate1);
-		map.put("searchDate2", searchDate2);
 		map.put("SORT", SORT);
 		
 		return adminQnaDAO.adminSearchQna(map);
@@ -46,6 +46,15 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 		map.put("q_num", qna.getQ_num());
 		
 		return adminQnaDAO.adminQnaDetail(map);
+	}
+	
+	@Override
+	public Map<String, Object> adminQnaRe(QNABean qna) throws Exception{
+		Map<String, Object>map = new HashMap<String, Object>();
+		
+		map.put("q_num", qna.getQ_num());
+		
+		return adminQnaDAO.adminQnaRe(map);
 	}
 	
 	
@@ -65,8 +74,7 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 	public void adminUpdateQna(QNABean qna) throws Exception{
 		Map<String, Object>map = new HashMap<String, Object>();
 		
-		map.put("q_status", qna.getQ_status());
-		map.put("q_num", qna.getQ_num());
+		map.put("q_groupnum", qna.getQ_groupnum());
 		
 		adminQnaDAO.adminUpdateQna(map);
 	}

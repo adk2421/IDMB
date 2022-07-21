@@ -18,8 +18,8 @@ function reviewList() {
 function faqList() {
 	location.href = "/IDMB/adminFaqList.do?f_category=cost";
 }
-function qnaList() {
-	location.href = "/IDMB/adminQnaList.do";
+function qnaMain() {
+	location.href = "/IDMB/adminQnaMain.do";
 }
 
 </script>
@@ -32,7 +32,7 @@ function qnaList() {
 		&emsp;&emsp;&emsp;&emsp;
 	<button type="button" onClick="faqList()">자주 묻는 질문</button>
 		&emsp;&emsp;&emsp;&emsp;
-	<button type="button" onClick="qnaList()">1:1 문의</button>
+	<button type="button" onClick="qnaMain()">1:1 문의</button>
 	
 	<br><br>
 	
