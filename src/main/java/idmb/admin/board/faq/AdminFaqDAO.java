@@ -18,12 +18,20 @@ public class AdminFaqDAO {
 		return sqlSessionTemplate.selectList("admin.adminFaqList", map);
 	}
 	
+	public Map<String, Object> adminFaqDetail(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminFaqDetail", map);
+	}
+	
 	public void adminInsertFaq(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.insert("admin.adminInsertFaq", map);
 	}
 	
 	public void adminUpdateFaq(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.update("admin.adminUpdateFaq", map);
+	}
+	
+	public void adminDeleteFaq(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.delete("admin.adminDeleteFaq", map);
 	}
 
 }
