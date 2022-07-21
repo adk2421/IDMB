@@ -24,7 +24,7 @@ public class MemberDAO {
 		return sqlSessionTemplate.selectOne("member.checkPw", map);
 	}
 	
-	 // 회원 검색
+	// 회원 검색
 	public Map<String, Object> selectMember(Map<String, Object> map) throws Exception {
 		return sqlSessionTemplate.selectOne("member.selectMember", map);
 	}
