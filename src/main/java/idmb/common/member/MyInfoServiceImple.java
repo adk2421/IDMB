@@ -1,6 +1,7 @@
 package idmb.common.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -8,12 +9,16 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import idmb.model.MemberBean;
+import idmb.model.OrderBean;
 
 @Service("myInfoService")
 public class MyInfoServiceImple implements MyInfoService {
 
     @Resource(name = "memberDAO")
     private MemberDAO memberDAO;
+    
+    @Resource(name = "orderDAO")
+    private MemberDAO orderDAO;
 
     @Override
     public Map<String, Object> checkPw(MemberBean member) throws Exception {
@@ -41,12 +46,12 @@ public class MyInfoServiceImple implements MyInfoService {
     }
 
     @Override
-    public void dropMember(MemberBean member) throws Exception {
+    public void deleteMember(MemberBean member) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("id", member.getId());
 		
-		memberDAO.dropMember(map);
+		memberDAO.deleteMember(map);
     }
 
 	@Override
@@ -55,6 +60,14 @@ public class MyInfoServiceImple implements MyInfoService {
 		 map.put("id", member.getId());
 		
 		return memberDAO.selectMember(map);
+	}
+	
+	@Override
+	public List<Map<String,Object>> myOrderList(OrderBean order) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("o_id", order.getO_id());
+		return orderDAO.myOrderList(map);
+		
 	}
     
 }

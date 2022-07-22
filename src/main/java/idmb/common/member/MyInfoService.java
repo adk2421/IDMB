@@ -1,8 +1,10 @@
 package idmb.common.member;
 
+import java.util.List;
 import java.util.Map;
 
 import idmb.model.MemberBean;
+import idmb.model.OrderBean;
 
 public interface MyInfoService {
 
@@ -12,7 +14,7 @@ public interface MyInfoService {
 
     public void updateMember(MemberBean member) throws Exception;
 
-    public void dropMember(MemberBean member) throws Exception;
+    public void deleteMember(MemberBean member) throws Exception;
 
-
+	public List<Map<String, Object>> myOrderList(OrderBean order) throws Exception;
 }

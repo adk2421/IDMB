@@ -28,11 +28,11 @@
 </head>
 
 <body>
-    <form id="joinForm" action="/IDMB/joinSuccess.do" method="post">
+    <form id="myInfoModifyForm" action="/IDMB/myInfoModify.do" method="post">
         <div class="wrap">
             <div class="join">
             
-                <h2 class="join_h2">회원가입</h2>
+                <h2 class="join_h2">정보수정</h2>
                 
                 <div class="div_wrap">
 	                <div class="input-group mb-3">
@@ -83,8 +83,8 @@
 					</div>
 				</div>
 				
-				<input type="hidden" name="address1" id="address1" aria-label="주소" />
-				<input type="hidden" name="postcode" id="postcode" aria-label="우편번호" />
+				<input type="hidden" name="address1" id="address1" aria-label="주소" value="${memberBean.address1}" />
+				<input type="hidden" name="postcode" id="postcode" aria-label="우편번호" value="${memberBean.postcode}" />
 				
 				<div class="div_wrap">
 	                <div class="input-group mb-3">
@@ -94,6 +94,7 @@
 				
                 <div class="button">
                     <input type="button" class="btn btn-outline-secondary" value="변경" onclick="return formCheck()" />
+                    <input type="button" class="btn btn-outline-secondary" value="탈퇴" onclick="return resign(myInfoModifyForm)" />
                     <input type="button" class="btn btn-outline-secondary" value="취소" onclick="cancle('${pageContext.request.contextPath}')" />
                 </div>
             </div>
