@@ -7,6 +7,14 @@
 <head>
 <style>
 
+</style>
+<body>
+
+
+
+
+<style>
+
 #menu ul {
 
 list-style-type:none;
@@ -53,7 +61,7 @@ border-left: none;
 	<ul>
 		<li><a href="logout.do">LOGOUT</a></li>
 		<li><a href="joinForm.do">JOIN</a></li>
-		<li>CART</li>
+		<li><a href="basketList.do">CART</a></li>
 		<li>MY PAGE</li>
 		<li>ORDER</li>
 		<li>COMMUNITY</li>
@@ -72,8 +80,11 @@ border-left: none;
 
 
 <form action="searchProduct.do" method="get">
-	<input type=text name="searchValue" id="searchValue" placeholder="검색어.....">
 	
+	
+	<input type=text name="searchValue" id="searchValue" placeholder="검색어....." >
+	
+
 	<input type=hidden name="SORT" id="SORT" value="">
 	<input type=hidden name="priceValue1" id="priceValue1" value="0">
 	<input type=hidden name="priceValue2" id="priceValue2" value="99999999">
@@ -108,15 +119,36 @@ border-left: none;
 	
 	
 		<td>
-			<a href="productDetail.do?p_code=${product.P_CODE}">
+			<a href="productDetail.do?p_NAME=${product.P_NAME}">
 			 
-			<img src="img/FREITAG.jpg" width="200" border="" >
-			 &emsp; &emsp;&emsp; &emsp;
-			<img src="img/bag9.jpg" width="200" height="235"  border="" >
-			&emsp; &emsp;&emsp; &emsp;
+			<img src="img/FREITAG.jpg" width="200" border="" > &emsp; &emsp;&emsp; &emsp;
+			
+			<img src="img/bag9.jpg" width="200" height="235"  border="" > &emsp; &emsp;&emsp; &emsp;
+			
 			<img src="img/ROREN2.jpg" width="200" border="0" >
 			</a>
-		</td>
+			</td>
+			</tbody>
+</table>
+			
+			
+			<table>
+			<tbody>
+			
+		<b>[NEW 3]</b>
+		
+			<tr>
+			<td>
+			<a href="productDetail.do?p_NAME=${product.P_NAME}">
+			<img src="img/bag10.jpg" width="200" border="0" > &emsp; &emsp;&emsp; &emsp;
+			<img src="img/bag8.jpg" width="200" border="0" > &emsp; &emsp;&emsp; &emsp;
+			<img src="img/bag11.PNG" width="200"  height="200" border="0" >
+			</a>
+			</td>
+	
+			</tr>
+			
+			
 	
 	</tbody>
 </table>

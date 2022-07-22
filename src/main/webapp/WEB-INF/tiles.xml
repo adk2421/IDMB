@@ -32,11 +32,21 @@
 			value="/WEB-INF/jsp/product/searchProduct.jsp" />
 	</definition>
 	
-	<!--<definition name="newProductList" extends="main_layout">
+	<definition name="newProductList" extends="main_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/product/newProductList.jsp" />
-	</definition> -->
+	</definition>
 	
+	<!-- <definition name="bestProductList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/bestProductList.jsp" />
+	</definition> -->
+	<definition name="productDetail" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/productDetail.jsp" />
+	</definition>
+
+
 	<!-- order -->
 	<definition name="myOrderList" extends="main_layout">
 		<put-attribute name="body"

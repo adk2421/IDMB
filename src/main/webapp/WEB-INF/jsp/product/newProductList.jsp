@@ -50,6 +50,20 @@ border-left: none;
 <title>신상품 목록</title>
 </head>
 <body>
+	<div id="menu">
+	<ul>
+		<li><a href="logout.do">LOGOUT</a></li>
+		<li><a href="joinForm.do">JOIN</a></li>
+		<li><a href="basketList.do">CART</a></li>
+		<li>MY PAGE</li>
+		<li>ORDER</li>
+		<li>COMMUNITY</li>
+	</ul>
+	</div>
+	<a href="mainpageProductList.do">
+	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
+</a>
+<body>
 <form action="newProductList.do" method="get">
 <input type=text name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	<br>

@@ -1,6 +1,7 @@
 package idmb.common.product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,36 +70,81 @@ public class ProductController {
 
 
 
-			// 신상품순 상품 리스트
-			@RequestMapping(value="/newProductList.do")
-			public String newProductList(HttpServletRequest request, Model model)throws Exception{
+//			// 신상품순 상품 리스트
+//			@RequestMapping(value="/newProductList.do") // URL mapping
+//			public String newProductList(HttpServletRequest request, Model model) throws Exception{		
+//				
+//			//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
+//				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+//				
+//			// 검색어 입력받기	
+//				String searchValue = null;
+//				int priceValue1 = 0;
+//				int priceValue2 = 99999999;
+//				
+//			
+//			// 변수값 설정
+//				searchValue = request.getParameter("searchValue");
+//				priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
+//				priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+//				
+//				list = productService.newProductList(searchValue, priceValue1, priceValue2);
+//	
+//				model.addAttribute("searchValue",searchValue);
+//				model.addAttribute("priceValue1",priceValue1);
+//				model.addAttribute("priceValue2",priceValue2);
+//				model.addAttribute("newList", list);
+//				
+//				//tiles.xml에서 defination name="newProductList.jsp" 로 보냄
+//				return "newProductList";
+//			}
 			
-			// Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
-			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
 			
-			// 변수값 설정
-			String searchValue = null;
-			int priceValue1 = 0;
-			int priceValue2 = 99999999;
-			
-			//
-			searchValue = request.getParameter("searchValue");
-			priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
-			priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
-			
-			list = productService.newProductList(searchValue, priceValue1, priceValue2);
-			
-			model.addAttribute("newList", list);
-			model.addAttribute("searchValue", searchValue);
-			model.addAttribute("priceValue1", priceValue1);
-			model.addAttribute("priceValue2", priceValue2);
+//			// 인기순 상품 리스트
+//			@RequestMapping(value="/bestProductList.do")
+//			public String bestProductList(HttpServletRequest request, Model model)throws Exception{
+//				
+//				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+//				
+//				String searchValue = null;
+//				int priceValue1 = 0;
+//				int priceValue2 = 99999999;
+//				
+//				searchValue = request.getParameter("searchValue");
+//				priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
+//				priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+//				
+//				list = productService.bestProductList(searchValue, priceValue1, priceValue2);
+//				
+//				model.addAttribute("bestList", list);
+//				model.addAttribute("searchValue", searchValue);
+//				model.addAttribute("priceValue1", priceValue1);
+//				model.addAttribute("priceValue2", priceValue2);
+//				
+//				return "bestProductList";
+//				
+//				
+//			}
+//}
+	
+			//상품별 리스트
+	
+	
+
+			// 상품 디테일
+			@RequestMapping(value="/productDetail.do")
+			public String ProductDetail(ProductBean product, HttpServletRequest request, Model model)throws Exception{
 				
-				//tiles.xml에서 defination name="newProductList.jsp" 로 보냄
-				return "newProductList";
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				map = productService.productDetail(product);
+				
+				model.addAttribute("ProductDetail", map);
+				
+				return "productDetail";
 			}
 }
-			
-			// 인기순 상품 리스트
 			
 		
 
