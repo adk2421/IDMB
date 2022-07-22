@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/menutop.css" type="text/css">
 <meta charset="UTF-8">
 <title>상품 검색</title>
 

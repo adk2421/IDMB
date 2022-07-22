@@ -20,9 +20,22 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
 	</definition>
 
-	<!-- main -->
+	<!-- product -->
 	
+	<definition name="mainpageProductList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/mainpageProductList.jsp" />
+	</definition>
 	
+	<definition name="searchProduct" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/searchProduct.jsp" />
+	</definition>
+	
+	<!--<definition name="newProductList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/newProductList.jsp" />
+	</definition> -->
 	
 	<!-- order -->
 	<definition name="myOrderList" extends="main_layout">
@@ -111,5 +124,20 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/board/faq/adminUpdateFaqForm.jsp" />
 	</definition>
+			
+	<definition name="adminQnaList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminQnaList.jsp" />
+	</definition>		
+
+	<definition name="adminQnaDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminQnaDetail.jsp" />
+	</definition>
+	
+	<definition name="adminInsertQnaForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminInsertQnaForm.jsp" />
+	</definition>	
 			
 </tiles-definitions>

@@ -5,8 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <style>
 
 #menu ul {
@@ -113,8 +111,8 @@ border-left: none;
 			<a href="productDetail.do?p_code=${product.P_CODE}">
 			 
 			<img src="img/FREITAG.jpg" width="200" border="" >
-			
-			<img src="img/bag9.jpg" width="200" height="235"  border="" > 
+			 &emsp; &emsp;&emsp; &emsp;
+			<img src="img/bag9.jpg" width="200" height="235"  border="" >
 			&emsp; &emsp;&emsp; &emsp;
 			<img src="img/ROREN2.jpg" width="200" border="0" >
 			</a>

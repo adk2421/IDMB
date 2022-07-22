@@ -14,8 +14,8 @@ public class AdminQnaDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<Map<String, Object>> adminQnaList() throws Exception{
-		return sqlSessionTemplate.selectList("admin.adminQnaList");
+	public List<Map<String, Object>> adminQnaList(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("admin.adminQnaList", map);
 	}
 	
 	public List<Map<String, Object>> adminSearchQna(Map<String, Object> map) throws Exception{
@@ -26,12 +26,16 @@ public class AdminQnaDAO {
 		return sqlSessionTemplate.selectOne("admin.adminQnaDetail", map);
 	}
 	
+	public Map<String, Object> adminQnaRe(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminQnaRe", map);
+	}
+	
 	public void adminInsertQna(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.insert("admin.adminInsertQna", map);
 	}
 	
 	public void adminUpdateQna(Map<String, Object> map) throws Exception{
-		sqlSessionTemplate.update("admin,adminUpdateQna", map);
+		sqlSessionTemplate.update("admin.adminUpdateQna", map);
 	}
 	
 	public void adminDeleteQna(Map<String, Object> map) throws Exception{
