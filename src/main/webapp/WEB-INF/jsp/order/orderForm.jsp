@@ -98,7 +98,7 @@ function orderCheck() {
 		<h1> 주문 페이지 </h1>
 	</div>
 	
-	<form method="post" id="orderForm" action="orderDo.do" onSubmit="return orderCheck()">
+	<form method="post" id="orderForm" action="/orderDo.do" onSubmit="return orderCheck()">
 	
 		<table border=1>
 			<thead>

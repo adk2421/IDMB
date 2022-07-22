@@ -43,7 +43,7 @@ function cancel() {
 					<select name="f_category" id="f_category">
 						<option value="cost">주문/결제</option>
 						<option value="shippin">배송문의</option>
-						<option value="cancle">배송변경/취소</option>
+						<option value="cancel">배송변경/취소</option>
 						<option value="exchange">교환/반품</option>
 						<option value="logon">회원가입/로그인</option>
 					</select>

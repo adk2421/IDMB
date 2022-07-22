@@ -103,6 +103,7 @@ public class MemberController {
 	}
 	*/
 
+	// 가입 처리
 	@RequestMapping(value = "/joinSuccess.do")
 	public String joinSuccess(MemberBean member, BindingResult result, Model model) throws Exception {
 
@@ -125,7 +126,6 @@ public class MemberController {
 
 		} else {
 			// 회원가입 성공
-			
 			joinService.insertMember(member);
 			
 			model.addAttribute("msg", "가입 완료 되었습니다.");
@@ -145,7 +145,6 @@ public class MemberController {
 	@RequestMapping(value = "/login.do")
 	public String login(MemberBean member, HttpSession session, Model model) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		MemberBean memberBean = new MemberBean();
 
 		map = loginService.selectMember(member);
 			
@@ -155,25 +154,24 @@ public class MemberController {
 			model.addAttribute("url", "/loginForm.do");
 			
 		} else {
-			memberBean = MapToBean.mapToMember(map); // 검색된 회원
-
 			// 비밀번호 체크
-			if (member.getPasswd().equals(memberBean.getPasswd())) {
+			if (member.getPasswd().equals(map.get("PASSWD"))) {
 				// 로그인 성공
 				
 				// 탈퇴유무 체크
-				if (memberBean.getDelflag().equals("Y")) {
+				if (map.get("DELFLAG").equals("Y")) {
 					model.addAttribute("msg", "탈퇴한 회원입니다.");
 					model.addAttribute("url", "/loginForm.do");
 					return "/member/login";
 				}
 
 				// 세션 등록
-				session.setAttribute("name", memberBean.getName());
-				session.setAttribute("reserve", memberBean.getReserve());
+				session.setAttribute("name", map.get("NAME"));
+				session.setAttribute("reserve", map.get("RESERVE"));
+				session.setAttribute("id", map.get("ID"));
 
 				// 관리자 체크
-				if (memberBean.getId().equals("ADMIN")) {
+				if (map.get("ID").equals("ADMIN")) {
 					model.addAttribute("url", "/adminMain.do");
 				
 				} else {
@@ -194,6 +192,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpServletRequest request, Model model) throws Exception {
 
+		// 세션 무효화
 		request.getSession().invalidate();
 
 		model.addAttribute("msg", "로그아웃 하셨습니다.");
@@ -202,76 +201,52 @@ public class MemberController {
 		return "/member/logout";
 	}
 
-	// 아이디 찾기
+	// 아이디 찾기 이동
 	@RequestMapping(value = "/findId.do")
 	public String findId(Model model) throws Exception {
 		return "/member/findId";
 	}
 
-	// 찾기 결과
+	// 아이디 찾기 결과
 	@RequestMapping(value = "/findIdResult.do")
 	public String findIdResult(MemberBean member, Model model) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		MemberBean memberBean = new MemberBean();
-
-		System.out.println("findIdResult.do 실행");
 		
 		map = loginService.findId(member);
 
 		if (map == null) {
+			// 조회된 값이 없을 때
 			model.addAttribute("Find", "notFound");
-			System.out.println("notFound 실행");
 			
 		} else {
-			memberBean = MapToBean.mapToMember(map);
-
-			if (member.getName().equals(memberBean.getName())) {
-				model.addAttribute("memberBean", memberBean);
-				System.out.println("아이디 찾기 성공");
-			} else {
-				model.addAttribute("Find", "invalidName");
-				System.out.println("invalidName 실행");
-			}
+			// 조회 성공 시 ID 값 넘기기
+			model.addAttribute("id", map.get("ID"));
 		}
 		
 		return "/member/findIdResult";
 	}
 	
+	// 비밀번호 찾기 이동
 	@RequestMapping(value = "/findPw.do")
 	public String findPw(Model model) throws Exception {
 		return "/member/findPw";
 	}
 
+	// 비밀번호 찾기 결과
 	@RequestMapping(value = "/findPwResult.do")
 	public String findPwResult(MemberBean member, Model model) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		MemberBean memberBean = new MemberBean();
 
-		map = loginService.findId(member);
+		map = loginService.findPw(member);
 
-		// 주민번호 일치 여부를 검사
 		if (map == null) {
-			// 주민번호가 일치하지 않으므로 회원이 검색되지 않음
+			// 조회된 값이 없을 때
 			model.addAttribute("Find", "notFound");
+			
 		} else {
-			memberBean = MapToBean.mapToMember(map);
-			// 아이디 일치 여부를 검사
-			if (member.getName().equals(memberBean.getName())) {
-				// 폰 번호 일치 여부를 검사
-				if (member.getPhone().equals(memberBean.getPhone())) {
-					// 일치한 회원을 찾음
-					model.addAttribute("memberBean", memberBean);
-				} else {
-					// 이름이 일치하지 않음
-					model.addAttribute("invalidNAME", "invalidNAME");
-				}
-			} else {
-				// 이메일이 일치하지 않음
-				model.addAttribute("invalidEMAIL", "invalidEMAIL");
-			}
+			// 조회 성공 시 PASSWD 값 넘기기
+			model.addAttribute("passwd", map.get("PASSWD"));
 		}
-
-		model.addAttribute("memberBean", memberBean);
 
 		return "/member/findPwResult";
 	}
@@ -287,4 +262,56 @@ public class MemberController {
 	public String mainPage(Model model) throws Exception {
 		return "/main";
 	}
+	
+	// 회원정보 수정
+	@RequestMapping(value = "/myInfoModifyForm.do")
+	public String myInfoModifyForm(Model model, HttpServletRequest request) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		// member에 세션에서 사용자 아이디를 가져와서 저장
+		String id = (String) request.getSession().getAttribute("id");
+		System.out.println("session getUserId : " + (String) request.getSession().getAttribute("id"));
+		MemberBean memberBean = new MemberBean();
+		memberBean.setId(id);
+
+		// MemberBean에 DB에서 읽어와 저장
+		map = myInfoService.selectMember(memberBean);
+		memberBean = MapToBean.mapToMember(map);
+
+		model.addAttribute("memberBean", memberBean);
+		return "/member/myInfoModifyForm";
+	}
+
+	@RequestMapping(value = "/myInfoModify.do")
+	public String myInfoModify(MemberBean member, BindingResult result, Model model) throws Exception {
+
+		// new MemberValidator().validate(member, result);
+
+		if (result.hasErrors()) {
+			return "/myInfoModifyForm.do";
+		}
+
+		myInfoService.updateMember(member);
+		model.addAttribute("msg", "회원정보가 수정되었습니다.");
+		model.addAttribute("url", "/myInfoModifyForm.do");
+		return "/member/myInfoModify";
+	}
+
+	/*
+	 * @RequestMapping(value = "/myInfoDelete.do") public String
+	 * myInfoDelete(MemberBean member, HttpServletRequest request, BindingResult
+	 * result, Model model) throws Exception {
+	 * 
+	 * String LoginId = (String) request.getSession().getAttribute("EMAIL");
+	 * MemberBean loginMember = new MemberBean(); loginMember.setEMAIL(LoginId);
+	 * Map<String, Object> mapMember = loginService.selectMemberId(loginMember);
+	 * member = MapToBean.mapToMember(mapMember);
+	 * 
+	 * myInfoService.deleteMember(member);
+	 * 
+	 * request.getSession().invalidate();
+	 * 
+	 * model.addAttribute("msg", "이용해주셔서 감사합니다."); model.addAttribute("url",
+	 * "/main.al"); return "/member/myInfoDelete"; }
+	 */
 }

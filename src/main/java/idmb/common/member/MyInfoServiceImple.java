@@ -23,7 +23,7 @@ public class MyInfoServiceImple implements MyInfoService {
 		
 		return memberDAO.checkPw(map);
     }
-
+    
     @Override
     public void updateMember(MemberBean member) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();

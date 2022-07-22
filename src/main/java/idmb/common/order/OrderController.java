@@ -83,7 +83,7 @@ public class OrderController {
     	orderService.insertOrder(order);
     	    	
     	model.addAttribute("msg", "주문이 등록되었습니다.");
-		model.addAttribute("url", "/myOrderList.do");
+		model.addAttribute("url", "/m");
 		
         return "/order/orderDo.do";
 

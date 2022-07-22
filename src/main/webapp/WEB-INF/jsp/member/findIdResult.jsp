@@ -13,8 +13,10 @@
 <body>
 
 	<div style="text-align: center">
-		<br> <span style="font-size: xx-large; color: #82ae46;"><b>아이디
-				찾기 결과</b></span>
+		<br>
+			<span style="font-size: xx-large; color: #82ae46;">
+				<b>아이디 찾기 결과</b>
+			</span>
 	</div>
 	<hr>
 	<div style="text-align: center">
@@ -22,9 +24,9 @@
 			<br>
 			<br>
 			<br>
-		고객님의 회원가입시 아이디는 ${memberBean.id} 입니다.
+			고객님의 아이디는 ${id} 입니다.
 		
-		<p></p>
+			<p></p>
 			<br>
 			<br>
 			<br>
@@ -38,21 +40,17 @@
 			<br>
 			<br>
 			<br>
-		존재하지 않는 회원입니다.
+			존재하지 않는 회원입니다.
 		
-		<p></p>
+			<p></p>
 			<br>
 			<br>
 			<br>
 			<input type="button" value="로그인" class="btn btn-primary py-2 px-4"
-				onClick="location.href='/Jumo/loginForm.al'">
+				onClick="location.href='/IDMB/loginForm.do'">
 			<input type="button" value="회원가입" class="btn btn-light py-2 px-4"
-				onClick="location.href='/Jumo/join.al'">
+				onClick="location.href='/IDMB/joinForm.do'">
 		</c:if>
-
-
-
-
 
 		<p></p>
 
