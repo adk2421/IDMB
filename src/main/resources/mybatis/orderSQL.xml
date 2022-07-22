@@ -6,14 +6,7 @@
 	<!-- 주문 리스트 출력 -->
 	<select id="myOrderList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT
-				O_CODE,
-				O_NAME,
-				O_DATE,
-				O_COUNT,
-				O_PRICE,
-				O_TOTAL,
-				O_STATUS
+			SELECT *
 			FROM
 				ORDERCOMMAND
    	 		WHERE
@@ -24,30 +17,13 @@
 	<!-- 주문 등록 -->
 	<insert id="insertOrder" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO ORDERCOMMAND
+			INSERT INTO ORDERCOMMAND VALUES
 			(
-				O_NUM,
-				O_ID,
-				O_CODE,
-				O_NAME,
-				O_DATE,
-				O_COUNT,
-				O_PRICE,
-				O_TOTAL,
-				O_POSTCODE,
-				O_ADDRESS1,
-				O_ADDRESS2,
-				O_STATUS,
-				O_DELFLAG,
-				O_RECIEVER
-			)
-			VALUES
-			(
-				O_SEQ.NEXTVAL,
+				o_seq.nextval,
 				#{o_id},
 				#{o_code},
-				#{o_name},
 				SYSDATE,
+				#{o_name},
 				#{o_count},
 				#{o_price},
 				#{o_total},

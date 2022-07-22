@@ -224,19 +224,12 @@
 	<select id="productDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				P_NAME,
-				P_IMAGE,
-				P_PRICE,
-				P_STOCK,
-				P_SELL,
-				P_KIND,
-				P_DATE,
-				P_ZIM,
-				P_DETAIL
+				*
 			FROM
 				PRODUCT
 			WHERE
-				P_DELFLAG = 'N' AND
+				P_DELFLAG = 'N'
+			AND
 				P_CODE = #{p_code}
 		]]>
 	</select>

@@ -16,4 +16,6 @@ public interface BasketService {
 	//장바구니 상품 삭제
 	public void deleteBasket(BasketBean basket) throws Exception;
 	
+	public Map<String, Object> deleteBasketSearch(BasketBean basket) throws Exception;
+	
 }

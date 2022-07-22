@@ -52,7 +52,25 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/order/myOrderList.jsp" />
 	</definition>
+	
+	<definition name="orderForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/orderForm.jsp" />
+	</definition>
+	
+	<!-- basket -->
+	<definition name="basketList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/basket/basketList.jsp" />
+	</definition>	
+	
 
+
+	<definition name="basketOrderForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/basketOrderForm.jsp" />
+	</definition>
+	
 
 	<!-- admin -->
 	<definition name="adminMemberList" extends="admin_layout">
@@ -134,5 +152,20 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/board/faq/adminUpdateFaqForm.jsp" />
 	</definition>
+			
+	<definition name="adminQnaList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminQnaList.jsp" />
+	</definition>		
+
+	<definition name="adminQnaDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminQnaDetail.jsp" />
+	</definition>
+	
+	<definition name="adminInsertQnaForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminInsertQnaForm.jsp" />
+	</definition>	
 			
 </tiles-definitions>

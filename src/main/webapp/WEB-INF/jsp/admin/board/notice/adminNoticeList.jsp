@@ -19,8 +19,8 @@ function reviewList() {
 function faqList() {
 	location.href = "/IDMB/adminFaqList.do?f_category=cost";
 }
-function qnaList() {
-	location.href = "/IDMB/adminQnaList.do";
+function qnaMain() {
+	location.href = "/IDMB/adminQnaMain.do";
 }
 function insertNotice()	{
 	location.href = "/IDMB/adminInsertNoticeForm.do"
@@ -60,13 +60,13 @@ function insertNotice()	{
 	<hr>
 	
 	<div class="titletext1">
-		< onClick="noticeList()">공지 사항</button>
+		<button type="button"  onClick="noticeList()">공지 사항</button>
 			&emsp;&emsp;
 		<button type="button" onClick="reviewList()">상품 후기</button>
 			&emsp;&emsp;
 		<button type="button" onClick="faqList()">자주 묻는 질문</button>
 			&emsp;&emsp;
-		<button type="button" onClick="qnaList()">1:1 문의</button>
+		<button type="button" onClick="qnaMain()">1:1 문의</button>
 		
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 		<button type="button" onClick="insertNotice()">공지작성</button>

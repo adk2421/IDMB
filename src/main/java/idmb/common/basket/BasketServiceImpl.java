@@ -62,10 +62,18 @@ public class BasketServiceImpl implements BasketService{ //Service 인터페이�
 		public void deleteBasket(BasketBean basket) throws Exception{
 			Map<String, Object>map = new HashMap<String, Object>();
 			
-			map.put("b_id", basket.getB_id());
-			map.put("b_code", basket.getB_code());
+			map.put("b_num", basket.getB_num());
 			
 			basketDAO.deleteBasket(map);
+		}
+		
+		@Override
+		public Map<String, Object> deleteBasketSearch(BasketBean basket) throws Exception{
+			Map<String, Object>map = new HashMap<String, Object>();
+			
+			map.put("b_num", basket.getB_num());
+			
+			return basketDAO.deleteBasketSearch(map);
 		}
 	
 	

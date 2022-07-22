@@ -6,18 +6,34 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import idmb.common.basket.BasketService;
+import idmb.common.member.MyInfoService;
+import idmb.common.product.ProductService;
+import idmb.model.BasketBean;
+import idmb.model.MemberBean;
 import idmb.model.OrderBean;
+import idmb.model.ProductBean;
 
 @Controller
 public class OrderController {
 
     @Resource (name="orderService")
     private OrderService orderService;
+    
+    @Resource (name="productService")
+    private ProductService productService;
+    
+    @Resource (name="myInfoService")
+    private MyInfoService myInfoService;
+    
+    @Resource (name="basketService")
+    private BasketService basketService;
 
     //내 주문목록 보기
     @RequestMapping("/myOrderList.do")
@@ -33,54 +49,55 @@ public class OrderController {
         return "myOrderList";
     }
 
+    // 주문 폼 작성
+	@RequestMapping("/orderForm.do")
+	public String orderForm (
+			MemberBean member, ProductBean product,
+			HttpServletRequest request,  Model model) throws Exception {
+		
+		String p_count = request.getParameter("p_count");
+		
+		Map<String,Object> map =  myInfoService.selectMember(member);
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		
+		map =  myInfoService.selectMember(member);
+		pMap = productService.productDetail(product);
+	    
+	    
+	   model.addAttribute("productDetail", pMap);
+	   model.addAttribute("p_count", p_count);
+	   model.addAttribute("myInfo", map);
+	   	
+	    //tiles.xml로 넘김
+	    return "orderForm";
+	
+	}
+    
+    @RequestMapping(value = "/insertOrder.do")
+    public String insertOrder(OrderBean order, Model model) throws Exception {
 
-    @RequestMapping("/insertOrder.do")
-    public String insertOrder (OrderBean order, Model model) throws Exception {
-
-        Map<String, Object> oMap = new HashMap<String, Object>();
-
-        orderService.insertOrder(order);
-
-        model.addAttribute("insertOrder", oMap);
-
+    	String id = order.getO_id();
+    	
+    	orderService.insertOrder(order);
+    	    	
+    	model.addAttribute("msg", "주문이 등록되었습니다.");
+		model.addAttribute("url", "/myOrderList.do?o_id="+id+"");
+		
         return "order/insertOrder";
 
-
+    }
+    
+    //장바구니 목록 주문 폼
+    @RequestMapping(value = "/basketOrderForm.do")
+    public String basketOrderForm(BasketBean basket, Model model) throws Exception {
+    	//장바구니 id를 통해 list를 가져온다.
+    	List<Map<String,Object>> map = new ArrayList<Map<String,Object>>();
+    	map = basketService.basketList(basket);
+    	
+    	
+    	model.addAttribute("basketList",map);
+    	
+    	return "basketOrderForm";
     }
 
 }
-	
-//	@RequestMapping("/pOrder.do")
-//	public String Order (MemberBean member, BindingResult result,
-//							@RequestParam("o_num") int o_num,
-//							@RequestParam("o_code") int o_code,
-//							@RequestParam("o_name") String o_name,
-//							@RequestParam("o_id") String o_id,
-//							@RequestParam("o_price") int o_price,
-//							@RequestParam("o_total") int o_total,
-//							@RequestParam("o_count") int o_count, 
-//							Model model) throws Exception{
-//		OrderBean orderBean = new OrderBean();
-//		
-//		orderBean.setO_id(member.getId());
-//		orderBean.setO_code(o_code);
-//		orderBean.setO_name(o_name);
-//		orderBean.setO_count(o_count);
-//		orderBean.setO_price(o_price);
-//		orderBean.setO_total(o_total);
-//		orderBean.setO_address1(member.getAddress1());
-//		orderBean.setO_address2(member.getAddress2());
-//		
-//	
-//	//orderform에 내용이 제대로 들어갔는지 유효성 검사
-//	new OrderValidator().validate(orderBean, result); 
-//	
-//	if(result.hasErrors()) {
-//		// basketOrderForm의 MemberBean을 파라미터로 받으면 오류발생 가능성 있음
-//		return "/basketOrderForm.al";	
-//		}
-//	
-//	orderService.insertOrder(orderBean);
-//	
-//	return "/order/pOrder";
-//	}

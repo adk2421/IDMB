@@ -13,4 +13,6 @@ public interface MyInfoService {
     public void updateMember(MemberBean member) throws Exception;
 
     public void dropMember(MemberBean member) throws Exception;
+
+
 }
