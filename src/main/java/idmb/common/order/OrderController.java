@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import idmb.common.basket.BasketService;
 import idmb.common.member.MyInfoService;
 import idmb.common.product.ProductService;
+import idmb.model.BasketBean;
 import idmb.model.MemberBean;
 import idmb.model.OrderBean;
 import idmb.model.ProductBean;
@@ -30,6 +31,9 @@ public class OrderController {
     
     @Resource (name="myInfoService")
     private MyInfoService myInfoService;
+    
+    @Resource (name="basketService")
+    private BasketService basketService;
 
     //내 주문목록 보기
     @RequestMapping("/myOrderList.do")
@@ -81,6 +85,19 @@ public class OrderController {
 		
         return "order/insertOrder";
 
+    }
+    
+    //장바구니 목록 주문 폼
+    @RequestMapping(value = "/basketOrderForm.do")
+    public String basketOrderForm(BasketBean basket, Model model) throws Exception {
+    	//장바구니 id를 통해 list를 가져온다.
+    	List<Map<String,Object>> map = new ArrayList<Map<String,Object>>();
+    	map = basketService.basketList(basket);
+    	
+    	
+    	model.addAttribute("basketList",map);
+    	
+    	return "basketOrderForm";
     }
 
 }

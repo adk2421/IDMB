@@ -49,6 +49,12 @@
 	</definition>
 
 
+	<definition name="basketOrderForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/basketOrderForm.jsp" />
+	</definition>
+	
+
 	<!-- admin -->
 	<definition name="adminMemberList" extends="admin_layout">
 		<put-attribute name="body"
