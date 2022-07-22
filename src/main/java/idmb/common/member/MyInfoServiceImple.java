@@ -48,5 +48,13 @@ public class MyInfoServiceImple implements MyInfoService {
 		
 		memberDAO.dropMember(map);
     }
+
+	@Override
+	public Map<String, Object> selectMember(MemberBean member) throws Exception {
+		 Map<String, Object> map = new HashMap<String, Object>();
+		 map.put("id", member.getId());
+		
+		return memberDAO.selectMember(map);
+	}
     
 }
