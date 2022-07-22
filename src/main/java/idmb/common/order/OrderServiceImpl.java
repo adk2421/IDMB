@@ -41,10 +41,9 @@ public class OrderServiceImpl implements OrderService {
 		map.put("o_address2", order.getO_address2());
 		map.put("o_reciever", order.getO_reciever());
 		
-		orderDAO.insertOrder(map);
-			
-		
+		orderDAO.insertOrder(map);	
 	}
+	
 	//주문 취소
 	@Override
 	public void deleteOrder (OrderBean order) throws Exception{

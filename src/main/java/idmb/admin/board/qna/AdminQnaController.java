@@ -139,10 +139,4 @@ public class AdminQnaController {
 		return "admin/board/qna/adminDeleteQna";
 	}
 	
-	
-	
-	
-	
-	
-
 }

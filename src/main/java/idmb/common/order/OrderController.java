@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,24 +47,18 @@ public class OrderController {
 
     // 주문 폼 작성
 	@RequestMapping("/orderForm.do")
-	public String orderForm (HttpServletRequest request, ProductBean product, Model model) throws Exception {
+	public String orderForm (
+			MemberBean member, ProductBean product,
+			HttpServletRequest request,  Model model) throws Exception {
 		
-		//P_CODE를 불러와 상품 정보를 읽어 옴.
-	   Map<String, Object> pMap = new HashMap<String, Object>();
-	   pMap = productService.productDetail(product);
+		String p_count = request.getParameter("p_count");
+		
+		Map<String,Object> map =  myInfoService.selectMember(member);
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		
+		map =  myInfoService.selectMember(member);
+		pMap = productService.productDetail(product);
 	    
-	   
-	   //로그인 한 id의 정보를 읽어오기 
-	   //HttpSession session  = request.getSession();
-	   //String id = (String) session.getAttribute("id");
-	   String id =  request.getParameter("id");
-	   MemberBean member = new MemberBean();
-	   member.setId(id);
-	   
-	   Map<String,Object> map =  myInfoService.selectMember(member);
-	   
-	   //주문 수량 정보를 읽어옴 
-	   String p_count = request.getParameter("p_count");
 	    
 	   model.addAttribute("productDetail", pMap);
 	   model.addAttribute("p_count", p_count);
@@ -74,18 +67,19 @@ public class OrderController {
 	    //tiles.xml로 넘김
 	    return "orderForm";
 	
-	
 	}
     
-    @RequestMapping(value = "/orderDo.do", method = RequestMethod.POST)
-    public String orderDo(OrderBean order, Model model) throws Exception {
+    @RequestMapping(value = "/insertOrder.do")
+    public String insertOrder(OrderBean order, Model model) throws Exception {
 
+    	String id = order.getO_id();
+    	
     	orderService.insertOrder(order);
     	    	
     	model.addAttribute("msg", "주문이 등록되었습니다.");
-		model.addAttribute("url", "/m");
+		model.addAttribute("url", "/myOrderList.do?o_id="+id+"");
 		
-        return "/order/orderDo.do";
+        return "order/insertOrder";
 
     }
 
