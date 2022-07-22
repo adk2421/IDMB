@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import idmb.common.order.OrderDAO;
 import idmb.model.MemberBean;
 import idmb.model.OrderBean;
 
@@ -18,7 +19,7 @@ public class MyInfoServiceImple implements MyInfoService {
     private MemberDAO memberDAO;
     
     @Resource(name = "orderDAO")
-    private MemberDAO orderDAO;
+    private OrderDAO orderDAO;
 
     @Override
     public Map<String, Object> checkPw(MemberBean member) throws Exception {
@@ -60,14 +61,6 @@ public class MyInfoServiceImple implements MyInfoService {
 		 map.put("id", member.getId());
 		
 		return memberDAO.selectMember(map);
-	}
-	
-	@Override
-	public List<Map<String,Object>> myOrderList(OrderBean order) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("o_id", order.getO_id());
-		return orderDAO.myOrderList(map);
-		
 	}
     
 }

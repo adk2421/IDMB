@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+	<!-- main layout -->
+		<definition name="main_layout" template="/WEB-INF/jsp/layout/main_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+		<put-attribute name="left" value="/WEB-INF/jsp/layout/left.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
+	</definition>
+	
+	<!-- admin layout -->	
+	<definition name="admin_layout" template="/WEB-INF/jsp/layout/admin_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+		<put-attribute name="left" value="/WEB-INF/jsp/layout/left.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
+	</definition>
+
+	<!-- product -->
+	
+	<definition name="mainpageProductList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/mainpageProductList.jsp" />
+	</definition>
+	
+	<definition name="searchProduct" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/searchProduct.jsp" />
+	</definition>
+	
+	<definition name="newProductList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/newProductList.jsp" />
+	</definition>
+	
+	<!-- <definition name="bestProductList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/bestProductList.jsp" />
+	</definition> -->
+	<definition name="productDetail" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/productDetail.jsp" />
+	</definition>
+
+
+	<!-- order -->
+	<definition name="myOrderList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/myOrderList.jsp" />
+	</definition>
+	
+	<definition name="orderForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/orderForm.jsp" />
+	</definition>
+	
+	<!-- basket -->
+	<definition name="basketList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/basket/basketList.jsp" />
+	</definition>	
+	
+
+
+	<definition name="basketOrderForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/basketOrderForm.jsp" />
+	</definition>
+	
+
+	<!-- admin -->
+	<definition name="adminMemberList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/member/adminMemberList.jsp" />
+	</definition>
+	
+	<definition name="adminMemberDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/member/adminMemberDetail.jsp" />
+	</definition>
+	
+	<definition name="adminProductList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/product/adminProductList.jsp" />
+	</definition>
+	
+	<definition name="adminInsertProductForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/product/adminInsertProductForm.jsp" />
+	</definition>
+	
+	<definition name="adminUpdateProductForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/product/adminUpdateProductForm.jsp" />
+	</definition>
+	
+	<definition name="adminOrderList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/order/adminOrderList.jsp" />
+	</definition>
+	
+	<definition name="adminOrderDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/order/adminOrderDetail.jsp" />
+	</definition>
+	
+	<definition name="adminNoticeList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/notice/adminNoticeList.jsp" />
+	</definition>	
+	
+	<definition name="adminNoticeDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/notice/adminNoticeDetail.jsp" />
+	</definition>
+	
+	<definition name="adminInsertNoticeForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/notice/adminInsertNoticeForm.jsp" />
+	</definition>	
+	
+	<definition name="adminUpdateNoticeForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/notice/adminUpdateNoticeForm.jsp" />
+	</definition>
+	
+	<definition name="adminReviewList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/review/adminReviewList.jsp" />
+	</definition>	
+	
+	<definition name="adminReviewDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/review/adminReviewDetail.jsp" />
+	</definition>
+	
+	<definition name="adminFaqList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/faq/adminFaqList.jsp" />
+	</definition>			
+	
+	<definition name="adminInsertFaqForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/faq/adminInsertFaqForm.jsp" />
+	</definition>
+	
+	<definition name="adminUpdateFaqForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/faq/adminUpdateFaqForm.jsp" />
+	</definition>
+			
+	<definition name="adminQnaList" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminQnaList.jsp" />
+	</definition>		
+
+	<definition name="adminQnaDetail" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminQnaDetail.jsp" />
+	</definition>
+	
+	<definition name="adminInsertQnaForm" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminInsertQnaForm.jsp" />
+	</definition>	
+			
+</tiles-definitions>

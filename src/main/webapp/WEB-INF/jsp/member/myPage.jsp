@@ -76,17 +76,21 @@
 					<table>
 						<tr>
 							<td>
-								<p>총 주문</p>
+								<p>입금전</p>
 								<p>[getO_total]원</p>
 							</td>
 							
 							<td>
-								<p>적립금</p>
-								<p>${reserve}원 <button>조회</button></p>
+								<p>배송준비중</p>
+								<p>${countOrderStatus}원</p>
 							</td>
 							
 							<td>
-								<p>쿠폰</p>
+								<p>배송중</p>
+								<p>3개 <button>조회</button></p>
+							</td>
+							<td>
+								<p>배송완료</p>
 								<p>3개 <button>조회</button></p>
 							</td>
 						</tr>

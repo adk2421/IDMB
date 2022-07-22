@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import idmb.common.order.OrderService;
 import idmb.model.MemberBean;
-import idmb.util.MapToBean;
 import idmb.model.OrderBean;
+import idmb.util.MapToBean;
 
 @Controller
 public class MemberController {
@@ -31,6 +32,9 @@ public class MemberController {
 
 	@Resource(name = "myInfoService")
 	private MyInfoService myInfoService;
+	
+	@Resource (name="orderService")
+    private OrderService orderService;
 	
 	// 회원가입 폼 이동
 	@RequestMapping(value = "/joinForm.do")
@@ -179,7 +183,7 @@ public class MemberController {
 					model.addAttribute("url", "/adminMain.do");
 				
 				} else {
-					model.addAttribute("url", "/myPage.do");
+					model.addAttribute("url", "/myInfoOrder.do");
 				}
 				
 			} else {
@@ -258,11 +262,11 @@ public class MemberController {
 	}
 
 	// 마이페이지 이동
-	@RequestMapping(value = "/myPage.do")
-	public String myPage(Model model) throws Exception {
+	//@RequestMapping(value = "/myPage.do")
+	//public String myPage(Model model) throws Exception {
 		
-		return "/member/myPage";
-	}
+	//	return "/member/myPage";
+	//}
 	
 	// 메인페이지 이동
 	@RequestMapping(value = "/main.do")
@@ -334,28 +338,44 @@ public class MemberController {
 		return "/member/myInfoDelete";
 	}
 	
-	// 나의 주문내역
-	@RequestMapping(value = "/myInfoOrder.do")
-	public String myInfoOrder(Model model, HttpServletRequest request) throws Exception {
+	
+	 // 나의 주문내역
+	 
+	@RequestMapping(value = "/myInfoOrder.do") public String myInfoOrder(Model
+			model, HttpServletRequest request) throws Exception {
 
 		String id = (String) request.getSession().getAttribute("id");
 		OrderBean order = new OrderBean();
 		order.setO_id(id);
-		System.out.println(id);
+		System.out.println("ID : " + id);
+		
+		//내 주문 목록들의 List 생성
+        List<Map<String, Object>> myOrderList = new ArrayList<Map<String, Object>>();
 
-		List<Map<String, Object>> list = myInfoService.myOrderList(order);
+        myOrderList = orderService.myOrderList(order);
+
+        model.addAttribute("myOrderList", myOrderList);
+		
+		/*
+		List<Map<String, Object>> list = orderService.myOrderList(order);
 		List<OrderBean> orderBeanList = new ArrayList<OrderBean>();
-
+		
 		for (Map<String, Object> mapObject : list) {
-			// orderBeanList.add(MapToBean.mapToOrder(mapObject));
+			orderBeanList.add(MapToBean.mapToOrder(mapObject)); 
 		}
-
+		
 		int orderCount = list.size();
-
+		
 		model.addAttribute("orderBeanList", orderBeanList);
 		model.addAttribute("orderCount", orderCount);
-
-		return "/member/myPage";
+		*/
+        
+        List<Map<String, Object>> countOrderStatus = orderService.countOrderStatus(order);
+        
+        model.addAttribute("countOrderStatus", countOrderStatus);
+		
+		return "/member/myPage"; 
+		
 	}
-	
+	 
 }

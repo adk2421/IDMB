@@ -54,9 +54,4 @@ public class MemberDAO {
 		sqlSessionTemplate.update("member.deleteMember",map);
 	}
 	
-	// 주문리스트 출력
-	public List<Map<String,Object>> myOrderList(Map<String,Object> map) throws Exception {
-		return sqlSessionTemplate.selectList("order.myOrderList", map);
-	};
-	
 }

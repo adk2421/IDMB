@@ -1,6 +1,7 @@
 package idmb.util;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Map;
 
 import idmb.model.BasketBean;
@@ -50,14 +51,15 @@ public class MapToBean {
         
         return productBean;
     }
-
+	*/
+	
     public static OrderBean mapToOrder(Map<String, Object> map) {
         OrderBean orderBean = new OrderBean();
 
         orderBean.setO_num(Integer.parseInt(String.valueOf(map.get("o_num"))));
         orderBean.setO_id((String) map.get("o_id"));
         orderBean.setO_code(Integer.parseInt(String.valueOf(map.get("o_code"))));
-        orderBean.setO_date((Date) map.get("o_date"));
+        orderBean.setO_date((Timestamp) map.get("o_date"));
         orderBean.setO_name((String) map.get("o_name"));
         orderBean.setO_count(Integer.parseInt(String.valueOf(map.get("o_count"))));
         orderBean.setO_price(Integer.parseInt(String.valueOf(map.get("o_price"))));
@@ -72,6 +74,7 @@ public class MapToBean {
         return orderBean;
     }
 
+    /*
     public static BasketBean mapToBasket(Map<String, Object> map) {
         BasketBean basketBean = new BasketBean();
 

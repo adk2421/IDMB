@@ -16,5 +16,4 @@ public interface MyInfoService {
 
     public void deleteMember(MemberBean member) throws Exception;
 
-	public List<Map<String, Object>> myOrderList(OrderBean order) throws Exception;
 }

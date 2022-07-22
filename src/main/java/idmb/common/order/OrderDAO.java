@@ -28,6 +28,11 @@ public class OrderDAO {
 	//주문 취소
 	public void deleteOrder(Map<String,Object> map) throws Exception{
 		sqlSessionTemplate.delete("order.deleteOrder", map);	
-	}; 
+	};
+	
+	//주문 상태 갯수
+	public List<Map<String, Object>> countOrderStatus(Map<String,Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("order.countOrderStatus", map);
+	};	
 
 }
