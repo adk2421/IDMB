@@ -64,9 +64,19 @@
 			DELETE FROM
 				BASKET
 			WHERE
-				B_ID = #{b_id} AND
-				B_CODE = #{b_code}	
+				B_NUM = #{b_num}
 		]]>
 	</delete>
+	
+	<!--   -->
+	<select id="deleteBasketSearch" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM
+				BASKET
+			WHERE
+				B_NUM = #{b_num}
+		]]>
+	</select>
+	
 	
 </mapper>
