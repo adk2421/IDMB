@@ -33,26 +33,37 @@ public class AdminQnaController {
 		//검색 종류, 검색어
 		String SORT = null;
 		String searchValue = null;
+		String qst = null;
 		
 		//검색 종류, 검색어, 카테고리 입력받음
 		String q_category = request.getParameter("q_category");
 		SORT = request.getParameter("SORT");
 		searchValue = request.getParameter("searchValue");
+		qst = request.getParameter("qst");
 		
 		//QNA들의 리스트가 필요하므로 ArrayList형의 'list' 생성
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
-		if(searchValue == null || searchValue.trim() =="") {
-			list = adminQnaService.adminQnaList(qna);
-		}
-		else {
-			list = adminQnaService.adminSearchQna(qna, searchValue, SORT);
+		if(searchValue == null || searchValue.trim() == "") {
+			if(qst == null) {
+				if(SORT == null) {
+					list = adminQnaService.adminQnaList(qna);
+				} else {
+					list = adminQnaService.adminSearchQna(qna, searchValue, SORT, qst);
+				}
+			} else {
+				list = adminQnaService.adminSearchQna(qna, searchValue, SORT, qst);
+			}
+		//검색값이 있는 경우
+		} else {
+			list = adminQnaService.adminSearchQna(qna, searchValue, SORT, qst);
 		}
 		
 		//model로 위에서 정의한 값 전송
+		model.addAttribute("q_category",q_category);
 		model.addAttribute("SORT", SORT);
 		model.addAttribute("searchValue", searchValue);
-		model.addAttribute("q_category",q_category);
+		model.addAttribute("qst", qst);
 		model.addAttribute("adminQnaList", list);
 		
 		//tiles.xml의 definition name="adminQnaList"로 이동

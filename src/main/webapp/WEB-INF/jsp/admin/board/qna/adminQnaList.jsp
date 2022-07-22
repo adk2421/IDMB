@@ -21,9 +21,15 @@
 				<td>
 					<img src="img/${q_category}QNA.png" width="75" border="0" id="imageQNA">
 				</td>
-				<td colspan="2">
-					<button type="button">답변 대기</button>
-					<button type="button">답변 완료</button>
+				<td>
+					<select name="SORT" id="SORT">
+						<option value="title" <c:if test="${SORT =='title'}">selected</c:if>>제 &emsp; 목</option>
+						<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>작 성 자</option>
+						<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
+					</select>
+					<br>
+					<input type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
+					<button type="submit">검색</button>
 				</td>
 			</tr>
 			<tr>
@@ -33,18 +39,10 @@
 					<c:if test="${q_category == 'aftership'}"><b>배송 후 문의</b></c:if>
 					<c:if test="${q_category == 'exchange'}"><b>교환/반품 문의</b></c:if>
 				</td>
+
 				<td>
-					<select name="SORT" id="SORT">
-						<option value="">전 &emsp; 체</option>
-						<option value="title" <c:if test="${SORT =='title'}">selected</c:if>>제 &emsp; 목</option>
-						<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>작 성 자</option>
-						<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
-					</select>
-					<input type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
-					<button type="submit">검색</button>
-				</td>
-				<td>
-				
+					<button type="submit" name="qst" id="qst" value="답변대기">답변 대기</button>
+					<button type="submit" name="qst" id="qst" value="답변완료">답변 완료</button>
 				</td>
 			</tr>
 		</tbody>

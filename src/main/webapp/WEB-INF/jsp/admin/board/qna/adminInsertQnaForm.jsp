@@ -79,7 +79,7 @@ function insertCheck() {
 	
 	<input type="hidden" id="q_code" name="q_code" value="${adminQnaBean.Q_CODE}">
 	<input type="hidden" id="q_category" name="q_category" value="${adminQnaBean.Q_CATEGORY}">
-	<input type="hidden" id="q_title" name="q_title" value="ㄴ 답변 드립니다.">
+	<input type="hidden" id="q_title" name="q_title" value="[답변]${adminQnaBean.Q_TITLE}">
 	<input type="hidden" id="q_product" name="q_product" value="${adminQnaBean.Q_PRODUCT}">
 	<input type="hidden" id="q_groupnum" name="q_groupnum" value="${adminQnaBean.Q_GROUPNUM}">
 	

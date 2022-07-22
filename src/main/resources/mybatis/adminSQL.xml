@@ -272,28 +272,32 @@
 		<![CDATA[
 			select * from QNA_BOARD
 			WHERE Q_CATEGORY = #{q_category}
-			AND Q_RELEVEL = '0'
 		]]>
 		
 		<trim prefix="AND">
 			<if test="SORT == 'title'">
-				<if test="searchValue != NULL">
-					Q_TITLE like '%'||#{searchValue}||'%'
-				</if>
+				Q_TITLE like '%'||#{searchValue}||'%'
 			</if>
+			
 			<if test="SORT == 'id'">
-				<if test="searchValue != NULL">
-					Q_ID like '%'||#{searchValue}||'%'
-				</if>
+				Q_ID like '%'||#{searchValue}||'%'
 			</if>
+			
 			<if test="SORT == 'product'">
-				<if test="searchValue != NULL">
-					Q_PRODUCT like '%'||#{searchValue}||'%'
-				</if>
+				Q_PRODUCT like '%'||#{searchValue}||'%'
 			</if>	
-		</trim>		
+		</trim>
+		
+		<trim prefix="AND">
+			<if test="qst == '답변대기'">
+				Q_STATUS = '답변대기'
+			</if>
+			<if test="qst == '답변완료'">
+				Q_STATUS = '답변완료'
+			</if>
+		</trim>	
 		<trim prefix="ORDER BY">
-			Q_GROUPNUM DESC
+			Q_GROUPNUM DESC, Q_RELEVEL ASC 
 		</trim>
 	</select>
 
@@ -336,7 +340,7 @@
 	<update id="adminDeleteQna" parameterType="hashmap">
 		<![CDATA[
 			update QNA_BOARD set Q_ID = '-',
-			Q_TITLE = '[삭제됨]', Q_STATUS = '', Q_CONTENTS = '삭제된 문의입니다.', Q_CONTENTSPW = ''
+			Q_TITLE = '[삭제됨]', Q_CONTENTS = '삭제된 문의입니다.', Q_CONTENTSPW = ''
 			where Q_NUM = #{q_num}
 		]]>
 	</update>

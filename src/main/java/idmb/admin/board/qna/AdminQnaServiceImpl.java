@@ -28,13 +28,14 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 	
 	@Override
 	public List<Map<String, Object>> adminSearchQna(QNABean qna,
-			String searchValue, String SORT) throws Exception
+			String searchValue, String SORT, String qst) throws Exception
 	{
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 		map.put("q_category",qna.getQ_category());
 		map.put("searchValue", searchValue);
 		map.put("SORT", SORT);
+		map.put("qst", qst);
 		
 		return adminQnaDAO.adminSearchQna(map);
 	}
