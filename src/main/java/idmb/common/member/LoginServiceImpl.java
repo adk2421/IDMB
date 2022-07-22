@@ -75,12 +75,4 @@ public class LoginServiceImpl implements LoginService {
         return memberDAO.findPw(map);
     }
 
-    @Override
-    public Map<String, Object> searchPhone(MemberBean member) throws Exception {
-        Map<String, Object> map = new HashMap<String, Object>();
-
-        map.put("phone", member.getPhone());
-
-        return memberDAO.searchPhone(map);
-    }
 }
