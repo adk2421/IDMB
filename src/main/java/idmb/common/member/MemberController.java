@@ -1,6 +1,8 @@
 package idmb.common.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import idmb.model.MemberBean;
 import idmb.util.MapToBean;
+import idmb.model.OrderBean;
 
 @Controller
 public class MemberController {
@@ -103,7 +106,7 @@ public class MemberController {
 	}
 	*/
 
-	// 가입 처리
+	// 회원가입
 	@RequestMapping(value = "/joinSuccess.do")
 	public String joinSuccess(MemberBean member, BindingResult result, Model model) throws Exception {
 
@@ -138,6 +141,7 @@ public class MemberController {
 	// 로그인 폼 이동
 	@RequestMapping(value = "/loginForm.do")
 	public String loginForm(Model model) throws Exception {
+		
 		return "/member/loginForm";
 	}
 
@@ -204,6 +208,7 @@ public class MemberController {
 	// 아이디 찾기 이동
 	@RequestMapping(value = "/findId.do")
 	public String findId(Model model) throws Exception {
+		
 		return "/member/findId";
 	}
 
@@ -229,6 +234,7 @@ public class MemberController {
 	// 비밀번호 찾기 이동
 	@RequestMapping(value = "/findPw.do")
 	public String findPw(Model model) throws Exception {
+		
 		return "/member/findPw";
 	}
 
@@ -254,64 +260,102 @@ public class MemberController {
 	// 마이페이지 이동
 	@RequestMapping(value = "/myPage.do")
 	public String myPage(Model model) throws Exception {
+		
 		return "/member/myPage";
 	}
 	
 	// 메인페이지 이동
 	@RequestMapping(value = "/main.do")
 	public String mainPage(Model model) throws Exception {
+		
 		return "/main";
 	}
 	
-	// 회원정보 수정
+	// 회원정보 폼
 	@RequestMapping(value = "/myInfoModifyForm.do")
 	public String myInfoModifyForm(Model model, HttpServletRequest request) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		// member에 세션에서 사용자 아이디를 가져와서 저장
+		// 세션에서 사용자 아이디를 가져와서 저장
 		String id = (String) request.getSession().getAttribute("id");
 		System.out.println("session getUserId : " + (String) request.getSession().getAttribute("id"));
 		MemberBean memberBean = new MemberBean();
 		memberBean.setId(id);
 
-		// MemberBean에 DB에서 읽어와 저장
+		// DB에서 읽어와 저장
 		map = myInfoService.selectMember(memberBean);
 		memberBean = MapToBean.mapToMember(map);
 
 		model.addAttribute("memberBean", memberBean);
+		
 		return "/member/myInfoModifyForm";
 	}
 
+	// 회원정보 수정
 	@RequestMapping(value = "/myInfoModify.do")
 	public String myInfoModify(MemberBean member, BindingResult result, Model model) throws Exception {
 
 		// new MemberValidator().validate(member, result);
 
 		if (result.hasErrors()) {
+			// 회원정보 수정 실패
 			return "/myInfoModifyForm.do";
 		}
 
 		myInfoService.updateMember(member);
+		// 회원정보 수정 성공
 		model.addAttribute("msg", "회원정보가 수정되었습니다.");
 		model.addAttribute("url", "/myInfoModifyForm.do");
+		
 		return "/member/myInfoModify";
 	}
 
-	/*
-	 * @RequestMapping(value = "/myInfoDelete.do") public String
-	 * myInfoDelete(MemberBean member, HttpServletRequest request, BindingResult
-	 * result, Model model) throws Exception {
-	 * 
-	 * String LoginId = (String) request.getSession().getAttribute("EMAIL");
-	 * MemberBean loginMember = new MemberBean(); loginMember.setEMAIL(LoginId);
-	 * Map<String, Object> mapMember = loginService.selectMemberId(loginMember);
-	 * member = MapToBean.mapToMember(mapMember);
-	 * 
-	 * myInfoService.deleteMember(member);
-	 * 
-	 * request.getSession().invalidate();
-	 * 
-	 * model.addAttribute("msg", "이용해주셔서 감사합니다."); model.addAttribute("url",
-	 * "/main.al"); return "/member/myInfoDelete"; }
-	 */
+	// 회원탈퇴
+	@RequestMapping(value = "/myInfoDelete.do") public String myInfoDelete(MemberBean member,
+			HttpServletRequest request, BindingResult result, Model model) throws Exception {
+	
+		// 세션에서 사용자 아이디를 가져와서 저장
+		String LoginId = (String) request.getSession().getAttribute("id");
+		MemberBean loginMember = new MemberBean();
+		loginMember.setId(LoginId);
+		
+		// DB에서 읽어와 저장
+		Map<String, Object> mapMember = loginService.selectMember(loginMember);
+		member = MapToBean.mapToMember(mapMember);
+		
+		myInfoService.deleteMember(member);
+		// 회원탈퇴 성공
+		model.addAttribute("msg", "이용해주셔서 감사합니다.");
+		model.addAttribute("url","/main.do");
+
+		// 세션 무효화
+		request.getSession().invalidate();
+		
+		return "/member/myInfoDelete";
+	}
+	
+	// 나의 주문내역
+	@RequestMapping(value = "/myInfoOrder.do")
+	public String myInfoOrder(Model model, HttpServletRequest request) throws Exception {
+
+		String id = (String) request.getSession().getAttribute("id");
+		OrderBean order = new OrderBean();
+		order.setO_id(id);
+		System.out.println(id);
+
+		List<Map<String, Object>> list = myInfoService.myOrderList(order);
+		List<OrderBean> orderBeanList = new ArrayList<OrderBean>();
+
+		for (Map<String, Object> mapObject : list) {
+			// orderBeanList.add(MapToBean.mapToOrder(mapObject));
+		}
+
+		int orderCount = list.size();
+
+		model.addAttribute("orderBeanList", orderBeanList);
+		model.addAttribute("orderCount", orderCount);
+
+		return "/member/myPage";
+	}
+	
 }

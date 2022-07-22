@@ -91,19 +91,6 @@
 				DELFLAG = 'N'
 		]]>
 	</select>
-
-	<!-- 회원 폰 번호로 이름 찾기 -->
-	<select id="searchPhone" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-				NAME
-			FROM
-				MEMBER
-			WHERE
-				PHONE = #{phone} AND
-				DELFLAG = 'N'
-		]]>
-	</select>
 	
 	<!-- 회원 찾기 -->
 	<select id="selectMember" parameterType="hashmap" resultType="hashmap">
@@ -147,7 +134,7 @@
 	</update>
 	
 	<!-- 회원 탈퇴 -->
-	<update id="dropMember" parameterType="hashmap">
+	<update id="deleteMember" parameterType="hashmap">
 		<![CDATA[
 			UPDATE
 				MEMBER
@@ -157,5 +144,17 @@
 				ID = #{id}
 		]]>
 	</update>
+	
+	<!-- 주문자 아이디 찾기 -->
+	<select id="selectOrderMemberId" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				ORDERCOMMAND
+			WHERE
+				O_ID = #{id}
+		]]>
+	</select>
 	
 </mapper>

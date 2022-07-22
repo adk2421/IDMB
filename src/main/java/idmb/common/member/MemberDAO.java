@@ -44,19 +44,19 @@ public class MemberDAO {
 		return sqlSessionTemplate.selectOne("member.findPw", map);
 	}
 
-	// 패스워드 찾기
-	public Map<String, Object> searchPhone(Map<String, Object> map) throws Exception {
-		return sqlSessionTemplate.selectOne("member.searchPhone", map);
-	}
-
 	// 회원 정보 변경
 	public void updateMember(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.update("member.updateMember",map);
 	}
 
 	// 회원 탈퇴
-	public void dropMember(Map<String, Object> map) throws Exception{
-		sqlSessionTemplate.update("member.dropMember",map);
+	public void deleteMember(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.update("member.deleteMember",map);
 	}
+	
+	// 주문리스트 출력
+	public List<Map<String,Object>> myOrderList(Map<String,Object> map) throws Exception {
+		return sqlSessionTemplate.selectList("order.myOrderList", map);
+	};
 	
 }
