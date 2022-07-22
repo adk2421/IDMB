@@ -42,6 +42,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/order/myOrderList.jsp" />
 	</definition>
+	
+	<definition name="orderForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/orderForm.jsp" />
+	</definition>
 
 
 	<!-- admin -->
