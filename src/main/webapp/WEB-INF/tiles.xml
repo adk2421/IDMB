@@ -71,6 +71,30 @@
 			value="/WEB-INF/jsp/order/basketOrderForm.jsp" />
 	</definition>
 	
+	
+	<!-- board -->
+	
+	<definition name="faqList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\faq\faqList.jsp" />
+	</definition>
+	
+	<definition name="noticeList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\notice\noticeList.jsp" />
+	</definition>
+	
+	<definition name="noticeDetail" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\notice\noticeDetail.jsp" />
+	</definition>
+	
+	<definition name="qnaList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\qnaList.jsp" />
+	</definition>
+	
+	
 
 	<!-- admin -->
 	<definition name="adminMemberList" extends="admin_layout">
