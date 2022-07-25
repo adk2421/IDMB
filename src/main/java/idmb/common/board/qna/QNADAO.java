@@ -39,7 +39,7 @@ public class QNADAO {
 	}
 	
 	public List<Map<String, Object>> myQnaList(Map<String, Object> map) throws Exception{
-		return sqlSessionTemplate.selectList("qna.myOnaList", map);
+		return sqlSessionTemplate.selectList("qna.myQnaList", map);
 	}
 
 }

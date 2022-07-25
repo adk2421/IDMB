@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import idmb.common.board.qna.QNAService;
 import idmb.common.order.OrderService;
 import idmb.model.MemberBean;
 import idmb.model.OrderBean;
+import idmb.model.QNABean;
 import idmb.util.MapToBean;
 
 @Controller
@@ -35,6 +37,9 @@ public class MemberController {
 	
 	@Resource (name="orderService")
     private OrderService orderService;
+	
+	@Resource(name="qnaService")
+	private QNAService qnaService;
 	
 	// 회원가입 폼 이동
 	@RequestMapping(value = "/joinForm.do")
@@ -183,7 +188,7 @@ public class MemberController {
 					model.addAttribute("url", "/adminMain.do");
 				
 				} else {
-					model.addAttribute("url", "/myInfoOrder.do");
+					model.addAttribute("url", "/myInfo.do");
 				}
 				
 			} else {
@@ -204,7 +209,7 @@ public class MemberController {
 		request.getSession().invalidate();
 
 		model.addAttribute("msg", "로그아웃 하셨습니다.");
-		model.addAttribute("url", "/loginForm.do");
+		model.addAttribute("url", "/");
 
 		return "/member/logout";
 	}
@@ -340,8 +345,8 @@ public class MemberController {
 	
 	
 	// 나의 주문내역 
-	@RequestMapping(value = "/myInfoOrder.do") public String myInfoOrder(Model
-			model, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/myInfo.do") public String myInfoOrder(Model
+			model, HttpServletRequest request, HttpSession session) throws Exception {
 
 		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
@@ -354,12 +359,22 @@ public class MemberController {
         for (int i = 0; i < countOrderStatus.size(); i++)
         	model.addAttribute((String) countOrderStatus.get(i).get("O_STATUS"), countOrderStatus.get(i).get("CNT"));
 		
-		// 내 주문 목록 List 생성
+		// 주문 상품 정보 List
         List<Map<String, Object>> myOrderList = new ArrayList<Map<String, Object>>();
 
         myOrderList = orderService.myOrderList(order);
 
         model.addAttribute("myOrderList", myOrderList);
+        
+        // 내 QNA List
+        QNABean qna = new QNABean();
+		qna.setQ_id(id);
+		
+        List<Map<String, Object>> myQnaList = new ArrayList<Map<String, Object>>();
+
+        myQnaList = qnaService.myQnaList(qna);
+        
+        model.addAttribute("myQnaList", myQnaList);
         
 		return "/member/myPage"; 	
 	}

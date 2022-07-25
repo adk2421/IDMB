@@ -130,7 +130,18 @@
 	<select id="myQnaList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				*
+				Q_NUM,
+				Q_ID,
+				Q_CODE,
+				Q_CATEGORY,
+				Q_TITLE,
+				Q_CONTENTS,
+				TO_CHAR(Q_DATE, 'YYYY-MM-DD') Q_DATE,
+				Q_PRODUCT,
+				Q_STATUS,
+				Q_CONTENTSPW,
+				Q_RELEVEL,
+				Q_GROUPNUM
 			FROM
 				QNA_BOARD
 			WHERE

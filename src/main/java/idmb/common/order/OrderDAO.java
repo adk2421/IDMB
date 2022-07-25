@@ -17,7 +17,6 @@ public class OrderDAO {
 	
 	//주문리스트 출력
 	public List<Map<String,Object>> myOrderList(Map<String,Object> map) throws Exception {
-		System.out.println("OrderDAO.myOrderList 실행");
 		return sqlSessionTemplate.selectList("order.myOrderList", map);
 	}; 
 		

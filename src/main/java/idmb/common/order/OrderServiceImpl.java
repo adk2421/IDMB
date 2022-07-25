@@ -21,8 +21,8 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Map<String,Object>> myOrderList(OrderBean order) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("OrderServiceImpl.myOrderList 실행");
 		map.put("o_id", order.getO_id());
+		
 		return orderDAO.myOrderList(map);	
 	}
 	

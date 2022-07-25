@@ -74,9 +74,18 @@ public class QNAController {
 	
 	
 	@RequestMapping(value="/myQnaList.do")
-	public String myQnaList() throws Exception{
+	public String myQnaList(HttpServletRequest request, Model model) throws Exception{
+		String id = (String) request.getSession().getAttribute("id");
+		QNABean qna = new QNABean();
+		qna.setQ_id(id);
 		
-		return "";
+        List<Map<String, Object>> myQnaList = new ArrayList<Map<String, Object>>();
+
+        myQnaList = qnaService.myQnaList(qna);
+        
+        model.addAttribute("myQnaList", myQnaList);
+        
+		return "qnaList";
 	}
 
 }

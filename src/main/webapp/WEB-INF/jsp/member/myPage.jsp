@@ -11,8 +11,46 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css?v=<%=System.currentTimeMillis()%>">
-	
-	<script src="${pageContext.request.contextPath}/resources/js/mypage.js?v=<%=System.currentTimeMillis()%>"></script>
+		
+	<script>
+		// 포커스 이동
+		function focusdiv() {
+			console.log("focus 실행");
+			document.getElementById("divFocus").tabIndex = -1;
+			document.getElementById("divFocus").focus();
+		
+			// 사용법 <a href="javascript:focusdiv();">
+		}
+		
+		// 주문 처리 현황 값이 NULL이면 0으로 변경
+		function orderProc() {
+			if (<%= request.getAttribute("배송대기") %> == null)
+			$('#o_proc_val1').text("0");
+			if (<%= request.getAttribute("배송준비중") %> == null)
+			$('#o_proc_val2').text("0");
+			if (<%= request.getAttribute("배송중") %> == null)
+			$('#o_proc_val3').text("0");
+			if (<%= request.getAttribute("베송완료") %> == null)
+			$('#o_proc_val4').text("0");
+			
+			console.log(sessionStorage.length);
+			
+			sessionStorage.setItem("aa","aa");
+			sessionStorage.setItem("ba","aa");
+			
+			console.log(sessionStorage.length);
+		}
+		
+		// 페이지 로딩 시, 자동 실행
+		$(document).ready(function() {
+			orderProc();
+		});
+		
+		function main() {
+			location.href = "/IDMB/mainpageProductList.do";
+		}
+		
+	</script>
 	
 	<title>IDMB</title>
 	
@@ -20,8 +58,15 @@
 <body>
 	<div class="wrap">
 		<div>
+			<img class="logo" src="/IDMB/img/logo.png" onclick="main()">
+		</div>
+		
+		<div>
 			<h2>마이페이지</h2>
-			<p style="text-align:right"><a href="/IDMB/myInfoModifyForm.do">회원정보 수정</a> | 배송주소록 관리</p>
+		</div>
+		
+		<div>
+			<p><a href="/IDMB/myInfoModifyForm.do">회원정보 수정</a> | 배송주소록 관리</p>
 		</div>
 		
 		<div>
@@ -30,7 +75,10 @@
 			<div class="vertical">
 				<p>${name}님, 환영합니다</p>
 				<p> <a href="/IDMB/myOrderList.do">주문내역</a> | 
-					<a href="/IDMB/basketList.do">장바구니</a> | 관심상품 | 최근 본 상품 | 내 게시글</p>
+					<a href="/IDMB/basketList.do">장바구니</a> | 
+					관심상품 | 
+					최근 본 상품 | 
+					<a href="/IDMB/myQnaList.do">내 게시글</a></p>
 				
 				<table>
 					<tr>
@@ -121,7 +169,7 @@
 					        <td><img src="/IDMB/img/${order.P_IMAGE}" /></td>
 					        <td><a href="/IDMB/productDetail.do">${order.O_NAME}</a></td>
 					        <td>${order.O_COUNT}</td>
-					        <td>${order.O_TOTAL}</td>
+					        <td>${order.O_TOTAL}원</td>
 					        <td>${order.O_STATUS}</td>
 				        </tr>
 				    </c:forEach>
@@ -163,16 +211,20 @@
 						<td>제목</td>
 						<td>작성자</td>
 						<td>작성일</td>
-						<td>조회</td>
+						<td>상태</td>
 					</tr>
-					<tr>
-						<td>번호</td>
-						<td>분류</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>작성일</td>
-						<td>조회</td>
-					</tr>
+					
+					<c:forEach var="qna" items="${myQnaList}">
+				        <tr>
+					        <td>${qna.Q_NUM}</td>
+					        <td>${qna.Q_CATEGORY}</td>
+					        <td>${qna.Q_TITLE}</td>
+					        <td>${qna.Q_ID}</td>
+					        <td>${qna.Q_DATE}</td>
+					        <td>${qna.Q_STATUS}</td>
+				        </tr>
+				    </c:forEach>
+				    
 				</table>
 			</div>
 		</div>
