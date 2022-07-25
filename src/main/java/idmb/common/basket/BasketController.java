@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +21,13 @@ public class BasketController {
 	private BasketService basketService;
 	
 	@RequestMapping(value="/basketList.do")
-	public String basketList(BasketBean basket, Model model) throws Exception{
+	public String basketList(BasketBean basket, Model model, HttpServletRequest request) throws Exception{
 		
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		
+		// 세션 id 값 받아오기
+        String id = (String) request.getSession().getAttribute("id");
+        basket.setB_id(id);
 		
 		list = basketService.basketList(basket);
 		
