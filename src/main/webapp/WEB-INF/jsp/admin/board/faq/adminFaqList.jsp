@@ -53,7 +53,7 @@ function insertFaq()	{
 	
 	<br>
 	
-	<table border=1>
+	<table style="width:600px;" border=1>
 		<tbody>
 		<c:forEach var="faq" items="${adminFaqList}">
 			<tr>

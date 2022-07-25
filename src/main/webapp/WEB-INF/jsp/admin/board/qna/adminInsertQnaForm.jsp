@@ -68,8 +68,8 @@ function insertCheck() {
 			<tr>
 				<td><b>답변 내용</b></td>
 				<td colspan="5">
-					<textarea id="q_contents" name="q_contents" style="width:400px;height:150px;" maxlength="500">
-					</textarea>
+					<textarea id="q_contents" name="q_contents"
+						style="width:400px;height:150px;" maxlength="500"></textarea>
 				</td>
 			</tr>		
 		</tbody>
