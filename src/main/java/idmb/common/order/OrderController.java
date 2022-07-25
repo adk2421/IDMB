@@ -89,13 +89,16 @@ public class OrderController {
     
     //장바구니 목록 주문 폼
     @RequestMapping(value = "/basketOrderForm.do")
-    public String basketOrderForm(BasketBean basket, Model model) throws Exception {
+    public String basketOrderForm(BasketBean basket, MemberBean member, Model model) throws Exception {
     	//장바구니 id를 통해 list를 가져온다.
-    	List<Map<String,Object>> map = new ArrayList<Map<String,Object>>();
-    	map = basketService.basketList(basket);
+    	List<Map<String,Object>> bmap = new ArrayList<Map<String,Object>>();
+    	bmap = basketService.basketList(basket);
+    
+    	Map<String,Object> mmap =  myInfoService.selectMember(member);
+    	mmap =  myInfoService.selectMember(member);
     	
-    	
-    	model.addAttribute("basketList",map);
+    	model.addAttribute("basketList",bmap);
+    	model.addAttribute("myInfo", mmap);
     	
     	return "basketOrderForm";
     }
