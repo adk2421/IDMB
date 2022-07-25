@@ -37,10 +37,14 @@ public class OrderController {
 
     //내 주문목록 보기
     @RequestMapping("/myOrderList.do")
-    public String myOrderList (OrderBean order, Model model) throws Exception {
+    public String myOrderList (OrderBean order, Model model, HttpServletRequest request) throws Exception {
 
         //내 주문 목록들의 List 생성
         List<Map<String, Object>> myOrderList = new ArrayList<Map<String, Object>>();
+        
+        // 세션 id 값 받아오기
+        String id = (String) request.getSession().getAttribute("id");
+        order.setO_id(id);
 
         myOrderList = orderService.myOrderList(order);
 
