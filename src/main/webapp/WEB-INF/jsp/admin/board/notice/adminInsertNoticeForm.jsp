@@ -62,10 +62,9 @@ function cancel() {
 		</tbody>
 	</table>
 
-	<div style="width:490px; height:285px; border:1px solid black;">
-		<textarea id="n_contents" name="n_contents" rows="18" cols="70" maxlength="500">
-		</textarea>
-	</div>
+	<textarea id="n_contents" name="n_contents" 
+		style="width:490px; height:285px;" maxlength="500"></textarea>
+
 
 	<br>
 	<button type="button" onClick="insertCheck()">작 &emsp; 성</button>

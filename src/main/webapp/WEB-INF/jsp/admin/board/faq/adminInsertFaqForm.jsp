@@ -58,8 +58,8 @@ function cancel() {
 			<tr>
 				<td><b>질문 답변</b></td>
 				<td>
-					<textarea id="f_contents" name="f_contents" rows="18" cols="70" maxlength="300">
-					</textarea> 
+					<textarea id="f_contents" name="f_contents"
+						style="width:400px;" maxlength="300"></textarea> 
 				</td>
 			</tr>	
 		</tbody>

@@ -91,9 +91,8 @@ function cancel() {
 	</table>
 
 	<div style="width:490px; height:285px;">
-		<textarea id="n_contents" name="n_contents" style="width:490px; height:285px; maxlength="500">
-			${adminNoticeBean.N_CONTENTS}
-		</textarea>
+		<textarea id="n_contents" name="n_contents"
+			style="width:490px; height:285px;" maxlength="500">${adminNoticeBean.N_CONTENTS}</textarea>
 	</div>
 
 	<br>
