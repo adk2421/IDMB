@@ -42,13 +42,17 @@
 			<trim prefix="AND">
 				<if test="priceValue1 != NULL">
 					<if test="priceValue2 != NULL">
-					P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
+						P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
 					</if>
-					P_PRICE >= #{priceValue1}
+					<if test="priceValue2 == NULL">
+						P_PRICE BETWEEN #{priceValue1} AND 99999999
+					</if>
 				</if>
 				<if test="priceValue1 == NULL">
 					<if test="priceValue2 != NULL">
-					P_PRICE BETWEEN 0 AND #{priceValue2}
+						P_PRICE BETWEEN 0 AND #{priceValue2}
+					</if>
+					<if test="priceValue2 == NULL">
 					</if>
 				</if>	
 			</trim>
@@ -58,7 +62,7 @@
 				P_CODE DESC
 				</if>
 				<if test="SORT == 'newproduct'">
-				P_DATE DESC  
+				P_CODE DESC  
 				</if>
 	        	<if test="SORT == 'bestproduct'">
 				P_ZIM DESC 

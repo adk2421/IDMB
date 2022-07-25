@@ -14,6 +14,9 @@ public interface OrderService {
 	public void insertOrder (OrderBean order) throws Exception;
 	
 	//주문 취소
-	public void deleteOrder (OrderBean order) throws Exception; 
+	public void deleteOrder (OrderBean order) throws Exception;
+	
+	//주문 상태 갯수
+	public List<Map<String, Object>> countOrderStatus (OrderBean order) throws Exception;
 
 }

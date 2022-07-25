@@ -27,7 +27,7 @@
 			</snapshots>
 		</repository>
 		
-		<repository>
+		<!-- <repository>
 			<id>egovframe</id>
 			<url>http://www.egovframe.go.kr/maven/</url>
 			<releases>
@@ -36,7 +36,7 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</repository>
+		</repository> -->
 	</repositories>
 	
 	<dependencies>
@@ -233,6 +233,12 @@
 			<version>0.2.7</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.3alpha-8</version>
+		</dependency>
+		
 		<!-- MappingJacksonJsonView -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -266,24 +272,24 @@
 			<version>1.10</version>
 		</dependency>
 		
-		<!-- EgovProperty -->
+		<!-- EgovProperty
 		<dependency>
 			<groupId>egovframework.rte</groupId>
 			<artifactId>egovframework.rte.fdl.property</artifactId>  
 			<version>2.7.0</version>
-		</dependency>
+		</dependency> 
 		
 		<dependency>
 			<groupId>egovframework.rte</groupId>
 			<artifactId>egovframework.rte.ptl.mvc</artifactId>  
 			<version>3.5.0</version>
-		</dependency>
+		</dependency> -->
 		
 		<!-- Log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.3alpha-8</version>
+			<version>1.2.15</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.mail</groupId>

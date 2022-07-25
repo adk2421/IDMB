@@ -54,4 +54,14 @@ public class OrderServiceImpl implements OrderService {
 		
 		
 	}
+	
+	//주문 상태 갯수
+	public List<Map<String, Object>> countOrderStatus (OrderBean order) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("o_id", order.getO_id());
+		
+		return orderDAO.countOrderStatus(map);
+
+	}
+	
 }

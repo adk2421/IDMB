@@ -25,14 +25,6 @@
 	</div>
 	
 	<br>
-	<c:choose>
-		<c:when test="${basketList == null }">
-			장바구니가 비어있습니다.
-		</c:when>
-		
-		<c:otherwise>
-		
-		
 			 
 		<!-- basketList div start -->	
 		<div class="basketList">
@@ -95,11 +87,9 @@
 			</div>
 			<!-- BasketList div end -->
 		
-			<button type="button" id="btnUpdate">주문하기</button>
-			<button type="button" id="btnList">계속 쇼핑하기</button>
+			<button type="button" id="">주문하기</button>
+			<button type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
 		
 
-		</c:otherwise>
-	</c:choose>
 </body>
 </html>

@@ -76,17 +76,21 @@
 					<table>
 						<tr>
 							<td>
-								<p>총 주문</p>
+								<p>입금전</p>
 								<p>[getO_total]원</p>
 							</td>
 							
 							<td>
-								<p>적립금</p>
-								<p>${reserve}원 <button>조회</button></p>
+								<p>배송준비중</p>
+								<p>${countOrderStatus}원</p>
 							</td>
 							
 							<td>
-								<p>쿠폰</p>
+								<p>배송중</p>
+								<p>3개 <button>조회</button></p>
+							</td>
+							<td>
+								<p>배송완료</p>
 								<p>3개 <button>조회</button></p>
 							</td>
 						</tr>
@@ -99,23 +103,30 @@
 			<div class="vertical">
 				<p>- 주문 상품 정보 -</p>
 				
-				<table>
-					<tr>
-						<td>주문번호</td>
-						<td>이미지</td>
-						<td>상품정보</td>
-						<td>수량</td>
-						<td>상품금액</td>
-						<td>주문처리상태</td>
-					</tr>
-					<tr>
-						<td>주문번호</td>
-						<td>이미지</td>
-						<td>상품정보</td>
-						<td>수량</td>
-						<td>상품금액</td>
-						<td>주문처리상태</td>
-					</tr>
+				<table border=1>
+				    <thead>
+				        <tr>
+				            <th>주문상품코드</th>
+				            <th>주문상품이름</th>
+				            <th>주문날짜</th>
+				            <th>주문개수</th>
+				            <th>주문가격</th>
+				            <th>총&emsp;합</th>
+				            <th>배송상태</th>
+				        </tr>
+			        </thead>
+			        
+			        <c:forEach var="order" items="${myOrderList}">
+				        <tr>
+					        <td>${order.O_CODE}</td>
+					        <td>${order.O_NAME}</td>
+					        <td>${order.O_DATE}</td>
+					        <td>${order.O_COUNT}</td>
+					        <td>${order.O_PRICE}</td>
+					        <td>${order.O_TOTAL}</td>
+					        <td>${order.O_STATUS}</td>
+				        </tr>
+				    </c:forEach>
 				</table>
 			</div>
 		</div>
