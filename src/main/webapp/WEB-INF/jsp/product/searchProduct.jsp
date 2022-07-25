@@ -22,11 +22,13 @@
 		<option value="lowproduct" <c:if test="${SORT =='lowproduct'}">selected</c:if>>낮은 가격순</option>	
 	</select>
 	
-	<input type=text name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
+	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	<br>
 검색 가격
-	<input type=text name="priceValue1"  id="priceValue1" placeholder="최소금액...." value="${priceValue1}"> ~ 
-	<input type=text name="priceValue2"  id="priceValue2" placeholder="최대금액...." value="${priceValue2}">
+	<input type="number" name="priceValue1"  id="priceValue1" placeholder="최소금액...." 
+		<c:if test = "${priceValue1 != '0'}">value="${priceValue1}"</c:if>> ~ 
+	<input type="number" name="priceValue2"  id="priceValue2" placeholder="최대금액...."
+		<c:if test = "${priceValue2 != '99999999'}">value="${priceValue2}"</c:if>>
 
 	<input type="submit" value="검색"/>
 </form>

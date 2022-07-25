@@ -26,7 +26,7 @@
 </tr>
 <tr align = "center">
 <td>종류</td>
-<input type="
+<input type="">
 <tr align = "center">
 <td>구매수량</td>
 <td>

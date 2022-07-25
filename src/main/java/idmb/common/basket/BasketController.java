@@ -48,7 +48,7 @@ public class BasketController {
 		
 		Map<String,	Object> map = new HashMap<String, Object>();
 
-		map = basketService.deleteBasketSearch(basket);
+		map = basketService.searchBasket(basket);
 		
 		String b_id = (String) map.get(basket.getB_id());
 		

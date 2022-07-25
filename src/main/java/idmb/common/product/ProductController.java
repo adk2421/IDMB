@@ -46,15 +46,27 @@ public class ProductController {
 			
 			// 검색어 입력받기	
 				String searchValue = null;
-				int priceValue1 = 0;
-				int priceValue2 = 99999999;
 				String SORT = null;
+				
+				int priceValue1 = -1;
+				int priceValue2 = -1;
+				
 			
 			// 변수값 설정
 				searchValue = request.getParameter("searchValue");
-				priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
-				priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
 				SORT = request.getParameter("SORT");
+				
+				if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
+					priceValue1 = 0;
+				} else {
+					priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
+				}
+				
+				if(request.getParameter("priceValue2") == null || request.getParameter("priceValue2").trim()=="") {
+					priceValue2 = 99999999;
+				} else {
+					priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+				}
 				
 				list = productService.searchProduct(searchValue, priceValue1, priceValue2, SORT);
 	

@@ -69,7 +69,7 @@
 	</delete>
 	
 	<!--   -->
-	<select id="deleteBasketSearch" parameterType="hashmap" resultType="hashmap">
+	<select id="searchBasket" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT * FROM
 				BASKET

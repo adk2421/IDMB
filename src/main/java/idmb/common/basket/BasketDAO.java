@@ -41,8 +41,8 @@ public class BasketDAO { //이 클래스를 루트 컨테이너에 빈(Bean)객�
 		sqlSessionTemplate.delete("basket.deleteBasket", map);
 	}
 	
-	public Map<String, Object> deleteBasketSearch(Map<String, Object>map) throws Exception{
-		return sqlSessionTemplate.selectOne("basket.deleteBasketSearch", map);
+	public Map<String, Object> searchBasket(Map<String, Object>map) throws Exception{
+		return sqlSessionTemplate.selectOne("basket.searchBasket", map);
 	}
 	
 }
