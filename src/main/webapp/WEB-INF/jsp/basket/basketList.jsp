@@ -14,7 +14,7 @@
 <body>
 	<div align="right">
 		<a href="/IDMB/logout.do">LOGOUT</a>
-		<a href="/IDMB/join.do">JOIN</a>
+		<a href="/IDMB/joinForm.do">JOIN</a>
 		<a href="/IDMB/mypage.do">MY PAGE</a>
 		<a href="/IDMB/order.do">ORDER</a>
 		<a href="/IDMB/community.do">COMMUNITY</a>
@@ -30,21 +30,19 @@
 		<div class="basketList">
 			<table border="1">
 				<tr>
-					<th><input type="checkbox"></th>
 					<th>상품명</th>
 					<th>상품 금액</th>
 					<th>수량</th>
 					<th>총 금액</th>
 					<th>기능</th>
+					<th>주문하기</th>
 				</tr>
 			
 				
 			<c:forEach var="basket" items="${basketList}">
+
 				<tr>
 					<form method="post" action="updateBasket.do?b_num=${basket.B_NUM}">
-					<td>
-						<input type="checkbox">
-					</td>
 					<!-- 상품명 -->
 					<td>
 						${basket.B_NAME}
@@ -73,23 +71,38 @@
 						<input type="submit" value="수정">
 						<button type="button" onclick="location.href='deleteBasket.do?b_num=${basket.B_NUM}'">삭제</button>
 					</td>
+					<td>
+						<button type="button" 
+							onclick="location.href='orderForm.do?id=${basket.B_ID}&p_count=${basket.B_COUNT}&p_code=${basket.B_CODE}'">
+						주문하기
+						</button>
+					</td>
+					
 					</form>
 				</tr>	
 			</c:forEach>
 
 			<tr>
 				<td colspan="6" align="right">
-					배송료 : <br>
-					총 구매 금액 :<fmt:formatNumber pattern="###,###,###" value=""/>
+					배송료 : 3000 원<br>
+					<c:set var="sum" value="0"/>
+					<c:forEach var="basket" items="${basketList}">
+						<c:set var="sum" value="${sum + basket.B_PRICE * basket.B_COUNT}"/>
+					</c:forEach>
+					총 주문 금액 : <fmt:formatNumber pattern="###,###,### 원" value="${sum}"/>
 				</td>
 			</tr>
 			</table>
 			</div>
 			<!-- BasketList div end -->
-		
-			<button type="button" id="">주문하기</button>
-			<button type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
-		
+			
+			
+			<c:forEach var="basket" items="${basketList}" begin="1" end="1">
+				<button type="button" onclick="location.href='basketOrderForm.do?id=${basket.B_ID}&b_id=${basket.B_ID}'">주문하기</button>
+				<button type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
+			</c:forEach>
+			
+
 
 </body>
 </html>
