@@ -32,9 +32,24 @@
 	}
 	
 	div.vertical {
-		flex-direction:column;
+		flex-direction: column;
+	}
+	
+	table {
+		margin: 10px;
+	}
+	
+	th {
+		border: 1px solid black;
+		padding: 10px;
 	}
 	
 	td {
-		border:1px solid black;
+		border: 1px solid black;
+		padding: 10px;
+	}
+	
+	td img {
+		width: 90px;
+		height: 90px;
 	}

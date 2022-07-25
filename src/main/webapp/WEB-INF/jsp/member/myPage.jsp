@@ -6,19 +6,15 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	
+	<!-- Include jquery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css?v=<%=System.currentTimeMillis()%>">
 	
-	<title>IDMB</title>
+	<script src="${pageContext.request.contextPath}/resources/js/mypage.js?v=<%=System.currentTimeMillis()%>"></script>
 	
-	<script>
-		function focusdiv() {
-			console.log("focus 실행");
-			document.getElementById("divFocus").tabIndex = -1;
-			document.getElementById("divFocus").focus();
-			
-			// 사용법 <a href="javascript:focusdiv();">
-		}
-	</script>
+	<title>IDMB</title>
 	
 </head>
 <body>
@@ -33,13 +29,14 @@
 			
 			<div class="vertical">
 				<p>${name}님, 환영합니다</p>
-				<p>주문내역 | 장바구니 | 관심상품 | 최근 본 상품 | 내 게시글</p>
+				<p> <a href="/IDMB/myOrderList.do">주문내역</a> | 
+					<a href="/IDMB/basketList.do">장바구니</a> | 관심상품 | 최근 본 상품 | 내 게시글</p>
 				
 				<table>
 					<tr>
 						<td>
 							<p>총 주문</p>
-							<p>[getO_total]원</p>
+							<p>331,944,300원</p>
 						</td>
 						
 						<td>
@@ -76,22 +73,22 @@
 					<table>
 						<tr>
 							<td>
-								<p>입금전</p>
-								<p>[getO_total]원</p>
+								<p id="o_proc_key1">배송대기</p>
+								<p id="o_proc_val1"><%= request.getAttribute("배송대기") %></p>
 							</td>
 							
 							<td>
-								<p>배송준비중</p>
-								<p>${countOrderStatus}원</p>
+								<p id="o_proc_key2">배송준비중</p>
+								<p id="o_proc_val2"><%= request.getAttribute("배송준비중") %></p>
 							</td>
 							
 							<td>
-								<p>배송중</p>
-								<p>3개 <button>조회</button></p>
+								<p id="o_proc_key3">배송중</p>
+								<p id="o_proc_val3"><%= request.getAttribute("배송중") %></p>
 							</td>
 							<td>
-								<p>배송완료</p>
-								<p>3개 <button>조회</button></p>
+								<p id="o_proc_key4">배송완료</p>
+								<p id="o_proc_val4"><%= request.getAttribute("배송완료") %></p>
 							</td>
 						</tr>
 					</table>
@@ -106,23 +103,24 @@
 				<table border=1>
 				    <thead>
 				        <tr>
-				            <th>주문상품코드</th>
-				            <th>주문상품이름</th>
-				            <th>주문날짜</th>
-				            <th>주문개수</th>
-				            <th>주문가격</th>
-				            <th>총&emsp;합</th>
+				            <th>주문번호</th>
+				            <th>이미지</th>
+				            <th>상품정보</th>
+				            <th>수량</th>
+				            <th>상품구매금액</th>
 				            <th>배송상태</th>
 				        </tr>
 			        </thead>
 			        
 			        <c:forEach var="order" items="${myOrderList}">
 				        <tr>
-					        <td>${order.O_CODE}</td>
-					        <td>${order.O_NAME}</td>
-					        <td>${order.O_DATE}</td>
+					        <td>
+					        	<p>${order.O_DATE}</p>
+					        	<p>P00929${order.O_NUM}</p>
+					        </td>
+					        <td><img src="/IDMB/img/${order.P_IMAGE}" /></td>
+					        <td><a href="/IDMB/productDetail.do">${order.O_NAME}</a></td>
 					        <td>${order.O_COUNT}</td>
-					        <td>${order.O_PRICE}</td>
 					        <td>${order.O_TOTAL}</td>
 					        <td>${order.O_STATUS}</td>
 				        </tr>

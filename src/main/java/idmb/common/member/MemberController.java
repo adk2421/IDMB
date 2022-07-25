@@ -339,43 +339,29 @@ public class MemberController {
 	}
 	
 	
-	 // 나의 주문내역
-	 
+	// 나의 주문내역 
 	@RequestMapping(value = "/myInfoOrder.do") public String myInfoOrder(Model
 			model, HttpServletRequest request) throws Exception {
 
+		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
 		OrderBean order = new OrderBean();
 		order.setO_id(id);
-		System.out.println("ID : " + id);
 		
-		//내 주문 목록들의 List 생성
+		// 주문 처리 현황
+        List<Map<String, Object>> countOrderStatus = orderService.countOrderStatus(order);
+        
+        for (int i = 0; i < countOrderStatus.size(); i++)
+        	model.addAttribute((String) countOrderStatus.get(i).get("O_STATUS"), countOrderStatus.get(i).get("CNT"));
+		
+		// 내 주문 목록 List 생성
         List<Map<String, Object>> myOrderList = new ArrayList<Map<String, Object>>();
 
         myOrderList = orderService.myOrderList(order);
 
         model.addAttribute("myOrderList", myOrderList);
-		
-		/*
-		List<Map<String, Object>> list = orderService.myOrderList(order);
-		List<OrderBean> orderBeanList = new ArrayList<OrderBean>();
-		
-		for (Map<String, Object> mapObject : list) {
-			orderBeanList.add(MapToBean.mapToOrder(mapObject)); 
-		}
-		
-		int orderCount = list.size();
-		
-		model.addAttribute("orderBeanList", orderBeanList);
-		model.addAttribute("orderCount", orderCount);
-		*/
         
-        List<Map<String, Object>> countOrderStatus = orderService.countOrderStatus(order);
-        
-        model.addAttribute("countOrderStatus", countOrderStatus);
-		
-		return "/member/myPage"; 
-		
+		return "/member/myPage"; 	
 	}
 	 
 }
