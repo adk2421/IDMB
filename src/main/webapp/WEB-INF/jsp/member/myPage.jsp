@@ -72,13 +72,16 @@
 		<div>
 			<img src="/IDMB/resources/img/user.png" style="width:200px; height:200px; padding:15px" />
 			
-			<div class="vertical">
-				<p>${name}님, 환영합니다</p>
-				<p> <a href="/IDMB/myOrderList.do">주문내역</a> | 
+			<div class="leftVertical">
+				<p>${name}님, 환영합니다.</p>
+				<br/>
+				<p>
+					<a href="/IDMB/myOrderList.do">주문내역</a> | 
 					<a href="/IDMB/basketList.do">장바구니</a> | 
 					관심상품 | 
 					최근 본 상품 | 
-					<a href="/IDMB/myQnaList.do">내 게시글</a></p>
+					<a href="/IDMB/myQnaList.do">내 게시글</a>
+				</p>
 				
 				<table>
 					<tr>
