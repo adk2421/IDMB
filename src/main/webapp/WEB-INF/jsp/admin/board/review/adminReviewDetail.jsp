@@ -21,7 +21,22 @@ function cancel() {
 </script>
 </head>
 <body>
-<table border=1>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+
+<table style="margin:auto; text-align: center;" border=1>
 	<tbody>
 		<tr>
 			<td rowspan="4">
@@ -48,7 +63,7 @@ function cancel() {
 
 <br>
 
-<table border=1>
+<table style="margin:auto; text-align: center;" border=1>
 	<tbody>
 		<tr>
 			<td><b>작성자</b></td>
@@ -73,9 +88,11 @@ function cancel() {
 </table>
 
 <br>
+
+<div style="margin:auto; text-align: center;">
 <button type="button" onClick="deleteCheck()">후 기 삭 제</button>
 	&emsp;&emsp;
 <button type="button" onClick="cancel()">돌 아 가 기</button>
-
+</div>
 </body>
 </html>

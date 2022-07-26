@@ -33,8 +33,23 @@ function orderCancel(){
 
 </head>
 <body>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+
 <form method="post" id="orderCancel" action="adminCancelOrder.do?o_num=${adminOrderBean.O_NUM}">
-	<table border=1>
+	<table style="margin:auto; text-align: center;" border=1>
 		<thead>
 			<tr>
 				<th>주문번호</th>
@@ -62,7 +77,7 @@ function orderCancel(){
 </form>
 	
 <form method="post" id="orderDetailForm" action="adminUpdateOrder.do?o_num=${adminOrderBean.O_NUM}">		
-	<table border=1>
+	<table style="margin:auto; text-align: center;" border=1>
 		<tbody>
 			<tr>
 				<td><b>주문번호</b></td>
@@ -107,9 +122,11 @@ function orderCancel(){
 		</tbody>
 	</table>	
 	<br/>
-	<button type="button" onClick="check()">수 &emsp; 정</button>
-         &emsp;&emsp;
-	<button type="button" onclick="cancel()">취 &emsp; 소</button>	
+	<div style="margin:auto; text-align: center;">
+		<button type="button" onClick="check()">수 &emsp; 정</button>
+     	    &emsp;&emsp;
+		<button type="button" onclick="cancel()">취 &emsp; 소</button>
+	</div>	
 </form>
 </body>
 </html>

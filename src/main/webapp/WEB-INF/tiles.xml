@@ -176,7 +176,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/board/faq/adminUpdateFaqForm.jsp" />
 	</definition>
-			
+
+	<definition name="adminQnaMain" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminQnaMain.jsp" />
+	</definition>	
+		
 	<definition name="adminQnaList" extends="admin_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/board/qna/adminQnaList.jsp" />

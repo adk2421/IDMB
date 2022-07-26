@@ -36,8 +36,23 @@ function cancel() {
 </script>
 </head>
 <body>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+
 <form method="post" id="noticeInsertForm" action="adminInsertNotice.do">
-	<table>
+	<table style="width:490px; margin:auto; text-align: left;">
 		<tbody>
 			<tr>
 				<td><b>제목</b></td>
@@ -61,16 +76,19 @@ function cancel() {
 			</tr>			
 		</tbody>
 	</table>
-
-	<textarea id="n_contents" name="n_contents" 
-		style="width:490px; height:285px;" maxlength="500"></textarea>
-
+	
+	<div style="width:490px; height:285px; margin:auto;">
+		<textarea id="n_contents" name="n_contents" 
+			style="width:490px; height:285px;" maxlength="500"></textarea>
+	</div>
 
 	<br>
+	<div style="margin:auto; text-align: center;">
 	<button type="button" onClick="insertCheck()">작 &emsp; 성</button>
        &emsp;&emsp;
        &emsp;&emsp;
-	<button type="button" onclick="cancel()">취 &emsp; 소</button>	
+	<button type="button" onclick="cancel()">취 &emsp; 소</button>
+	</div>
 </form>
 </body>
 </html>
