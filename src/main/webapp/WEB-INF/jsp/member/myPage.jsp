@@ -34,20 +34,43 @@
 			$('#o_proc_val4').text("0");
 			
 			console.log(sessionStorage.length);
-			
-			sessionStorage.setItem("aa","aa");
-			sessionStorage.setItem("ba","aa");
-			
-			console.log(sessionStorage.length);
 		}
 		
 		// 페이지 로딩 시, 자동 실행
 		$(document).ready(function() {
 			orderProc();
+			viewedProduct();
 		});
 		
 		function main() {
 			location.href = "/IDMB/mainpageProductList.do";
+		}
+		
+		function viewedProduct() {
+			console.log('viewedProduct 실행');
+			var arr = [];
+			var temp;
+			
+			for (var i=0; i<10; i++) {
+				temp = sessionStorage.getItem(i);
+				
+				if (temp != null)
+					arr[i] = temp;
+				
+				else
+					break;
+			}
+			
+			$.ajax({
+				  url :"viewedProductAjax.do",
+				  async: true,
+				  type : "POST",
+				  dataType : "json",
+				  data : arr,
+				  success: function(data){
+				  	console.log("성공");
+				  }
+			});
 		}
 		
 	</script>

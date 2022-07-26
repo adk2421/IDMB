@@ -23,7 +23,6 @@ public class ProductDAO {
 	//상품 검색
 	public List<Map<String, Object>> searchProduct(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("product.searchProduct", map);
-		
 	}
 	
 	// 신상품순 상품리스트
@@ -34,7 +33,6 @@ public class ProductDAO {
 	// 인기순 상품리스트
 	public List<Map<String, Object>> bestProductList(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("product.bestProductList", map);
-
 	}
 	
 	// 종류별 상품리스트
@@ -45,6 +43,5 @@ public class ProductDAO {
 	// 상품상세
 	public Map<String, Object> productDetail(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectOne("product.productDetail", map);
-	
 	}
 }
