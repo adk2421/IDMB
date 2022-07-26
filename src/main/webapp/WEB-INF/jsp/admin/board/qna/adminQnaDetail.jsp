@@ -17,7 +17,20 @@ function deleteCheck() {
 </script>
 </head>
 <body>
-
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+	
 	<img src="img/${adminQnaBean.Q_CATEGORY}QNA.png" width="75" border="0" id="imageQNA">
 	<c:if test="${adminQnaBean.Q_CATEGORY == 'product'}">
 		<font size="25">상품 문의</font></c:if>

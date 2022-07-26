@@ -13,9 +13,36 @@
 </script>
 </head>
 <body>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+	
+	<!-- 관리자 게시판 바로가기 -->
+	<div style="display: flex; justify-content: center;">
+	<ul style="list-style-type:none">
+		<li style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
+		<li style="display:inline"><a href="adminReviewList.do" >상 품 후 기</a></li>
+		<li style="display:inline"><a href="adminFaqList.do?f_category=cost" >F A Q</a></li>
+		<li style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>
+	</ul>
+	</div>
+	<hr>
+	
+	
 <form action="adminQnaList.do" method="get">
 	<input type="hidden" name="q_category" id="q_category" value="${q_category}">
-	<table>
+	<table style="display: flex; justify-content: center;">
 		<tbody>
 			<tr>
 				<td>
@@ -51,8 +78,7 @@
 	
 	
 	
-	<table border=1>
-		<thead>
+	<table style="display: flex; justify-content: center;" border=1>
 			<tr>
 				<th>글번호</th>
 				<th>상품명</th>
@@ -61,8 +87,7 @@
 				<th>작성일</th>
 				<th>상태</th>
 			</tr>
-		</thead>
-		<tbody>
+
 		<c:forEach var="qna" items="${adminQnaList}">
 			<tr>
 				<td>
@@ -84,7 +109,7 @@
 				<td>${qna.Q_STATUS}</td>
 			</tr>
 		</c:forEach>
-		</tbody>
+
 	</table>
 
 </body>

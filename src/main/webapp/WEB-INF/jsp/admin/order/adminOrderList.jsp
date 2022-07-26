@@ -10,6 +10,22 @@
 <title>일단메봐</title>
 </head>
 <body>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+
+	<div style="margin:auto; text-align: center;">
 	<form action="adminOrderList.do" method="get">
 		<select name="ostatus" id="ostatus">
 			<option value="" <c:if test="${ostatus == null}">selected</c:if>>전체</option>
@@ -20,8 +36,9 @@
 		<input type="text" name="searchValue" id="searchValue" placeholder="주문자명 ..." value="${searchValue}"/>
 		<button type="submit">검색</button>
 	</form>
+	</div>
 	
-	<table border=1>
+	<table style="margin:auto; text-align: center;" border=1>
 		<thead>
 			<tr>
 				<th>주문번호</th>

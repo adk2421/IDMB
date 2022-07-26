@@ -34,7 +34,7 @@ function insertNotice()	{
 
 <body>
 
-	<!-- 상단카테고리 -->
+<!-- 상단카테고리  = main_header.jsp로 따로 분류하여 사용하는게 좋을듯함
 	<div id="nav_menu">
 	<ul style="list-style-type:none">
 		<li style="display:inline"><a href="loginForm.do">LOGIN</a></li>
@@ -43,33 +43,37 @@ function insertNotice()	{
 		<li style="display:inline"><a href="mypage.do">MY PAGE</a></li>
 		<li style="display:inline"><a href="myOrderList.do">ORDER</a></li>
 		<li style="display:inline"><a href="community.do">COMMUNITY</a></li>
-		<input type="search" name="search"><input type="button" class="img-button"></button>
 	</ul>	
-	</div>
+	</div> -->
 	
+
+	<!-- 관리자 메인 툴바 -->
 	<div>
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-	
 		<div align="right">
-			<li style="display:inline"><a href="#" >회원 관리</a></li>
-			<li style="display:inline"><a href="#" >상품 관리</a></li>
-			<li style="display:inline"><a href="#" >주문 관리</a></li>
-			<li style="display:inline"><a href="#" >게시판 관리</a></li>
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
 		</div>
 	</div>
 	<hr>
 	
-	<div class="titletext1">
-		<button type="button"  onClick="noticeList()">공지 사항</button>
-			&emsp;&emsp;
-		<button type="button" onClick="reviewList()">상품 후기</button>
-			&emsp;&emsp;
-		<button type="button" onClick="faqList()">자주 묻는 질문</button>
-			&emsp;&emsp;
-		<button type="button" onClick="qnaMain()">1:1 문의</button>
-		
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-		<button type="button" onClick="insertNotice()">공지작성</button>
+	<!-- 관리자 게시판 바로가기 -->
+	<div style="display: flex; justify-content: center;">
+	<ul style="list-style-type:none">
+		<li style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
+		<li style="display:inline"><a href="adminReviewList.do" >상 품 후 기</a></li>
+		<li style="display:inline"><a href="adminFaqList.do?f_category=cost" >F A Q</a></li>
+		<li style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>
+	</ul>
+	</div>
+	<hr>
+	
+	<br>
+	
 	<table>
 		<thead>
 			<tr >
@@ -102,6 +106,8 @@ function insertNotice()	{
 		</c:forEach>
 		</tbody>
 	</table>
-	</div>
+	<br><br>
+	<button type="button" onClick="insertNotice()">공지작성</button>
+
 </body>
 </html>
