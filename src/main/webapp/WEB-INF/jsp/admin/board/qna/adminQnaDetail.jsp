@@ -17,7 +17,20 @@ function deleteCheck() {
 </script>
 </head>
 <body>
-
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+	
 	<img src="img/${adminQnaBean.Q_CATEGORY}QNA.png" width="75" border="0" id="imageQNA">
 	<c:if test="${adminQnaBean.Q_CATEGORY == 'product'}">
 		<font size="25">상품 문의</font></c:if>
@@ -28,28 +41,29 @@ function deleteCheck() {
 	<c:if test="${adminQnaBean.Q_CATEGORY == 'exchange'}">
 		<font size="25">교환/반품 문의</font></c:if>
 
-	<table>
+	<table style="display: flex; justify-content: left;">
 		<tbody>
 			<tr>
 				<td><b>제목</b></td>
 				<td><input type="text" value="${adminQnaBean.Q_TITLE}" readonly></td>
-				<td><b>작성자</b></td>		
-				<td><input type="text" size="8" value="${adminQnaBean.Q_ID}" readonly></td>
 				<td><b>작성일</b></td>
 				<td>
-					<input type="text" size="8" value=
-						"<fmt:formatDate value="${adminQnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>" readonly>
+					<fmt:formatDate value="${adminQnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>
 				</td>
 			</tr>
 			<tr>
+				<td><b>작성자</b></td>		
+				<td colspan="3"><input type="text" size="8" value="${adminQnaBean.Q_ID}" readonly></td>
+			</tr>
+			<tr>
 				<td><b>상품명</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<input type="text" size="10" value="${adminQnaBean.Q_PRODUCT}" readonly>
 				</td>
 			</tr>
 			<tr>
 				<td><b>문의 내용</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<div style="border:1px solid black;width:400px;height:150px;">
 						${adminQnaBean.Q_CONTENTS}
 					</div>
@@ -57,7 +71,7 @@ function deleteCheck() {
 			</tr>
 			<tr>
 				<td><b>답변 내용</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<div style="border:1px solid black;width:400px;height:150px;">
 						${adminQnaReBean.Q_CONTENTS}
 					</div>

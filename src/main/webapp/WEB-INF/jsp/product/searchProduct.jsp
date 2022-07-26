@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,25 +38,46 @@
 <b>전체</b>
 
 <table>
-
+	<tfoot>
+		<c:if test="${searchList.size() == 0}">
+			<br>
+			상품이 없습니다.
+		</c:if>
+	</tfoot>
+	
 	<tbody>
-	<c:forEach var="product" items="${searchList}">
-		<tr>
-			<td>
-				<img src="img/${product.P_IMAGE}" width="100" border="0" id="previewImage"/><br>
-				${product.P_NAME}<br>
-				${product.P_PRICE}
+	<c:forEach var="product" items="${searchList}" begin="0" end ="4">
+			<td width="200" height="200">
+				<a href="productDetail.do?p_code=${product.P_CODE}">
+				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
+				<a href="productDetail.do?p_code=${product.P_CODE}">
+				${product.P_NAME}</a><br>
+				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
 			</td>
-		</tr>
 	</c:forEach>
+	<tr></tr>
+	<c:forEach var="product" items="${searchList}" begin="5" end ="9">
+			<td width="200" height="200">
+				<a href="productDetail.do?p_code=${product.P_CODE}">
+				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
+				<a href="productDetail.do?p_code=${product.P_CODE}">
+				${product.P_NAME}</a><br>
+				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+			</td>
+	</c:forEach>
+	<tr></tr>
+	<c:forEach var="product" items="${searchList}" begin="10" end ="14">
+			<td width="200" height="200">
+				<a href="productDetail.do?p_code=${product.P_CODE}">
+				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
+				<a href="productDetail.do?p_code=${product.P_CODE}">
+				${product.P_NAME}</a><br>
+				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+			</td>
+	</c:forEach>
+	
 	</tbody>
 	</table>
-
-
-
-
-
-
 
 
 </body>

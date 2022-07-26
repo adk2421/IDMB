@@ -23,7 +23,7 @@ public class AdminQnaController {
 	@RequestMapping(value="/adminQnaMain.do")
 	public String adminQnaMain() throws Exception{
 		
-		return "admin/board/qna/adminQnaMain";
+		return "adminQnaMain";
 	}
 	
 	@RequestMapping(value="/adminQnaList.do")

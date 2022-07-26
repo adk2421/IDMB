@@ -26,4 +26,8 @@ public class ReviewDAO {
 		sqlSessionTemplate.insert("review.insertReview", map);
 	}
 	
+	public List<Map<String, Object>> bestReviewList () throws Exception{
+		return sqlSessionTemplate.selectList("bestReviewList");
+	}
+	
 }

@@ -22,8 +22,8 @@ public class OrderServiceImpl implements OrderService {
 	public List<Map<String,Object>> myOrderList(OrderBean order) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("o_id", order.getO_id());
-		return orderDAO.myOrderList(map);
 		
+		return orderDAO.myOrderList(map);	
 	}
 	
 	//주문 등록

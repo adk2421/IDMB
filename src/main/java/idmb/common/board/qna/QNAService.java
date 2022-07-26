@@ -9,7 +9,10 @@ public interface QNAService {
 	
 	public void insertQna(QNABean QNA) throws Exception;
 	
-	public List<Map<String, Object>> qnaList() throws Exception;
+	public List<Map<String, Object>> qnaList(QNABean QNA) throws Exception;
+	
+	public List<Map<String, Object>> searchQna(QNABean qna,
+			String searchValue, String SORT, String qst) throws Exception;
 	
 	public Map<String, Object> qnaDetail(QNABean QNA) throws Exception;
 	
@@ -18,5 +21,7 @@ public interface QNAService {
 	public void deleteQna(QNABean QNA) throws Exception;
 	
 	public List<Map<String, Object>> myQnaList(QNABean QNA) throws Exception;
+	
+	public Map<String, Object> qnaRe(QNABean QNA) throws Exception;
 
 }

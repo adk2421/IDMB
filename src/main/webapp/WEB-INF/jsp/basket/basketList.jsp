@@ -54,7 +54,7 @@
 					</td>
 					<!-- 상품 금액 -->
 					<td style="width: 80px" align="right">
-						<fmt:formatNumber pattern="###,###,###"	value="${basket.B_PRICE}"/>
+						<fmt:formatNumber pattern="###,###,### 원"	value="${basket.B_PRICE}"/>
 						<input type="hidden" name="b_price" id="b_price" value="${basket.B_PRICE}">
 					</td>
 					<!-- 수량 -->
@@ -64,7 +64,7 @@
 					</td>
 					<!-- 총 금액 -->
 					<td style="width: 100px" align="right">
-						<fmt:formatNumber pattern="###,###,###" value="${basket.B_PRICE * basket.B_COUNT}"/>
+						<fmt:formatNumber pattern="###,###,### 원" value="${basket.B_PRICE * basket.B_COUNT}"/>
 					</td>
 					<!-- 기능 -->
 					<td align="center">

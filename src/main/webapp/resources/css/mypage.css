@@ -1,40 +1,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Hahmlet&family=Noto+Sans+KR&display=swap");
 
 	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
 		font-family: "Noto Sans KR", sans-serif;
 	}
 	
-	body {
-		text-align:center;
-	}
 	
 	h2 {
-		text-align:left;
+		text-align: center;
 	}
 	
 	.wrap {
 		width: 100%;
 		height: 100%;
+		margin: auto;
 		display: flex;
-		flex-direction:column;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		background: rgba(0, 0, 0, 0);
 		font-size: 18px;
-	}
-	
-	div {
-		display: flex;
-		padding: 10px;
+		text-align: center;
 	}
 	
 	div.vertical {
-		flex-direction:column;
+		flex-direction: column;
+	}
+	
+	div.leftVertical {
+		flex-direction: column;
+		text-align: left;
+	}
+	
+	table {
+		margin: 10px;
+	}
+	
+	th {
+		border: 1px solid black;
+		padding: 10px;
 	}
 	
 	td {
-		border:1px solid black;
+		border: 1px solid black;
+		padding: 13px;
+	}
+	
+	td img {
+		width: 90px;
+		height: 90px;
 	}

@@ -152,7 +152,7 @@ public class ProductController {
 				
 				map = productService.productDetail(product);
 				
-				model.addAttribute("ProductDetail", map);
+				model.addAttribute("product", map);
 				
 				return "productDetail";
 			}

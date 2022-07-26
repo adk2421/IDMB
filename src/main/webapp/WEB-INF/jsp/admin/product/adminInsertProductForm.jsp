@@ -74,8 +74,23 @@ function readImage(input) {
 </head>
 
 <body>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+
 <form action="adminInsertProduct.do" method="post" id="insertForm">
-	<table border=1>
+	<table style="margin:auto; text-align: center;" border=1>
 		<tbody>
 			<tr>
 				<td>
@@ -151,16 +166,19 @@ function readImage(input) {
 					<b>상품 상세 정보</b>
 				</td>
 				<td>
-					<textarea id="p_detail" name="p_detail" rows="40" cols="30">
-					</textarea>
+					<textarea id="p_detail" name="p_detail" style="width:300px; height:400px"></textarea>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	<br/>
-	<button type="button" onClick="formCheck()">등 &emsp; 록</button>
+	<br>
+	
+	<div style="margin:auto; text-align: center;">
+		<button type="button" onClick="formCheck()">등 &emsp; 록</button>
 		&emsp;&emsp;
-	<button type="button" onclick="cancel()">취 &emsp; 소</button>
+		<button type="button" onclick="cancel()">취 &emsp; 소</button>
+	</div>
+	
 </form>
 </body>
 </html>

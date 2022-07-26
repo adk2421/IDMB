@@ -43,41 +43,61 @@
 	<select id="qnaList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				Q_ID,
-				Q_CODE,
-				Q_CATEGORY,
-				Q_TITLE,
-				Q_DATE,
-				Q_PRODUCT,
-				Q_STATUS,
-				Q_RELEVEL,
-				Q_GROUPNUM
+				*
 			FROM
 				QNA_BOARD
+			WHERE
+				Q_CATEGORY = #{q_category}	
 			ORDER BY
-				Q_NUM DESC, Q_RELEVEL ASC
+				Q_GROUPNUM DESC, Q_RELEVEL ASC
 		]]>
 	</select>
 	
+	<select id="searchQna" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from QNA_BOARD
+			WHERE Q_CATEGORY = #{q_category}
+		]]>
+		
+		<trim prefix="AND">
+			<if test="SORT == 'title'">
+				Q_TITLE like '%'||#{searchValue}||'%'
+			</if>
+			
+			<if test="SORT == 'id'">
+				Q_ID like '%'||#{searchValue}||'%'
+			</if>
+			
+			<if test="SORT == 'product'">
+				Q_PRODUCT like '%'||#{searchValue}||'%'
+			</if>	
+		</trim>
+		
+		<trim prefix="AND">
+			<if test="qst == '답변대기'">
+				Q_STATUS = '답변대기'
+			</if>
+			<if test="qst == '답변완료'">
+				Q_STATUS = '답변완료'
+			</if>
+		</trim>	
+		<trim prefix="ORDER BY">
+			Q_GROUPNUM DESC, Q_RELEVEL ASC 
+		</trim>
+	</select>	
+		
 	<!-- 문의 상세 페이지 -->
 	<select id="qnaDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				Q_ID,
-				Q_CODE,
-				Q_CATEGORY,
-				Q_TITLE,
-				Q_CONTENTS,
-				Q_DATE,
-				Q_PRODUCT,
-				Q_STATUS
+				*
 			FROM
 				QNA_BOARD
-			ORDER BY
+			WHERE
 				Q_NUM = #{q_num}
 		]]>
 	</select>
-	
+		
 	<!-- 문의 수정 -->
 	<update id="updateQna" parameterType="hashmap">
 		<![CDATA[
@@ -106,11 +126,16 @@
 	<select id="myQnaList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
+				Q_NUM,
+				Q_ID,
 				Q_CODE,
+				Q_CATEGORY,
 				Q_TITLE,
-				Q_DATE,
+				Q_CONTENTS,
+				TO_CHAR(Q_DATE, 'YYYY-MM-DD') Q_DATE,
 				Q_PRODUCT,
 				Q_STATUS,
+				Q_CONTENTSPW,
 				Q_RELEVEL,
 				Q_GROUPNUM
 			FROM
@@ -118,8 +143,17 @@
 			WHERE
 				Q_ID = #{q_id}
 			ORDER BY
-				Q_NUM DESC, Q_RELEVEL ASC
+				Q_GROUPNUM DESC, Q_RELEVEL ASC
 		]]>
 	</select>
+	
+	<!-- QNA 답변만 추출 -->
+	<select id="qnaRe" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from QNA_BOARD
+    			where Q_GROUPNUM = (select Q_GROUPNUM from QNA_BOARD where Q_NUM = #{q_num})
+				AND Q_RELEVEL = '1'
+		]]>
+	</select>	
 
 </mapper>
