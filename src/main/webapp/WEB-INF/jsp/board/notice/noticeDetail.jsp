@@ -15,7 +15,7 @@ function cancel() {
 </script>
 </head>
 <body>
-<table>
+<table style="width:490px; margin:auto; text-align: left;">
 	<tbody>
 		<tr>
 			<td><b>제목</b></td>
@@ -38,11 +38,13 @@ function cancel() {
 	</tbody>
 </table>
 
-<div style="width:490px; height:285px; border:1px solid black;">
+<div style="width:490px; height:285px; border:1px solid black; margin:auto;">
 	${noticeBean.N_CONTENTS}
 </div>
 
 <br>
+<div style="margin:auto; text-align: center;">
 <button type="button" onclick="cancel()">돌 아 가 기</button>
+</div>
 </body>
 </html>

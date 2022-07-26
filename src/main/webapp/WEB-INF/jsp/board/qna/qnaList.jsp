@@ -13,6 +13,19 @@
 </script>
 </head>
 <body>
+
+	<!-- 게시판 바로가기 -->
+	<div style="display: flex; justify-content: center;">
+	<ul style="list-style-type:none">
+		<li style="width:500px; display:inline"><a href="noticeList.do" >공 지 사 항</a></li>
+		<li style="display:inline"><a href="reviewList.do" >상 품 후 기</a></li>
+		<li style="display:inline"><a href="faqList.do?f_category=cost" >F A Q</a></li>
+		<li style="display:inline"><a href="qnaMain.do" >1:1 문 의</a></li>
+	</ul>
+	</div>
+	<hr>
+
+
 <form action="qnaList.do" method="get">
 	<input type="hidden" name="q_category" id="q_category" value="${q_category}">
 	<table>
@@ -51,8 +64,8 @@
 	
 	
 	
-	<table border=1>
-		<thead>
+	<table style="display: flex; justify-content: center;" border=1>
+
 			<tr>
 				<th>글번호</th>
 				<th>상품명</th>
@@ -61,8 +74,7 @@
 				<th>작성일</th>
 				<th>상태</th>
 			</tr>
-		</thead>
-		<tbody>
+
 		<c:forEach var="qna" items="${qnaList}">
 			<tr>
 				<td>
@@ -84,7 +96,7 @@
 				<td>${qna.Q_STATUS}</td>
 			</tr>
 		</c:forEach>
-		</tbody>
+
 	</table>
 
 </body>

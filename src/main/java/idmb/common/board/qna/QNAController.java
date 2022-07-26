@@ -73,6 +73,8 @@ public class QNAController {
 	}
 	
 	
+	
+	
 	@RequestMapping(value="/myQnaList.do")
 	public String myQnaList(HttpServletRequest request, Model model) throws Exception{
 		String id = (String) request.getSession().getAttribute("id");
@@ -85,7 +87,7 @@ public class QNAController {
         
         model.addAttribute("myQnaList", myQnaList);
         
-		return "qnaList";
+		return "myQnaList";
 	}
 
 }

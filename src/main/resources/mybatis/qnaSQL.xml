@@ -49,7 +49,7 @@
 			WHERE
 				Q_CATEGORY = #{q_category}	
 			ORDER BY
-				Q_NUM DESC, Q_RELEVEL ASC
+				Q_GROUPNUM DESC, Q_RELEVEL ASC
 		]]>
 	</select>
 	
@@ -147,7 +147,7 @@
 			WHERE
 				Q_ID = #{q_id}
 			ORDER BY
-				Q_NUM DESC, Q_RELEVEL ASC
+				Q_GROUPNUM DESC, Q_RELEVEL ASC
 		]]>
 	</select>
 

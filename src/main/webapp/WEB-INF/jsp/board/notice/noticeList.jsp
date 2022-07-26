@@ -10,45 +10,23 @@
 <meta charset="UTF-8">
 <title>관리자 공지리스트</title>
 <script>
-function noticeList() {
-	location.href = "/IDMB/noticeList.do";
-}
-function reviewList() {
-	location.href = "/IDMB/reviewList.do";
-}
-function faqList() {
-	location.href = "/IDMB/faqList.do?f_category=cost";
-}
-function qnaMain() {
-	location.href = "/IDMB/qnaMain.do";
-}
 
 </script>
 </head>
 <body>
 
-	<!-- 상단카테고리 -->
-	<div id="nav_menu">
-	<ul style="list-style-type:none">
-		<li style="display:inline"><a href="loginForm.do">LOGIN</a></li>
-		<li style="display:inline"><a href="joinForm.do">JOIN</a></li>
-		<li style="display:inline"><a href="basketList.do">CART</a></li>
-		<li style="display:inline"><a href="mypage.do">MY PAGE</a></li>
-		<li style="display:inline"><a href="myOrderList.do">ORDER</a></li>
-		<li style="display:inline"><a href="community.do">COMMUNITY</a></li>
-		<input type="search" name="search"><input type="button" class="img-button"></button>
-	</ul>	
-	</div>
 
+	<!-- 게시판 바로가기 -->
+	<div style="display: flex; justify-content: center;">
+	<ul style="list-style-type:none">
+		<li style="width:500px; display:inline"><a href="noticeList.do" >공 지 사 항</a></li>
+		<li style="display:inline"><a href="reviewList.do" >상 품 후 기</a></li>
+		<li style="display:inline"><a href="faqList.do?f_category=cost" >F A Q</a></li>
+		<li style="display:inline"><a href="qnaMain.do" >1:1 문 의</a></li>
+	</ul>
+	</div>
+	<hr>
 	
-	<div class="titletext1">
-		<button type="button"  onClick="noticeList()">공지 사항</button>
-			&emsp;&emsp;
-		<button type="button" onClick="reviewList()">상품 후기</button>
-			&emsp;&emsp;
-		<button type="button" onClick="faqList()">자주 묻는 질문</button>
-			&emsp;&emsp;
-		<button type="button" onClick="qnaMain()">1:1 문의</button>
 	<table>
 		<thead>
 			<tr >
@@ -76,6 +54,5 @@ function qnaMain() {
 		</c:forEach>
 		</tbody>
 	</table>
-	</div>
 </body>
 </html>

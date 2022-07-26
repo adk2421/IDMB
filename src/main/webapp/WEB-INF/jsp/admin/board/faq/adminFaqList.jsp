@@ -60,7 +60,7 @@ function insertFaq()	{
 	
 	<br>
 	
-	<table style="margin:auto; text-align: center; width:800px;" border=1>
+	<table style="margin:auto; text-align: left; width:800px;" border=1>
 		<tbody>
 		<c:forEach var="faq" items="${adminFaqList}">
 			<tr>
