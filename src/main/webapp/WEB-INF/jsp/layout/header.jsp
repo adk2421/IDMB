@@ -11,19 +11,19 @@
 	<div id="nav_menu" align="right">
 	<c:if test="${ empty id }">
 		<ul style="list-style-type:none">
-			<li style="display:inline"><a href="loginForm.do">LOGIN</a></li>　|　
-			<li style="display:inline"><a href="joinForm.do">JOIN</a></li>　|　
-			<li style="display:inline"><a href="community.do">COMMUNITY</a></li>　
+			<li style="display:inline"><a href="loginForm.do">LOGIN</a>　|　</li>
+			<li style="display:inline"><a href="joinForm.do">JOIN</a>　|　</li>
+			<li style="display:inline"><a href="noticeList.do">COMMUNITY</a></li>
 		</ul>
 	</c:if>
 	
 	<c:if test="${! empty id }">
 		<ul style="list-style-type:none">
-			<li style="display:inline"><a href="logout.do">LOGOUT</a></li>　|　
-			<li style="display:inline"><a href="basketList.do">CART</a></li>　|　
-			<li style="display:inline"><a href="myPage.do">MY PAGE</a></li>　|　
-			<li style="display:inline"><a href="myOrderList.do">ORDER</a></li>　|　
-			<li style="display:inline"><a href="community.do">COMMUNITY</a></li>　
+			<li style="display:inline"><a href="logout.do">LOGOUT</a>　|　</li>
+			<li style="display:inline"><a href="basketList.do">CART</a>　|　</li>
+			<li style="display:inline"><a href="myPage.do">MY PAGE</a>　|　</li>
+			<li style="display:inline"><a href="myOrderList.do">ORDER</a>　|　</li>
+			<li style="display:inline"><a href="noticeList.do">COMMUNITY</a></li>
 		</ul>
 	</c:if>
 	</div>

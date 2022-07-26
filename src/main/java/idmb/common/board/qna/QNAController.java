@@ -27,7 +27,7 @@ public class QNAController {
 	@RequestMapping(value="/qnaMain.do")
 	public String qnaMain() throws Exception{
 		
-		return "board/qna/qnaMain";
+		return "qnaMain";
 	}
 	
 	@RequestMapping(value="/qnaList.do")

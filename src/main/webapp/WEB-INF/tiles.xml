@@ -131,6 +131,11 @@
 			value="/WEB-INF\jsp\board\notice\noticeDetail.jsp" />
 	</definition>
 	
+	<definition name="qnaMain" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\qnaMain.jsp" />
+	</definition>
+	
 	<definition name="qnaList" extends="main_layout">
 		<put-attribute name="body"
 			value="/WEB-INF\jsp\board\qna\qnaList.jsp" />
@@ -140,6 +145,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF\jsp\board\qna\qnaDetail.jsp" />
 	</definition>	
+	
+	<definition name="reviewList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\review\reviewList.jsp" />
+	</definition>
 	
 	
 

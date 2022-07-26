@@ -5,13 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-
-</style>
-<body>
-
-
-
+<meta charset="UTF-8">
+<title>상품 목록</title>
 
 <style>
 
@@ -53,20 +48,9 @@ border-left: none;
 
 </style>
 
-<meta charset="UTF-8">
-<title>상품 목록</title>
+
 </head>
 <body>
-	<div id="menu">
-	<ul>
-		<li><a href="logout.do">LOGOUT</a></li>
-		<li><a href="joinForm.do">JOIN</a></li>
-		<li><a href="basketList.do">CART</a></li>
-		<li>MY PAGE</li>
-		<li>ORDER</li>
-		<li>COMMUNITY</li>
-	</ul>
-	</div>
 	
 <!-- 메인페이지 로고 -->
 <a href="mainpageProductList.do">
