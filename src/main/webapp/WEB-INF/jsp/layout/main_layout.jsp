@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<header style="height: 10%;">
+<header style="height: 10%; align:center;">
 	<tiles:insertAttribute name="header"/>
 </header>
 

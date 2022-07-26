@@ -19,6 +19,48 @@
 		<put-attribute name="left" value="/WEB-INF/jsp/layout/left.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
 	</definition>
+	
+	<!-- member -->
+	<definition name="loginForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/loginForm.jsp" />
+	</definition>
+	
+	<definition name="joinSuccess" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/joinSuccess.jsp" />
+	</definition>
+	
+	<definition name="myPage" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/myPage.jsp" />
+	</definition>
+	
+	<definition name="myInfoModifyForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/myInfoModifyForm.jsp" />
+	</definition>
+	
+	<definition name="findId" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/findId.jsp" />
+	</definition>
+	
+	<definition name="findIdResult" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/findIdResult.jsp" />
+	</definition>
+	
+	<definition name="findPw" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/findPw.jsp" />
+	</definition>
+	
+	<definition name="findPwResult" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/findPwResult.jsp" />
+	</definition>
+
 
 	<!-- product -->
 	

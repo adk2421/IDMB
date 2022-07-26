@@ -144,14 +144,14 @@ public class MemberController {
 			model.addAttribute("url", "/loginForm.do");
 		}
 
-		return "/member/joinSuccess";
+		return "joinSuccess";
 	}
 	
 	// 로그인 폼 이동
 	@RequestMapping(value = "/loginForm.do")
 	public String loginForm(Model model) throws Exception {
 		
-		return "/member/loginForm";
+		return "loginForm";
 	}
 
 	// 로그인
@@ -188,7 +188,7 @@ public class MemberController {
 					model.addAttribute("url", "/adminMain.do");
 				
 				} else {
-					model.addAttribute("url", "/myInfo.do");
+					model.addAttribute("url", "/myPage.do");
 				}
 				
 			} else {
@@ -218,7 +218,7 @@ public class MemberController {
 	@RequestMapping(value = "/findId.do")
 	public String findId(Model model) throws Exception {
 		
-		return "/member/findId";
+		return "findId";
 	}
 
 	// 아이디 찾기 결과
@@ -237,14 +237,14 @@ public class MemberController {
 			model.addAttribute("id", map.get("ID"));
 		}
 		
-		return "/member/findIdResult";
+		return "findIdResult";
 	}
 	
 	// 비밀번호 찾기 이동
 	@RequestMapping(value = "/findPw.do")
 	public String findPw(Model model) throws Exception {
 		
-		return "/member/findPw";
+		return "findPw";
 	}
 
 	// 비밀번호 찾기 결과
@@ -263,7 +263,7 @@ public class MemberController {
 			model.addAttribute("passwd", map.get("PASSWD"));
 		}
 
-		return "/member/findPwResult";
+		return "findPwResult";
 	}
 
 	// 마이페이지 이동
@@ -297,7 +297,7 @@ public class MemberController {
 
 		model.addAttribute("memberBean", memberBean);
 		
-		return "/member/myInfoModifyForm";
+		return "myInfoModifyForm";
 	}
 
 	// 회원정보 수정
@@ -344,8 +344,8 @@ public class MemberController {
 	}
 	
 	
-	// 나의 주문내역 
-	@RequestMapping(value = "/myInfo.do") public String myInfoOrder(Model
+	// 마이페이지
+	@RequestMapping(value = "/myPage.do") public String myInfoOrder(Model
 			model, HttpServletRequest request, HttpSession session) throws Exception {
 
 		// 세션 id 값 받아오기
@@ -376,7 +376,7 @@ public class MemberController {
         
         model.addAttribute("myQnaList", myQnaList);
         
-		return "/member/myPage"; 	
+		return "myPage"; 	
 	}
 	 
 }
