@@ -34,28 +34,30 @@ function deleteCheck() {
 	<c:if test="${qnaBean.Q_CATEGORY == 'exchange'}">
 		<font size="25">교환/반품 문의</font></c:if>
 
-	<table>
+	<table style="display: flex; justify-content: left;">
 		<tbody>
 			<tr>
 				<td><b>제목</b></td>
 				<td><input type="text" value="${qnaBean.Q_TITLE}" readonly></td>
-				<td><b>작성자</b></td>		
-				<td><input type="text" size="8" value="${qnaBean.Q_ID}" readonly></td>
 				<td><b>작성일</b></td>
 				<td>
-					<input type="text" size="8" value=
-						"<fmt:formatDate value="${qnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>" readonly>
+					<fmt:formatDate value="${qnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>
 				</td>
 			</tr>
 			<tr>
+				<td><b>작성자</b></td>		
+				<td colspan="3"><input type="text" size="8" value="${qnaBean.Q_ID}" readonly></td>
+				
+			</tr>
+			<tr>
 				<td><b>상품명</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<input type="text" size="10" value="${qnaBean.Q_PRODUCT}" readonly>
 				</td>
 			</tr>
 			<tr>
 				<td><b>문의 내용</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<div style="border:1px solid black;width:400px;height:150px;">
 						${qnaBean.Q_CONTENTS}
 					</div>
@@ -63,7 +65,7 @@ function deleteCheck() {
 			</tr>
 			<tr>
 				<td><b>답변 내용</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<div style="border:1px solid black;width:400px;height:150px;">
 						${qnaReBean.Q_CONTENTS}
 					</div>

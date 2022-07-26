@@ -85,11 +85,7 @@
 			Q_GROUPNUM DESC, Q_RELEVEL ASC 
 		</trim>
 	</select>	
-	
-	
-	
-	
-	
+		
 	<!-- 문의 상세 페이지 -->
 	<select id="qnaDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -97,11 +93,11 @@
 				*
 			FROM
 				QNA_BOARD
-			ORDER BY
+			WHERE
 				Q_NUM = #{q_num}
 		]]>
 	</select>
-	
+		
 	<!-- 문의 수정 -->
 	<update id="updateQna" parameterType="hashmap">
 		<![CDATA[
@@ -150,5 +146,14 @@
 				Q_GROUPNUM DESC, Q_RELEVEL ASC
 		]]>
 	</select>
+	
+	<!-- QNA 답변만 추출 -->
+	<select id="qnaRe" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from QNA_BOARD
+    			where Q_GROUPNUM = (select Q_GROUPNUM from QNA_BOARD where Q_NUM = #{q_num})
+				AND Q_RELEVEL = '1'
+		]]>
+	</select>	
 
 </mapper>

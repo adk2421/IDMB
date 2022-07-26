@@ -21,5 +21,7 @@ public interface QNAService {
 	public void deleteQna(QNABean QNA) throws Exception;
 	
 	public List<Map<String, Object>> myQnaList(QNABean QNA) throws Exception;
+	
+	public Map<String, Object> qnaRe(QNABean QNA) throws Exception;
 
 }

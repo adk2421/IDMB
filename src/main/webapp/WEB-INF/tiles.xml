@@ -94,6 +94,11 @@
 			value="/WEB-INF\jsp\board\qna\qnaList.jsp" />
 	</definition>
 	
+	<definition name="qnaDetail" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\qnaDetail.jsp" />
+	</definition>	
+	
 	
 
 	<!-- admin -->

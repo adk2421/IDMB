@@ -95,5 +95,14 @@ public class QNAServiceImpl implements QNAService {
 		return qnaDAO.myQnaList(map);
 		
 	}
+	
+	@Override
+	public Map<String, Object> qnaRe(QNABean QNA) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("q_num", QNA.getQ_num());
+		
+		return qnaDAO.qnaRe(map);
+	}
 
 }

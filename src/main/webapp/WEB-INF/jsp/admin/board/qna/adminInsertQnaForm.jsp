@@ -58,30 +58,31 @@ function insertCheck() {
 			<tr>
 				<td><b>제목</b></td>
 				<td><input type="text" value="${adminQnaBean.Q_TITLE}" readonly></td>
-				<td><b>작성자</b></td>		
-				<td><input type="text" size="8" value="${adminQnaBean.Q_ID}" readonly></td>
 				<td><b>작성일</b></td>
 				<td>
-					<input type="text" size="8" value=
-						"<fmt:formatDate value="${adminQnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>" readonly>
+					<fmt:formatDate value="${adminQnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>
 				</td>
 			</tr>
 			<tr>
+				<td><b>작성자</b></td>		
+				<td colspan="3"><input type="text" size="8" value="${adminQnaBean.Q_ID}" readonly></td>
+			</tr>
+			<tr>
 				<td><b>상품명</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<input type="text" size="10" value="${adminQnaBean.Q_PRODUCT}" readonly>
 				</td>
 			</tr>
 			<tr>
 				<td><b>문의 내용</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<input type="text" style="width:400px;height:150px;"
 						 value="${adminQnaBean.Q_CONTENTS}" readonly>
 				</td>
 			</tr>
 			<tr>
 				<td><b>답변 내용</b></td>
-				<td colspan="5">
+				<td colspan="3">
 					<textarea id="q_contents" name="q_contents"
 						style="width:400px;height:150px;" maxlength="500"></textarea>
 				</td>

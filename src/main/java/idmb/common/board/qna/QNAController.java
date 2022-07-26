@@ -1,6 +1,7 @@
 package idmb.common.board.qna;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,6 +73,24 @@ public class QNAController {
 		return "qnaList";
 	}
 	
+	@RequestMapping(value="/qnaDetail.do")
+	public String qnaDetail(QNABean qna, HttpServletRequest request, Model model) throws Exception{
+		//특정 QNA의 map만 필요하므로 HashpMap형태의 'map' 생성		
+		Map<String, Object> map = new HashMap<String, Object>();
+		//추출한 QNA의 답글만 따로 추출
+		Map<String, Object> mapR = new HashMap<String, Object>();
+		
+		//adminQnaList에서 q_num=? 로 입력받은 q_num값을 qna에 주어 상세정보 검색		
+		map = qnaService.qnaDetail(qna);
+		mapR = qnaService.qnaRe(qna);
+		
+		//model로 위에서 정의한 값 전송
+		model.addAttribute("qnaBean",map);
+		model.addAttribute("qnaReBean",mapR);
+		
+		//tiles.xml의 definition name="qnaDetail"로 이동
+		return "qnaDetail";	
+	}
 	
 	
 	
