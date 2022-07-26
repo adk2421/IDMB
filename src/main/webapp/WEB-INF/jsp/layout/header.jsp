@@ -6,9 +6,11 @@
 <html>
 <head>
 
+	<link rel="stylesheet" href="/IDMB/resources/css/header.css?v=<%=System.currentTimeMillis()%>">
+
 </head>
 <body>
-	<div id="nav_menu" align="right">
+	<div class="nav" align="right">
 	<c:if test="${ empty id }">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="loginForm.do">LOGIN</a></li>　|　
@@ -27,5 +29,13 @@
 		</ul>
 	</c:if>
 	</div>
+	<hr/>
+	<div class="logo">
+		<img class="logo" src="/IDMB/img/logo.png" onclick="main()">
+	</div>
+	<div>
+		<hr/>
+	</div>
+
 </body>
 </html>

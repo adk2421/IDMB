@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Hahmlet&family=Noto+Sans+KR&display=swap");	
+	
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	a:hover {
+		color: gray;
+	}
+	
+	div.nav {
+		padding: 1px;
+	}
+	
+	div.logo {
+		margin: auto;
+		padding: 20px;
+	}
+	
+	.logo {
+		width: 100px;
+		height: 140px;
+		cursor: pointer;
+	}
