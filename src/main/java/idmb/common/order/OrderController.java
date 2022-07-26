@@ -35,12 +35,15 @@ public class OrderController {
     @Resource (name="basketService")
     private BasketService basketService;
 
-    //내 주문목록 보기
     @RequestMapping("/myOrderList.do")
-    public String myOrderList (OrderBean order, Model model) throws Exception {
+    public String myOrderList (OrderBean order, Model model, HttpServletRequest request) throws Exception {
 
         //내 주문 목록들의 List 생성
         List<Map<String, Object>> myOrderList = new ArrayList<Map<String, Object>>();
+        
+        // 세션 id 값 받아오기
+        String id = (String) request.getSession().getAttribute("id");
+        order.setO_id(id);
 
         myOrderList = orderService.myOrderList(order);
 
@@ -79,7 +82,8 @@ public class OrderController {
     	String id = order.getO_id();
     	
     	orderService.insertOrder(order);
-    	    	
+    	
+    	
     	model.addAttribute("msg", "주문이 등록되었습니다.");
 		model.addAttribute("url", "/myOrderList.do?o_id="+id+"");
 		
@@ -92,15 +96,31 @@ public class OrderController {
     public String basketOrderForm(BasketBean basket, MemberBean member, Model model) throws Exception {
     	//장바구니 id를 통해 list를 가져온다.
     	List<Map<String,Object>> bmap = new ArrayList<Map<String,Object>>();
-    	bmap = basketService.basketList(basket);
-    
+    	bmap = basketService.basketList(basket);	
+    	
     	Map<String,Object> mmap =  myInfoService.selectMember(member);
     	mmap =  myInfoService.selectMember(member);
     	
     	model.addAttribute("basketList",bmap);
     	model.addAttribute("myInfo", mmap);
     	
+    	//tiles로 이동 
     	return "basketOrderForm";
+    }
+    
+    
+    @RequestMapping(value = "/basketOrder.do")
+    public String basketOrder(OrderBean order, Model model) throws Exception {
+    
+    	String id = order.getO_id();
+    		
+    	orderService.insertOrder(order);
+    	
+    	
+    	model.addAttribute("msg", "주문이 등록되었습니다.");
+		model.addAttribute("url", "/myOrderList.do?o_id="+id+"");
+    	
+    	return "order/basketOrder";
     }
 
 }

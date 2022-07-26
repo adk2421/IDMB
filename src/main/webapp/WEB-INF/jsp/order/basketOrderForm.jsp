@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>basketForm</title>
+<title>basketOrderForm</title>
 
 <script>
 function orderCheck() {
-	var form = document.getElementById("orderForm");
+	var form = document.getElementById("basketOrderForm");
 	var O_RECIEVER = document.getElementById("o_reciever");
 	var O_ADDRESS1 = document.getElementById("o_address1");
 	var O_ADDRESS2 = document.getElementById("o_address2");
@@ -112,22 +112,35 @@ function orderCheck() {
 			<c:set var="sum" value="0" />
 				<c:forEach var="bList" items="${basketList}">
 				<tr>
-					<td>${bList.B_NAME }</td>
+				
+					<td>${bList.B_NAME }</td> 
+					<input type="hidden" id="o_name" name="o_name" value="${bList.B_NAME}">
+					
 					<td>${bList.B_PRICE }원</td>
+					
 					<td>${bList.B_COUNT}개</td>
+					<input type="hidden" id="o_count" name="o_count" value="${bList.B_COUNT }">
+					
 					<td>${bList.B_COUNT * bList.B_PRICE }</td>
-				<c:set var="sum" value="${sum + (bList.B_PRICE * bList.B_COUNT)}" />
+					<input type="hidden" id="o_price" name="o_price" value="${bList.B_PRICE}">
+					<c:set var="sum" value="${sum + (bList.B_PRICE * bList.B_COUNT)}" />
+				
+					
+					<input type="hidden" id="o_id" name="o_id" value="${bList.B_ID}"/>
+					<input type="hidden" id="o_code" name="o_code" value="${bList.B_CODE}">	
+					
 				</tr>
 				</c:forEach>
 			</tbody>
 		
-		</table>	
-		<input type="hidden" id="o_name" name="o_name" value="${bList.B_NAME}">	
-		<input type="hidden" id="o_price" name="o_price" value="${bList.B_PRICe}">
-		<input type="hidden" id="o_count" name="o_count" value="${bList.B_COUNT }">
-		<input type="hidden" id="o_code" name="o_code" value="${bList.B_CODE}">
-		<input type="hidden" id="o_total" name="o_total" value="${bList.B_COUNT * bList.B_PRICE }">
-		<input type="hidden" id="o_id" name="o_id" value="${bList.B_ID}">		
+		</table>
+	
+				
+			
+
+		
+		
+		
 		
 		<!-- 주문자 정보 -->
 		<h2>주문자 정보</h2>
@@ -168,12 +181,14 @@ function orderCheck() {
 				
 				<span>주 문 금 액</span>
 				<fmt:formatNumber pattern="###,###,###" value="${sum}" />원
+				
 	    		<span>배 송 비</span>
 	    		<span>3000원</span>
 	    		&emsp;
 	    						 
 	    		<span>총 금 액</span>
 	    		<fmt:formatNumber pattern="###,###,###" value="${sum+3000}" />원
+	    		<input type="hidden" id="o_total" name="o_total" value="${sum+3000}">
 				
 						
 				<h2> 결 제 정 보 </h2>
