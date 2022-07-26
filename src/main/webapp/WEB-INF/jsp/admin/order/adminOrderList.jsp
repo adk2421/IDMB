@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/adminorder.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 </head>
@@ -17,9 +19,9 @@
 		<div align="right">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="order-ad"style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
@@ -33,8 +35,8 @@
 			<option value="ing" <c:if test="${ostatus =='ing'}">selected</c:if>>배송 중</option>
 			<option value="fin" <c:if test="${ostatus =='fin'}">selected</c:if>>배송 완료</option>			
 		</select>
-		<input type="text" name="searchValue" id="searchValue" placeholder="주문자명 ..." value="${searchValue}"/>
-		<button type="submit">검색</button>
+		<input type="search" name="searchValue" id="search" placeholder="주문자명 ..." value="${searchValue}"/>
+		<button class="search-icon" href=""><i class="fa fa-search"></i></button>
 	</form>
 	</div>
 	

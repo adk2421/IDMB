@@ -1,34 +1,24 @@
 @charset "UTF-8";
 
-/* div{overflow-x: auto;} 스크롤바*/
 
 a:link{color:black; text-decoration:none;}/* 방문하지 않은 링크 */
 a:visited{color:puple; text-decoration:none;}/*방문했던 링크*/
 a:hover{color:#cfcccc; text-decoration:none; border-radius:5px;}/*마우스가 올려진 링크*/
 a:active{color:white; background-color:#cfcccc;border-radius:5px;}/*클릭하는 순간 링크*/
 
-.box1{
-	margin-right:30px;
-	
-}
-#product-review, #board-ad{/*상품후기*/
+
+#order-ad{
 
 	background-color:#d1dce0;border-radius:5px;  
 	margin-left:15px;
 	font-size:12pt;
 }
-#title-text2,#title-text1,#board-ad{
+#title-text1,#order-ad{
 	margin-left:15px;
 }
-#title-text2{font-size:12pt;}
 
-#rmbtn{/*삭제버튼*/
-	background-color:red;
-	border-radius:5px;
-	border-style:none;
-	width:50px;height:30px;
-	color:white;
-}
+
+
 
 /*검색창*/
 .search{
@@ -60,34 +50,3 @@ input#search:hover, input#search:focus, input#search:active{
 	font-size:12pt;
 	
 }
-
-/*목록*/
- 	table{
-		top:10px;
-		width: 99%;
-		border:none;
-		border-top:1px solid #444444;
-		border-collapse:collapse;
-		float: center;
-		min-width:500px;
-	}
-
-	th
-	{
-		background-color: #e6e3e3; padding: 10px;
-		border:none;
-	    border-top: 1px solid #444444;
-	    border-bottom: 1px solid #444444;
-	}
-	td
-	{   
-		text-align: center; 
-	    border:none;
-	    border-bottom: 1px solid #444444;
-	    padding: 10px;
-	}
-
-
-	
-	
-	

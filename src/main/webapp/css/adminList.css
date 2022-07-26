@@ -2,19 +2,19 @@
 
 a:link{color:black; text-decoration:none;}/* 방문하지 않은 링크 */
 a:visited{color:puple; text-decoration:none;}/*방문했던 링크*/
-a:hover{color:red; text-decoration:none; background-color:#cfcccc;border-radius:5px;}/*마우스가 올려진 링크*/
+a:hover{color:#cfcccc; text-decoration:none; border-radius:5px;}/*마우스가 올려진 링크*/
 a:active{color:white; background-color:#cfcccc;border-radius:5px;}/*클릭하는 순간 링크*/
 
 .box1{
 	margin-right:30px;
 	
 }
-#notice-list{/*공지사항*/
+#notice-list,#board-ad{/*공지사항*/
 	background-color:#d1dce0;border-radius:5px;
 	
 	font-size:12pt;
 }
-#title-text2,#title-text1{
+#title-text2,#title-text1,#board-ad{
 	margin-left:15px;
 }
 #title-text2{font-size:12pt;}
