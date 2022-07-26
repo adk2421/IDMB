@@ -2,26 +2,47 @@
 
 a:link{color:black; text-decoration:none;}/* 방문하지 않은 링크 */
 a:visited{color:puple; text-decoration:none;}/*방문했던 링크*/
-a:hover{color:red; text-decoration:underline;}/*마우스가 올려진 링크*/
-a:active{color:white; background-color:gray;}/*클릭하는 순간 링크*/
+a:hover{color:red; text-decoration:none; background-color:#cfcccc;border-radius:5px;}/*마우스가 올려진 링크*/
+a:active{color:white; background-color:#cfcccc;border-radius:5px;}/*클릭하는 순간 링크*/
 
-#nav_menu ul{
-	list-style-type:none;
-	padding-left:0px;/*좌측여백 없애기*/
-	float:right;/*우측 정렬 하기*/
+.box1{
+	margin-right:30px;
+	
 }
-#nav_menu ul li{
-	display:inline;
-	border-left:1px solid #c0c0c0;
-	padding: 0px 10px 0px 10px;/*테두리와 메뉴 간격 벌리기.padding:위 오른쪽 아래 왼쪽;*/
-	margin:5px 0px 5px 0px;/*메뉴와 테두리 사이간격 벌리기.margin:위 오른쪽 아래 왼쪽;*/
+#notice-list{/*공지사항*/
+	background-color:#d1dce0;border-radius:5px;
+	
+	font-size:12pt;
 }
-#nav_menu ul li:first-child{
-	border-left:none;
+#title-text2,#title-text1{
+	margin-left:15px;
 }
+#title-text2{font-size:12pt;}
+
+
+#mbtn{/*수정버튼*/
+	background-color:#36b3e0;
+	border-radius:5px;
+	border-style:none;
+	width:50px;height:30px;
+	color:white;
+}
+#notice-add{/*공지추가버튼*/
+	position:relative;
+	left:92%;
+	margin:5px;
+	background-color:#36b3e0;
+	border-radius:5px;
+	border-style:none;
+	width:70px;height:30px;
+	color:white;
+	font-size:10pt;
+}
+
 	div{overflow-x: auto;}
 	table{
-		width: 100%;
+		top:10px;
+		width: 99%;
 		border-top:1px solid #444444;
 		border-collapse:collapse;
 		float: center;
@@ -35,7 +56,7 @@ a:active{color:white; background-color:gray;}/*클릭하는 순간 링크*/
 	th{background-color: #e6e3e3}
 	td{text-align: center;}
 	
-	input{
+/* 	input{
 		vertical-align:middle;}
 	input.img-button{
 		background:url("img/search1.png")no-repeat;
@@ -43,7 +64,7 @@ a:active{color:white; background-color:gray;}/*클릭하는 순간 링크*/
 		width:20px;
 		height:20px;
 		cursor:pointer;} 
-
+ */
 	
 	
 	

@@ -50,12 +50,12 @@ function insertNotice()	{
 	<!-- 관리자 메인 툴바 -->
 	<div>
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div class="box1" align="right">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
@@ -64,14 +64,14 @@ function insertNotice()	{
 	<!-- 관리자 게시판 바로가기 -->
 	<div style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
-		<li style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
-		<li style="display:inline"><a href="adminReviewList.do" >상 품 후 기</a></li>
-		<li style="display:inline"><a href="adminFaqList.do?f_category=cost" >F A Q</a></li>
-		<li style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>
+		<li id="notice-list"style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
+		<li id="title-text2"style="display:inline"><a href="adminReviewList.do" >상 품 후 기</a></li>
+		<li id="title-text2" style="display:inline"><a href="adminFaqList.do?f_category=cost" >F A Q</a></li>
+		<li id="title-text2" style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>	
 	</ul>
 	</div>
 	<hr>
-	
+	<button id="notice-add" type="button" onClick="insertNotice()">공지작성</button>
 	<br>
 	
 	<table>
@@ -100,14 +100,14 @@ function insertNotice()	{
 				<td>${notice.N_HIT}</td>
 				<!-- 수정버튼 -->
 				<td>
-					<button type="button" onClick="location.href='adminUpdateNoticeForm.do?n_num=${notice.N_NUM}'">수정</button>	
+					<button id="mbtn"type="button" onClick="location.href='adminUpdateNoticeForm.do?n_num=${notice.N_NUM}'">수정</button>	
 				</td>
 			</tr>		
 		</c:forEach>
 		</tbody>
 	</table>
 	<br><br>
-	<button type="button" onClick="insertNotice()">공지작성</button>
+	
 
 </body>
 </html>
