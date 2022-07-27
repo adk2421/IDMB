@@ -35,7 +35,7 @@ public class QNADAO {
 	}
 	
 	public void deleteQna(Map<String, Object> map) throws Exception{
-		sqlSessionTemplate.delete("qna.deleteQna", map);
+		sqlSessionTemplate.update("qna.deleteQna", map);
 	}
 	
 	public List<Map<String, Object>> myQnaList(Map<String, Object> map) throws Exception{

@@ -79,7 +79,6 @@ function updateCheck() {
 		
 	<br><br>
 	
-	
 	<button type="button" onclick="updateCheck()">문 의 수 정</button>
 		&emsp;&emsp;
 	<button type="button" onclick="location.href='qnaDetail.do?q_num=${qnaBean.Q_NUM}'">돌 아 가 기</button>

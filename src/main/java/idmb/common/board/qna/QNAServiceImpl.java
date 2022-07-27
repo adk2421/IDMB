@@ -67,7 +67,6 @@ public class QNAServiceImpl implements QNAService {
 	public void updateQna(QNABean QNA) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("q_category", QNA.getQ_category());
 		map.put("q_contents", QNA.getQ_contents());
 		map.put("q_num", QNA.getQ_num());
 		

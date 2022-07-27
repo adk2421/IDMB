@@ -48,8 +48,8 @@ function insertCheck() {
 				<td><b>제목</b></td>
 				<td><input type="text" name="q_title" id="q_title" value="상품 문의 합니다."></td>
 				<td><b>작성자</b></td>		
-				<td><input type="text" size="8" value="${memberBean.ID}" readonly>
-					<input type="hidden" name="q_id" id="q_id" value="${memberBean.ID}">
+				<td><input type="text" size="8" value="${id}" readonly>
+					<input type="hidden" name="q_id" id="q_id" value="${id}">
 				</td>
 				<td><b>작성일</b></td>
 				<td>

@@ -30,4 +30,8 @@ public class ReviewDAO {
 		return sqlSessionTemplate.selectList("bestReviewList");
 	}
 	
+	public List<Map<String, Object>> newReviewList () throws Exception{
+		return sqlSessionTemplate.selectList("newReviewList");
+	}
+	
 }

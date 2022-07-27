@@ -16,7 +16,7 @@
 				Q_CONTENTS,
 				Q_DATE,
 				Q_PRODUCT,
-				Q_STATUS
+				Q_STATUS,
 				Q_CONTENTSPW,
 				Q_RELEVEL,
 				Q_GROUPNUM
@@ -53,6 +53,7 @@
 		]]>
 	</select>
 	
+	<!-- 문의 검색 -->
 	<select id="searchQna" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			select * from QNA_BOARD
@@ -104,7 +105,6 @@
 			UPDATE
 				QNA_BOARD
 			SET
-				Q_CATEGORY = #{q_category},
 				Q_CONTENTS = #{q_contents},
 				Q_DATE = SYSDATE
 			WHERE
@@ -113,14 +113,18 @@
 	</update>
 	
 	<!-- 문의 삭제 -->
-	<delete id="deleteQna" parameterType="hashmap">
+	<update id="deleteQna" parameterType="hashmap">
 		<![CDATA[
-			DELETE FROM
-				QNA_BOARD
-			WHERE
-				Q_NUM = #{q_num}
+			 update
+			 	QNA_BOARD
+			 set
+			 	Q_ID = '', Q_TITLE = '[삭제됨]',
+			 	Q_STATUS = ''
+			 	Q_CONTENTS = '삭제된 문의입니다.',
+			 	Q_CONTENTSPW = ''
+			 	where Q_NUM = #{q_num}
 		]]>
-	</delete>
+	</update>
 	
 	<!-- 나의 문의 내역 -->
 	<select id="myQnaList" parameterType="hashmap" resultType="hashmap">

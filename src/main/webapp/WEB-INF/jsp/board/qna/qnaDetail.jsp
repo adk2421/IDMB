@@ -77,7 +77,9 @@ function deleteCheck() {
 	<br><br>
 	
 	<!-- 내 글이 아닌경우는 수정삭제가 불가능 해야함 -->
+	<c:if test="${qnaBean.Q_ID eq id}">
 	
+		<!-- 글이 삭제된 상태면 수정 삭제 불가 -->
 		<c:if test="${qnaBean.Q_TITLE == '[삭제됨]'}">
 			&emsp;&emsp;&emsp;&emsp;&emsp;		
 			&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -88,7 +90,8 @@ function deleteCheck() {
 			<button type="button" onclick="deleteCheck()">문 의 삭 제</button>
 			&emsp;&emsp;
 		</c:if>	
-
+	</c:if>
+	
 	<button type="button" onclick="location.href='qnaList.do?q_category=${qnaBean.Q_CATEGORY}'">돌 아 가 기</button>
 	
 </body>

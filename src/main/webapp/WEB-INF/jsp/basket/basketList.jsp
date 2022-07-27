@@ -12,13 +12,6 @@
 </script>
 </head>
 <body>
-	<div align="right">
-		<a href="/IDMB/logout.do">LOGOUT</a>
-		<a href="/IDMB/joinForm.do">JOIN</a>
-		<a href="/IDMB/mypage.do">MY PAGE</a>
-		<a href="/IDMB/order.do">ORDER</a>
-		<a href="/IDMB/community.do">COMMUNITY</a>
-	</div>
 	
 	<div style="text-align:center">
 		<h2>장바구니 확인</h2>
