@@ -48,27 +48,30 @@
 		
 		function viewedProduct() {
 			console.log('viewedProduct 실행');
-			var arr = [];
+			var Arr = [];
+			var Obj = new Object();
 			var temp;
 			
 			for (var i=0; i<10; i++) {
 				temp = sessionStorage.getItem(i);
 				
-				if (temp != null)
-					arr[i] = temp;
+				if (temp != null) {
+					Obj[i] = temp;
+					Arr = { P_CODE : Obj };
+				}
 				
 				else
 					break;
 			}
 			
 			$.ajax({
-				  url :"viewedProductAjax.do",
-				  async: true,
-				  type : "POST",
-				  dataType : "json",
-				  data : arr,
-				  success: function(data){
-				  	console.log("성공");
+				url :"viewedProductAjax.do",
+				data: Arr,
+				type : "post",
+				dataType : "json",
+				
+				success: function(data) {
+					console.log("성공");
 				  }
 			});
 		}
@@ -170,7 +173,7 @@
 			<div class="vertical">
 				<p>- 주문 상품 정보 -</p>
 				
-				<table border=1>
+				<table>
 				    <thead>
 				        <tr>
 				            <th>주문번호</th>
@@ -183,13 +186,13 @@
 			        </thead>
 			        
 			        <c:forEach var="order" items="${myOrderList}">
-				        <tr>
+				        <tr class="button_tr" onclick="alert('aa')">
 					        <td>
 					        	<p>${order.O_DATE}</p>
-					        	<p>P00929${order.O_NUM}</p>
+					        	<p id="orderNum${order.O_NUM}">P00929${order.O_NUM}</p>
 					        </td>
 					        <td><img src="/IDMB/img/${order.P_IMAGE}" /></td>
-					        <td><a href="/IDMB/productDetail.do">${order.O_NAME}</a></td>
+					        <td>${order.O_NAME}</td>
 					        <td>${order.O_COUNT}</td>
 					        <td>${order.O_TOTAL}원</td>
 					        <td>${order.O_STATUS}</td>
@@ -204,20 +207,30 @@
 				<p>- 최근 본 상품 -</p>
 				
 				<table>
+						<tr>
+							<td>이미지</td>
+							<td>상품명</td>
+							<td>종류</td>
+							<td>판매가</td>
+							<td>찜</td>
+						</tr>
 					<tr>
-						<td>이미지</td>
-						<td>상품명</td>
-						<td>옵션정보</td>
-						<td>판매가</td>
-						<td>주문</td>
-					</tr>
-					<tr>
-						<td>이미지</td>
-						<td>상품명</td>
-						<td>옵션정보</td>
-						<td>판매가</td>
-						<td>주문</td>
-					</tr>
+							<td>aa</td>
+							<td>aa</td>
+							<td>aa</td>
+							<td>${myOrderList[0].O_PRICE}a</td>
+							<td>${viewedProduct}a</td>
+						</tr>
+					
+					<c:forEach var="product" items="${viewedProduct}">
+						<tr>
+							<td>${product.P_IMAGE}</td>
+							<td>${product.P_NAME}</td>
+							<td>${product.P_KIND}</td>
+							<td>${product.P_PRICE}</td>
+							<td>${product.P_ZIM}</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
 		</div>
