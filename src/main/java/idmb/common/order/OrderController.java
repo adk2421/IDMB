@@ -16,9 +16,9 @@ import idmb.common.basket.BasketService;
 import idmb.common.member.MyInfoService;
 import idmb.common.product.ProductService;
 import idmb.model.BasketBean;
-import idmb.model.MemberBean;
 import idmb.model.OrderBean;
 import idmb.model.ProductBean;
+import idmb.util.MapToBean;;
 
 @Controller
 public class OrderController {
@@ -54,22 +54,18 @@ public class OrderController {
 
     // 주문 폼 작성
 	@RequestMapping("/orderForm.do")
-	public String orderForm (
-			MemberBean member, ProductBean product,
+	public String orderForm (ProductBean product,
 			HttpServletRequest request,  Model model) throws Exception {
 		
 		String p_count = request.getParameter("p_count");
-		
-		Map<String,Object> map =  myInfoService.selectMember(member);
+
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		
-		map =  myInfoService.selectMember(member);
 		pMap = productService.productDetail(product);
 	    
 	    
 	   model.addAttribute("productDetail", pMap);
 	   model.addAttribute("p_count", p_count);
-	   model.addAttribute("myInfo", map);
 	   	
 	    //tiles.xml로 넘김
 	    return "orderForm";
@@ -77,50 +73,96 @@ public class OrderController {
 	}
     
     @RequestMapping(value = "/insertOrder.do")
-    public String insertOrder(OrderBean order, Model model) throws Exception {
-
-    	String id = order.getO_id();
+    public String insertOrder(OrderBean order, HttpServletRequest request, Model model) throws Exception {
     	
     	orderService.insertOrder(order);
     	
-    	
     	model.addAttribute("msg", "주문이 등록되었습니다.");
-		model.addAttribute("url", "/myOrderList.do?o_id="+id+"");
+		model.addAttribute("url", "/myOrderList.do");
 		
         return "order/insertOrder";
 
     }
     
-    //장바구니 목록 주문 폼
+    //장바구니 주문 폼
     @RequestMapping(value = "/basketOrderForm.do")
-    public String basketOrderForm(BasketBean basket, MemberBean member, Model model) throws Exception {
-    	//장바구니 id를 통해 list를 가져온다.
-    	List<Map<String,Object>> bmap = new ArrayList<Map<String,Object>>();
-    	bmap = basketService.basketList(basket);	
+    public String basketOrderForm(BasketBean basket, HttpServletRequest request, Model model) throws Exception {
     	
-    	Map<String,Object> mmap =  myInfoService.selectMember(member);
-    	mmap =  myInfoService.selectMember(member);
-    	
-    	model.addAttribute("basketList",bmap);
-    	model.addAttribute("myInfo", mmap);
+    	//장바구니 num를 통해 MAP를 가져온다.
+    	Map<String,Object> bmap = new HashMap<String, Object>();
+    	bmap = basketService.searchBasket(basket);	
+
+    	model.addAttribute("basketBean",bmap);
     	
     	//tiles로 이동 
     	return "basketOrderForm";
     }
     
-    
     @RequestMapping(value = "/basketOrder.do")
-    public String basketOrder(OrderBean order, Model model) throws Exception {
-    
-    	String id = order.getO_id();
-    		
-    	orderService.insertOrder(order);
+    public String basketOrder(BasketBean basket, OrderBean order, Model model) throws Exception {
     	
+    	orderService.insertOrder(order);
+    	basketService.deleteBasket(basket);
     	
     	model.addAttribute("msg", "주문이 등록되었습니다.");
-		model.addAttribute("url", "/myOrderList.do?o_id="+id+"");
+		model.addAttribute("url", "/myOrderList.do");
     	
-    	return "order/basketOrder";
+    	return "order/basketListOrder";
+    }    
+        
+    //장바구니 전체 주문 폼
+    @RequestMapping(value = "/basketListOrderForm.do")
+    public String basketListOrderForm(BasketBean basket, HttpServletRequest request, Model model) throws Exception {
+    	
+    	//장바구니 id를 통해 list를 가져온다.
+    	List<Map<String,Object>> blist = new ArrayList<Map<String,Object>>();
+    	blist = basketService.basketList(basket);
+  
+    	model.addAttribute("basketList",blist);
+    	model.addAttribute("Size", blist.size());
+    	
+    	//tiles로 이동 
+    	return "basketListOrderForm";
+    }
+    
+    
+    @RequestMapping(value = "/basketListOrder.do")
+    public String basketListOrder(OrderBean order, HttpServletRequest request, Model model) throws Exception {
+    	System.out.println(order.getO_id());
+		BasketBean basket = new BasketBean();
+		String id = (String) request.getSession().getAttribute("id");
+		basket.setB_id(id);
+    	
+    	List<Map<String,Object>> blist = new ArrayList<Map<String,Object>>();
+    	blist = basketService.basketList(basket);
+		
+		List<BasketBean> basketBeanList = new ArrayList<BasketBean>();
+		  
+		for(Map<String, Object> mapObject : blist) {
+			basketBeanList.add(MapToBean.mapToBasket(mapObject));
+		}
+    	
+		for(BasketBean bas : basketBeanList) {
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map = basketService.searchBasket(bas);
+			
+			order.setO_id((String)map.get("B_ID"));
+			order.setO_code(Integer.parseInt(String.valueOf(map.get("B_CODE"))));
+			order.setO_name((String)map.get("B_NAME"));
+			order.setO_price(Integer.parseInt(String.valueOf(map.get("B_PRICE"))));
+			order.setO_count(Integer.parseInt(String.valueOf(map.get("B_COUNT"))));
+			order.setO_total((Integer.parseInt(String.valueOf(map.get("B_PRICE"))))
+					*(Integer.parseInt(String.valueOf(map.get("B_COUNT")))));
+			
+	    	orderService.insertOrder(order);
+	    	basketService.deleteBasket(bas);
+		}    
+ 	
+    	model.addAttribute("msg", "주문이 등록되었습니다.");
+		model.addAttribute("url", "/myOrderList.do");
+    	
+    	return "order/basketListOrder";
     }
 
 }
