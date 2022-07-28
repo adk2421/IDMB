@@ -29,9 +29,6 @@ function pinsert() {
 		</div>
 	</div>
 	<hr>
-
-
-	
 	<table style="margin:auto; text-align: center;" border=1>
 		<thead>
 			<tr>
@@ -70,6 +67,7 @@ function pinsert() {
 		<button type="submit">검색</button>
 	</form>
 	</div>
-	
+	${paging.pageHtml}
+
 </body>
 </html>

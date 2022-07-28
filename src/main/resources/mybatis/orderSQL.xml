@@ -30,6 +30,8 @@
 				P.P_CODE = O.O_CODE
    	 		WHERE
    	 			O.O_ID = #{o_id}
+   	 		ORDER BY
+   	 			O_DATE DESC
 		]]>
 	</select>
 	
