@@ -19,7 +19,7 @@ public class OrderBean {
 	private String o_status;		// 배송 상태
 	private String o_delflag;		// 주문 삭제 여부
 	private String o_reciever;		// 수취인
-	
+	private int o_phone;			// 수취인 번호
 
 	public int getO_num() {
 		return o_num;
@@ -131,6 +131,14 @@ public class OrderBean {
 
 	public void setO_reciever(String o_reciever) {
 		this.o_reciever = o_reciever;
+	}
+	
+	public int getO_phone() {
+		return o_phone;
+	}
+
+	public void setO_rphone(int o_phone) {
+		this.o_phone = o_phone;
 	}
 
 }
