@@ -186,9 +186,18 @@ public class MemberController {
 				}
 
 				// 세션 등록
-				session.setAttribute("name", map.get("NAME"));
-				session.setAttribute("reserve", map.get("RESERVE"));
 				session.setAttribute("id", map.get("ID"));
+				session.setAttribute("passwd", map.get("PASSWD"));
+				session.setAttribute("name", map.get("NAME"));
+				session.setAttribute("phone", map.get("PHONE"));
+				session.setAttribute("birth", map.get("BIRTH"));
+				session.setAttribute("email", map.get("EMAIL"));
+				session.setAttribute("postcode", map.get("POSTCODE"));
+				session.setAttribute("address1", map.get("ADDRESS1"));
+				session.setAttribute("address2", map.get("ADDRESS2"));
+				session.setAttribute("reserve", map.get("RESERVE"));
+				session.setAttribute("joindate", map.get("JOINDATE"));
+				session.setAttribute("delflag", map.get("DELFLAG"));
 
 				// 관리자 체크
 				if (map.get("ID").equals("ADMIN")) {

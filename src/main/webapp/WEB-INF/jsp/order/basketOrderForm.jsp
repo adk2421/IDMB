@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>basketOrderForm</title>
+<meta charset="UTF-8">
+<title>ì¥ë°”êµ¬ë‹ˆì—ì„œ ì£¼ ë¬¸ í•˜ ê¸°</title>
 
 <script>
 function orderCheck() {
@@ -16,17 +16,17 @@ function orderCheck() {
 	var O_ADDRESS2 = document.getElementById("o_address2");
 	var O_POSTCODE = document.getElementById("o_postcode");
 	
-	if(confirm("ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î?") == true) {
+	if(confirm("ì£¼ë¬¸í•˜ì‹œê² ìŠµë‹ˆê¹Œ?") == true) {
 		if(O_RECIEVER.value.trim() == ""){
-			alert("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			O_RECIEVER.focus();
 			return false;
 		} else if(O_POSTCODE.value.trim() == ""){
-			alert("¿ìÆí¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ìš°í¸ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			O_POSTCODE.focus();
 			return false;
 		} else if(O_ADDRESS1.value.trim() == ""){
-			alert("ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ì£¼ì†Œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			O_ADDRESS1.focus();
 			return false;
 		} else {
@@ -38,52 +38,52 @@ function orderCheck() {
 
 </script>
 
-<!-- ¿ìÆí ¹øÈ£ API -->
+<!-- ìš°í¸ ë²ˆí˜¸ API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                // ÆË¾÷¿¡¼­ °Ë»ö°á°ú Ç×¸ñÀ» Å¬¸¯ÇßÀ»¶§ ½ÇÇàÇÒ ÄÚµå¸¦ ÀÛ¼ºÇÏ´Â ºÎºĞ.
+                // íŒì—…ì—ì„œ ê²€ìƒ‰ê²°ê³¼ í•­ëª©ì„ í´ë¦­í–ˆì„ë•Œ ì‹¤í–‰í•  ì½”ë“œë¥¼ ì‘ì„±í•˜ëŠ” ë¶€ë¶„.
 
-                // °¢ ÁÖ¼ÒÀÇ ³ëÃâ ±ÔÄ¢¿¡ µû¶ó ÁÖ¼Ò¸¦ Á¶ÇÕÇÑ´Ù.
-                // ³»·Á¿À´Â º¯¼ö°¡ °ªÀÌ ¾ø´Â °æ¿ì¿£ °ø¹é('')°ªÀ» °¡Áö¹Ç·Î, ÀÌ¸¦ Âü°íÇÏ¿© ºĞ±â ÇÑ´Ù.
-                var addr = ''; // ÁÖ¼Ò º¯¼ö
-                var extraAddr = ''; // Âü°íÇ×¸ñ º¯¼ö
+                // ê° ì£¼ì†Œì˜ ë…¸ì¶œ ê·œì¹™ì— ë”°ë¼ ì£¼ì†Œë¥¼ ì¡°í•©í•œë‹¤.
+                // ë‚´ë ¤ì˜¤ëŠ” ë³€ìˆ˜ê°€ ê°’ì´ ì—†ëŠ” ê²½ìš°ì—” ê³µë°±('')ê°’ì„ ê°€ì§€ë¯€ë¡œ, ì´ë¥¼ ì°¸ê³ í•˜ì—¬ ë¶„ê¸° í•œë‹¤.
+                var addr = ''; // ì£¼ì†Œ ë³€ìˆ˜
+                var extraAddr = ''; // ì°¸ê³ í•­ëª© ë³€ìˆ˜
 
-                //»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ ÁÖ¼Ò Å¸ÀÔ¿¡ µû¶ó ÇØ´ç ÁÖ¼Ò °ªÀ» °¡Á®¿Â´Ù.
-                if (data.userSelectedType === 'R') { // »ç¿ëÀÚ°¡ µµ·Î¸í ÁÖ¼Ò¸¦ ¼±ÅÃÇßÀ» °æ¿ì
+                //ì‚¬ìš©ìê°€ ì„ íƒí•œ ì£¼ì†Œ íƒ€ì…ì— ë”°ë¼ í•´ë‹¹ ì£¼ì†Œ ê°’ì„ ê°€ì ¸ì˜¨ë‹¤.
+                if (data.userSelectedType === 'R') { // ì‚¬ìš©ìê°€ ë„ë¡œëª… ì£¼ì†Œë¥¼ ì„ íƒí–ˆì„ ê²½ìš°
                     addr = data.roadAddress;
-                } else { // »ç¿ëÀÚ°¡ Áö¹ø ÁÖ¼Ò¸¦ ¼±ÅÃÇßÀ» °æ¿ì(J)
+                } else { // ì‚¬ìš©ìê°€ ì§€ë²ˆ ì£¼ì†Œë¥¼ ì„ íƒí–ˆì„ ê²½ìš°(J)
                     addr = data.jibunAddress;
                 }
 
-                // »ç¿ëÀÚ°¡ ¼±ÅÃÇÑ ÁÖ¼Ò°¡ µµ·Î¸í Å¸ÀÔÀÏ¶§ Âü°íÇ×¸ñÀ» Á¶ÇÕÇÑ´Ù.
+                // ì‚¬ìš©ìê°€ ì„ íƒí•œ ì£¼ì†Œê°€ ë„ë¡œëª… íƒ€ì…ì¼ë•Œ ì°¸ê³ í•­ëª©ì„ ì¡°í•©í•œë‹¤.
                 if(data.userSelectedType === 'R'){
-                    // ¹ıÁ¤µ¿¸íÀÌ ÀÖÀ» °æ¿ì Ãß°¡ÇÑ´Ù. (¹ıÁ¤¸®´Â Á¦¿Ü)
-                    // ¹ıÁ¤µ¿ÀÇ °æ¿ì ¸¶Áö¸· ¹®ÀÚ°¡ "µ¿/·Î/°¡"·Î ³¡³­´Ù.
-                    if(data.bname !== '' && /[µ¿|·Î|°¡]$/g.test(data.bname)){
+                    // ë²•ì •ë™ëª…ì´ ìˆì„ ê²½ìš° ì¶”ê°€í•œë‹¤. (ë²•ì •ë¦¬ëŠ” ì œì™¸)
+                    // ë²•ì •ë™ì˜ ê²½ìš° ë§ˆì§€ë§‰ ë¬¸ìê°€ "ë™/ë¡œ/ê°€"ë¡œ ëë‚œë‹¤.
+                    if(data.bname !== '' && /[ë™|ë¡œ|ê°€]$/g.test(data.bname)){
                         extraAddr += data.bname;
                     }
-                    // °Ç¹°¸íÀÌ ÀÖ°í, °øµ¿ÁÖÅÃÀÏ °æ¿ì Ãß°¡ÇÑ´Ù.
+                    // ê±´ë¬¼ëª…ì´ ìˆê³ , ê³µë™ì£¼íƒì¼ ê²½ìš° ì¶”ê°€í•œë‹¤.
                     if(data.buildingName !== '' && data.apartment === 'Y'){
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
-                    // Ç¥½ÃÇÒ Âü°íÇ×¸ñÀÌ ÀÖÀ» °æ¿ì, °ıÈ£±îÁö Ãß°¡ÇÑ ÃÖÁ¾ ¹®ÀÚ¿­À» ¸¸µç´Ù.
+                    // í‘œì‹œí•  ì°¸ê³ í•­ëª©ì´ ìˆì„ ê²½ìš°, ê´„í˜¸ê¹Œì§€ ì¶”ê°€í•œ ìµœì¢… ë¬¸ìì—´ì„ ë§Œë“ ë‹¤.
                     if(extraAddr !== ''){
                         extraAddr = ' (' + extraAddr + ')';
                     }
-                    // Á¶ÇÕµÈ Âü°íÇ×¸ñÀ» ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+                    // ì¡°í•©ëœ ì°¸ê³ í•­ëª©ì„ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
                     document.getElementById("o_address1").value = extraAddr;
                 
                 } else {
                     document.getElementById("o_address2").value = '';
                 }
 
-                // ¿ìÆí¹øÈ£¿Í ÁÖ¼Ò Á¤º¸¸¦ ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+                // ìš°í¸ë²ˆí˜¸ì™€ ì£¼ì†Œ ì •ë³´ë¥¼ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
                 document.getElementById('o_postcode').value = data.zonecode;
                 document.getElementById("o_address1").value = addr;
-                // Ä¿¼­¸¦ »ó¼¼ÁÖ¼Ò ÇÊµå·Î ÀÌµ¿ÇÑ´Ù.
+                // ì»¤ì„œë¥¼ ìƒì„¸ì£¼ì†Œ í•„ë“œë¡œ ì´ë™í•œë‹¤.
                 document.getElementById("o_address2").focus();
             }
         }).open();
@@ -92,116 +92,97 @@ function orderCheck() {
 
 </head>
 <div style="text-align:center">
-		<h1> ÁÖ¹® ÆäÀÌÁö </h1>
+		<h1> ì£¼ë¬¸ í˜ì´ì§€ </h1>
 	</div>
 	
-	<form method="post" id="basketOrderForm" action="basketOrder.do">
+	<form method="post" id="basketOrderForm" action="basketOrder.do?b_num=${basketBean.B_NUM}">
+	
 	
 	<table border=1>
-			<!-- »ó Ç° Á¤ º¸ -->
+			<!-- ìƒ í’ˆ ì • ë³´ -->
 			<thead>
-				<tr>
-				
-					<th>»ó Ç° ¸í</th>
-					<th>»ó Ç° ±İ ¾×</th>
-					<th>±¸ ¸Å ¼ö ·®</th>
-					<th>ÃÑ ÇÕ °è</th>
+				<tr>			
+					<th>ìƒ í’ˆ ëª…</th>
+					<th>ìƒ í’ˆ ê¸ˆ ì•¡</th>
+					<th>êµ¬ ë§¤ ìˆ˜ ëŸ‰</th>
+					<th>ì´ í•© ê³„</th>
 				</tr>
-			</thead>	
+			</thead>
+			<c:set var="sum" value="0" />	
 			<tbody>
-			<c:set var="sum" value="0" />
-				<c:forEach var="bList" items="${basketList}">
 				<tr>
-				
-					<td>${bList.B_NAME }</td> 
-					<input type="hidden" id="o_name" name="o_name" value="${bList.B_NAME}">
-					
-					<td>${bList.B_PRICE }¿ø</td>
-					
-					<td>${bList.B_COUNT}°³</td>
-					<input type="hidden" id="o_count" name="o_count" value="${bList.B_COUNT }">
-					
-					<td>${bList.B_COUNT * bList.B_PRICE }</td>
-					<input type="hidden" id="o_price" name="o_price" value="${bList.B_PRICE}">
-					<c:set var="sum" value="${sum + (bList.B_PRICE * bList.B_COUNT)}" />
-				
-					
-					<input type="hidden" id="o_id" name="o_id" value="${bList.B_ID}"/>
-					<input type="hidden" id="o_code" name="o_code" value="${bList.B_CODE}">	
+					<td>${basketBean.B_NAME}</td> 
+					<td>${basketBean.B_PRICE}ì›</td>
+					<td>${basketBean.B_COUNT}ê°œ</td>
+					<td>${basketBean.B_COUNT * basketBean.B_PRICE }ì›</td>
 					
 				</tr>
-				</c:forEach>
 			</tbody>
-		
 		</table>
-	
-				
-			
-
+		<c:set var="sum" value="${sum + (basketBean.B_PRICE * basketBean.B_COUNT)}" />
+		
+		<input type="hidden" id="o_id" name="o_id" value="${basketBean.B_ID}"/>
+		<input type="hidden" id="o_code" name="o_code" value="${basketBean.B_CODE}">
+		<input type="hidden" id="o_name" name="o_name" value="${basketBean.B_NAME}">
+		<input type="hidden" id="o_count" name="o_count" value="${basketBean.B_COUNT}">		
+		<input type="hidden" id="o_price" name="o_price" value="${basketBean.B_PRICE}">
 		
 		
+		<!-- ì£¼ë¬¸ì ì •ë³´ -->
+		<h2>ì£¼ë¬¸ì ì •ë³´</h2>
 		
+		<!-- ì´ë¦„ -->
+		<h6>ì´ ë¦„</h6>
+			<input type="text" value="${name}" readonly>	
 		
-		<!-- ÁÖ¹®ÀÚ Á¤º¸ -->
-		<h2>ÁÖ¹®ÀÚ Á¤º¸</h2>
-		
-		<!-- ÀÌ¸§ -->
-		<h6>ÀÌ ¸§</h6>
-			<input type="text" value="${myInfo.NAME}" readonly>	
-		
-		<!-- ÇÚµåÆù ¹øÈ£ -->
-		<h6>ÇÚ µå Æù ¹ø È£</h6>
-			<input type="text" value="${myInfo.PHONE}" readonly>
+		<!-- í•¸ë“œí° ë²ˆí˜¸ -->
+		<h6>í•¸ ë“œ í° ë²ˆ í˜¸</h6>
+			<input type="text" value="${phone}" readonly>
 		
 		<hr>
-					<br><br>				
+		<br><br>				
 		<hr>
 
-				<!-- ¹Ş´Â »ç¶÷ Á¤º¸ -->
-				<h6>¹ŞÀ¸½Ã´Â ºĞ</h6>
-				<input type="text" id="o_reciever" name="o_reciever" value="${myInfo.NAME}">
+		<!-- ë°›ëŠ” ì‚¬ëŒ ì •ë³´ -->
+		<h6>ë°›ìœ¼ì‹œëŠ” ë¶„</h6>
+		<input type="text" id="o_reciever" name="o_reciever" value="${name}">
 				
-				<!-- ÁÖ¼Ò -->
-				<h6>¿ìÆí¹øÈ£</h6>
-				<input type="text" name="o_postcode" id="o_postcode"
-					value="${myInfo.POSTCODE}">
+		<!-- ì£¼ì†Œ -->
+		<h6>ìš°í¸ë²ˆí˜¸</h6>
+		<input type="text" name="o_postcode" id="o_postcode"
+			value="${postcode}">
 								
-				<input type="button" onclick="sample6_execDaumPostcode()" value="¿ìÆí¹øÈ£ Ã£±â">
+		<input type="button" onclick="sample6_execDaumPostcode()" value="ìš°í¸ë²ˆí˜¸ ì°¾ê¸°">
 								
-				<h6>ÁÖ¼Ò</h6>		
-				<input type="text" name="o_address1" id="o_address1"
-					value="${myInfo.ADDRESS1}">
-				&emsp;
-				<input type="text" name="o_address2" id="o_address2"
-					value="${myInfo.ADDRESS2}">
-								
-								
-								
-				<h2> °á Á¦ ±İ ¾× </h2>	
+		<h6>ì£¼ì†Œ</h6>		
+		<input type="text" name="o_address1" id="o_address1"
+			value="${address1}">
+		&emsp;
+		<input type="text" name="o_address2" id="o_address2"
+			value="${address2}">
+														
+		<h2> ê²° ì œ ê¸ˆ ì•¡ </h2>	
 				
-				<span>ÁÖ ¹® ±İ ¾×</span>
-				<fmt:formatNumber pattern="###,###,###" value="${sum}" />¿ø
+		<span>ì£¼ ë¬¸ ê¸ˆ ì•¡</span>
+		<fmt:formatNumber pattern="###,###,###" value="${sum}" />ì›
 				
-	    		<span>¹è ¼Û ºñ</span>
-	    		<span>3000¿ø</span>
-	    		&emsp;
+	    <span>ë°° ì†¡ ë¹„</span>
+	    <span>3000ì›</span>
+	    	&emsp;
 	    						 
-	    		<span>ÃÑ ±İ ¾×</span>
-	    		<fmt:formatNumber pattern="###,###,###" value="${sum+3000}" />¿ø
-	    		<input type="hidden" id="o_total" name="o_total" value="${sum+3000}">
+	    <span>ì´ ê¸ˆ ì•¡</span>
+	    <fmt:formatNumber pattern="###,###,###" value="${sum+3000}" />ì›
+	    <input type="hidden" id="o_total" name="o_total" value="${sum+3000}">
 				
 						
-				<h2> °á Á¦ Á¤ º¸ </h2>
-				<h6>¹« Åë Àå ÀÔ ±İ</h6>
-				<input type="text" value="¿ì¸®ÀºÇà 1234-56-7890" readonly>
+		<h2> ê²° ì œ ì • ë³´ </h2>
+		<h6>ë¬´ í†µ ì¥ ì… ê¸ˆ</h6>
+		<input type="text" value="ìš°ë¦¬ì€í–‰ 1234-56-7890" readonly>
 				
-				<!-- ¹öÆ° -->
-				<button type="button" onclick="orderCheck()">ÁÖ¹®ÇÏ±â</button>
+		<!-- ë²„íŠ¼ -->
+		<button type="button" onclick="orderCheck()">ì£¼ë¬¸í•˜ê¸°</button>
 		
-
-			
-
-		
+		<br><br>
 	</form>	
 </body>
 </html>

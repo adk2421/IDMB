@@ -66,7 +66,7 @@
 					</td>
 					<td>
 						<button type="button" 
-							onclick="location.href='orderForm.do?id=${basket.B_ID}&p_count=${basket.B_COUNT}&p_code=${basket.B_CODE}'">
+							onclick="location.href='basketOrderForm.do?b_num=${basket.B_NUM}'">
 						주문하기
 						</button>
 					</td>
@@ -91,7 +91,7 @@
 			
 			
 			<c:forEach var="basket" items="${basketList}" begin="1" end="1">
-				<button type="button" onclick="location.href='basketOrderForm.do?id=${basket.B_ID}&b_id=${basket.B_ID}'">주문하기</button>
+				<button type="button" onclick="location.href='basketListOrderForm.do?b_id=${basket.B_ID}'">주문하기</button>
 				<button type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
 			</c:forEach>
 			
