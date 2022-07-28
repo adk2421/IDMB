@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import idmb.model.BasketBean;
 import idmb.model.ProductBean;
 
 @Controller
@@ -148,14 +149,18 @@ public class ProductController {
 			@RequestMapping(value="/productDetail.do")
 			public String ProductDetail(ProductBean product, HttpServletRequest request, Model model)throws Exception{
 				
+		
 				Map<String, Object> map = new HashMap<String, Object>();
-				
 				map = productService.productDetail(product);
 				
 				model.addAttribute("product", map);
+			
 				
 				return "productDetail";
 			}
+			
+			
+			
 }
 			
 		
