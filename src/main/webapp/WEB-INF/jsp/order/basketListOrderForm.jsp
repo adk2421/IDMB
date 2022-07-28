@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주 문 하 기</title>
+<title>basketOrderForm</title>
 
 <script>
 function orderCheck() {
-	var form = document.getElementById("orderForm");
+	var form = document.getElementById("basketOrderForm");
 	var O_RECIEVER = document.getElementById("o_reciever");
 	var O_ADDRESS1 = document.getElementById("o_address1");
 	var O_ADDRESS2 = document.getElementById("o_address2");
@@ -89,43 +89,52 @@ function orderCheck() {
         }).open();
     }
 </script>
-</head>
 
-<body>
-	<div style="text-align:center">
+</head>
+<div style="text-align:center">
 		<h1> 주문 페이지 </h1>
 	</div>
 	
-	<form method="post" id="orderForm" action="insertOrder.do">
+	<form method="post" id="basketOrderForm" action="basketListOrder.do">
 	
-		<table border=1>
+	<table border=1>
+			<!-- 상 품 정 보 -->
 			<thead>
 				<tr>
+					<th>번 호</th>
 					<th>상 품 명</th>
 					<th>상 품 금 액</th>
 					<th>구 매 수 량</th>
 					<th>총 합 계</th>
 				</tr>
-			</thead>
-			
+			</thead>	
+			<c:set var="sum" value="0" />
+			<c:forEach var="i" begin="0" end="${Size-1}">
 			<tbody>
 				<tr>
-					<td>${productDetail.P_NAME }</td>
-					<td>${productDetail.P_PRICE }원</td>
-					<td>${p_count}개</td>
-					<td><c:set var="total" value="${productDetail.P_PRICE * p_count}" />
-					<fmt:parseNumber var="totalPrice" integerOnly="true" value="${total}"/>
-					<b><fmt:formatNumber value="${totalPrice}" pattern="#.#" />원</b>
+					<td>
+						${i+1}
+								
 					</td>
+					<td>
+						${basketList[i].B_NAME}
+					</td> 
+					<td>
+						${basketList[i].B_PRICE}원
+					</td>
+					<td>
+						${basketList[i].B_COUNT}개
+					</td>
+					<td>
+						${basketList[i].B_COUNT * basketList[i].B_PRICE}원
+						<c:set var="sum" value="${sum + (basketList[i].B_COUNT * basketList[i].B_PRICE)}" />
+					</td>	
 				</tr>
+			</c:forEach>
 			</tbody>
+		
 		</table>
 		
-		<input type="hidden" id="o_id" name="o_id" value="${id}">	
-		<input type="hidden" name="o_code" id="o_code" value="${productDetail.P_CODE}">
-		<input type="hidden" name="o_name" id="o_name" value="${productDetail.P_NAME}">
-		<input type="hidden" name="o_count" id="o_count" value="${p_count}">
-		<input type="hidden" name="o_price" id="o_price" value="${productDetail.P_PRICE}">
 		
 		<!-- 주문자 정보 -->
 		<h2>주문자 정보</h2>
@@ -139,50 +148,48 @@ function orderCheck() {
 			<input type="text" value="${phone}" readonly>
 		
 		<hr>
-					<br><br>				
+		<br><br>				
 		<hr>
 
-				<!-- 받는 사람 정보 -->
-				<h6>받으시는 분</h6>
-				<input type="text" id="o_reciever" name="o_reciever" value="${name}">
+		<!-- 받는 사람 정보 -->
+		<h6>받으시는 분</h6>
+		<input type="text" id="o_reciever" name="o_reciever" value="${name}">
 				
-				<!-- 주소 -->
-				<h6>우편번호</h6>
-				<input type="text" name="o_postcode" id="o_postcode"
-					value="${postcode}">
+		<!-- 주소 -->
+		<h6>우편번호</h6>
+		<input type="text" name="o_postcode" id="o_postcode"
+			value="${postcode}">
 								
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 								
-				<h6>주소</h6>		
-				<input type="text" name="o_address1" id="o_address1"
-					value="${address1}">
-				&emsp;
-				<input type="text" name="o_address2" id="o_address2"
-					value="${address2}">
-								
-								
-								
-				<h2> 결 제 금 액 </h2>	
+		<h6>주소</h6>		
+		<input type="text" name="o_address1" id="o_address1"
+			value="${address1}">
+		&emsp;
+		<input type="text" name="o_address2" id="o_address2"
+			value="${address2}">
+														
+		<h2> 결 제 금 액 </h2>	
 				
-				<span>주 문 금 액</span>
-				<span id="originalSum">${productDetail.P_PRICE*p_count}원</span>
-	    			&emsp;
-	    		<span>배 송 비</span>
-	    		<span>3000원</span>
-	    		&emsp;				 
-	    		<span>총 금 액</span>
-	    		<span id="finalSum">
-	    			${productDetail.P_PRICE * p_count + 3000}원</span>
-	    		<input type="hidden" name= "o_total" id="o_total" value="${productDetail.P_PRICE * p_count + 3000}"> 
+		<span>주 문 금 액</span>
+		<fmt:formatNumber pattern="###,###,###" value="${sum}" />원
+				
+	    <span>배 송 비</span>
+	    <span>3000원</span>
+	    	&emsp;
+	    						 
+	    <span>총 금 액</span>
+	    <fmt:formatNumber pattern="###,###,###" value="${sum+3000}" />원
+		
 						
-				<h2> 결 제 정 보 </h2>
-				<h6>무 통 장 입 금</h6>
-				<input type="text" value="우리은행 1234-56-7890" readonly>
+		<h2> 결 제 정 보 </h2>
+		<h6>무 통 장 입 금</h6>
+		<input type="text" value="우리은행 1234-56-7890" readonly>
 				
-				<!-- 버튼 -->
-				<button type="button" onclick="orderCheck()">주문하기</button>
-			
-	</form>
-
+		<!-- 버튼 -->
+		<button type="button" onclick="orderCheck()">주문하기</button>
+		
+		<br><br>
+	</form>	
 </body>
 </html>

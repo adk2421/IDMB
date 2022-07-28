@@ -5,13 +5,9 @@ import java.sql.Timestamp;
 import java.util.Map;
 
 import idmb.model.BasketBean;
-import idmb.model.FAQBean;
 import idmb.model.MemberBean;
-import idmb.model.NoticeBean;
 import idmb.model.OrderBean;
 import idmb.model.ProductBean;
-import idmb.model.QNABean;
-import idmb.model.ReviewBean;
 
 public class MapToBean {
     
@@ -33,7 +29,8 @@ public class MapToBean {
         
         return memberBean;
     }
-    /*
+ 
+/*
     public static ProductBean mapToProduct(Map<String, Object> map) {
         ProductBean productBean = new ProductBean();
 
@@ -51,7 +48,7 @@ public class MapToBean {
         
         return productBean;
     }
-	*/
+	
 	
     public static OrderBean mapToOrder(Map<String, Object> map) {
         OrderBean orderBean = new OrderBean();
@@ -73,23 +70,23 @@ public class MapToBean {
 
         return orderBean;
     }
-
-    /*
+    
+*/
     public static BasketBean mapToBasket(Map<String, Object> map) {
         BasketBean basketBean = new BasketBean();
 
-        basketBean.setB_num(Integer.parseInt(String.valueOf(map.get("b_num"))));
-        basketBean.setB_id((String) map.get("b_id"));
-        basketBean.setB_code(Integer.parseInt(String.valueOf(map.get("b_code"))));
-        basketBean.setB_name((String) map.get("b_name"));
-        basketBean.setB_price(Integer.parseInt(String.valueOf(map.get("b_price"))));
-        basketBean.setB_count(Integer.parseInt(String.valueOf(map.get("b_count"))));
-        basketBean.setB_image((String) map.get("b_image"));
-        basketBean.setB_kind((String) map.get("b_kind"));
-
+        if (map.get("B_NUM") != null)	{basketBean.setB_num(Integer.parseInt(String.valueOf(map.get("B_NUM"))));}
+        if (map.get("B_ID") != null) 	{basketBean.setB_id((String) map.get("B_ID"));}
+        if (map.get("B_CODE") != null) 	{basketBean.setB_code(Integer.parseInt(String.valueOf(map.get("B_CODE"))));}
+        if (map.get("B_NAME") != null) 	{basketBean.setB_name((String) map.get("B_NAME"));}
+        if (map.get("B_PRICE") != null)	{basketBean.setB_price(Integer.parseInt(String.valueOf(map.get("B_PRICE"))));}
+        if (map.get("B_COUNT") != null)	{basketBean.setB_count(Integer.parseInt(String.valueOf(map.get("B_COUNT"))));}
+        if (map.get("B_IMAGE") != null) {basketBean.setB_image((String) map.get("B_IMAGE"));}
+        if (map.get("B_KIND") != null)	{basketBean.setB_kind((String) map.get("B_KIND"));}
+        
         return basketBean;
     }
-
+ /*  
     public static ReviewBean mapToReview(Map<String, Object> map) {
         ReviewBean reviewBean = new ReviewBean();
 
