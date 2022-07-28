@@ -99,5 +99,7 @@
 
 	</table>
 
+<button type="button" onclick="location.href='insertQnaForm.do'">문 의 하 기</button>
+
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.common.member.MyInfoService;
+import idmb.model.MemberBean;
 import idmb.model.QNABean;
 
 @Controller
@@ -92,8 +93,6 @@ public class QNAController {
 		return "qnaDetail";	
 	}
 	
-	
-	
 	@RequestMapping(value="/myQnaList.do")
 	public String myQnaList(HttpServletRequest request, Model model) throws Exception{
 		String id = (String) request.getSession().getAttribute("id");
@@ -108,5 +107,84 @@ public class QNAController {
         
 		return "myQnaList";
 	}
+
+	@RequestMapping(value="/insertQnaForm.do")
+	public String insertQnaForm(HttpServletRequest request, Model model) throws Exception{
+				
+		return "insertQnaForm";
+	}
+	
+	@RequestMapping(value="/insertQna.do")
+	public String insertQna(
+			QNABean qna, HttpServletRequest request, Model model) throws Exception{
+		
+		String q_contents = request.getParameter("q_contents");
+		q_contents = q_contents.replace("\r\n","<br>");
+		
+		qna.setQ_contents(q_contents);
+		
+		qnaService.insertQna(qna);
+		
+		model.addAttribute("msg", "문의가 작성되었습니다.");
+		model.addAttribute("url", "/qnaMain.do");
+		
+		return "board/qna/insertQna";
+	}
+	
+	
+	
+	@RequestMapping(value="/updateQnaForm.do")
+	public String updateQnaForm(QNABean qna, Model model) throws Exception{
+		
+		//특정 QNA의 map만 필요하므로 HashpMap형태의 'map' 생성		
+		Map<String, Object> map = new HashMap<String, Object>();
+		//추출한 QNA의 답글만 따로 추출
+		Map<String, Object> mapR = new HashMap<String, Object>();
+		
+		//qnaList에서 q_num=? 로 입력받은 q_num값을 qna에 주어 상세정보 검색		
+		map = qnaService.qnaDetail(qna);
+		mapR = qnaService.qnaRe(qna);
+
+		//model로 위에서 정의한 값 전송
+		model.addAttribute("qnaBean",map);
+		model.addAttribute("qnaReBean",mapR);
+		
+		return "updateQnaForm";
+	}
+
+	
+	@RequestMapping(value="/updateQna.do")
+	public String updateQna(
+			QNABean qna, HttpServletRequest request, Model model) throws Exception{
+		
+		String q_contents = request.getParameter("q_contents");
+		q_contents = q_contents.replace("\r\n","<br>");
+		
+		qna.setQ_contents(q_contents);
+		
+		qnaService.updateQna(qna);
+		
+		model.addAttribute("msg", "문의가 수정되었습니다.");
+		model.addAttribute("url", "/qnaMain.do");
+		
+		return "board/qna/updateQna";
+	}
+	
+	
+	@RequestMapping(value="/deleteQna.do")
+	public String deleteQna(
+			QNABean qna, Model model) throws Exception{
+		
+		qnaService.deleteQna(qna);
+		
+		model.addAttribute("msg", "문의가 삭제되었습니다.");
+		model.addAttribute("url", "/qnaMain.do");
+		
+		return "board/qna/deleteQna";
+	}
+	
+	
+	
+	
 
 }

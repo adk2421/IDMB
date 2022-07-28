@@ -38,29 +38,21 @@ public class BasketController {
 	
 	@RequestMapping(value="/updateBasket.do")
 	public String updateBasket(BasketBean basket, Model model) throws Exception{
-		
-		String b_id = basket.getB_id();
-		
+				
 		basketService.updateBasket(basket);
 		
-		model.addAttribute("url", "/basketList.do?b_id="+b_id+"");
+		model.addAttribute("url", "/basketList.do");
 		
 		return "basket/updateBasket";
 	}
 	
 	@RequestMapping(value="/deleteBasket.do")
 	public String deleteBasket(BasketBean basket, Model model) throws Exception{
-		
-		Map<String,	Object> map = new HashMap<String, Object>();
-
-		map = basketService.searchBasket(basket);
-		
-		String b_id = (String) map.get(basket.getB_id());
-		
+			
 		basketService.deleteBasket(basket);
 		
 		model.addAttribute("msg", "장바구니 품목이 삭제되었습니다.");
-		model.addAttribute("url", "/basketList.do?b_id="+b_id+"");
+		model.addAttribute("url", "/basketList.do");
 		
 		return "basket/deleteBasket";
 	}

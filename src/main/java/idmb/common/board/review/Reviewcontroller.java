@@ -25,10 +25,13 @@ public class Reviewcontroller {
 	public String reviewList(Model model)throws Exception{
 		
 		List<Map<String, Object>> brlist = new ArrayList<Map<String, Object>>();
-		
 		brlist = reviewService.bestReviewList();
 		
+		List<Map<String, Object>> nrlist = new ArrayList<Map<String, Object>>();
+		nrlist = reviewService.newReviewList();
+
 		model.addAttribute("bestReviewList",brlist);
+		model.addAttribute("newReviewList",nrlist);
 				
 		return "reviewList";
 	}

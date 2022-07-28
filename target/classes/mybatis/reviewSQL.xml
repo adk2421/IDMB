@@ -77,7 +77,20 @@
 				select * from REVIEW
 					where R_RELEVEL = '0'
         			AND R_RECOMMEND is not null
-					ORDER BY R_RECOMMEND DESC, R_GROUPNUM DESC)
+					ORDER BY R_RECOMMEND DESC)
+			WHERE
+				ROWNUM <= 3
+		]]>
+	</select>
+	
+	<!-- new 리뷰 리스트 -->
+	<select id="newReviewList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM (
+				select * from REVIEW
+					where R_RELEVEL = '0'
+					AND R_RECOMMEND is not null
+        			ORDER BY R_NUM DESC)
 			WHERE
 				ROWNUM <= 3
 		]]>

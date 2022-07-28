@@ -145,7 +145,17 @@
 	<definition name="qnaDetail" extends="main_layout">
 		<put-attribute name="body"
 			value="/WEB-INF\jsp\board\qna\qnaDetail.jsp" />
-	</definition>	
+	</definition>
+	
+	<definition name="insertQnaForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\insertQnaForm.jsp"/>
+	</definition>
+	
+	<definition name="updateQnaForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\updateQnaForm.jsp"/>	
+	</definition>
 	
 	<definition name="reviewList" extends="main_layout">
 		<put-attribute name="body"

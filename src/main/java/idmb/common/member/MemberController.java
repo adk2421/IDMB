@@ -14,12 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import idmb.common.board.qna.QNAService;
 import idmb.common.order.OrderService;
+import idmb.common.product.ProductService;
 import idmb.model.MemberBean;
 import idmb.model.OrderBean;
+import idmb.model.ProductBean;
 import idmb.model.QNABean;
 import idmb.util.MapToBean;
 
@@ -40,6 +43,10 @@ public class MemberController {
 	
 	@Resource(name="qnaService")
 	private QNAService qnaService;
+	
+	@Resource(name="productService")
+	private ProductService productService;
+	
 	
 	// 회원가입 폼 이동
 	@RequestMapping(value = "/joinForm.do")
@@ -320,8 +327,8 @@ public class MemberController {
 	}
 
 	// 회원탈퇴
-	@RequestMapping(value = "/myInfoDelete.do") public String myInfoDelete(MemberBean member,
-			HttpServletRequest request, BindingResult result, Model model) throws Exception {
+	@RequestMapping(value = "/myInfoDelete.do")
+	public String myInfoDelete(MemberBean member, HttpServletRequest request, BindingResult result, Model model) throws Exception {
 	
 		// 세션에서 사용자 아이디를 가져와서 저장
 		String LoginId = (String) request.getSession().getAttribute("id");
@@ -345,8 +352,8 @@ public class MemberController {
 	
 	
 	// 마이페이지
-	@RequestMapping(value = "/myPage.do") public String myInfoOrder(Model
-			model, HttpServletRequest request, HttpSession session) throws Exception {
+	@RequestMapping(value = "/myPage.do")
+	public String myInfoOrder(Model model, HttpServletRequest request, HttpSession session) throws Exception {
 
 		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
@@ -376,7 +383,26 @@ public class MemberController {
         
         model.addAttribute("myQnaList", myQnaList);
         
-		return "myPage"; 	
+		return "myPage";
 	}
-	 
+	
+	// 최근 본 상품 List
+	@ResponseBody
+	@RequestMapping(value = "viewedProductAjax.do")
+	public String viewedProductAjax(@RequestParam(value="arr[]") List<String> arr, Model model) throws Exception {
+		ProductBean product = new ProductBean();
+		
+		List<Map<String, Object>> viewedProduct = new ArrayList<Map<String, Object>>();
+		
+		System.out.println("arr : " + arr);
+		
+		for (int i = 0; i < arr.size(); i++) {
+			product.setP_code(Integer.parseInt(arr.get(i)));
+			viewedProduct.add(productService.productDetail(product));
+		}
+		
+		model.addAttribute("viewedProduct", viewedProduct);
+		
+		return "myPage";
+	} 
 }

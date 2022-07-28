@@ -55,7 +55,7 @@ function insertNotice()	{
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
 			<li id="title-text1" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
 			<li id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li id="title-text1" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="board-ad" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>

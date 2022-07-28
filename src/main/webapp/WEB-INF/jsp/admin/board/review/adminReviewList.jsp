@@ -24,7 +24,7 @@
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
 			<li  id="title-text1" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
 			<li  id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li  id="title-text1" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li  id="board-ad" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 		<li id="title-text2" style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>
 	</ul>
 	</div>
-	<hr>
+
 	
 	<br>
 	<div class="search"style="margin:auto; text-align: center;">
@@ -48,7 +48,7 @@
 			<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
 			<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 		</select>
-		<input id="search"type="search" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
+		<input id="search" type="search" name="searchValue"  placeholder="검색어 ..." value="${searchValue}"/>
 		<button class="search-icon" href=""><i class="fa fa-search"></i></button>
 	</form>
 	</div>
