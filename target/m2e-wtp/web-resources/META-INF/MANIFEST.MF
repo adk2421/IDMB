@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: mcspy
-=======
-Built-By: EZEN
->>>>>>> d8dfaab5fde4870d2f0dc171be9459c4c51fedcc
 Build-Jdk: 11.0.14
 Created-By: Maven Integration for Eclipse
 

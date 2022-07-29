@@ -149,12 +149,13 @@ public class ProductController {
 			@RequestMapping(value="/productDetail.do")
 			public String ProductDetail(ProductBean product, HttpServletRequest request, Model model)throws Exception{
 				
-		
+				String p_count = request.getParameter("p_count");
+				
 				Map<String, Object> map = new HashMap<String, Object>();
 				map = productService.productDetail(product);
 				
-				model.addAttribute("product", map);
-			
+				model.addAttribute("ProductDetail", map);
+				model.addAttribute("p_count", p_count);
 				
 				return "productDetail";
 			}
