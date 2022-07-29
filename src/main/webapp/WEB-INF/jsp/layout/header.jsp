@@ -31,7 +31,7 @@
 	</div>
 	<hr/>
 	<div class="logo">
-		<img class="logo" src="/IDMB/img/logo.png" onclick="main()">
+		<img class="logo" src="/IDMB/img/logo.png" onclick="location.href = '/IDMB/mainpageProductList.do'">
 	</div>
 	<div>
 		<hr/>
