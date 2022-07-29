@@ -169,6 +169,7 @@
 				PRODUCT
 			WHERE
 				P_DELFLAG = 'N'
+				AND P_KIND = #{p_kind}
 			]]>
 			<trim prefix="AND">
 				<if test="searchValue != NULL">

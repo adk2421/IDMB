@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import idmb.common.basket.BasketService;
+import idmb.common.order.OrderService;
+import idmb.model.BasketBean;
 import idmb.model.ProductBean;
 
 @Controller
@@ -20,6 +23,13 @@ public class ProductController {
 	
 	@Resource(name="productService")
 	private ProductService productService;
+	
+	@Resource (name="orderService")
+	private OrderService orderService;
+	
+	@Resource(name="basketService")
+	private BasketService basketService;
+	 
 	
 	//메인 페이지 상품 리스트
 	@RequestMapping(value="/mainpageProductList.do")
@@ -160,6 +170,41 @@ public class ProductController {
 
 	
 			//상품별 리스트
+			@RequestMapping(value="/kindProductList.do")
+			public String kindProductList(ProductBean product, HttpServletRequest request, Model model)throws Exception{
+				
+				String p_kind = request.getParameter("p_kind");
+				
+				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+				
+				String searchValue = null;
+				int priceValue1 = -1;
+				int priceValue2 = -1;
+				
+				searchValue = request.getParameter("searchValue");
+				if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
+					priceValue1 = 0;
+				} else {
+					priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
+				}
+				
+				if(request.getParameter("priceValue2") == null || request.getParameter("priceValue2").trim()=="") {
+					priceValue2 = 99999999;
+				} else {
+					priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+				}
+				
+				list = productService.kindProductList(product, searchValue, priceValue1, priceValue2, searchValue);
+				model.addAttribute("p_kind", p_kind);
+				model.addAttribute("kindList", list);
+				model.addAttribute("searchValue", searchValue);
+				model.addAttribute("priceValue1", priceValue1);
+				model.addAttribute("priceValue2", priceValue2);
+				
+				return "kindProductList";
+				
+				
+			}
 	
 	
 
@@ -176,6 +221,19 @@ public class ProductController {
 				return "productDetail";
 			}
 }
+
+//			// 장바구니로 이동
+//			@RequestMapping(value="/insertBasket.do")
+//			public void insertBasket(BasketBean basket, HttpServletRequest request, Model model)throws Exception{
+//				
+//				basketService.insertBasket(basket);
+//				
+//				model.addAttribute("msg", "해당 상품을 장바구니에 담았습니다.");
+//				model.addAttribute("url", "/insertBasket.do");
+//				
+//				return "insertBasket";
+//			}
+//}
 			
 		
 

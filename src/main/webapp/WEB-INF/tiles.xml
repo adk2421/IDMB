@@ -84,10 +84,10 @@
 			value="/WEB-INF/jsp/product/bestProductList.jsp" />
 	</definition> 
 	
-	<!--<definition name="kindProductList" extends="main_layout">
+	<definition name="kindProductList" extends="main_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/product/kindProductList.jsp" />
-	</definition> -->
+	</definition>
 	
 	<definition name="productDetail" extends="main_layout">
 		<put-attribute name="body"
