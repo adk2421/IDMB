@@ -14,16 +14,16 @@ public class AdminReviewDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<Map<String, Object>> adminReviewList() throws Exception{
-		return sqlSessionTemplate.selectList("admin.adminReviewList");
-	}
-	
-	public Map<String, Object> adminReviewDetail(Map<String, Object> map) throws Exception{
-		return sqlSessionTemplate.selectOne("admin.adminReviewDetail", map);
+	public List<Map<String, Object>> adminReviewList(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("admin.adminReviewList", map);
 	}
 	
 	public List<Map<String, Object>> adminSearchReview(Map<String, Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("admin.adminSearchReview", map);
+	}
+	
+	public Map<String, Object> adminReviewDetail(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminReviewDetail", map);
 	}
 	
 	public void adminInsertReview(Map<String, Object> map) throws Exception{
@@ -33,5 +33,12 @@ public class AdminReviewDAO {
 	public void adminDeleteReview(Map<String, Object> map) throws Exception{
 		sqlSessionTemplate.delete("admin.adminDeleteReview", map);
 	}
+	
+	public Map<String, Object> adminReviewCount() throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminReviewCount");
+	}
 
+	public Map<String, Object> adminSearchReviewCount(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminSearchReviewCount",map);
+	}
 }

@@ -302,15 +302,32 @@
 			where O_NUM = #{o_num}
 		]]>
 	</update>	
-	
+
+<!-- ADMIN NOTICE -->	
 	<!-- 공지 리스트 -->
 	<select id="adminNoticeList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select N_NUM, N_TITLE, N_DATE, N_HIT from NOTICE
-			ORDER BY N_NUM DESC
+			SELECT * FROM(
+				SELECT N_NUM, N_TITLE, N_DATE, N_HIT, ROWNUM R
+				FROM(
+					SELECT * FROM NOTICE
+					ORDER BY N_DATE DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 		]]>
 	</select>
 	
+	<!-- 공지 수 -->
+	<select id="adminNoticeCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM
+					NOTICE
+		]]>
+	</select>
+
 	<!-- 공지 상세 정보 -->
 	<select id="adminNoticeDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -347,30 +364,73 @@
 			where N_NUM = #{n_num}
 		]]>
 	</update>
-	
+
+<!-- ADMIN REVIEW -->	
 	<!-- 후기 리스트 -->
 	<select id="adminReviewList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from REVIEW
-			where R_RELEVEL = '0'
-			ORDER BY R_GROUPNUM DESC
+			SELECT * FROM(
+				SELECT R_NUM, R_ID, R_CODE, R_DATE, R_NAME, R_CONTENTS, R_RATE,
+					R_RECOMMEND, R_RELEVEL, R_GROUPNUM, ROWNUM R
+				FROM(
+					SELECT * FROM REVIEW
+					WHERE R_RELEVEL = '0'
+					ORDER BY R_GROUPNUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 		]]>
 	</select>
-	
-	<!-- 후기 상세 -->
-	<select id="adminReviewDetail" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			select * from REVIEW
-			where R_NUM = #{r_num}
-		]]>
-	</select>
-	
-	
+
 	<!-- 후기 검색 -->
 	<select id="adminSearchReview" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from REVIEW
-			WHERE R_RELEVEL = '0'
+			SELECT * FROM(
+				SELECT R_NUM, R_ID, R_CODE, R_DATE, R_NAME, R_CONTENTS, R_RATE,
+					R_RECOMMEND, R_RELEVEL, R_GROUPNUM, ROWNUM R
+				FROM(
+					SELECT * FROM REVIEW
+					WHERE R_RELEVEL = '0'
+		]]>
+		<trim prefix="AND">
+		<if test="SORT != NULL">
+			<if test="SORT == 'id'">
+				<if test="searchValue != NULL">		
+				R_ID like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+			<if test="SORT == 'product'">
+				<if test="searchValue != NULL">		
+				R_NAME like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+		</if>
+		</trim>		
+					ORDER BY R_GROUPNUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
+	</select>
+	
+	<!-- 전체 후기 수 -->
+	<select id="adminReviewCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM
+				REVIEW
+				WHERE R_RELEVEL = '0'
+		]]>
+	</select>
+
+	<!-- 검색 후기 수 -->
+	<select id="adminSearchReviewCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM
+				REVIEW
+				WHERE R_RELEVEL = '0'
 		]]>
 		<trim prefix="AND">
 			<if test="SORT != NULL">
@@ -384,11 +444,18 @@
 						R_NAME like '%'||#{searchValue}||'%'
 					</if>
 				</if>
-			</if>
-			ORDER BY R_GROUPNUM DESC 
+			</if>			
 		</trim>
 	</select>
-	
+		
+	<!-- 후기 상세 -->
+	<select id="adminReviewDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from REVIEW
+			where R_NUM = #{r_num}
+		]]>
+	</select>
+		
 	<!-- 후기 답변 작성 -->
 	<insert id="adminInsertReview" parameterType="hashmap">
 		<![CDATA[
