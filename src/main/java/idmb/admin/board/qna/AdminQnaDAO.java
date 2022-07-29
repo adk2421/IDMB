@@ -42,4 +42,12 @@ public class AdminQnaDAO {
 		sqlSessionTemplate.delete("admin.adminDeleteQna", map);
 	}
 	
+	public Map<String, Object> adminQnaCount(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminQnaCount", map);
+	}
+	
+	public Map<String, Object> adminSearchQnaCount(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminSearchQnaCount", map);
+	}
+	
 }
