@@ -82,63 +82,82 @@ public class ProductController {
 
 
 
-//			// 신상품순 상품 리스트
-//			@RequestMapping(value="/newProductList.do") // URL mapping
-//			public String newProductList(HttpServletRequest request, Model model) throws Exception{		
-//				
-//			//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
-//				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-//				
-//			// 검색어 입력받기	
-//				String searchValue = null;
-//				int priceValue1 = 0;
-//				int priceValue2 = 99999999;
-//				
-//			
-//			// 변수값 설정
-//				searchValue = request.getParameter("searchValue");
-//				priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
-//				priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
-//				
-//				list = productService.newProductList(searchValue, priceValue1, priceValue2);
-//	
-//				model.addAttribute("searchValue",searchValue);
-//				model.addAttribute("priceValue1",priceValue1);
-//				model.addAttribute("priceValue2",priceValue2);
-//				model.addAttribute("newList", list);
-//				
-//				//tiles.xml에서 defination name="newProductList.jsp" 로 보냄
-//				return "newProductList";
-//			}
+			// 신상품순 상품 리스트
+			@RequestMapping(value="/newProductList.do") // URL mapping
+			public String newProductList(HttpServletRequest request, Model model) throws Exception{		
+				
+			//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
+				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+				
+			// 검색어 입력받기	
+				String searchValue = null;
+				int priceValue1 = -1;
+				int priceValue2 = -1;
+				
+			
+			// 변수값 설정
+				searchValue = request.getParameter("searchValue");
+				if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
+					priceValue1 = 0;
+				} else {
+					priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
+				}
+				
+				if(request.getParameter("priceValue2") == null || request.getParameter("priceValue2").trim()=="") {
+					priceValue2 = 99999999;
+				} else {
+					priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+				}
+				
+				
+				list = productService.newProductList(searchValue, priceValue1, priceValue2);
+	
+				model.addAttribute("searchValue",searchValue);
+				model.addAttribute("priceValue1",priceValue1);
+				model.addAttribute("priceValue2",priceValue2);
+				model.addAttribute("newList", list);
+				
+				//tiles.xml에서 defination name="newProductList.jsp" 로 보냄
+				return "newProductList";
+			}
 			
 
 			
-//			// 인기순 상품 리스트
-//			@RequestMapping(value="/bestProductList.do")
-//			public String bestProductList(HttpServletRequest request, Model model)throws Exception{
-//				
-//				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-//				
-//				String searchValue = null;
-//				int priceValue1 = 0;
-//				int priceValue2 = 99999999;
-//				
-//				searchValue = request.getParameter("searchValue");
-//				priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
-//				priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
-//				
-//				list = productService.bestProductList(searchValue, priceValue1, priceValue2);
-//				
-//				model.addAttribute("bestList", list);
-//				model.addAttribute("searchValue", searchValue);
-//				model.addAttribute("priceValue1", priceValue1);
-//				model.addAttribute("priceValue2", priceValue2);
-//				
-//				return "bestProductList";
-//				
-//				
-//			}
-//}
+			// 인기순 상품 리스트
+			@RequestMapping(value="/bestProductList.do")
+			public String bestProductList(HttpServletRequest request, Model model)throws Exception{
+				
+				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+				
+				String searchValue = null;
+				int priceValue1 = -1;
+				int priceValue2 = -1;
+				
+				searchValue = request.getParameter("searchValue");
+				if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
+					priceValue1 = 0;
+				} else {
+					priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
+				}
+				
+				if(request.getParameter("priceValue2") == null || request.getParameter("priceValue2").trim()=="") {
+					priceValue2 = 99999999;
+				} else {
+					priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+				}
+				
+				list = productService.bestProductList(searchValue, priceValue1, priceValue2);
+				
+				model.addAttribute("bestList", list);
+				model.addAttribute("searchValue", searchValue);
+				model.addAttribute("priceValue1", priceValue1);
+				model.addAttribute("priceValue2", priceValue2);
+				
+				return "bestProductList";
+				
+				
+			}
+
 	
 			//상품별 리스트
 	
