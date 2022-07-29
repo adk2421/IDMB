@@ -119,14 +119,7 @@
 	<select id="bestProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				P_NAME,
-				P_IMAGE,
-				P_PRICE,
-				P_STOCK,
-				P_SELL,
-				P_KIND,
-				P_DATE,
-				P_ZIM
+				*
 			FROM
 				PRODUCT
 			WHERE
@@ -164,18 +157,12 @@
 	<select id="kindProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				P_NAME,
-				P_IMAGE,
-				P_PRICE,
-				P_STOCK,
-				P_SELL,
-				P_KIND,
-				P_DATE,
-				P_ZIM
+				*
 			FROM
 				PRODUCT
 			WHERE
 				P_DELFLAG = 'N'
+				AND P_KIND = #{p_kind}
 			]]>
 			<trim prefix="AND">
 				<if test="searchValue != NULL">

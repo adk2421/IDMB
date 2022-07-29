@@ -47,7 +47,6 @@ border-left: none;
 }
 
 </style>
-<link rel="stylesheet" href="css/menutop.css" type="text/css">
 <meta charset="UTF-8">
 <title>신상품 목록</title>
 </head>
@@ -86,26 +85,20 @@ border-left: none;
       <c:if test = "${priceValue2 != '99999999'}">value="${priceValue2}"</c:if>>
 
    <input type="submit" value="검색"/>
-   </form>
-   
-   <br><br>
-   <b>[신상품]</b>
-   <br><br>
+</form>
 <table>
 <tbody>
-   <c:forEach var="product" items="${newList}" begin="0" end ="4">
+   <c:forEach var="product" items="${bestList}" begin="0" end ="4">
          <td width="200" height="200">
             <a href="productDetail.do?p_code=${product.P_CODE}">
             <img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
             <a href="productDetail.do?p_code=${product.P_CODE}">
             ${product.P_NAME}</a><br>
             <fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
-      
-
-         </td>
+      </td>
    </c:forEach>
    <tr></tr>
-   <c:forEach var="product" items="${newList}" begin="5" end ="9">
+   <c:forEach var="product" items="${bestList}" begin="5" end ="9">
          <td width="200" height="200">
             <a href="productDetail.do?p_code=${product.P_CODE}">
             <img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
@@ -113,9 +106,9 @@ border-left: none;
             ${product.P_NAME}</a><br>
             <fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
             </c:forEach>
-
-   
+            
    </tbody>
 </table>
+
 </body>
 </html>

@@ -113,7 +113,7 @@ function select(){
         
         
         <p><button type="button" onclick="basketCheck()">장바구니에 담기</button></p>
-        ${count }
+    
         </form>
 
      </body>
