@@ -7,21 +7,32 @@
 	<!-- 사용자 리스트 -->
 	<select id="adminMemberList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from MEMBER
+			SELECT * FROM(
+				SELECT ID, PASSWD, NAME, PHONE, BIRTH, EMAIL, POSTCODE, ADDRESS1, ADDRESS2, RESERVE, JOINDATE, DELFLAG, ROWNUM R
+				FROM(
+					SELECT * FROM MEMBER
+					ORDER BY JOINDATE DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}	
 		]]>
 	</select>
 	
 	<!-- 사용자 상세정보 -->
 	<select id="adminMemberDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from MEMBER where ID = #{id}
+			SELECT * FROM MEMBER where ID = #{id}
 		]]>
 	</select>
 	
 	<!-- 사용자 검색 -->
 	<select id="adminSearchMember" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from MEMBER
+			SELECT * FROM(
+				SELECT ID, PASSWD, NAME, PHONE, BIRTH, EMAIL, POSTCODE, ADDRESS1, ADDRESS2, RESERVE, JOINDATE, DELFLAG, ROWNUM R
+				FROM(
+					SELECT * FROM MEMBER			
 		]]>
 		<trim prefix="WHERE">
 		<if test="SORT != NULL">
@@ -42,7 +53,49 @@
 			</if>
 		</if>
 		</trim>
+					ORDER BY JOINDATE DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}				
 	</select>
+	
+	<!-- 전체 회원 수 -->
+	<select id="adminMemberCount" resultType="hashmap">
+	<![CDATA[
+		SELECT COUNT(*) COUNT
+		FROM 
+			MEMBER
+	]]>
+	</select>
+	
+	<!-- 검색 회원 수 -->
+	<select id="adminSearchMemberCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM 
+					MEMBER	
+		]]>
+		<trim prefix="WHERE">
+		<if test="SORT != NULL">
+			<if test="SORT == 'id'">
+				<if test="searchValue != NULL">		
+				ID like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+			<if test="SORT == 'name'">
+				<if test="searchValue != NULL">		
+				NAME like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+			<if test="SORT == 'phone'">
+				<if test="searchValue != NULL">		
+				PHONE like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+		</if>
+		</trim>
+	</select>	
 	
 	<!-- 사용자 정보 수정 -->
 	<update id="adminUpdateMember" parameterType="hashmap">

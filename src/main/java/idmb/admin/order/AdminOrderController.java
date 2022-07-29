@@ -31,7 +31,7 @@ public class AdminOrderController {
 		int END = pageSize;
 		int currentPage = 1; // 현재 페이지
 		
-		int totalCount; // 전체 상품의 수
+		int totalCount; // 전체 주문의 수
 		int pageBlock = 5; // 표시할 페이지의 수
 		String url = "adminOrderList.do";
 		String searchUrl = "";
