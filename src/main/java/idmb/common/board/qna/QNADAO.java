@@ -46,4 +46,11 @@ public class QNADAO {
 		return sqlSessionTemplate.selectOne("qna.qnaRe", map);
 	}
 
+	public Map<String, Object> qnaCount(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("qna.qnaCount", map);
+	}
+	
+	public Map<String, Object> searchQnaCount(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("qna.searchQnaCount", map);
+	}
 }

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.model.QNABean;
+import idmb.util.Paging;
 
 @Controller
 public class AdminQnaController {
@@ -30,33 +31,72 @@ public class AdminQnaController {
 	public String adminQnaList(
 			QNABean qna, HttpServletRequest request, Model model) throws Exception{
 		
-		//검색 종류, 검색어
-		String SORT = null;
-		String searchValue = null;
-		String qst = null;
+		/* 페이징을 위한 변수 */
+		int pageSize = 5; // 페이지당 출력할 회원의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
+		
+		int totalCount; // 전체 회원의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "adminQnaList.do";
+		String searchUrl = "";	
 		
 		//검색 종류, 검색어, 카테고리 입력받음
 		String q_category = request.getParameter("q_category");
-		SORT = request.getParameter("SORT");
-		searchValue = request.getParameter("searchValue");
-		qst = request.getParameter("qst");
+		String SORT = request.getParameter("SORT");
+		String searchValue = request.getParameter("searchValue");
+		String qst = request.getParameter("qst");
 		
+		//검색조건 유무에 따른 searchUrl 설정
+		if(SORT == null) { //초기페이지
+			searchUrl = "&q_category="+q_category;
+		}
+		else {
+			 if(qst == null) {
+				if(searchValue == null || searchValue.trim() == "") {
+					searchUrl = "&q_category="+q_category+"&SORT="+SORT+
+							"&searchValue=";
+				} else {
+					searchUrl = "&q_category="+q_category+"&SORT="+SORT+
+							"&searchValue="+searchValue;	
+				}
+			 }
+			 else {
+				if(searchValue == null || searchValue.trim() == "") {
+					searchUrl = "&q_category="+q_category+"&SORT="+SORT+
+							"&searchValue=&qst="+qst;
+				} else {
+					searchUrl = "&q_category="+q_category+"&SORT="+SORT+
+							"&searchValue="+searchValue+"&qst="+qst;
+				}
+			}
+		}
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}					
+		
+		//검색 조건 유무에 따른 totalCount 개수 확인
+		if(SORT == null) {
+			totalCount = adminQnaService.adminQnaCount(qna);
+		} else {
+			totalCount = adminQnaService.adminSearchQnaCount(qna, searchValue, SORT, qst);
+		}
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+				
 		//QNA들의 리스트가 필요하므로 ArrayList형의 'list' 생성
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
-		if(searchValue == null || searchValue.trim() == "") {
-			if(qst == null) {
-				if(SORT == null) {
-					list = adminQnaService.adminQnaList(qna);
-				} else {
-					list = adminQnaService.adminSearchQna(qna, searchValue, SORT, qst);
-				}
-			} else {
-				list = adminQnaService.adminSearchQna(qna, searchValue, SORT, qst);
-			}
-		//검색값이 있는 경우
-		} else {
-			list = adminQnaService.adminSearchQna(qna, searchValue, SORT, qst);
+		if(SORT == null) {
+			list = adminQnaService.adminQnaList(qna, START, END);
+		} else { //SORT == null 인경우. 초기페이지
+			list = adminQnaService.adminSearchQna(qna, searchValue, SORT, qst, START, END);
 		}
 		
 		//model로 위에서 정의한 값 전송
@@ -65,6 +105,8 @@ public class AdminQnaController {
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("qst", qst);
 		model.addAttribute("adminQnaList", list);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);		
 		
 		//tiles.xml의 definition name="adminQnaList"로 이동
 		return "adminQnaList";

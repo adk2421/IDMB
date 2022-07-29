@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.model.NoticeBean;
+import idmb.util.Paging;
 
 @Controller
 public class AdminNoticeController {
@@ -21,14 +22,40 @@ public class AdminNoticeController {
 	private AdminNoticeService adminNoticeService;
 	
 	@RequestMapping(value="/adminNoticeList.do")
-	public String adminNoticeList(NoticeBean notice, Model model)throws Exception{
+	public String adminNoticeList(
+			NoticeBean notice, HttpServletRequest request, Model model)throws Exception{
 		
+		/* 페이징을 위한 변수 */
+		int pageSize = 5; // 페이지당 출력할 공지의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
+		
+		int totalCount; // 전체 공지의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "adminNoticeList.do";
+		String searchUrl = "";
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}
+		
+		totalCount = adminNoticeService.adminNoticeCount();
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+
 		//Notice들의 리스트가 필요하므로 ArrayList형의 'list' 생성
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 						
-		list = adminNoticeService.adminNoticeList();
+		list = adminNoticeService.adminNoticeList(START, END);
 		
 		model.addAttribute("adminNoticeList",list);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);
 		
 		//tiles.xml의 definition name="adminNoticeList"로 이동
 		return "adminNoticeList";

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.model.OrderBean;
+import idmb.util.Paging;
 
 @Controller
 public class AdminOrderController {
@@ -24,34 +25,87 @@ public class AdminOrderController {
 	public String adminOrderList(OrderBean order,
 			HttpServletRequest request, Model model) throws Exception{
 		
-		//검색어 입력받기
-		String searchValue = null;
-		searchValue = request.getParameter("searchValue");
+		/* 페이징을 위한 변수 */
+		int pageSize = 5; // 페이지당 출력할 주문의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
 		
+		int totalCount; // 전체 주문의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "adminOrderList.do";
+		String searchUrl = "";
+		
+		//검색어 입력받기
+		String searchValue = request.getParameter("searchValue");
 		//주문상태 입력받기
-		String ostatus = null;
-		ostatus = request.getParameter("ostatus");
-				
+		String ostatus = request.getParameter("ostatus");
+		
+		//검색조건이 유무에 따른 searchUrl 설정
+		if(ostatus != null) {
+			if(searchValue != null) {
+				searchUrl = "&ostatus="+ostatus+"&searchValue="+searchValue;
+			} else {
+				searchUrl = "&ostatus="+ostatus+"&searchValue=";
+			}
+		} else {
+			if(searchValue != null) {
+				searchUrl = "&ostatus=&searchValue="+searchValue;
+			} else {
+				searchUrl = "";
+			}
+		}
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}
+		
+		//검색 조건 유무에 따른 totalCount 개수 확인
+		if(ostatus != null) {
+			if(searchValue != null) {
+				totalCount = adminOrderService.adminSearchOrderCount(searchValue, ostatus);
+			} else {
+				totalCount = adminOrderService.adminSearchOrderCount(searchValue, ostatus);
+			}
+		} else {
+			if(searchValue != null) {
+				totalCount = adminOrderService.adminSearchOrderCount(searchValue, ostatus);
+			} else {
+				totalCount = adminOrderService.adminOrderCount();
+			}
+		}
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+
 		//Order들의 리스트가 필요하므로 ArrayList형의 'list' 생성
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-				
-		if(searchValue == null || searchValue.trim() =="") {
-			if(ostatus == null) {
-				//검색어도 없고, 주문상태 검색도 없는(전체)인 경우 
-				list = adminOrderService.adminOrderList();
+		
+		
+		//검색어가 있는 경우
+		if(ostatus != null) {
+			if(searchValue != null) {
+				list = adminOrderService.adminSearchOrder(searchValue, ostatus, START, END);
 			} else {
-				//검색어는 없지만, 주문상태 검색은 있는 경우
-				list = adminOrderService.adminSearchOrder(searchValue,ostatus);
+				list = adminOrderService.adminSearchOrder(searchValue, ostatus, START, END);
 			}
-		}		
-		else {
-			//검색어와 주문상태 둘다 검색하는 경우
-			list = adminOrderService.adminSearchOrder(searchValue,ostatus);
+		} else {
+			if(searchValue != null) {
+				list = adminOrderService.adminSearchOrder(searchValue, ostatus, START, END);
+			} else { //검색어도 없고, 주문상태 검색도 없는(전체)인 경우 
+				list = adminOrderService.adminOrderList(START, END);
+			}
 		}
+		
 		
 		model.addAttribute("ostatus", ostatus);
 		model.addAttribute("searchValue", searchValue);
-		model.addAttribute("adminOrderList", list);		
+		model.addAttribute("adminOrderList", list);	
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);
 		
 		//tiles.xml의 definition name="adminOrderList"로 이동
 		return "adminOrderList";

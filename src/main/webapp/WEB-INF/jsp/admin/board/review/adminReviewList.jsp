@@ -48,7 +48,7 @@
 			<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
 			<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 		</select>
-		<input id="search" type="search" name="searchValue"  placeholder="검색어 ..." value="${searchValue}"/>
+		<input type="text" id="searchValue"  name="searchValue"  placeholder="검색어 ..." value="${searchValue}"/>
 		<button class="search-icon" href=""><i class="fa fa-search"></i></button>
 	</form>
 	</div>
@@ -94,5 +94,6 @@
 		</c:forEach>
 		</tbody>
 	</table>
+	${paging.pageHtml}
 </body>
 </html>

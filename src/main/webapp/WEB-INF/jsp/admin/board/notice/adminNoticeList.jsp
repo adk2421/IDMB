@@ -107,7 +107,7 @@ function insertNotice()	{
 		</tbody>
 	</table>
 	<br><br>
-	
+	${paging.pageHtml}
 
 </body>
 </html>

@@ -111,6 +111,6 @@
 		</c:forEach>
 
 	</table>
-
+	${paging.pageHtml}
 </body>
 </html>
