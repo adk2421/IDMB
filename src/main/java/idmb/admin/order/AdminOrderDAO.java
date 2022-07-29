@@ -14,12 +14,20 @@ public class AdminOrderDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<Map<String, Object>> adminOrderList() throws Exception{
-		return sqlSessionTemplate.selectList("admin.adminOrderList");
+	public List<Map<String, Object>> adminOrderList(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("admin.adminOrderList", map);
 	}
 	
 	public List<Map<String, Object>> adminSearchOrder(Map<String, Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("admin.adminSearchOrder", map);
+	}
+	
+	public Map<String, Object> adminOrderCount() throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminOrderCount");
+	}
+	
+	public Map<String, Object> adminSearchOrderCount(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminSearchOrderCount", map);
 	}
 	
 	public Map<String, Object> adminOrderDetail(Map<String, Object> map) throws Exception{
