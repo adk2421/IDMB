@@ -157,14 +157,7 @@
 	<select id="kindProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				P_NAME,
-				P_IMAGE,
-				P_PRICE,
-				P_STOCK,
-				P_SELL,
-				P_KIND,
-				P_DATE,
-				P_ZIM
+				*
 			FROM
 				PRODUCT
 			WHERE

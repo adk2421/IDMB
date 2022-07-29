@@ -86,8 +86,13 @@
 	
 	<definition name="kindProductList" extends="main_layout">
 		<put-attribute name="body"
+<<<<<<< HEAD
 			value="/WEB-INF/jsp/product/kindProductList.jsp" />
 	</definition>
+=======
+			value="/WEB-INF/jsp/product/bestProductList.jsp" />
+	</definition> 
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
 	
 	<definition name="productDetail" extends="main_layout">
 		<put-attribute name="body"

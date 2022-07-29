@@ -11,6 +11,7 @@
 <script>
 
 function select(){ 
+<<<<<<< HEAD
    
        // select element에서 선택된 option의 value가 저장된다.
     var p_count = $('#count option:selected').val();
@@ -20,10 +21,22 @@ function select(){
     var totalprice = p_count*price;
     document.getElementById("tp").value = totalprice;
        
+=======
+	
+	    // select element에서 선택된 option의 value가 저장된다.
+	 var p_count = $('#count option:selected').val();
+	 
+	 var price = ${ProductDetail.P_PRICE};
+	    
+	 var totalprice = p_count*price;
+	 document.getElementById("tp").value = totalprice;
+	    
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
 }
 
  function order(){
  var p_count = $('#count option:selected').val();
+<<<<<<< HEAD
     
     var price = ${ProductDetail.P_PRICE};
        
@@ -34,6 +47,32 @@ function select(){
     
 }
 
+=======
+	 
+	 var price = ${ProductDetail.P_PRICE};
+	    
+	 var totalprice = p_count*price;
+	 document.getElementById("tp").value = totalprice;
+	 
+	 location.href='/IDMB/orderForm.do?p_code=${ProductDetail.P_CODE}&p_count='+p_count
+	 
+ }
+ 
+ function basketCheck() {
+	 var form = document.getElementById("insertBasketForm");
+	 var b_count = $('#count option:selected').val();
+	 document.getElementById("b_count").value = b_count
+	 
+	 if(confirm("장바구니에 담으시겠습니까?") == true){
+		 form.submit();
+	 }
+	
+}
+
+
+
+
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
 </script>
 </head>
 <body>
@@ -42,7 +81,11 @@ function select(){
     <table border ="1">
         <tr>
             <td>
+<<<<<<< HEAD
             <img src="img/${ProductDetail.P_IMAGE}"  width="200" height="250" border="0" id="previewImage">
+=======
+            <img src="img/${ProductDetail.P_IMAGE }"  width="200" height="250" border="0" id="previewImage">
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
             </td>
         </tr>
     </table>
@@ -66,8 +109,13 @@ function select(){
          <tr align = "center">
             <td>구매수량</td>
             <td>
+<<<<<<< HEAD
          
          <select id="count" name="count" onchange="select()">
+=======
+			
+			<select id="count" name="count" onchange="select()">
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -75,16 +123,24 @@ function select(){
             <option value="5">5</option>
             <option value="6">6</option>
             </select>&nbsp;개
+<<<<<<< HEAD
       
        <tr align = "center">
             <td> 총 구매 금액</td>
             <td><input type="text" id="tp" value="<fmt:formatNumber value="${ProductDetail.P_PRICE}" pattern="###,###,###"/>"/></td>
+=======
+		
+ 		<tr align = "center">
+            <td> 총 구매 금액</td>
+            <td><input type="text" id="tp" value="${ProductDetail.P_PRICE}"/></td>
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
         </tr>
         
         </table>
 
         <p><button onclick="order()">주문하기</button>
         <p><button onclick="alert('찜하기가 완료되었습니다.')">찜하기</button></p> 
+<<<<<<< HEAD
 		<form>
 		<p><button onclick="alert('장바구니에 담으시겠습니까?')"><a href='/IDMB/장바구니에 담기</button>
 		
@@ -92,5 +148,24 @@ function select(){
 		
 		</form>
 		
+=======
+        
+        <form method="post" id="insertBasketForm" action="insertBasket.do">
+        
+       
+        <input type="hidden" id="b_id" name="b_id" value="${id }"/>
+        <input type="hidden" id="b_code" name="b_code" value="${ProductDetail.P_CODE }"/>
+        <input type="hidden" id="b_name" name="b_name" value="${ProductDetail.P_NAME }"/>
+        <input type="hidden" id="b_price" name="b_price" value="${ProductDetail.P_PRICE }"/>
+        <input type="hidden" id="b_kind" name="b_kind" value="${ProductDetail.P_KIND }"/>
+        <input type="hidden" id="b_count" name="b_count" value=""/>
+        <input type="hidden" id="b_image" name="b_image" value="${ProductDetail.P_IMAGE }"/>
+        
+        
+        <p><button type="button" onclick="basketCheck()">장바구니에 담기</button></p>
+    
+        </form>
+
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
      </body>
  </html>

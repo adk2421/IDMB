@@ -32,17 +32,19 @@ public class QNAServiceImpl implements QNAService {
 	}
 	
 	@Override
-	public List<Map<String, Object>> qnaList(QNABean QNA) throws Exception{
+	public List<Map<String, Object>> qnaList(QNABean QNA, int START, int END) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("q_category", QNA.getQ_category());
+		map.put("START", START);
+		map.put("END", END);
 		
 		return qnaDAO.qnaList(map);
 	}
 	
 	@Override
 	public List<Map<String, Object>> searchQna(QNABean qna,
-			String searchValue, String SORT, String qst) throws Exception
+			String searchValue, String SORT, String qst, int START, int END) throws Exception
 	{
 		Map<String, Object> map = new HashMap<String,Object>();
 		
@@ -50,6 +52,8 @@ public class QNAServiceImpl implements QNAService {
 		map.put("searchValue", searchValue);
 		map.put("SORT", SORT);
 		map.put("qst", qst);
+		map.put("START", START);
+		map.put("END", END);
 		
 		return qnaDAO.searchQna(map);
 	}
@@ -103,5 +107,30 @@ public class QNAServiceImpl implements QNAService {
 		
 		return qnaDAO.qnaRe(map);
 	}
+	
+	@Override
+	public int qnaCount(QNABean qna) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("q_category",qna.getQ_category());
+		
+		Map<String, Object> countMap = qnaDAO.qnaCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;
+	}
+	
+	@Override
+	public int searchQnaCount(QNABean qna, String searchValue, String SORT, String qst) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("q_category",qna.getQ_category());
+		map.put("searchValue", searchValue);
+		map.put("SORT", SORT);
+		map.put("qst", qst);
+		
+		Map<String, Object> countMap = qnaDAO.searchQnaCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;	
+	}	
 
 }

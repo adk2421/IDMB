@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import idmb.admin.product.AdminProductService;
 import idmb.model.ProductBean;
 import idmb.model.ReviewBean;
+import idmb.util.Paging;
 
 @Controller
 public class AdminReviewController {
@@ -29,30 +30,85 @@ public class AdminReviewController {
 	@RequestMapping(value="/adminReviewList")
 	public String adminReviewList(HttpServletRequest request, Model model)throws Exception{
 		
-		//검색 종류, 검색어
-		String SORT = null;
-		String searchValue = null;
-				
-		//검색 종류, 검색어 입력받음
-		SORT = request.getParameter("SORT");
-		searchValue = request.getParameter("searchValue");
+		/* 페이징을 위한 변수 */
+		int pageSize = 5; // 페이지당 출력할 회원의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
 		
-		//Review들의 전체 리스트가 필요하므로 ArrayList형의 'list' 생성
+		int totalCount; // 전체 회원의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "adminReviewList.do";
+		String searchUrl = "";		
+		
+		//검색 종류, 검색어 입력받음
+		String SORT = request.getParameter("SORT");
+		String searchValue = request.getParameter("searchValue");
+		
+		//검색조건이 유무에 따른 searchUrl 설정
+		if(SORT != null) {
+			if(searchValue != null) {
+				searchUrl = "&SORT="+SORT+"&searchValue="+searchValue;
+			} else {
+				searchUrl = "&SORT="+SORT+"&searchValue=";
+			}
+		} else {
+			if(searchValue != null) {
+				searchUrl = "&SORT=&searchValue="+searchValue;
+			} else {
+				searchUrl = "";
+			}
+		}
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}		
+		
+		//검색 조건 유무에 따른 totalCount 개수 확인
+		if(SORT != null) {
+			if(searchValue != null) {
+				totalCount = adminReviewService.adminSearchReviewCount(SORT, searchValue);
+			} else {
+				totalCount = adminReviewService.adminSearchReviewCount(SORT, searchValue);
+			}
+		} else {
+			if(searchValue != null) {
+				totalCount = adminReviewService.adminSearchReviewCount(SORT, searchValue);
+			} else {
+				totalCount = adminReviewService.adminReviewCount();
+			}
+		}
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+		
+		//Review들의 리스트가 필요하므로 ArrayList형의 'list' 생성
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
-		//검색어가 없는 경우는 ReviewList()
-		if(searchValue == null || searchValue.trim() =="") {
-			list = adminReviewService.adminReviewList();
-		}
-		//검색어가 있는 경우는 SearchReview()
-		else {
-			list = adminReviewService.adminSearchReview(SORT, searchValue);
+		//검색 조건이 있는 경우
+		if(SORT != null) {
+			if(searchValue != null) {
+				list = adminReviewService.adminSearchReview(SORT, searchValue, START, END);
+			} else {
+				list = adminReviewService.adminSearchReview(SORT, searchValue, START, END);				
+			}
+		} else {
+			if(searchValue != null) {
+				list = adminReviewService.adminSearchReview(SORT, searchValue, START, END);
+			} else { //검색 조건이 없는 경우
+				list = adminReviewService.adminReviewList(START, END);
+			}
 		}
 		
 		//model로 위에서 정의한 값 전송
 		model.addAttribute("SORT", SORT);
-		model.addAttribute("searchValue", searchValue);		
-		model.addAttribute("adminReviewList",list);
+		model.addAttribute("searchValue", searchValue);
+		model.addAttribute("adminReviewList", list);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);
 		
 		//tiles.xml의 definition name="adminReviewList"로 이동
 		return "adminReviewList";

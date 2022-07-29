@@ -195,6 +195,10 @@ public class ProductController {
 				}
 				
 				list = productService.kindProductList(product, searchValue, priceValue1, priceValue2, searchValue);
+<<<<<<< HEAD
+=======
+				
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
 				model.addAttribute("p_kind", p_kind);
 				model.addAttribute("kindList", list);
 				model.addAttribute("searchValue", searchValue);
@@ -205,21 +209,41 @@ public class ProductController {
 				
 				
 			}
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> b91c36c576cb103f85107666b4131db2a5f917e1
 
 			// 상품 디테일
 			@RequestMapping(value="/productDetail.do")
 			public String ProductDetail(ProductBean product, HttpServletRequest request, Model model)throws Exception{
 				
-				Map<String, Object> map = new HashMap<String, Object>();
+				String p_count = request.getParameter("p_count");
+				//int p_count = Integer.parseInt(String.valueOf(request.getParameter("p_count")));
 				
+				Map<String, Object> map = new HashMap<String, Object>();
 				map = productService.productDetail(product);
 				
-				model.addAttribute("product", map);
+				model.addAttribute("ProductDetail", map);
+				model.addAttribute("p_count", p_count);
 				
 				return "productDetail";
 			}
+			
+			
+			@RequestMapping(value="/insertBasket.do")
+			public String inputBasket(BasketBean basket, Model model ) throws Exception{
+				
+				basketService.insertBasket(basket);
+				
+				model.addAttribute("msg", "장바구니에 상품이 담겼습니다.");
+				model.addAttribute("url", "/basketList.do");
+				
+				return "/product/insertBasket";
+			}
+			
+			
 }
 
 //			// 장바구니로 이동
@@ -239,3 +263,4 @@ public class ProductController {
 
 
 	 	
+

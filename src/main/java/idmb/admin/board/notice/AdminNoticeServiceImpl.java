@@ -18,8 +18,22 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	
 	//공지리스트
 	@Override
-	public List<Map<String, Object>>adminNoticeList() throws Exception{
-		return adminNoticeDAO.adminNoticeList();
+	public List<Map<String, Object>>adminNoticeList(int START, int END) throws Exception{
+		Map<String, Object>map = new HashMap<String, Object>();
+		
+		map.put("START", START);
+		map.put("END", END);
+		
+		return adminNoticeDAO.adminNoticeList(map);
+	}
+	
+	//공지 수
+	@Override
+	public int adminNoticeCount() throws Exception{
+		
+		Map<String, Object> map = adminNoticeDAO.adminNoticeCount();
+		
+		return Integer.parseInt(String.valueOf(map.get("COUNT")));
 	}
 	
 	//공지 상세 정보	
