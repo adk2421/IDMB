@@ -137,7 +137,7 @@ function orderCheck() {
 		
 		<!-- 핸드폰 번호 -->
 		<h6>핸 드 폰 번 호</h6>
-			<input type="text" value="${phone}" readonly>
+			<input type="text" id="o_phone" name="o_phone" value="${phone}" >
 		
 		<hr>
 		<br><br>				

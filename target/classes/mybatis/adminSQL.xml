@@ -54,16 +54,55 @@
 	<!-- 상품 리스트 --> 
 	<select id="adminProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from PRODUCT
-			where P_DELFLAG = 'N'
-			order by P_CODE DESC
+			select * from(
+				select P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+					from(
+					select * from PRODUCT
+						where P_DELFLAG = 'N'
+					order by P_CODE DESC
+					)
+					order by R
+				)
+			where R between #{START} AND #{END}
 		]]>
 	</select>
 	
 	<!-- 상품 검색 -->
 	<select id="adminSearchProduct" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from PRODUCT		
+			select * from(
+				select P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+					from(
+					select * from PRODUCT		
+		]]>
+		<trim prefix="WHERE">
+			P_DELFLAG = 'N'
+			<if test="searchValue != NULL">
+			AND P_NAME like '%'||#{searchValue}||'%'
+			</if>
+		</trim>
+					order by P_CODE DESC
+					)
+					order by R
+				)
+			where R between #{START} AND #{END}	
+	</select>
+	
+	<!-- 전체 상품 수량 -->
+	<select id="adminProductCount" resultType="hashmap">
+	<![CDATA[
+		SELECT COUNT(*) COUNT
+		FROM 
+			PRODUCT
+	]]>
+	</select>
+	
+	<!-- 검색 상품 수량 -->
+	<select id="adminSearchProductCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM 
+					PRODUCT		
 		]]>
 		<trim prefix="WHERE">
 			P_DELFLAG = 'N'
@@ -72,7 +111,7 @@
 			</if>
 		</trim>
 	</select>
-	
+
 	<!-- 상품 코드 검색 -->
 	<select id="adminSearchProductCode" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[

@@ -21,6 +21,7 @@
 				O.O_STATUS,
 				O.O_DELFLAG,
 				O.O_RECIEVER,
+				O.O_PHONE,
 				P.P_IMAGE
 			FROM
 				ORDERCOMMAND O
@@ -30,6 +31,8 @@
 				P.P_CODE = O.O_CODE
    	 		WHERE
    	 			O.O_ID = #{o_id}
+   	 		ORDER BY
+   	 			O_DATE DESC
 		]]>
 	</select>
 	
@@ -51,7 +54,8 @@
 				#{o_address2},
 				'배송대기',
 				'N',
-				#{o_reciever}
+				#{o_reciever},
+				#{o_phone}
 			)
 		]]>
 	</insert>

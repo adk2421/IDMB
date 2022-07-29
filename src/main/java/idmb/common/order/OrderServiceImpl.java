@@ -40,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
 		map.put("o_address1", order.getO_address1());
 		map.put("o_address2", order.getO_address2());
 		map.put("o_reciever", order.getO_reciever());
+		map.put("o_phone", order.getO_phone());
 		
 		orderDAO.insertOrder(map);	
 	}

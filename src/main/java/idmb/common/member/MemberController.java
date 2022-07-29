@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -187,6 +188,8 @@ public class MemberController {
 
 				// 세션 등록
 				session.setAttribute("id", map.get("ID"));
+				session.setAttribute("name", map.get("NAME"));
+				session.setAttribute("reserve", map.get("RESERVE"));
 				session.setAttribute("passwd", map.get("PASSWD"));
 				session.setAttribute("name", map.get("NAME"));
 				session.setAttribute("phone", map.get("PHONE"));
@@ -337,7 +340,7 @@ public class MemberController {
 
 	// 회원탈퇴
 	@RequestMapping(value = "/myInfoDelete.do")
-	public String myInfoDelete(MemberBean member, HttpServletRequest request, BindingResult result, Model model) throws Exception {
+	public String myInfoDelete(MemberBean member, HttpServletRequest request, Model model) throws Exception {
 	
 		// 세션에서 사용자 아이디를 가져와서 저장
 		String LoginId = (String) request.getSession().getAttribute("id");
@@ -362,7 +365,7 @@ public class MemberController {
 	
 	// 마이페이지
 	@RequestMapping(value = "/myPage.do")
-	public String myInfoOrder(Model model, HttpServletRequest request, HttpSession session) throws Exception {
+	public String myInfoOrder(Model model, HttpServletRequest request) throws Exception {
 
 		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
@@ -395,23 +398,25 @@ public class MemberController {
 		return "myPage";
 	}
 	
-	// 최근 본 상품 List
+	// 최근 본 상품 Session 등록
 	@ResponseBody
-	@RequestMapping(value = "viewedProductAjax.do")
-	public String viewedProductAjax(@RequestParam(value="arr[]") List<String> arr, Model model) throws Exception {
+	@RequestMapping(method = RequestMethod.POST, value = "/viewedProductAjax.do")
+	public String viewedProductAjax(@RequestParam Map<String, Object> Arr, Model model, HttpSession session) throws Exception {
+		System.out.println("Controller.viewedProductAjax 실행");
+		
 		ProductBean product = new ProductBean();
 		
 		List<Map<String, Object>> viewedProduct = new ArrayList<Map<String, Object>>();
 		
-		System.out.println("arr : " + arr);
-		
-		for (int i = 0; i < arr.size(); i++) {
-			product.setP_code(Integer.parseInt(arr.get(i)));
+		for (int i = 0; i < Arr.size(); i++) {
+			product.setP_code(Integer.parseInt((String) Arr.get("P_CODE["+ i + "]")));
 			viewedProduct.add(productService.productDetail(product));
 		}
 		
 		model.addAttribute("viewedProduct", viewedProduct);
 		
+		System.out.println(model);
+				
 		return "myPage";
 	} 
 }
