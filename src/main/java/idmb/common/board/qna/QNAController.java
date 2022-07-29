@@ -57,16 +57,16 @@ public class QNAController {
 		}
 		else {
 			 if(qst == null) {
-				if(searchValue == null || searchValue.trim() == "") {
+				if(searchValue == null || searchValue.isBlank()) {
 					searchUrl = "&q_category="+q_category+"&SORT="+SORT+
 							"&searchValue=";
 				} else {
 					searchUrl = "&q_category="+q_category+"&SORT="+SORT+
-							"&searchValue="+searchValue;	
+							"&searchValue="+searchValue;
 				}
 			 }
 			 else {
-				if(searchValue == null || searchValue.trim() == "") {
+				if(searchValue == null || searchValue.isBlank()) {
 					searchUrl = "&q_category="+q_category+"&SORT="+SORT+
 							"&searchValue=&qst="+qst;
 				} else {
@@ -224,8 +224,4 @@ public class QNAController {
 		return "board/qna/deleteQna";
 	}
 	
-	
-	
-	
-
 }

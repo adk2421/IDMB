@@ -37,48 +37,48 @@ public class ProductController {
 	}
 
 
-			//상품 검색
-			@RequestMapping(value="/searchProduct.do") // URL mapping
-			public String searchProduct(HttpServletRequest request, Model model) throws Exception{		
+	//상품 검색
+	@RequestMapping(value="/searchProduct.do") // URL mapping
+	public String searchProduct(HttpServletRequest request, Model model) throws Exception{		
+		
+		//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		// 검색어 입력받기	
+		String searchValue = null;
+		String SORT = null;
+		
+		int priceValue1 = -1;
+		int priceValue2 = -1;
+		
+		
+		// 변수값 설정
+		searchValue = request.getParameter("searchValue");
+		SORT = request.getParameter("SORT");
 				
-			//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
-				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-			
-			// 검색어 입력받기	
-				String searchValue = null;
-				String SORT = null;
+		if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
+			priceValue1 = 0;
+		} else {
+			priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
+		}
 				
-				int priceValue1 = -1;
-				int priceValue2 = -1;
+		if(request.getParameter("priceValue2") == null || request.getParameter("priceValue2").trim()=="") {
+			priceValue2 = 99999999;
+		} else {
+			priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+		}
 				
-			
-			// 변수값 설정
-				searchValue = request.getParameter("searchValue");
-				SORT = request.getParameter("SORT");
-				
-				if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
-					priceValue1 = 0;
-				} else {
-					priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
-				}
-				
-				if(request.getParameter("priceValue2") == null || request.getParameter("priceValue2").trim()=="") {
-					priceValue2 = 99999999;
-				} else {
-					priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
-				}
-				
-				list = productService.searchProduct(searchValue, priceValue1, priceValue2, SORT);
+		list = productService.searchProduct(searchValue, priceValue1, priceValue2, SORT);
 	
-				model.addAttribute("searchValue",searchValue);
-				model.addAttribute("priceValue1",priceValue1);
-				model.addAttribute("priceValue2",priceValue2);
-				model.addAttribute("SORT", SORT);
-				model.addAttribute("searchList", list);
-					
-				//tiles.xml에서 defination name="searchProduct.jsp" 로 보냄
-				return "searchProduct";
-			}
+		model.addAttribute("searchValue",searchValue);
+		model.addAttribute("priceValue1",priceValue1);
+		model.addAttribute("priceValue2",priceValue2);
+		model.addAttribute("SORT", SORT);
+		model.addAttribute("searchList", list);
+		
+		//tiles.xml에서 defination name="searchProduct.jsp" 로 보냄
+		return "searchProduct";
+	}
 
 
 
@@ -144,18 +144,18 @@ public class ProductController {
 	
 	
 
-			// 상품 디테일
-			@RequestMapping(value="/productDetail.do")
-			public String ProductDetail(ProductBean product, HttpServletRequest request, Model model)throws Exception{
+	// 상품 디테일
+	@RequestMapping(value="/productDetail.do")
+	public String ProductDetail(ProductBean product, HttpServletRequest request, Model model)throws Exception{
 				
-				Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 				
-				map = productService.productDetail(product);
+		map = productService.productDetail(product);
 				
-				model.addAttribute("product", map);
+		model.addAttribute("product", map);
 				
-				return "productDetail";
-			}
+		return "productDetail";
+	}
 }
 			
 		
