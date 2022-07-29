@@ -17,9 +17,22 @@ public class NoticeServiceImpl implements NoticeService{
 	private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<Map<String, Object>> noticeList() throws Exception{
-		return noticeDAO.noticeList();
+	public List<Map<String, Object>> noticeList(int START, int END) throws Exception{
+		Map<String, Object>map = new HashMap<String, Object>();
 		
+		map.put("START", START);
+		map.put("END", END);
+		
+		return noticeDAO.noticeList(map);	
+	}
+	
+	//공지 수
+	@Override
+	public int noticeCount() throws Exception{
+		
+		Map<String, Object> map = noticeDAO.noticeCount();
+		
+		return Integer.parseInt(String.valueOf(map.get("COUNT")));
 	}
 	
 	@Override
