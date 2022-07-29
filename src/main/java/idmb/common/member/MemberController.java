@@ -14,11 +14,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import idmb.common.board.qna.QNAService;
 import idmb.common.order.OrderService;
+import idmb.common.product.ProductService;
 import idmb.model.MemberBean;
 import idmb.model.OrderBean;
+import idmb.model.ProductBean;
+import idmb.model.QNABean;
 import idmb.util.MapToBean;
 
 @Controller
@@ -35,6 +41,13 @@ public class MemberController {
 	
 	@Resource (name="orderService")
     private OrderService orderService;
+	
+	@Resource(name="qnaService")
+	private QNAService qnaService;
+	
+	@Resource(name="productService")
+	private ProductService productService;
+	
 	
 	// 회원가입 폼 이동
 	@RequestMapping(value = "/joinForm.do")
@@ -139,14 +152,14 @@ public class MemberController {
 			model.addAttribute("url", "/loginForm.do");
 		}
 
-		return "/member/joinSuccess";
+		return "joinSuccess";
 	}
 	
 	// 로그인 폼 이동
 	@RequestMapping(value = "/loginForm.do")
 	public String loginForm(Model model) throws Exception {
 		
-		return "/member/loginForm";
+		return "loginForm";
 	}
 
 	// 로그인
@@ -174,16 +187,27 @@ public class MemberController {
 				}
 
 				// 세션 등록
+				session.setAttribute("id", map.get("ID"));
 				session.setAttribute("name", map.get("NAME"));
 				session.setAttribute("reserve", map.get("RESERVE"));
-				session.setAttribute("id", map.get("ID"));
+				session.setAttribute("passwd", map.get("PASSWD"));
+				session.setAttribute("name", map.get("NAME"));
+				session.setAttribute("phone", map.get("PHONE"));
+				session.setAttribute("birth", map.get("BIRTH"));
+				session.setAttribute("email", map.get("EMAIL"));
+				session.setAttribute("postcode", map.get("POSTCODE"));
+				session.setAttribute("address1", map.get("ADDRESS1"));
+				session.setAttribute("address2", map.get("ADDRESS2"));
+				session.setAttribute("reserve", map.get("RESERVE"));
+				session.setAttribute("joindate", map.get("JOINDATE"));
+				session.setAttribute("delflag", map.get("DELFLAG"));
 
 				// 관리자 체크
 				if (map.get("ID").equals("ADMIN")) {
 					model.addAttribute("url", "/adminMain.do");
 				
 				} else {
-					model.addAttribute("url", "/myInfoOrder.do");
+					model.addAttribute("url", "/myPage.do");
 				}
 				
 			} else {
@@ -204,7 +228,7 @@ public class MemberController {
 		request.getSession().invalidate();
 
 		model.addAttribute("msg", "로그아웃 하셨습니다.");
-		model.addAttribute("url", "/loginForm.do");
+		model.addAttribute("url", "/");
 
 		return "/member/logout";
 	}
@@ -213,7 +237,7 @@ public class MemberController {
 	@RequestMapping(value = "/findId.do")
 	public String findId(Model model) throws Exception {
 		
-		return "/member/findId";
+		return "findId";
 	}
 
 	// 아이디 찾기 결과
@@ -232,14 +256,14 @@ public class MemberController {
 			model.addAttribute("id", map.get("ID"));
 		}
 		
-		return "/member/findIdResult";
+		return "findIdResult";
 	}
 	
 	// 비밀번호 찾기 이동
 	@RequestMapping(value = "/findPw.do")
 	public String findPw(Model model) throws Exception {
 		
-		return "/member/findPw";
+		return "findPw";
 	}
 
 	// 비밀번호 찾기 결과
@@ -258,7 +282,7 @@ public class MemberController {
 			model.addAttribute("passwd", map.get("PASSWD"));
 		}
 
-		return "/member/findPwResult";
+		return "findPwResult";
 	}
 
 	// 마이페이지 이동
@@ -292,7 +316,7 @@ public class MemberController {
 
 		model.addAttribute("memberBean", memberBean);
 		
-		return "/member/myInfoModifyForm";
+		return "myInfoModifyForm";
 	}
 
 	// 회원정보 수정
@@ -315,8 +339,8 @@ public class MemberController {
 	}
 
 	// 회원탈퇴
-	@RequestMapping(value = "/myInfoDelete.do") public String myInfoDelete(MemberBean member,
-			HttpServletRequest request, BindingResult result, Model model) throws Exception {
+	@RequestMapping(value = "/myInfoDelete.do")
+	public String myInfoDelete(MemberBean member, HttpServletRequest request, Model model) throws Exception {
 	
 		// 세션에서 사용자 아이디를 가져와서 저장
 		String LoginId = (String) request.getSession().getAttribute("id");
@@ -339,43 +363,60 @@ public class MemberController {
 	}
 	
 	
-	 // 나의 주문내역
-	 
-	@RequestMapping(value = "/myInfoOrder.do") public String myInfoOrder(Model
-			model, HttpServletRequest request) throws Exception {
+	// 마이페이지
+	@RequestMapping(value = "/myPage.do")
+	public String myInfoOrder(Model model, HttpServletRequest request) throws Exception {
 
+		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
 		OrderBean order = new OrderBean();
 		order.setO_id(id);
-		System.out.println("ID : " + id);
 		
-		//내 주문 목록들의 List 생성
+		// 주문 처리 현황
+        List<Map<String, Object>> countOrderStatus = orderService.countOrderStatus(order);
+        
+        for (int i = 0; i < countOrderStatus.size(); i++)
+        	model.addAttribute((String) countOrderStatus.get(i).get("O_STATUS"), countOrderStatus.get(i).get("CNT"));
+		
+		// 주문 상품 정보 List
         List<Map<String, Object>> myOrderList = new ArrayList<Map<String, Object>>();
 
         myOrderList = orderService.myOrderList(order);
 
         model.addAttribute("myOrderList", myOrderList);
+        
+        // 내 QNA List
+        QNABean qna = new QNABean();
+		qna.setQ_id(id);
 		
-		/*
-		List<Map<String, Object>> list = orderService.myOrderList(order);
-		List<OrderBean> orderBeanList = new ArrayList<OrderBean>();
+        List<Map<String, Object>> myQnaList = new ArrayList<Map<String, Object>>();
+
+        myQnaList = qnaService.myQnaList(qna);
+        
+        model.addAttribute("myQnaList", myQnaList);
+        
+		return "myPage";
+	}
+	
+	// 최근 본 상품 Session 등록
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, value = "/viewedProductAjax.do")
+	public String viewedProductAjax(@RequestParam Map<String, Object> Arr, Model model, HttpSession session) throws Exception {
+		System.out.println("Controller.viewedProductAjax 실행");
 		
-		for (Map<String, Object> mapObject : list) {
-			orderBeanList.add(MapToBean.mapToOrder(mapObject)); 
+		ProductBean product = new ProductBean();
+		
+		List<Map<String, Object>> viewedProduct = new ArrayList<Map<String, Object>>();
+		
+		for (int i = 0; i < Arr.size(); i++) {
+			product.setP_code(Integer.parseInt((String) Arr.get("P_CODE["+ i + "]")));
+			viewedProduct.add(productService.productDetail(product));
 		}
 		
-		int orderCount = list.size();
+		model.addAttribute("viewedProduct", viewedProduct);
 		
-		model.addAttribute("orderBeanList", orderBeanList);
-		model.addAttribute("orderCount", orderCount);
-		*/
-        
-        List<Map<String, Object>> countOrderStatus = orderService.countOrderStatus(order);
-        
-        model.addAttribute("countOrderStatus", countOrderStatus);
-		
-		return "/member/myPage"; 
-		
-	}
-	 
+		System.out.println(model);
+				
+		return "myPage";
+	} 
 }

@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Hahmlet&family=Noto+Sans+KR&display=swap");	
+	
+	* {
+		font-family: "Noto Sans KR", sans-serif;
+	}
+	
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	a:hover {
+		color: #CCCCCC;
+	}
+	
+	div.nav ul {
+		list-style-type: none;
+	}
+	
+	div.nav li {
+		display: inline;
+		font-size: 14px;
+	}
+	
+	div.logo {
+		margin: auto;
+		padding: 20px;
+	}
+	
+	.logo {
+		width: 100px;
+		cursor: pointer;
+	}

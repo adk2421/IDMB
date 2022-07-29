@@ -9,25 +9,27 @@
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
-function plist() {
-	location.href = "/IDMB/adminProductList.do";
-}
 function pinsert() {
 	location.href = "/IDMB/adminInsertProductForm.do";
 }
 </script>
 </head>
 <body>
-	<form action="adminProductList.do" method="get">
-		<button type="button" onClick="plist()">상품 목록</button>
-			&emsp;&emsp;
-		<button type="button" onClick="pinsert()">상품 등록</button>
-			&emsp;&emsp;
-		<input type="text" name="searchValue" id="searchValue" placeholder="상품명 ..." value="${searchValue}"/>
-		<button type="submit">검색</button>
-	</form>
-	
-	<table border=1>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+	<table style="margin:auto; text-align: center;" border=1>
 		<thead>
 			<tr>
 				<th>종류</th>
@@ -35,6 +37,7 @@ function pinsert() {
 				<th>가격</th>
 				<th>재고</th>
 				<th>판매량</th>
+				<th>기능</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -55,5 +58,16 @@ function pinsert() {
 		</c:forEach>
 	</tbody>
 	</table>
+	
+	<div style="margin:auto; text-align: center;">
+	<form action="adminProductList.do" method="get">
+		<button type="button" onClick="pinsert()">상품 등록</button>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		<input type="text" name="searchValue" id="searchValue" placeholder="상품명 ..." value="${searchValue}"/>
+		<button type="submit">검색</button>
+	</form>
+	</div>
+	${paging.pageHtml}
+
 </body>
 </html>

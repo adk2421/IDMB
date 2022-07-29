@@ -6,48 +6,56 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/adminReview.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
-function noticeList() {
-	location.href = "/IDMB/adminNoticeList.do";
-}
-function reviewList() {
-	location.href = "/IDMB/adminReviewList.do";
-}
-function faqList() {
-	location.href = "/IDMB/adminFaqList.do?f_category=cost";
-}
-function qnaMain() {
-	location.href = "/IDMB/adminQnaMain.do";
-}
 
 </script>
 </head>
 <body>
-		&emsp;
-	<button type="button" onClick="noticeList()">공지 사항</button>
-		&emsp;&emsp;&emsp;&emsp;
-	<button type="button" onClick="reviewList()">상품 후기</button>
-		&emsp;&emsp;&emsp;&emsp;
-	<button type="button" onClick="faqList()">자주 묻는 질문</button>
-		&emsp;&emsp;&emsp;&emsp;
-	<button type="button" onClick="qnaMain()">1:1 문의</button>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div class="box1"align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li  id="title-text1" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li  id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li  id="board-ad" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>	
+
+	<!-- 관리자 게시판 바로가기 -->
+	<div class="box2"style="display: flex; justify-content: center;">
+	<ul style="list-style-type:none">
+		<li id="title-text2" style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
+		<li id="product-review" style="display:inline"><a href="adminReviewList.do" >상 품 후 기</a></li>
+		<li id="title-text2" style="display:inline"><a href="adminFaqList.do?f_category=cost" >F A Q</a></li>
+		<li id="title-text2" style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>
+	</ul>
+	</div>
+
 	
-	<br><br>
-	
+	<br>
+	<div class="search"style="margin:auto; text-align: center;">
 	<form action="adminReviewList.do" method="get">
 		<select name="SORT" id="SORT">
 			<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
 			<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 		</select>
-		<input type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
-		<button type="submit">검색</button>
+		<input id="search" type="search" name="searchValue"  placeholder="검색어 ..." value="${searchValue}"/>
+		<button class="search-icon" href=""><i class="fa fa-search"></i></button>
 	</form>
+	</div>
 	
 	<br>
 	
-	<table border=1>
+	<table style="margin:auto; text-align: center;" border=1>
 		<thead>
 			<tr>
 				<th>후기번호</th>
@@ -79,7 +87,7 @@ function qnaMain() {
 				<td>${review.R_ID}</td>
 				<td>
 					<c:if test="${review.R_ID != null}">
-						<button type="button" onClick="location.href='adminDeleteReview.do?r_num=${review.R_NUM}'">삭제</button>	
+						<button id="rmbtn"type="button" onClick="location.href='adminDeleteReview.do?r_num=${review.R_NUM}'">삭제</button>	
 					</c:if>
 				</td>
 			</tr>		

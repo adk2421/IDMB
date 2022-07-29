@@ -6,11 +6,33 @@
 	<!-- 주문 리스트 출력 -->
 	<select id="myOrderList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT *
+			SELECT
+				O.O_NUM,
+				O.O_ID,
+				O.O_CODE,
+				TO_CHAR(O.O_DATE, 'YYYY-MM-DD') O_DATE,
+				O.O_NAME,
+				O.O_COUNT,
+				O.O_PRICE,
+				O.O_TOTAL,
+				O.O_POSTCODE,
+				O.O_ADDRESS1,
+				O.O_ADDRESS2,
+				O.O_STATUS,
+				O.O_DELFLAG,
+				O.O_RECIEVER,
+				O.O_PHONE,
+				P.P_IMAGE
 			FROM
-				ORDERCOMMAND
+				ORDERCOMMAND O
+			INNER JOIN
+				PRODUCT P
+			ON
+				P.P_CODE = O.O_CODE
    	 		WHERE
-   	 			O_ID = #{o_id}
+   	 			O.O_ID = #{o_id}
+   	 		ORDER BY
+   	 			O_DATE DESC
 		]]>
 	</select>
 	
@@ -32,7 +54,8 @@
 				#{o_address2},
 				'배송대기',
 				'N',
-				#{o_reciever}
+				#{o_reciever},
+				#{o_phone}
 			)
 		]]>
 	</insert>

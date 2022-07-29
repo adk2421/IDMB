@@ -18,17 +18,24 @@ public class AdminProductServiceImpl implements AdminProductService{
 	
 	// 상품 리스트
 	@Override
-	public List<Map<String, Object>> adminProductList() throws Exception{
-		return adminProductDAO.adminProductList();		
+	public List<Map<String, Object>> adminProductList(int START, int END) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("START", START);
+		map.put("END", END);
+		
+		return adminProductDAO.adminProductList(map);		
 	}
 
 	// 상품 검색
 	@Override
-	public List<Map<String, Object>> adminSearchProduct(String searchValue) throws Exception{
+	public List<Map<String, Object>> adminSearchProduct(String searchValue, int START, int END) throws Exception{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		map.put("searchValue", searchValue);
+		map.put("START", START);
+		map.put("END", END);
 		
 		return adminProductDAO.adminSearchProduct(map);
 	}
@@ -78,5 +85,26 @@ public class AdminProductServiceImpl implements AdminProductService{
 		map.put("p_delflag",product.getP_delflag());
 		
 		adminProductDAO.adminUpdateProduct(map);
+	}
+	
+	@Override
+	public int adminProductCount() throws Exception{
+		
+		Map<String,Object> map = adminProductDAO.adminProductCount();
+		
+		return Integer.parseInt(String.valueOf(map.get("COUNT")));
+	}
+	
+	
+	
+	@Override
+	public int adminSearchProductCount(String searchValue) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("searchValue", searchValue);
+		
+		Map<String, Object> countMap = adminProductDAO.adminSearchProductCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;
 	}
 }

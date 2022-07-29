@@ -19,6 +19,48 @@
 		<put-attribute name="left" value="/WEB-INF/jsp/layout/left.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
 	</definition>
+	
+	<!-- member -->
+	<definition name="loginForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/loginForm.jsp" />
+	</definition>
+	
+	<definition name="joinSuccess" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/joinSuccess.jsp" />
+	</definition>
+	
+	<definition name="myPage" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/myPage.jsp" />
+	</definition>
+	
+	<definition name="myInfoModifyForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/myInfoModifyForm.jsp" />
+	</definition>
+	
+	<definition name="findId" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/findId.jsp" />
+	</definition>
+	
+	<definition name="findIdResult" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/findIdResult.jsp" />
+	</definition>
+	
+	<definition name="findPw" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/findPw.jsp" />
+	</definition>
+	
+	<definition name="findPwResult" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/findPwResult.jsp" />
+	</definition>
+
 
 	<!-- product -->
 	
@@ -64,18 +106,74 @@
 			value="/WEB-INF/jsp/order/orderForm.jsp" />
 	</definition>
 	
+	
+
+
 	<!-- basket -->
 	<definition name="basketList" extends="main_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/basket/basketList.jsp" />
 	</definition>	
-	
-
 
 	<definition name="basketOrderForm" extends="main_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/order/basketOrderForm.jsp" />
 	</definition>
+	
+	<definition name="basketListOrderForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/order/basketListOrderForm.jsp" />
+	</definition>
+	
+	
+	
+	<!-- board -->
+	
+	<definition name="faqList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\faq\faqList.jsp" />
+	</definition>
+	
+	<definition name="noticeList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\notice\noticeList.jsp" />
+	</definition>
+	
+	<definition name="noticeDetail" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\notice\noticeDetail.jsp" />
+	</definition>
+	
+	<definition name="qnaMain" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\qnaMain.jsp" />
+	</definition>
+	
+	<definition name="qnaList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\qnaList.jsp" />
+	</definition>
+	
+	<definition name="qnaDetail" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\qnaDetail.jsp" />
+	</definition>
+	
+	<definition name="insertQnaForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\insertQnaForm.jsp"/>
+	</definition>
+	
+	<definition name="updateQnaForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\qna\updateQnaForm.jsp"/>	
+	</definition>
+	
+	<definition name="reviewList" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF\jsp\board\review\reviewList.jsp" />
+	</definition>
+	
 	
 
 	<!-- admin -->
@@ -158,7 +256,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/board/faq/adminUpdateFaqForm.jsp" />
 	</definition>
-			
+
+	<definition name="adminQnaMain" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/board/qna/adminQnaMain.jsp" />
+	</definition>	
+		
 	<definition name="adminQnaList" extends="admin_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/board/qna/adminQnaList.jsp" />

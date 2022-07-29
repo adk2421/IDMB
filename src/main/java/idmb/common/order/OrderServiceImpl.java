@@ -22,8 +22,8 @@ public class OrderServiceImpl implements OrderService {
 	public List<Map<String,Object>> myOrderList(OrderBean order) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("o_id", order.getO_id());
-		return orderDAO.myOrderList(map);
 		
+		return orderDAO.myOrderList(map);	
 	}
 	
 	//주문 등록
@@ -40,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
 		map.put("o_address1", order.getO_address1());
 		map.put("o_address2", order.getO_address2());
 		map.put("o_reciever", order.getO_reciever());
+		map.put("o_phone", order.getO_phone());
 		
 		orderDAO.insertOrder(map);	
 	}

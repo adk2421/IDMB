@@ -16,6 +16,7 @@ public class QNAServiceImpl implements QNAService {
 	@Resource(name="qnaDAO")
 	private QNADAO qnaDAO;
 	
+	@Override
 	public void insertQna(QNABean QNA) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -30,11 +31,30 @@ public class QNAServiceImpl implements QNAService {
 		qnaDAO.insertQna(map);
 	}
 	
-	public List<Map<String, Object>> qnaList() throws Exception{
-		return qnaDAO.qnaList();
+	@Override
+	public List<Map<String, Object>> qnaList(QNABean QNA) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
 		
+		map.put("q_category", QNA.getQ_category());
+		
+		return qnaDAO.qnaList(map);
 	}
 	
+	@Override
+	public List<Map<String, Object>> searchQna(QNABean qna,
+			String searchValue, String SORT, String qst) throws Exception
+	{
+		Map<String, Object> map = new HashMap<String,Object>();
+		
+		map.put("q_category",qna.getQ_category());
+		map.put("searchValue", searchValue);
+		map.put("SORT", SORT);
+		map.put("qst", qst);
+		
+		return qnaDAO.searchQna(map);
+	}
+	
+	@Override
 	public Map<String, Object> qnaDetail(QNABean QNA) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("q_num", QNA.getQ_num());
@@ -43,10 +63,10 @@ public class QNAServiceImpl implements QNAService {
 		
 	}
 	
+	@Override
 	public void updateQna(QNABean QNA) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("q_category", QNA.getQ_category());
 		map.put("q_contents", QNA.getQ_contents());
 		map.put("q_num", QNA.getQ_num());
 		
@@ -55,6 +75,7 @@ public class QNAServiceImpl implements QNAService {
 		
 	}
 	
+	@Override
 	public void deleteQna(QNABean QNA) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -64,6 +85,7 @@ public class QNAServiceImpl implements QNAService {
 		
 	}
 	
+	@Override
 	public List<Map<String, Object>> myQnaList(QNABean QNA) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -71,6 +93,15 @@ public class QNAServiceImpl implements QNAService {
 		
 		return qnaDAO.myQnaList(map);
 		
+	}
+	
+	@Override
+	public Map<String, Object> qnaRe(QNABean QNA) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("q_num", QNA.getQ_num());
+		
+		return qnaDAO.qnaRe(map);
 	}
 
 }

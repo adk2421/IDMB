@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.model.ProductBean;
+import idmb.util.Paging;
 
 @Controller
 public class AdminProductController {
@@ -25,25 +26,61 @@ public class AdminProductController {
 	public String adminProductList(
 			HttpServletRequest request, Model model) throws Exception {
 		
-		//검색어
-		String searchValue = null;
-		searchValue = request.getParameter("searchValue");
+		/* 페이징을 위한 변수 */
+		int pageSize = 5; // 페이지당 출력할 상품의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
 		
+		int totalCount; // 전체 상품의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "adminProductList.do";
+		String searchUrl = "";
+		
+		//검색어
+		String searchValue = request.getParameter("searchValue");
+		
+		if(searchValue != null) {
+			searchUrl = "&searchValue=" + searchValue;
+		} else {
+			searchUrl = "";
+		}
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}
+		
+		//검색어가 없는 경우는 Product()
+		if(searchValue == null || searchValue.trim() =="") {
+			totalCount = adminProductService.adminProductCount();
+		}
+		//검색어가 있는 경우는 Search()
+		else {
+			totalCount = adminProductService.adminSearchProductCount(searchValue);
+		}
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+
 		//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		
+				
 		//검색어가 없는 경우는 ProductList()
 		if(searchValue == null || searchValue.trim() =="") {
-			list = adminProductService.adminProductList();
+			list = adminProductService.adminProductList(START, END);
 		}
 		//검색어가 있는 경우는 SearchProduct()
 		else {
-			list = adminProductService.adminSearchProduct(searchValue);
+			list = adminProductService.adminSearchProduct(searchValue, START ,END);
 		}
 		
 		//model로 위에서 정의한 값 전송
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("adminProductList", list);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("paging", paging);
 		
 		//tiles.xml의 definition name="adminProductList"로 이동
 		return "adminProductList";

@@ -18,7 +18,22 @@ function cancel() {
 </script>
 </head>
 <body>
-<table>
+
+	<!-- 관리자 메인 툴바 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+	
+<table style="width:490px; margin:auto; text-align: left;">
 	<tbody>
 		<tr>
 			<td><b>제목</b></td>
@@ -41,13 +56,15 @@ function cancel() {
 	</tbody>
 </table>
 
-<div style="width:490px; height:285px; border:1px solid black;">
+<div style="width:490px; height:285px; border:1px solid black; margin:auto;">
 	${adminNoticeBean.N_CONTENTS}
 </div>
 
 <br>
+<div style="margin:auto; text-align: center;">
 <button type="button" onclick="update()">수&emsp;정</button>
 	&emsp;&emsp;&emsp;&emsp;
 <button type="button" onclick="cancel()">돌 아 가 기</button>
+</div>
 </body>
 </html>

@@ -18,8 +18,12 @@ public class QNADAO {
 		sqlSessionTemplate.insert("qna.insertQna", map);
 	}
 	
-	public List<Map<String, Object>> qnaList() throws Exception{
-		return sqlSessionTemplate.selectList("qna.qnaList");
+	public List<Map<String, Object>> qnaList(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("qna.qnaList", map);
+	}
+	
+	public List<Map<String, Object>> searchQna(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("qna.searchQna", map);
 	}
 	
 	public Map<String, Object> qnaDetail(Map<String, Object> map) throws Exception{
@@ -31,11 +35,15 @@ public class QNADAO {
 	}
 	
 	public void deleteQna(Map<String, Object> map) throws Exception{
-		sqlSessionTemplate.delete("qna.deleteQna", map);
+		sqlSessionTemplate.update("qna.deleteQna", map);
 	}
 	
 	public List<Map<String, Object>> myQnaList(Map<String, Object> map) throws Exception{
-		return sqlSessionTemplate.selectList("qna.myOnaList", map);
+		return sqlSessionTemplate.selectList("qna.myQnaList", map);
+	}
+	
+	public Map<String, Object> qnaRe(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("qna.qnaRe", map);
 	}
 
 }

@@ -121,7 +121,7 @@ function orderCheck() {
 			</tbody>
 		</table>
 		
-		<input type="hidden" id="o_id" name="o_id" value="${myInfo.ID}">	
+		<input type="hidden" id="o_id" name="o_id" value="${id}">	
 		<input type="hidden" name="o_code" id="o_code" value="${productDetail.P_CODE}">
 		<input type="hidden" name="o_name" id="o_name" value="${productDetail.P_NAME}">
 		<input type="hidden" name="o_count" id="o_count" value="${p_count}">
@@ -132,33 +132,33 @@ function orderCheck() {
 		
 		<!-- 이름 -->
 		<h6>이 름</h6>
-			<input type="text" value="${myInfo.NAME}" readonly>	
+			<input type="text" value="${name}" readonly>	
 		
 		<!-- 핸드폰 번호 -->
 		<h6>핸 드 폰 번 호</h6>
-			<input type="text" value="${myInfo.PHONE}" readonly>
+			<input type="text" id="o_phone" name="o_phone" value="${phone}" >
 		
 		<hr>
-					<br><br>				
+		<br><br>				
 		<hr>
 
 				<!-- 받는 사람 정보 -->
 				<h6>받으시는 분</h6>
-				<input type="text" id="o_reciever" name="o_reciever" value="${myInfo.NAME}">
+				<input type="text" id="o_reciever" name="o_reciever" value="${name}">
 				
 				<!-- 주소 -->
 				<h6>우편번호</h6>
 				<input type="text" name="o_postcode" id="o_postcode"
-					value="${myInfo.POSTCODE}">
+					value="${postcode}">
 								
 				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 								
 				<h6>주소</h6>		
 				<input type="text" name="o_address1" id="o_address1"
-					value="${myInfo.ADDRESS1}">
+					value="${address1}">
 				&emsp;
 				<input type="text" name="o_address2" id="o_address2"
-					value="${myInfo.ADDRESS2}">
+					value="${address2}">
 								
 								
 								

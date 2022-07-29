@@ -40,9 +40,24 @@ function cancel() {
 </script>
 </head>
 <body>
+
+	<!-- 관리자 메인 바로가기 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
+	
 <form method="post" id="faqUpdateForm"
 	action="adminUpdateFaq.do?f_num=${adminFaqBean.F_NUM}">
-	<table>
+	<table style="width:800px; display: flex; justify-content: center;">
 		<tbody>
 			<tr>
 				<td><b>질문 종류</b></td>
@@ -76,21 +91,22 @@ function cancel() {
 			<tr>
 				<td><b>질문 답변</b></td>
 				<td>
-					<textarea id="f_contents" name="f_contents" rows="18" cols="70" maxlength="300">
-						${adminFaqBean.F_CONTENTS}
-					</textarea> 
+					<textarea id="f_contents" name="f_contents"
+						style="width:600px;" maxlength="300">${adminFaqBean.F_CONTENTS}</textarea> 
 				</td>
 			</tr>	
 		</tbody>
 	</table>
 	
 	<br>
-		&emsp;&emsp;
+	
+	<div style="display: flex; justify-content: center;">
 	<button type="button" onclick="updateCheck()">수 &emsp; 정</button>
 		&emsp;&emsp;
 	<button type="button" onclick="deleteCheck()">삭 &emsp; 제</button>
 		&emsp;&emsp;	
 	<button type="button" onclick="cancel()">취 &emsp; 소</button>
+	</div>
 
 </form>
 </body>

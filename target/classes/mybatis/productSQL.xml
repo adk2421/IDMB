@@ -95,23 +95,24 @@
 		<trim prefix="AND">
 			<if test="priceValue1 != NULL">
 				<if test="priceValue2 != NULL">
-				P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
+					P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
 				</if>
 				<if test="priceValue2 == NULL">
-				P_PRICE >= #{priceValue1}
+					P_PRICE BETWEEN #{priceValue1} AND 99999999
 				</if>
 			</if>
 			<if test="priceValue1 == NULL">
 				<if test="priceValue2 != NULL">
-				P_PRICE BETWEEN 0 AND #{priceValue2}
+					P_PRICE BETWEEN 0 AND #{priceValue2}
 				</if>
-			</if>
+				<if test="priceValue2 == NULL">
+				</if>
+			</if>	
 		</trim>
-		
+
 		<trim prefix="ORDER BY">
 		P_DATE DESC	
 		</trim>
-
 	</select>
 	
 	<!-- 인기순 상품 리스트 -->

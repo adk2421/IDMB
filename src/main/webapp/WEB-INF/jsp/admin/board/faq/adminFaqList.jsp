@@ -6,63 +6,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/adminFaq.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
-function noticeList() {
-	location.href = "/IDMB/adminNoticeList.do";
-}
-function reviewList() {
-	location.href = "/IDMB/adminReviewList.do";
-}
-function faqList() {
-	location.href = "/IDMB/adminFaqList.do?f_category=cost";
-}
-function qnaMain() {
-	location.href = "/IDMB/adminQnaMain.do";
-}
 function insertFaq()	{
 	location.href = "/IDMB/adminInsertFaqForm.do"
 }
 </script>
 </head>
 <body>
-		&emsp;
-	<button type="button" onClick="noticeList()">공지 사항</button>
-		&emsp;&emsp;&emsp;&emsp;
-	<button type="button" onClick="reviewList()">상품 후기</button>
-		&emsp;&emsp;&emsp;&emsp;
-	<button type="button" onClick="faqList()">자주 묻는 질문</button>
-		&emsp;&emsp;&emsp;&emsp;
-	<button type="button" onClick="qnaMain()">1:1 문의</button>
+
+	<!-- 관리자 메인 바로가기 -->
+	<div>
+		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
+		<div align="right">
+		<ul style="list-style-type:none">
+			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="board-ad" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+		</ul>	
+		</div>
+	</div>
+	<hr>
 	
-	<br><br>
-	
-	<form action="adminFaqList.do" method="get">
-			&emsp;
-		<button type="submit" name="f_category" id="f_category" value="cost">주문/결제</button>
-			&emsp;
-		<button type="submit" name="f_category" id="f_category" value="shipping">배송문의</button>
-			&emsp;
-		<button type="submit" name="f_category" id="f_category" value="cancel">배송변경/취소</button>
-			&emsp;
-		<button type="submit" name="f_category" id="f_category" value="exchange">교환/반품</button>
-			&emsp;
-		<button type="submit" name="f_category" id="f_category" value="logon">회원가입/로그인</button>	
-	</form>
+	<!-- 관리자 게시판 바로가기 -->
+	<div style="display: flex; justify-content: center;">
+	<ul style="list-style-type:none">
+		<li style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
+		<li id="title-text2" style="display:inline"><a href="adminReviewList.do" >상 품 후 기</a></li>
+		<li id="faq-list" style="display:inline"><a href="adminFaqList.do?f_category=cost" >F A Q</a></li>
+		<li id="title-text2" style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>
+	</ul>
+	</div>
+
 	
 	<br>
 	
-	<table border=1>
+	<div class="container" >
+	<form action="adminFaqList.do" method="get">
+		<button type="submit" name="f_category" id="f_category" value="cost">주문/결제</button>
+		<button type="submit" name="f_category" id="f_category" value="shipping">배송문의</button>
+		<button type="submit" name="f_category" id="f_category" value="cancel">배송변경/취소</button>
+		<button type="submit" name="f_category" id="f_category" value="exchange">교환/반품</button>
+		<button type="submit" name="f_category" id="f_category" value="logon">회원가입/로그인</button>	
+	</form>
+	</div>
+	
+	<br>
+	
+	<table id="faq-tb">
 		<tbody>
 		<c:forEach var="faq" items="${adminFaqList}">
 			<tr>
-				<td><b>Q. ${faq.F_TITLE}</b>
+				<td id="faq-td"><b>Q. ${faq.F_TITLE}</b>
 					<br>
 					A. ${faq.F_CONTENTS}
 				</td>
-				<td>
-					<button type="button" onClick="location.href='adminUpdateFaqForm.do?f_num=${faq.F_NUM}'">수정</button>
+				<td id="faq-td">
+					<button id="mbtn" type="button" onClick="location.href='adminUpdateFaqForm.do?f_num=${faq.F_NUM}'">수정</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -71,7 +75,10 @@ function insertFaq()	{
 	
 	<br><br>
 	
-	<button type="button" onClick="insertFaq()">FAQ 작성</button>
+	
+	<div class="footer">
+		<button id="faqadd" type="button" onClick="insertFaq()">FAQ 작성</button>
+	</div>
 	
 </body>
 </html>

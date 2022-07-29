@@ -46,5 +46,15 @@ public class ReviewServiceImpl implements ReviewService {
 
 		reviewDAO.insertReview(map);
     }
+    
+    @Override
+    public List<Map<String, Object>> bestReviewList() throws Exception{
+    	return reviewDAO.bestReviewList();
+    }
+    
+    @Override
+    public List<Map<String, Object>> newReviewList() throws Exception{
+    	return reviewDAO.newReviewList();
+    }
 
 }

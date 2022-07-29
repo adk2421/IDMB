@@ -9,18 +9,18 @@
 
 </head>
 <body>
-<header style="height: 10%;">
+<header style="height: 10%; align:center;">
 	<tiles:insertAttribute name="header"/>
 </header>
 
 
-<nav style="width: 17.5%; float: left; margin-top: 70px">
+<nav style="width: 1%; float: left; margin-top: 70px">
 	<tiles:insertAttribute name="left"/> 
 </nav>
 <article>
 
 
-<div style="width: 82.5%; float: left;">
+<div style="width: 99%; float: left;">
 	<tiles:insertAttribute name="body" ignore="true"/> 
 </div>
 </article>

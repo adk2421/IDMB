@@ -3,6 +3,7 @@
 
 <mapper namespace="admin">
 
+<!-- ADMIN MEMBER -->
 	<!-- 사용자 리스트 -->
 	<select id="adminMemberList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -50,20 +51,61 @@
     		where ID = #{id}
 		]]>
 	</update>
-	
+
+
+<!-- ADMIN PRODUCT -->	
 	<!-- 상품 리스트 --> 
 	<select id="adminProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from PRODUCT
-			where P_DELFLAG = 'N'
-			order by P_CODE DESC
+			SELECT * FROM(
+				SELECT P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+				FROM(
+					select * from PRODUCT
+					where P_DELFLAG = 'N'
+					order by P_CODE DESC
+					)
+				order by R
+				)
+			where R between #{START} AND #{END}
 		]]>
 	</select>
 	
 	<!-- 상품 검색 -->
 	<select id="adminSearchProduct" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from PRODUCT		
+			SELECT * FROM(
+				SELECT P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+					FROM(
+					select * from PRODUCT		
+		]]>
+		<trim prefix="WHERE">
+			P_DELFLAG = 'N'
+			<if test="searchValue != NULL">
+			AND P_NAME like '%'||#{searchValue}||'%'
+			</if>
+		</trim>
+					order by P_CODE DESC
+					)
+					order by R
+				)
+			where R between #{START} AND #{END}	
+	</select>
+	
+	<!-- 전체 상품 수량 -->
+	<select id="adminProductCount" resultType="hashmap">
+	<![CDATA[
+		SELECT COUNT(*) COUNT
+		FROM 
+			PRODUCT
+	]]>
+	</select>
+	
+	<!-- 검색 상품 수량 -->
+	<select id="adminSearchProductCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM 
+					PRODUCT		
 		]]>
 		<trim prefix="WHERE">
 			P_DELFLAG = 'N'
@@ -72,7 +114,7 @@
 			</if>
 		</trim>
 	</select>
-	
+
 	<!-- 상품 코드 검색 -->
 	<select id="adminSearchProductCode" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -101,19 +143,34 @@
 	</update>
 	
 	
+<!-- ADMIN ORDER -->	
 	<!-- 주문 관리 리스트 -->
 	<select id="adminOrderList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from ORDERCOMMAND
-			order by O_NUM DESC
+			SELECT * FROM(
+				SELECT O_NUM, O_ID, O_CODE, O_DATE, O_NAME, O_COUNT, O_PRICE, O_TOTAL,
+					O_POSTCODE, O_ADDRESS1, O_ADDRESS2, O_STATUS, O_DELFLAG, O_RECIEVER, O_PHONE, ROWNUM R
+				FROM(
+					SELECT * FROM ORDERCOMMAND
+					where O_DELFLAG = 'N'
+					ORDER BY O_NUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 		]]>
 	</select>
 	
 	<!-- 주문 검색 -->
 	<select id="adminSearchOrder" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from ORDERCOMMAND
-			where O_ID like '%'||#{searchValue}||'%'
+			SELECT * FROM(
+				SELECT O_NUM, O_ID, O_CODE, O_DATE, O_NAME, O_COUNT, O_PRICE, O_TOTAL,
+					O_POSTCODE, O_ADDRESS1, O_ADDRESS2, O_STATUS, O_DELFLAG, O_RECIEVER, O_PHONE, ROWNUM R
+				FROM(
+					SELECT * FROM ORDERCOMMAND
+					WHERE O_ID like '%'||#{searchValue}||'%'
+					AND O_DELFLAG = 'N'
 		]]>
 		<trim prefix="AND">
 		<if test="ostatus != NULL">
@@ -127,10 +184,48 @@
 				O_STATUS = '배송완료'
 			</if>
 		</if>
-		</trim>	
-	
+		</trim>
+					ORDER BY O_NUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 	</select>
 	
+	<!-- 전체 주문 수량 -->
+	<select id="adminOrderCount" resultType="hashmap">
+	<![CDATA[
+		SELECT COUNT(*) COUNT
+		FROM 
+			ORDERCOMMAND
+		WHERE O_DELFLAG = 'N'
+	]]>
+	</select>
+	
+	<!-- 검색 주문 수량 -->
+	<select id="adminSearchOrderCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM 
+					ORDERCOMMAND
+				WHERE O_ID like '%'||#{searchValue}||'%'
+				AND O_DELFLAG = 'N'
+		]]>
+		<trim prefix="AND">
+		<if test="ostatus != NULL">
+			<if test="ostatus == 'wait'">
+				O_STATUS = '배송대기'
+			</if>
+			<if test="ostatus == 'ing'">
+				O_STATUS = '배송중'
+			</if>
+			<if test="ostatus == 'fin'">
+				O_STATUS = '배송완료'
+			</if>
+		</if>
+		</trim>
+	</select>
+			
 	<!-- 주문 상세 정보 -->
 	<select id="adminOrderDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
