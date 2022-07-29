@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: mcspy
-=======
-Built-By: WinPC
->>>>>>> 04d6e467cbd6d374e788431021cb36a1c9c60916
 Build-Jdk: 11.0.14
 Created-By: Maven Integration for Eclipse
 

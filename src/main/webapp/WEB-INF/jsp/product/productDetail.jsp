@@ -7,20 +7,46 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세 보기</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
+
 function select(){ 
 	
-	 var p = document.getElementById("count");
-     
 	    // select element에서 선택된 option의 value가 저장된다.
-	 var p_count = p.options[p.selectedIndex].value;
-	 var price = document.getElementById("${ProductDetail.P_PRICE}");
+	 var p_count = $('#count option:selected').val();
+	 
+	 var price = ${ProductDetail.P_PRICE};
 	    
 	 var totalprice = p_count*price;
-
-	 location.href='/IDMB/orderForm.do?p_code=${ProductDetail.P_CODE}&p_count='+p_count
+	 document.getElementById("tp").value = totalprice;
 	    
 }
+
+ function order(){
+ var p_count = $('#count option:selected').val();
+	 
+	 var price = ${ProductDetail.P_PRICE};
+	    
+	 var totalprice = p_count*price;
+	 document.getElementById("tp").value = totalprice;
+	 
+	 location.href='/IDMB/orderForm.do?p_code=${ProductDetail.P_CODE}&p_count='+p_count
+	 
+ }
+ 
+ function basketCheck() {
+	 var form = document.getElementById("insertBasketForm");
+	 var b_count = $('#count option:selected').val();
+	 document.getElementById("b_count").value = b_count
+	 
+	 if(confirm("장바구니에 담으시겠습니까?") == true){
+		 form.submit();
+	 }
+	
+}
+
+
+
 
 </script>
 </head>
@@ -54,32 +80,41 @@ function select(){
          <tr align = "center">
             <td>구매수량</td>
             <td>
-
-            <select id="count" name="count">
+			
+			<select id="count" name="count" onchange="select()">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
-          <%--   <%
-            for(int i=1; i<31; i++){%>
-             	
-                <option><%=i %></option><%}
-              %> --%>
             </select>&nbsp;개
-
-
-        <tr align = "center">
+		
+ 		<tr align = "center">
             <td> 총 구매 금액</td>
-            <td><fmt:formatNumber pattern="###,###,###" value="${totalprice}"/></td>
+            <td><input type="text" id="tp" value="${ProductDetail.P_PRICE}"/></td>
         </tr>
-
+        
         </table>
 
-        <p><button onclick="select()">주문하기</button>
-
-         <p><button onclick="alert('찜하기가 완료되었습니다.')">찜하기</button></p> 
+        <p><button onclick="order()">주문하기</button>
+        <p><button onclick="alert('찜하기가 완료되었습니다.')">찜하기</button></p> 
+        
+        <form method="post" id="insertBasketForm" action="insertBasket.do">
+        
+       
+        <input type="hidden" id="b_id" name="b_id" value="${id }"/>
+        <input type="hidden" id="b_code" name="b_code" value="${ProductDetail.P_CODE }"/>
+        <input type="hidden" id="b_name" name="b_name" value="${ProductDetail.P_NAME }"/>
+        <input type="hidden" id="b_price" name="b_price" value="${ProductDetail.P_PRICE }"/>
+        <input type="hidden" id="b_kind" name="b_kind" value="${ProductDetail.P_KIND }"/>
+        <input type="hidden" id="b_count" name="b_count" value=""/>
+        <input type="hidden" id="b_image" name="b_image" value="${ProductDetail.P_IMAGE }"/>
+        
+        
+        <p><button type="button" onclick="basketCheck()">장바구니에 담기</button></p>
+        ${count }
+        </form>
 
      </body>
  </html>

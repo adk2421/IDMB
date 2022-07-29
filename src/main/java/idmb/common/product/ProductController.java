@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import idmb.common.basket.BasketService;
 import idmb.model.BasketBean;
 import idmb.model.ProductBean;
 
@@ -21,6 +22,9 @@ public class ProductController {
 	
 	@Resource(name="productService")
 	private ProductService productService;
+	
+	@Resource(name="basketService")
+	private BasketService basketService;
 	
 	//메인 페이지 상품 리스트
 	@RequestMapping(value="/mainpageProductList.do")
@@ -150,6 +154,7 @@ public class ProductController {
 			public String ProductDetail(ProductBean product, HttpServletRequest request, Model model)throws Exception{
 				
 				String p_count = request.getParameter("p_count");
+				//int p_count = Integer.parseInt(String.valueOf(request.getParameter("p_count")));
 				
 				Map<String, Object> map = new HashMap<String, Object>();
 				map = productService.productDetail(product);
@@ -161,6 +166,17 @@ public class ProductController {
 			}
 			
 			
+			@RequestMapping(value="/insertBasket.do")
+			public String inputBasket(BasketBean basket, Model model ) throws Exception{
+				
+				basketService.insertBasket(basket);
+				
+				model.addAttribute("msg", "장바구니에 상품이 담겼습니다.");
+				model.addAttribute("url", "/basketList.do");
+				
+				return "/product/insertBasket";
+			}
+			
 			
 }
 			
@@ -168,3 +184,4 @@ public class ProductController {
 
 
 	 	
+
