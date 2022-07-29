@@ -54,7 +54,6 @@ border-left: none;
 <title>신상품 목록</title>
 </head>
 <body>
-
 	<a href="mainpageProductList.do">
 	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
 	</a>
@@ -112,6 +111,5 @@ border-left: none;
 	</c:forEach>
 	</tbody>
 </table>
-
 </body>
 </html>

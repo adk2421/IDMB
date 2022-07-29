@@ -113,6 +113,21 @@ border-left: none;
 	</tbody>
 </table>
 
+<b>[NEW 3]</b>
+<br><br>
+
+<table>
+	<tbody>
+		<c:forEach var="newProduct" items="${productBeanList}">
+		<td width="300">
+			<a href="productDetail.do?p_code=${newProduct.P_CODE}">
+			<img src="img/${newProduct.P_IMAGE}" width="200" id="previewImage"></a>
+		</td>
+		</c:forEach>
+	</tbody>
+</table>
+
+
 
 
 </body>
