@@ -7,7 +7,7 @@
 <html>
 <head>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/adminReview.css" type="text/css">
+<link rel="stylesheet" href="css/adminBoard.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -42,20 +42,21 @@
 
 	
 	<br>
-	<div class="search"style="margin:auto; text-align: center;">
+	
+	<div class="container">
 	<form action="adminReviewList.do" method="get">
 		<select name="SORT" id="SORT">
 			<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
 			<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 		</select>
-		<input type="text" id="searchValue"  name="searchValue"  placeholder="검색어 ..." value="${searchValue}"/>
-		<button class="search-icon" href=""><i class="fa fa-search"></i></button>
+		<input id="search" type="search" name="searchValue"  placeholder="검색어 ..." value="${searchValue}"/>
+		<button class="search-icon" ><i class="fa fa-search"></i></button>
 	</form>
-	</div>
+	
 	
 	<br>
 	
-	<table style="margin:auto; text-align: center;" border=1>
+	<table>
 		<thead>
 			<tr>
 				<th>후기번호</th>
@@ -94,6 +95,8 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	${paging.pageHtml}
+	</div>
+	<div class="footer">
+	${paging.pageHtml}</div>
 </body>
 </html>

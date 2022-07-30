@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/adminFaq.css" type="text/css">
+<link rel="stylesheet" href="css/adminBoard.css" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
@@ -17,9 +17,9 @@ function insertFaq()	{
 </script>
 </head>
 <body>
-
+<div class="header">
 	<!-- 관리자 메인 바로가기 -->
-	<div>
+	<div class="box1">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
 		<div align="right">
 		<ul style="list-style-type:none">
@@ -33,7 +33,7 @@ function insertFaq()	{
 	<hr>
 	
 	<!-- 관리자 게시판 바로가기 -->
-	<div style="display: flex; justify-content: center;">
+	<div class="box2" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
 		<li style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
 		<li id="title-text2" style="display:inline"><a href="adminReviewList.do" >상 품 후 기</a></li>
@@ -44,9 +44,9 @@ function insertFaq()	{
 
 	
 	<br>
-	
+</div>	
 	<div class="container" >
-	<form action="adminFaqList.do" method="get">
+	<form class="f_box"action="adminFaqList.do" method="get">
 		<button type="submit" name="f_category" id="f_category" value="cost">주문/결제</button>
 		<button type="submit" name="f_category" id="f_category" value="shipping">배송문의</button>
 		<button type="submit" name="f_category" id="f_category" value="cancel">배송변경/취소</button>
@@ -66,7 +66,7 @@ function insertFaq()	{
 					A. ${faq.F_CONTENTS}
 				</td>
 				<td id="faq-td">
-					<button id="mbtn" type="button" onClick="location.href='adminUpdateFaqForm.do?f_num=${faq.F_NUM}'">수정</button>
+					<button id="mbtn2" type="button" onClick="location.href='adminUpdateFaqForm.do?f_num=${faq.F_NUM}'">수정</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -79,6 +79,7 @@ function insertFaq()	{
 	<div class="footer">
 		<button id="faqadd" type="button" onClick="insertFaq()">FAQ 작성</button>
 	</div>
+	${paging.pageHtml}
 	
 </body>
 </html>

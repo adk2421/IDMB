@@ -7,16 +7,16 @@
 <html>
 <head>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/adminorder.css" type="text/css">
+<link rel="stylesheet" href="css/adminod.css" type="text/css"> 
 <meta charset="UTF-8">
 <title>일단메봐</title>
 </head>
 <body>
 
 	<!-- 관리자 메인 툴바 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div class="box1" align="right">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
 			<li id="title-text1"style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
@@ -27,20 +27,20 @@
 	</div>
 	<hr>
 
-	<div style="margin:auto; text-align: center;">
+<div class="container">
 	<form action="adminOrderList.do" method="get">
 		<select name="ostatus" id="ostatus">
-			<option value="" <c:if test="${ostatus == null}">selected</c:if>>전체</option>
+			<option value="" <c:if test="${ostatus == null}">selected</c:if>>-- 전 체 --</option>
 			<option value="wait" <c:if test="${ostatus =='wait'}">selected</c:if>>배송 대기</option>
 			<option value="ing" <c:if test="${ostatus =='ing'}">selected</c:if>>배송 중</option>
 			<option value="fin" <c:if test="${ostatus =='fin'}">selected</c:if>>배송 완료</option>			
 		</select>
 		<input type="search" name="searchValue" id="search" placeholder="주문자명 ..." value="${searchValue}"/>
-		<button class="search-icon" href=""><i class="fa fa-search"></i></button>
+		<button class="search-icon"><i class="fa fa-search"></i></button>
 	</form>
-	</div>
 	
-	<table style="margin:auto; text-align: center;" border=1>
+	
+	<table>
 		<thead>
 			<tr>
 				<th>주문번호</th>
@@ -62,15 +62,18 @@
 			<td>${order.O_ID}</td>
 			<td>${order.O_NAME}</td>
 			<td>${order.O_TOTAL}</td>
-			<td>${order.O_STATUS}</td>
-			<td><button type="button"
+			<td>${order.O_STATUS}<button id="mbtn" type="button"
 					onClick="location.href='adminOrderDetail.do?o_num=${order.O_NUM}'">
-				수정</button>	
+				수 정</button>	
 			</td>
 		</tr>
 	</c:forEach>
 	</tbody>
 	</table>
-	${paging.pageHtml}
+</div>	
+   <div class="footer">
+			${paging.pageHtml}
+		
+	</div>
 </body>
 </html>
