@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/adminMember.css" type="text/css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 
@@ -27,87 +30,88 @@ function check() {
 <body>
 
 	<!-- 관리자 메인 툴바 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div align="right" class="box1">
 		<ul style="list-style-type:none">
-			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="member-ad" style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
 	<hr>
-
-<form method="post" id="memberDetailForm" action="adminUpdateMember.do?id=${adminMemberBean.ID}">
-	<table style="margin:auto; text-align: center;" border=1>
-	<tbody>
-		<tr>
-			<td><b>아이디</b></td>
-			<td>${adminMemberBean.ID}</td>
-		</tr>
-		<tr>
-			<td><b>비밀번호</b></td>
-			<td>${adminMemberBean.PASSWD}</td>
-		</tr>
-		<tr>
-			<td><b>이름</b></td>
-			<td>${adminMemberBean.NAME}</td>
-		</tr>
-		<tr>
-			<td><b>전화번호</b></td>
-			<td>${adminMemberBean.PHONE}</td>
-		</tr>
-		<tr>
-			<td><b>생년월일</b></td>
-			<td>${adminMemberBean.BIRTH}</td>
-		</tr>
-		<tr>
-			<td><b>이메일</b></td>
-			<td>${adminMemberBean.EMAIL}</td>
-		</tr>
-		<tr>
-			<td><b>우편번호</b></td>
-			<td>${adminMemberBean.POSTCODE}</td>
-		</tr>
-		<tr>
-			<td><b>주소</b></td>
-			<td>${adminMemberBean.ADDRESS1}</td>
-		</tr>
-		<tr>
-			<td><b>상세주소</b></td>
-			<td>${adminMemberBean.ADDRESS2}</td>
-		</tr>
-		<tr>
-			<td><b>적립금</b></td>
-			<td>${adminMemberBean.RESERVE}</td>
-		</tr>
-		<tr>
-			<td><b>가입날짜</b></td>
-			<td>${adminMemberBean.JOINDATE}</td>
-		</tr>
-		<tr>
-			<td><b>탈퇴유무</b></td>
-			<td>
-			<c:if test="${adminMemberBean.DELFLAG == 'N'}">
-				<input type="checkbox" size="100" name="delflag" value="Y"> 
-			</c:if>
-			<c:if test="${adminMemberBean.DELFLAG == 'Y'}">
-				<input type="checkbox" size="100" name="delflag" value="Y" checked> 
-			</c:if>
-			(체크 = 탈퇴함)
-			</td>
-		</tr>
-	</tbody>
-	</table>
+<div class="container">
+	<form method="post" id="memberDetailForm" action="adminUpdateMember.do?id=${adminMemberBean.ID}">
+		<table style="margin:auto; text-align: center;" border=1>
+			<tbody>
+				<tr>
+					<th><b>아이디</b></th>
+					<th>${adminMemberBean.ID}</th>		
+				</tr>
+				<tr>
+					<td><b>비밀번호</b></td>
+					<td>${adminMemberBean.PASSWD}</td>
+				</tr>
+				<tr>
+					<td><b>이름</b></td>
+					<td>${adminMemberBean.NAME}</td>
+				</tr>
+				<tr>
+					<td><b>전화번호</b></td>
+					<td>${adminMemberBean.PHONE}</td>
+				</tr>
+				<tr>
+					<td><b>생년월일</b></td>
+					<td>${adminMemberBean.BIRTH}</td>
+				</tr>
+				<tr>
+					<td><b>이메일</b></td>
+					<td>${adminMemberBean.EMAIL}</td>
+				</tr>
+				<tr>
+					<td><b>우편번호</b></td>
+					<td>${adminMemberBean.POSTCODE}</td>
+				</tr>
+				<tr>
+					<td><b>주소</b></td>
+					<td>${adminMemberBean.ADDRESS1}</td>
+				</tr>
+				<tr>
+					<td><b>상세주소</b></td>
+					<td>${adminMemberBean.ADDRESS2}</td>
+				</tr>
+				<tr>
+					<td><b>적립금</b></td>
+					<td>${adminMemberBean.RESERVE}</td>
+				</tr>
+				<tr>
+					<td><b>가입날짜</b></td>
+					<td>${adminMemberBean.JOINDATE}</td>
+				</tr>
+				<tr>
+					<td><b>탈퇴유무</b></td>
+					<td>
+					<c:if test="${adminMemberBean.DELFLAG == 'N'}">
+						<input type="checkbox" size="100" name="delflag" value="Y"> 
+					</c:if>
+					<c:if test="${adminMemberBean.DELFLAG == 'Y'}">
+						<input type="checkbox" size="100" name="delflag" value="Y" checked> 
+					</c:if>
+					(체크 = 탈퇴함)
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>	
 	<br/>
-	<div style="margin:auto; text-align: center;">
-	<button type="button" onClick="check()">수 &emsp; 정</button>
-         &emsp;&emsp;
-	<button type="button" onclick="cancel()">취 &emsp; 소</button>
+	<div class="footer">
+		<button id="mbtn" type="button" onClick="check()">수 정</button>
+		<button id="cancle"type="button" onclick="cancel()">취 소</button>
 	</div>
 
-</form>	
+
 </body>
 </html>

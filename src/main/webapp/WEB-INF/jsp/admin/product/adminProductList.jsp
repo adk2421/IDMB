@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/adminProduct.css" type="text/css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -18,19 +21,22 @@ function pinsert() {
 <body>
 
 	<!-- 관리자 메인 툴바 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div align="right" class="box1">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="product-ad" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
 	<hr>
-	<table style="margin:auto; text-align: center;" border=1>
+
+
+	<div class="container">
+	<table style="margin:auto; text-align: center;">
 		<thead>
 			<tr>
 				<th>종류</th>
@@ -42,35 +48,48 @@ function pinsert() {
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="product" items="${adminProductList}">
-		<tr>
-			<td>${product.P_KIND}</td>
-			<td><a href="productDetail.do?p_code=${product.P_CODE}">
-				${product.P_NAME}</a></td>
-			<td>
-				<fmt:formatNumber value="${product.P_PRICE}" pattern="###,###,###원"/>
-			</td>
-			<td>${product.P_STOCK}개</td>
-			<td>${product.P_SELL}개</td>
-			<td><button type="button"
-					onClick="location.href='adminUpdateProductForm.do?p_code=${product.P_CODE}'">
-				수정</button>	
-			</td>
+		
+		<c:choose>
+			<c:when test="${adminProductList == null || fn:length(adminProductList) == 0 }">
+			<tr>
+				<td colspan="6">
+					조회 결과가 없습니다.
+				</td>
+			</tr>
+			</c:when>
 			
-		</tr>
-		</c:forEach>
+			<c:otherwise>
+			<c:forEach var="product" items="${adminProductList}">
+			<tr>
+				<td>${product.P_KIND}</td>
+				<td><a href="productDetail.do?p_code=${product.P_CODE}">
+					${product.P_NAME}</a></td>
+				<td>
+					<fmt:formatNumber value="${product.P_PRICE}" pattern="###,###,###원"/>
+				</td>
+				<td>${product.P_STOCK}개</td>
+				<td>${product.P_SELL}개</td>
+				<td><button id="mbtn" type="button"
+						onClick="location.href='adminUpdateProductForm.do?p_code=${product.P_CODE}'">
+					수정</button>	
+				</td>
+			</tr>
+			</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</tbody>
 	</table>
-	
-	<div style="margin:auto; text-align: center;">
-	<form action="adminProductList.do" method="get">
-		<button type="button" onClick="pinsert()">상품 등록</button>
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-		<input type="text" name="searchValue" id="searchValue" placeholder="상품명 ..." value="${searchValue}"/>
-		<button type="submit">검색</button>
-	</form>
 	</div>
+	<div class="footer">
 	${paging.pageHtml}
+	<form action="adminProductList.do" method="get">
+		<button id="p-add" type="button" onClick="pinsert()">상품 등록</button>
+		<input type="search" name="searchValue" id="search" placeholder="상품명 ..." value="${searchValue}"/>
+		<button class="search-icon" type="submit"><i class="fa fa-search"></i></button>
+	</form>
+	
+	</div>
+	
 
 </body>
 </html>

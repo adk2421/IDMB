@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/adminMember.css" type="text/css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 </head>
@@ -14,32 +17,33 @@
 <body>
 
 	<!-- 관리자 메인 툴바 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div align="right" class="box1">
 		<ul style="list-style-type:none">
-			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="member-ad"style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
 	<hr>
 	
-	<div style="margin:auto; text-align: center;">
+	<div class="container">
 	<form action="adminMemberList.do" method="get">
+	 <label> 검색어 </label>
 		<select name="SORT" id="SORT">
 			<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
 			<option value="name" <c:if test="${SORT =='name'}">selected</c:if>>이 &emsp; 름</option>
 			<option value="phone" <c:if test="${SORT =='phone'}">selected</c:if>>전 화 번 호</option>			
 		</select>
-		<input type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
-		<button type="submit">검색</button>
+		<input type="search" name="searchValue" id="search" placeholder="Search ..." value="${searchValue}"/>
+		<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
 	</form>
-	</div>
 	
-	<table style="margin:auto; text-align: center;" border=1>
+	
+	<table>
 		<thead>
 			<tr>
 				<th>아이디</th>
@@ -50,7 +54,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		
+	
 		<c:choose>
 			<c:when test="${adminMemberList == null || fn:length(adminMemberList) == 0 }">
 			<tr>
@@ -77,8 +81,11 @@
 			</c:forEach>
 			</c:otherwise>
 		</c:choose>
+
 	</tbody>
 	</table>
-	${paging.pageHtml}
+</div>
+<div class="footer">${paging.pageHtml}</div>	
+	
 </body>
 </html>
