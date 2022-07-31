@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -46,9 +47,11 @@ function pinsert() {
 			<td>${product.P_KIND}</td>
 			<td><a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a></td>
-			<td>${product.P_PRICE}</td>
-			<td>${product.P_STOCK}</td>
-			<td>${product.P_SELL}</td>
+			<td>
+				<fmt:formatNumber value="${product.P_PRICE}" pattern="###,###,###원"/>
+			</td>
+			<td>${product.P_STOCK}개</td>
+			<td>${product.P_SELL}개</td>
 			<td><button type="button"
 					onClick="location.href='adminUpdateProductForm.do?p_code=${product.P_CODE}'">
 				수정</button>	
