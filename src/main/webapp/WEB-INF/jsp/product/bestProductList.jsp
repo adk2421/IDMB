@@ -52,13 +52,42 @@ border-left: none;
 </head>
 <body>
 
-	<a href="mainpageProductList.do">
-	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
-	</a>
+<!-- 상품 종류별로 이동 -->
+<table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;">
+	<tbody>
+		<tr>
+			<td>
+				<a href="bestProductList.do"><b>BEST</b></a>
+			</td>
+			<td>
+				<a href="newProductList.do"><b>NEW</b></a>
+				
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=숄더백"><b>숄더백</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=크로스백"><b>크로스백</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=메신저백"><b>메신저백</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=클러치백"><b>클러치백</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=백팩"><b>백팩</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=미니백"><b>미니백</b></a>
+			</td>
+		</tr>
+	</tbody>	
+</table>
 
-검색창
+<br>
+
 <form action="bestProductList.do" method="get">
-검색어
 	<select name="SORT" id="SORT">
 		<option value="" <c:if test="${SORT == null}">selected</c:if>>전 체</option>
 		<option value="newproduct" <c:if test="${SORT =='newproduct'}">selected</c:if>>최 신 순</option>
@@ -68,8 +97,9 @@ border-left: none;
 	</select>
 	
 	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
+	
 	<br>
-검색 가격
+
 	<input type="number" name="priceValue1"  id="priceValue1" placeholder="최소금액...." 
 		<c:if test = "${priceValue1 != '0'}">value="${priceValue1}"</c:if>> ~ 
 	<input type="number" name="priceValue2"  id="priceValue2" placeholder="최대금액...."
@@ -77,6 +107,11 @@ border-left: none;
 
 	<input type="submit" value="검색"/>
 </form>
+
+<br><br>
+
+인기 상품!
+
 <table>
 <tbody>
 	<c:forEach var="product" items="${bestList}" begin="0" end ="4">

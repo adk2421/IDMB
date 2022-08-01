@@ -16,11 +16,17 @@ public class ProductServiceImpl implements ProductService{
 	@Resource(name="productDAO")
 	private ProductDAO productDAO;
 	
-
 	@Override
-	public List<Map<String, Object>> mainpageProductList() throws Exception{
+	public List<Map<String, Object>> mainBestList() throws Exception{
 	
-		return productDAO.mainpageProductList();
+		return productDAO.mainBestList();
+	
+	}
+	
+	@Override
+	public List<Map<String, Object>> mainNewList() throws Exception{
+	
+		return productDAO.mainNewList();
 	
 	}
 		
@@ -90,6 +96,28 @@ public class ProductServiceImpl implements ProductService{
 		map.put("p_code", product.getP_code());
 		
 		return productDAO.productDetail(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> productReviewList(ProductBean product, int START, int END) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("p_code", product.getP_code());
+		map.put("START", START);
+		map.put("END", END);
+		
+		return productDAO.productReviewList(map);	
+	}
+	
+	@Override
+	public int productReviewCount(ProductBean product) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("p_code", product.getP_code());
+		
+		Map<String, Object> countMap = productDAO.productReviewCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;
 	}
 }
 	

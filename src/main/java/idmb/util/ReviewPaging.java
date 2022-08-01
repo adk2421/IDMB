@@ -1,6 +1,6 @@
 package idmb.util;
 
-public class Paging {
+public class ReviewPaging {
 	
 	private int totalPage;
 	private int pageBlock;
@@ -8,9 +8,10 @@ public class Paging {
 	private int endPage;
 	private int currentPage;
 	
-	private StringBuffer pageHtml = new StringBuffer();	
+	private StringBuffer pageHtml = new StringBuffer();
 	
-	public Paging(int totalCount, int pageBlock, int pageSize, int currentPage, String url, String searchUrl) {
+	
+	public ReviewPaging(int totalCount, int pageBlock, int pageSize, int currentPage, String url, String searchUrl) {
 		//페이징할 총 수, 페이지 블럭, 1페이지당 출력할 개수, 현재 페이지, 이동주소, 검색시 사용주소  
 		totalPage = totalCount/pageSize + (totalCount%pageSize == 0 ? 0:1);
 		
@@ -27,7 +28,7 @@ public class Paging {
 		// pageHtml을 작성
 		makePageHtml(url, searchUrl);
 	}
-		
+	
 	private void makePageHtml(String url, String searchUrl) {
 		
 		pageHtml.append("<div style=\"margin:auto; text-align: center;\">");
@@ -35,13 +36,14 @@ public class Paging {
 		
 		for(int i=startPage;i<=endPage;i++) {
 			if(i!=currentPage) {
-				pageHtml.append("<li style=\"display:inline\"><a href=\"" + url + "?page=" + i + searchUrl + "\">" + i + "</a>&emsp;</li>");				
+				pageHtml.append("<li style=\"display:inline\"><a href=\"" + url + "&page=" + i + searchUrl + "\">" + i + "</a>&emsp;</li>");				
 			} else {
 				pageHtml.append("<li style=\"display:inline\"><span>" + i+ "</span>&emsp;</li>");				
 			}
 		}
 		pageHtml.append("</ul></div>");
-	}	
+	}
+
 
 	public int getTotalPage() {
 		return totalPage;

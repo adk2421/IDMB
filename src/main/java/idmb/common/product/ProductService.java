@@ -7,7 +7,9 @@ import idmb.model.ProductBean;
 
 public interface ProductService {
 	
-	public List<Map<String, Object>> mainpageProductList() throws Exception;
+	public List<Map<String, Object>> mainBestList() throws Exception;
+	
+	public List<Map<String, Object>> mainNewList() throws Exception;
 	
 	public List<Map<String, Object>> searchProduct(
 			String searchValue, int priceValue1, int priceValue2, String SORT) throws Exception;
@@ -21,5 +23,7 @@ public interface ProductService {
 	
 	public Map<String, Object> productDetail(ProductBean product) throws Exception;
 	
-
+	public List<Map<String, Object>> productReviewList(ProductBean product, int START, int END) throws Exception;
+	
+	public int productReviewCount(ProductBean product) throws Exception;
 }

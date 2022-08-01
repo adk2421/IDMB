@@ -15,10 +15,15 @@ public class ProductDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	// 메인페이지 상품리스트
-	public List<Map<String, Object>> mainpageProductList() throws Exception {
-		return sqlSessionTemplate.selectList("product.mainpageProductList");
+	// 메인페이지 인기상품 리스트
+	public List<Map<String, Object>> mainBestList() throws Exception {
+		return sqlSessionTemplate.selectList("product.mainBestList");
 	}
+	
+	// 메인페이지 신상품 리스트
+	public List<Map<String, Object>> mainNewList() throws Exception {
+		return sqlSessionTemplate.selectList("product.mainNewList");
+	}	
 	
 	//상품 검색
 	public List<Map<String, Object>> searchProduct(Map<String,Object> map) throws Exception{
@@ -43,5 +48,15 @@ public class ProductDAO {
 	// 상품상세
 	public Map<String, Object> productDetail(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectOne("product.productDetail", map);
+	}
+	
+	//상품 후기 목록
+	public List<Map<String, Object>> productReviewList(Map<String,Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("product.productReviewList",map);
+	}
+	
+	//상품 후기 수
+	public Map<String, Object> productReviewCount(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("product.productReviewCount",map);
 	}
 }

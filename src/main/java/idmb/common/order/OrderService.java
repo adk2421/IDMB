@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import idmb.model.OrderBean;
+import idmb.model.ProductBean;
 
 public interface OrderService {
 	
@@ -19,4 +20,7 @@ public interface OrderService {
 	//주문 상태 갯수
 	public List<Map<String, Object>> countOrderStatus (OrderBean order) throws Exception;
 
+	//주문 확인
+	public Map<String,Object> orderCheck(ProductBean product, String id) throws Exception;
+	
 }

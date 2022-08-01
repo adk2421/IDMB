@@ -86,5 +86,17 @@
 				O_STATUS
 		]]>
 	</select>
+	
+	<!-- 주문 확인 -->
+	<select id="orderCheck" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT
+				O_ID
+			FROM
+				ORDERCOMMAND
+			WHERE O_CODE = #{p_code}
+				AND O_ID = #{id}
+		]]>
+	</select>
 
 </mapper>
