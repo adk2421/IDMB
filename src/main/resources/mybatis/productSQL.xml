@@ -3,8 +3,8 @@
 
 <mapper namespace="product">
 
-	<!-- 메인페이지 상품 리스트 -->
-	<select id="mainpageProductList" parameterType="hashmap" resultType="hashmap">
+	<!-- 메인페이지 인기상품 리스트 -->
+	<select id="mainBestList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				*
@@ -22,6 +22,27 @@
 				ROWNUM <= 3
 		]]>
 	</select>
+	
+	<!-- 메인페이지 신상품 리스트 -->
+	<select id="mainNewList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				*
+			FROM (
+				SELECT
+					*
+				FROM
+					PRODUCT
+				WHERE
+					P_DELFLAG = 'N'
+				ORDER BY
+					P_DATE DESC
+				)
+			WHERE
+				ROWNUM <= 3
+		]]>
+	</select>
+	
 	
 	<!-- 상품 검색 -->
 	<select id="searchProduct" parameterType="hashmap" resultType="hashmap">
@@ -219,4 +240,32 @@
 		]]>
 	</select>
 	
+	<!-- 후기 리스트 -->
+	<select id="productReviewList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM(
+				SELECT R_NUM, R_ID, R_CODE, R_DATE, R_NAME, R_CONTENTS, R_RATE,
+					R_RECOMMEND, R_RELEVEL, R_GROUPNUM, ROWNUM R
+				FROM(
+					SELECT * FROM REVIEW
+					WHERE R_CODE = #{p_code}
+					AND R_RELEVEL = '0'
+					ORDER BY R_GROUPNUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
+		]]>
+	</select>
+	
+	<!-- 후기 수 -->
+	<select id="productReviewCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM
+				REVIEW
+			WHERE R_CODE = #{p_code}
+				AND R_RELEVEL = '0'
+		]]>
+	</select>
 </mapper>

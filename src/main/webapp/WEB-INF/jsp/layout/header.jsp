@@ -5,9 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 	<link rel="stylesheet" href="/IDMB/resources/css/header.css?v=<%=System.currentTimeMillis()%>">
-
+	<script>
+	function main() {
+		location.href="/IDMB/";
+	}
+	</script>
 </head>
 <body>
 	<div class="nav" align="right">

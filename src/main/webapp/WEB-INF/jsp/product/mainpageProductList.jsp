@@ -51,25 +51,10 @@ border-left: none;
 
 </head>
 <body>
-	
-<!-- 메인페이지 로고 -->
-<a href="mainpageProductList.do">
-	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
-</a>
-<br><br>
-		
-<!-- 검색창 -->
-<form action="searchProduct.do" method="get">
-	
-	<input type=text name="searchValue" id="searchValue" placeholder="검색어....." >
-	
-	<button type="submit">검색</button>
-</form>
-<br><br>
-
 
 <!-- 상품 종류별로 이동 -->
-<table style="width:800px; heigth:100px; border:1px solid gray; text-align:center;">
+<table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;
+	">
 	<tbody>
 		<tr>
 			<td>
@@ -94,17 +79,30 @@ border-left: none;
 			<td>
 				<a href="kindProductList.do?p_kind=백팩"><b>백팩</b></a>
 			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=미니백"><b>미니백</b></a>
+			</td>
 		</tr>
 	</tbody>	
 </table>
-<br><br>
 
+<br>
+
+<!-- 검색창 -->
+<form action="searchProduct.do" method="get">
+	
+	<input type=text name="searchValue" id="searchValue" placeholder="검색어....." >
+	
+	<button type="submit">검색</button>
+</form>
+
+<br><br>
 <b>[BEST 3]</b>
 <br><br>
 
 <table>
 	<tbody>
-		<c:forEach var="bestProduct" items="${productBeanList}">
+		<c:forEach var="bestProduct" items="${productBestList}">
 		<td width="300">
 			<a href="productDetail.do?p_code=${bestProduct.P_CODE}">
 			<img src="img/${bestProduct.P_IMAGE}" width="200" id="previewImage"></a>
@@ -118,7 +116,7 @@ border-left: none;
 
 <table>
 	<tbody>
-		<c:forEach var="newProduct" items="${productBeanList}">
+		<c:forEach var="newProduct" items="${productNewList}">
 		<td width="300">
 			<a href="productDetail.do?p_code=${newProduct.P_CODE}">
 			<img src="img/${newProduct.P_IMAGE}" width="200" id="previewImage"></a>
@@ -126,9 +124,6 @@ border-left: none;
 		</c:forEach>
 	</tbody>
 </table>
-
-
-
 
 </body>
 </html>
