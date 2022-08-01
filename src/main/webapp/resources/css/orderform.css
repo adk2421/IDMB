@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+/*폰트*/
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*가운데정렬*/
+table{
+	text-align:center;
+}
+
+/*주문 금액 배송비 총금액 */
+span{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:35px;
+	text-align:left;
+}
+
+/*주문페이지*/
+h1 {
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:64px
+}
+
+/*thead&tbody*/
+th,td{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:26px
+}
+
+/*주문자정보*/
+h2{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:26px;
+	text-align:left;
+}
+
+/*이름,핸드폰번호,받으시는분,우편번호,주소,버튼 전부*/
+h6,input,button{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:26px
+}
+
+/*주문자 정보*/
+.order_info input{
+	text-align: left;
+	color: black;
+            width: 300px;
+            height:50px;
+            font-size: 26px;
+            font-weight: 700;
+          	border-top:none;
+          	border-left:none;
+          	border-right:none;
+            border: 1;
+            border-color:#787878;
+            outline: 0;
+}
+.order_info h2{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:40px;
+	text-align:left;
+}
+.order_info h6{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:26px;
+	text-align:left;
+}
+
+/*주소 정보*/
+
+.orderaddress input{
+
+            color: black;
+            width: 300px;
+            height:50px;
+            font-size: 26px;
+            font-weight: 700;
+          	border-top:none;
+          	border-left:none;
+          	border-right:none;
+            border: 1;
+            border-color:#787878;
+            outline: 0;
+}
+
+.orderaddress h6{
+	text-align:left;
+}
+
+.orderaddress input[type=button]{
+			background-color: #aaaaaa;
+			color: white;
+            width: 150px;
+            height:50px;
+            font-size: 26px;
+            font-weight: 700;
+            border-radius: 6px;
+            border: 0;
+            border-color:grey;
+            outline: 0;
+}
+
+.sum input{
+	 color: black;
+            width: 300px;
+            height:50px;
+            font-size: 26px;
+            font-weight: 700;
+          	border-top:none;
+          	border-left:none;
+          	border-right:none;
+            border: 1;
+            border-color:#787878;
+            outline: 0;
+
+}
+.sum button{
+		background-color: #EB3232;
+			color: white;
+            width: 150px;
+            height:50px;
+            font-size: 26px;
+            font-weight: 700;
+            border-radius: 6px;
+            border: 0;
+            border-color:grey;
+            outline: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
