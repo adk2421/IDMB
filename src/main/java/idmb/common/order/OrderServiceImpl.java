@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import idmb.model.OrderBean;
-
+import idmb.model.ProductBean;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
@@ -49,20 +49,31 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void deleteOrder (OrderBean order) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		map.put("o_num", order.getO_num());
 		
-		orderDAO.deleteOrder(map);
-		
-		
+		orderDAO.deleteOrder(map);	
 	}
 	
 	//주문 상태 갯수
+	@Override
 	public List<Map<String, Object>> countOrderStatus (OrderBean order) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		map.put("o_id", order.getO_id());
 		
 		return orderDAO.countOrderStatus(map);
-
 	}
 	
+	//주문 확인
+	@Override
+	public Map<String,Object> orderCheck(ProductBean product, String id) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("p_code", product.getP_code());
+		map.put("id", id);
+		
+		return orderDAO.orderCheck(map);
+	}
+
 }

@@ -210,10 +210,15 @@ public class ProductController {
 		String p_count = request.getParameter("p_count");
 		//int p_count = Integer.parseInt(String.valueOf(request.getParameter("p_count")));
 		
+		//상품 상세정보
 		Map<String, Object> map = new HashMap<String, Object>();
 		map = productService.productDetail(product);
 		
-		
+		//해당 상품을 id가 주문했는지 확인용
+		String id = (String) request.getSession().getAttribute("id");
+		Map<String, Object> idmap = new HashMap<String, Object>();
+		idmap = orderService.orderCheck(product, id);
+	
 		/* 페이징을 위한 변수 */
 		int pageSize = 5; // 페이지당 출력할 후기의 수
 		int START = 1;
@@ -244,6 +249,7 @@ public class ProductController {
 		list = productService.productReviewList(product, START, END);
 		
 		model.addAttribute("ProductDetail", map);
+		model.addAttribute("orderIdCheck", idmap);
 		model.addAttribute("p_count", p_count);
 		model.addAttribute("productReviewList", list);
 		model.addAttribute("currentPage", currentPage);
@@ -256,12 +262,15 @@ public class ProductController {
 			
 			
 	@RequestMapping(value="/insertBasket.do")
-	public String inputBasket(BasketBean basket, Model model ) throws Exception{
+	public String inputBasket(BasketBean basket, HttpServletRequest request, Model model ) throws Exception{
 				
 		basketService.insertBasket(basket);
-			
+		
+		//이전페이지로 돌아가기
+		String old_url = request.getHeader("REFERER");
+		
 		model.addAttribute("msg", "장바구니에 상품이 담겼습니다.");
-		model.addAttribute("url", "/basketList.do");
+		model.addAttribute("url", old_url);
 			
 		return "/product/insertBasket";
 	}

@@ -8,9 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>장바구니 목록</title>
-<script>
 
-</script>
 </head>
 <body>
 	
@@ -74,10 +72,14 @@
 						<button type="button" onclick="location.href='deleteBasket.do?b_num=${basket.B_NUM}'">삭제</button>
 					</td>
 					<td>
-						<button type="button" 
-							onclick="location.href='basketOrderForm.do?b_num=${basket.B_NUM}'">
-						주문하기
-						</button>
+						<script>
+							function bOrder() {
+								if(confirm("장바구니 상품을 주문하시겠습니까?") == true){
+									location.href='basketOrderForm.do?b_num=${basket.B_NUM}';
+								}	
+							}
+						</script>			
+						<button type="button" onclick="bOrder()">주문하기</button>
 					</td>
 					
 					</form>
@@ -101,7 +103,14 @@
 		<!-- BasketList div end -->
 				
 	<c:forEach var="basket" items="${basketList}" begin="1" end="1">
-		<button type="button" onclick="location.href='basketListOrderForm.do?b_id=${basket.B_ID}'">주문하기</button>
+	<script>
+		function blistOrder() {
+			if(confirm("장바구니 상품을 전부 주문하시겠습니까?") == true){
+				location.href='basketListOrderForm.do?b_id=${basket.B_ID}';
+			}	
+		}
+	</script>
+		<button type="button" onclick="blistOrder()">전체 주문하기</button>
 		<button type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
 	</c:forEach>
 </body>

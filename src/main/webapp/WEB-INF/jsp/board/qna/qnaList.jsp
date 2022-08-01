@@ -10,7 +10,16 @@
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
-
+function insertQna() {
+	if(${empty id}){
+		alert('로그인이 필요합니다!');
+		location.href='/IDMB/loginForm.do';
+	} else {
+		if(confirm("문의를 작성하시겠습니까?") == true){
+			location.href='/IDMB/insertQnaForm.do';
+		}
+	}
+}
 </script>
 </head>
 <body>
@@ -107,7 +116,7 @@
 	${paging.pageHtml}
 	<br><br>
 	
-<button type="button" onclick="location.href='insertQnaForm.do'">문 의 하 기</button>
+<button type="button" onclick="insertQna()">문 의 하 기</button>
 
 </body>
 </html>

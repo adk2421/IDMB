@@ -33,6 +33,11 @@ public class OrderDAO {
 	//주문 상태 갯수
 	public List<Map<String, Object>> countOrderStatus(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("order.countOrderStatus", map);
-	};	
+	};
+	
+	//주문 확인
+	public Map<String,Object> orderCheck(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("order.orderCheck", map);
+	}
 
 }
