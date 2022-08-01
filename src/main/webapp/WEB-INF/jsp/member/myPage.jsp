@@ -36,32 +36,21 @@
 			console.log(sessionStorage.length);
 		}
 		
-		// 페이지 로딩 시, 자동 실행
-		$(document).ready(function() {
-			orderProc();
-			viewedProduct();
-		});
-		
+		// 메인페이지 이동
 		function main() {
 			location.href = "/IDMB/mainpageProductList.do";
 		}
 		
+		// 최근 본 상품
 		function viewedProduct() {
-			console.log('viewedProduct 실행');
 			var Arr = [];
 			var Obj = new Object();
 			var temp;
 			
-			for (var i=0; i<10; i++) {
+			for (var i=0; i<sessionStorage.length; i++) {
 				temp = sessionStorage.getItem(i);
-				
-				if (temp != null) {
-					Obj[i] = temp;
-					Arr = { P_CODE : Obj };
-				}
-				
-				else
-					break;
+				Obj[i] = temp;
+				Arr = { P_CODE : Obj };	
 			}
 			
 			$.ajax({
@@ -75,6 +64,38 @@
 				  }
 			});
 		}
+		
+		function productDetail(p_code) {
+			
+			/* var Obj = new Object();
+			Obj["P_CODE"] = p_code;
+			console.log("1 " + Obj["P_CODE"]);
+			console.log("3 " + p_code);
+			
+			$.ajax({
+				url :"productDetailAjax.do",
+				data: Obj,
+				type : "post",
+				dataType : "json",
+				
+				success: function(data) {
+					console.log("성공");
+					
+				  }
+			}); */
+			
+			location.href = "productDetail.do?p_code=" + p_code;
+		}
+		
+		function qnaDetail(q_num) {
+			location.href = "qnaDetail.do?q_num=" + q_num;
+		}
+		
+		// 페이지 로딩 시, 자동 실행
+		$(document).ready(function() {
+			orderProc();
+			viewedProduct();
+		});
 		
 	</script>
 	
@@ -102,7 +123,7 @@
 					<a href="/IDMB/basketList.do">장바구니</a> | 
 					관심상품 | 
 					최근 본 상품 | 
-					<a href="/IDMB/myQnaList.do">내 게시글</a>
+					<a href="/IDMB/qnaList.do">내 게시글</a>
 				</p>
 				
 				<table>
@@ -145,21 +166,21 @@
 				<div class="vertical">
 					<table>
 						<tr>
-							<td>
+							<td class="button_tr" onclick="alert('aa')">
 								<p id="o_proc_key1">배송대기</p>
 								<p id="o_proc_val1"><%= request.getAttribute("배송대기") %></p>
 							</td>
 							
-							<td>
+							<td class="button_tr" onclick="alert('aa')">
 								<p id="o_proc_key2">배송준비중</p>
 								<p id="o_proc_val2"><%= request.getAttribute("배송준비중") %></p>
 							</td>
 							
-							<td>
+							<td class="button_tr" onclick="alert('aa')">
 								<p id="o_proc_key3">배송중</p>
 								<p id="o_proc_val3"><%= request.getAttribute("배송중") %></p>
 							</td>
-							<td>
+							<td class="button_tr" onclick="alert('aa')">
 								<p id="o_proc_key4">배송완료</p>
 								<p id="o_proc_val4"><%= request.getAttribute("배송완료") %></p>
 							</td>
@@ -186,7 +207,7 @@
 			        </thead>
 			        
 			        <c:forEach var="order" items="${myOrderList}">
-				        <tr class="button_tr" onclick="alert('aa')">
+				        <tr class="button_tr" onclick="orderDetail(${order.O_NUM})">
 					        <td>
 					        	<p>${order.O_DATE}</p>
 					        	<p id="orderNum${order.O_NUM}">P00929${order.O_NUM}</p>
@@ -207,6 +228,7 @@
 				<p>- 최근 본 상품 -</p>
 				
 				<table>
+					<thead>
 						<tr>
 							<td>이미지</td>
 							<td>상품명</td>
@@ -214,17 +236,11 @@
 							<td>판매가</td>
 							<td>찜</td>
 						</tr>
-					<tr>
-							<td>aa</td>
-							<td>aa</td>
-							<td>aa</td>
-							<td>${myOrderList[0].O_PRICE}a</td>
-							<td>${viewedProduct}a</td>
-						</tr>
+					</thead>
 					
 					<c:forEach var="product" items="${viewedProduct}">
-						<tr>
-							<td>${product.P_IMAGE}</td>
+						<tr class="button_tr" onclick="productDetail(${product.P_CODE})">
+							<td><img src="/IDMB/img/${product.P_IMAGE}" /></td>
 							<td>${product.P_NAME}</td>
 							<td>${product.P_KIND}</td>
 							<td>${product.P_PRICE}</td>
@@ -250,7 +266,7 @@
 					</tr>
 					
 					<c:forEach var="qna" items="${myQnaList}">
-				        <tr>
+				        <tr class="button_tr" onclick="qnaDetail(${qna.Q_NUM})">
 					        <td>${qna.Q_NUM}</td>
 					        <td>${qna.Q_CATEGORY}</td>
 					        <td>${qna.Q_TITLE}</td>
@@ -271,20 +287,21 @@
 				<table>
 					<tr>
 						<td>번호</td>
-						<td>분류</td>
 						<td>제목</td>
 						<td>작성자</td>
 						<td>작성일</td>
 						<td>조회</td>
 					</tr>
-					<tr>
-						<td>번호</td>
-						<td>분류</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>작성일</td>
-						<td>조회</td>
-					</tr>
+					
+					<c:forEach var="review" items="${myReviewList}">
+				        <tr class="button_tr" onclick="alert('aa')">
+					        <td>${review.R_NUM}</td>
+					        <td>${review.R_NAME}</td>
+					        <td>${review.R_ID}</td>
+					        <td>${review.R_DATE}</td>
+					        <td>${review.R_RECOMMEND}</td>
+				        </tr>
+				    </c:forEach>
 				</table>
 			</div>
 		</div>

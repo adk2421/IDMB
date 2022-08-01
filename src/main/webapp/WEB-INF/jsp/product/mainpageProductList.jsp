@@ -51,13 +51,7 @@ border-left: none;
 
 </head>
 <body>
-	
-<!-- 메인페이지 로고 -->
-<a href="mainpageProductList.do">
-	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
-</a>
-<br><br>
-		
+			
 <!-- 검색창 -->
 <form action="searchProduct.do" method="get">
 	

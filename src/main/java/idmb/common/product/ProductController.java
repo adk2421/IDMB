@@ -7,10 +7,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import idmb.model.ProductBean;
 
@@ -156,6 +160,30 @@ public class ProductController {
 				
 				return "productDetail";
 			}
+			
+			/*
+			// 상품 디테일 Ajax
+			@ResponseBody
+			@RequestMapping(method = RequestMethod.POST, value = "/productDetailAjax.do")
+			public String productDetailAjax(@RequestParam Map<String, Object> p_code, Model model, HttpSession session) throws Exception {
+				
+				ProductBean product = new ProductBean();
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				System.out.println("P_CODE : " + p_code);
+				
+				product.setP_code(Integer.parseInt((String) p_code.get("P_CODE")));
+				
+				map = productService.productDetail(product);
+				
+				model.addAttribute("product", map);
+				
+				System.out.println("model : " + model);
+						
+				return "redirect:productDetail";
+			}
+			*/
 }
 			
 		

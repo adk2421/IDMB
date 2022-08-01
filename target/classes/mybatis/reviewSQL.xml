@@ -7,11 +7,22 @@
 	<select id="myReviewList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				*
+				R_NUM,
+				R_ID,
+				R_CODE,
+				R_NAME,
+				TO_CHAR(R_DATE, 'YYYY-MM-DD') R_DATE,
+				R_CONTENTS,
+				R_RATE,
+				R_RECOMMEND,
+				R_RELEVEL,
+				R_GROUPNUM
 			FROM
 				REVIEW
 			WHERE
 				R_ID = #{r_id}
+			ORDER BY
+				R_NUM DESC
 		]]>
 	</select>
 	
@@ -41,7 +52,7 @@
 				R_DATE,
 				R_CONTENTS,
 				R_RATE,
-				R_RECOMMEND
+				R_RECOMMEND,
 				R_RELEVEL,
 				R_GROUPNUM
 			)

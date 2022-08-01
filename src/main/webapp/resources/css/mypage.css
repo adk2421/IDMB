@@ -42,7 +42,6 @@
 	
 	tr.button_tr {
 		cursor: pointer;
-		
 	}
 	
 	tr.button_tr:hover {
@@ -57,4 +56,12 @@
 	td img {
 		width: 90px;
 		height: 90px;
+	}
+	
+	td.button_tr {
+		cursor: pointer;
+	}
+	
+	td.button_tr:hover {
+		background-color: #CCCCCC;
 	}
