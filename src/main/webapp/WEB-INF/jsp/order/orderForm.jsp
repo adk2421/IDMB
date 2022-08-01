@@ -205,6 +205,6 @@ function orderCheck() {
 				<button type="button" onclick="orderCheck()">주문하기</button>
 			</div>
 	</form>
-
+ 
 </body>
 </html>
