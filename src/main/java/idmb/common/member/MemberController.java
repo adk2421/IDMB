@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import idmb.common.board.qna.QNAService;
+import idmb.common.board.review.ReviewService;
 import idmb.common.order.OrderService;
 import idmb.common.product.ProductService;
 import idmb.model.MemberBean;
 import idmb.model.OrderBean;
 import idmb.model.ProductBean;
 import idmb.model.QNABean;
+import idmb.model.ReviewBean;
 import idmb.util.MapToBean;
 
 @Controller
@@ -48,6 +50,8 @@ public class MemberController {
 	@Resource(name="productService")
 	private ProductService productService;
 	
+	@Resource(name="reviewService")
+	private ReviewService reviewService;
 	
 	// 회원가입 폼 이동
 	@RequestMapping(value = "/joinForm.do")
@@ -395,6 +399,16 @@ public class MemberController {
         
         model.addAttribute("myQnaList", myQnaList);
         
+        // 내 Review List
+        ReviewBean review = new ReviewBean();
+		review.setR_id(id);
+		
+        List<Map<String, Object>> myReviewList = new ArrayList<Map<String, Object>>();
+
+        myReviewList = reviewService.myReviewList(review);
+        
+        model.addAttribute("myReviewList", myReviewList);
+           
 		return "myPage";
 	}
 	
@@ -402,21 +416,20 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/viewedProductAjax.do")
 	public String viewedProductAjax(@RequestParam Map<String, Object> Arr, Model model, HttpSession session) throws Exception {
-		System.out.println("Controller.viewedProductAjax 실행");
 		
 		ProductBean product = new ProductBean();
 		
 		List<Map<String, Object>> viewedProduct = new ArrayList<Map<String, Object>>();
+		
+		System.out.println("Arr.size : " + Arr.size());
 		
 		for (int i = 0; i < Arr.size(); i++) {
 			product.setP_code(Integer.parseInt((String) Arr.get("P_CODE["+ i + "]")));
 			viewedProduct.add(productService.productDetail(product));
 		}
 		
-		model.addAttribute("viewedProduct", viewedProduct);
-		
-		System.out.println(model);
+		session.setAttribute("viewedProduct", viewedProduct);
 				
-		return "myPage";
+		return "redirect:myPage";
 	} 
 }

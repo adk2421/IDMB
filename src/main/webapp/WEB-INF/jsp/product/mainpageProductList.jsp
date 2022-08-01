@@ -51,6 +51,15 @@ border-left: none;
 
 </head>
 <body>
+			
+<!-- 검색창 -->
+<form action="searchProduct.do" method="get">
+	
+	<input type=text name="searchValue" id="searchValue" placeholder="검색어....." >
+	
+	<button type="submit">검색</button>
+</form>
+<br><br>
 
 <!-- 상품 종류별로 이동 -->
 <table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;

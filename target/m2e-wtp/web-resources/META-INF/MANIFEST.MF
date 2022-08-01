@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: EZEN
+=======
+Built-By: KJS
+>>>>>>> 55eea673476855323c3193a9cbc3c51c4d008777
 Build-Jdk: 11.0.14
 Created-By: Maven Integration for Eclipse
 
