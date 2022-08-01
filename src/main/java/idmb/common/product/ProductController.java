@@ -216,6 +216,7 @@ public class ProductController {
 		
 		//해당 상품을 id가 주문했는지 확인용
 		String id = (String) request.getSession().getAttribute("id");
+		if(id == null) {id="";}
 		Map<String, Object> idmap = new HashMap<String, Object>();
 		idmap = orderService.orderCheck(product, id);
 	
