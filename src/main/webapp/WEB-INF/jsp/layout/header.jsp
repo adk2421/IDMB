@@ -10,31 +10,32 @@
 
 </head>
 <body>
-	<div class="nav" align="right">
-	<c:if test="${ empty id }">
-		<ul style="list-style-type:none">
-			<li style="display:inline"><a href="loginForm.do">LOGIN</a>　|　</li>
-			<li style="display:inline"><a href="joinForm.do">JOIN</a>　|　</li>
-			<li style="display:inline"><a href="noticeList.do">COMMUNITY</a></li>　
-		</ul>
-	</c:if>
-	
-	<c:if test="${! empty id }">
-		<ul style="list-style-type:none">
-			<li style="display:inline"><a href="logout.do">LOGOUT</a>　|　</li>
-			<li style="display:inline"><a href="basketList.do">CART</a>　|　</li>
-			<li style="display:inline"><a href="myPage.do">MY PAGE</a>　|　</li>
-			<li style="display:inline"><a href="myOrderList.do">ORDER</a>　|　</li>
-			<li style="display:inline"><a href="noticeList.do">COMMUNITY</a></li>　
-		</ul>
-	</c:if>
-	</div>
-	<hr/>
-	<div class="logo">
-		<img class="logo" src="/IDMB/img/logo.png" onclick="location.href = '/IDMB/mainpageProductList.do'">
-	</div>
-	<div>
-		<hr/>
+	<div class="nav">
+		<div class="left" align="left">
+			<a href="mainpageProductList.do">
+				<img class="logo" src="/IDMB/img/simple_logo.png"/> IDMB
+			</a>
+		</div>
+		
+		<div class="right">
+			<c:if test="${ empty id }">
+				<ul>
+					<li><a href="loginForm.do">LOGIN</a>　|　</li>
+					<li><a href="joinForm.do">JOIN</a>　|　</li>
+					<li><a href="noticeList.do">COMMUNITY</a></li>　
+				</ul>
+			</c:if>
+			
+			<c:if test="${! empty id }">
+				<ul>
+					<li><a href="logout.do">LOGOUT</a>　|　</li>
+					<li><a href="basketList.do">CART</a>　|　</li>
+					<li><a href="myPage.do">MY PAGE</a>　|　</li>
+					<li><a href="myOrderList.do">ORDER</a>　|　</li>
+					<li><a href="noticeList.do">COMMUNITY</a></li>　
+				</ul>
+			</c:if>
+		</div>
 	</div>
 
 </body>

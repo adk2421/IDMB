@@ -21,7 +21,7 @@
         <div class="wrap">
             <div class="login">
             
-                <h2>로그인</h2>
+                <h2>로 그 인</h2>
                 
                 <div class="login_sns">
                     <li><a href=""><i class="fab fa-instagram"></i></a></li>
@@ -30,13 +30,13 @@
                 </div>
                 
                 <div class="login_div">
-                    <h4>ID</h4>
-                    <input type="text" name="id" id="id" placeholder="아이디" oninput="inputNoSpecial(this)" />
+                    <h4 class="login_H4">ID</h4>
+                    <input class="login_input" type="text" name="id" id="id" placeholder="아이디" oninput="inputNoSpecial(this)" />
                 </div>
                 
                 <div class="login_div">
-                    <h4>Password</h4>
-                    <input type="password" name="passwd" id="passwd" placeholder="비밀번호" oninput="inputNoBlank(this)" onkeypress="keyPress()" />
+                    <h4 class="login_H4">PW</h4>
+                    <input class="login_input" type="password" name="passwd" id="passwd" placeholder="비밀번호" oninput="inputNoBlank(this)" onkeypress="keyPress()" />
                 </div>
                 
                 <div class="login_etc">
@@ -45,13 +45,13 @@
                         <input type="checkbox" name="" id=""> 아이디 저장
                     </div>
                     -->
-                    <div class="sign_up">
+                    <div>
                         <a href="/IDMB/joinForm.do">회원가입</a>
                     </div>
-                    <div class="forgot_id">
+                    <div>
                         <a href="/IDMB/findId.do">ID 찾기</a>
                     </div>
-                    <div class="forgot_pw">
+                    <div>
                         <a href="/IDMB/findPw.do">PW 찾기</a>
                     </div>
                 </div>
@@ -63,5 +63,8 @@
             </div>
         </div>
     </form>
+    <br/>
+    <br/>
+    <br/>
 </body>
 </html>

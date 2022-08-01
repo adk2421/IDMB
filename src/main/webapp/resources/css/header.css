@@ -4,6 +4,10 @@
 		font-family: "Noto Sans KR", sans-serif;
 	}
 	
+	body {
+		padding-top: 45px;
+	}
+	
 	a {
 		text-decoration: none;
 		color: black;
@@ -11,6 +15,17 @@
 	
 	a:hover {
 		color: #CCCCCC;
+	}
+	
+	div.nav {
+		display: flex;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		justify-content: space-between;
+		background-color: white;
+		border-bottom: solid 1px #b3b3b3;
 	}
 	
 	div.nav ul {
@@ -22,12 +37,30 @@
 		font-size: 14px;
 	}
 	
-	div.logo {
-		margin: auto;
-		padding: 20px;
+	div.left {
+		margin-left: 25px;
+		margin-top: 6px;
+		margin-bottom: auto;
+		font-size: 25px;
+		justify-content: left;
+		text-align: left;
 	}
 	
-	.logo {
-		width: 100px;
+	div.right {
+		margin-left: auto;
+		margin-bottom: 1px;
+	}
+	
+	div.logo {
+		align-items: center;
+		justify-content: center;
+		margin: 0px;
+		padding: 20px;
+		width: 100%;
+	}
+	
+	img.logo {
+		margin-top: 10px;
+		width: 20px;
 		cursor: pointer;
 	}

@@ -14,10 +14,10 @@
 		
 	<script>
 		// 포커스 이동
-		function focusdiv() {
+		function focusdiv(id) {
 			console.log("focus 실행");
-			document.getElementById("divFocus").tabIndex = -1;
-			document.getElementById("divFocus").focus();
+			document.getElementById(id).tabIndex = -1;
+			document.getElementById(id).focus();
 		
 			// 사용법 <a href="javascript:focusdiv();">
 		}
@@ -65,30 +65,16 @@
 			});
 		}
 		
-		function productDetail(p_code) {
-			
-			/* var Obj = new Object();
-			Obj["P_CODE"] = p_code;
-			console.log("1 " + Obj["P_CODE"]);
-			console.log("3 " + p_code);
-			
-			$.ajax({
-				url :"productDetailAjax.do",
-				data: Obj,
-				type : "post",
-				dataType : "json",
-				
-				success: function(data) {
-					console.log("성공");
-					
-				  }
-			}); */
-			
+		function productDetail(p_code) {			
 			location.href = "productDetail.do?p_code=" + p_code;
 		}
 		
 		function qnaDetail(q_num) {
 			location.href = "qnaDetail.do?q_num=" + q_num;
+		}
+		
+		function reviewDetail(r_num) {
+			location.href = "reviewDetail.do?q_num=" + r_num;
 		}
 		
 		// 페이지 로딩 시, 자동 실행
@@ -119,11 +105,12 @@
 				<p>${name}님, 환영합니다.</p>
 				<br/>
 				<p>
-					<a href="/IDMB/myOrderList.do">주문내역</a> | 
-					<a href="/IDMB/basketList.do">장바구니</a> | 
+					<a href="javascript:focusdiv('orderList');">주문내역</a> | 
+					<a href="javascript:focusdiv('basket');">장바구니</a> | 
 					관심상품 | 
-					최근 본 상품 | 
-					<a href="/IDMB/qnaList.do">내 게시글</a>
+					<a href="javascript:focusdiv('viewedProduct');">최근 본 상품</a> | 
+					<a href="javascript:focusdiv('qnaList');">문의내역</a> | 
+					<a href="javascript:focusdiv('myReviewList');">나의리뷰</a>
 				</p>
 				
 				<table>
@@ -149,7 +136,7 @@
 		
 		<div>
 			<div class="vertical">
-			<p>- 회원님의 혜택 정보 -</p>
+			<p class="label">- 회원님의 혜택 정보 -</p>
 				
 				<div class="vertical">
 					<p>[welcome] 등급 회원입니다.</p>
@@ -158,31 +145,48 @@
 				</div>
 			</div>
 		</div>
+		<br/>
+		<br/>
 		
 		<div>
 			<div class="vertical">
-				<p>- 주문 처리 현황 -</p>
+				<div class="horizen">
+					<img class="icon" src="/IDMB/resources/img/ICON_orderProc.png" /><span class="left">주문처리 현황</span>
+				</div>
 				
 				<div class="vertical">
 					<table>
 						<tr>
 							<td class="button_tr" onclick="alert('aa')">
 								<p id="o_proc_key1">배송대기</p>
-								<p id="o_proc_val1"><%= request.getAttribute("배송대기") %></p>
+								<p class="count" id="o_proc_val1"><%= request.getAttribute("배송대기") %></p>
+							</td>
+							
+							<td class="next_td">
+								>
 							</td>
 							
 							<td class="button_tr" onclick="alert('aa')">
 								<p id="o_proc_key2">배송준비중</p>
-								<p id="o_proc_val2"><%= request.getAttribute("배송준비중") %></p>
+								<p class="count" id="o_proc_val2"><%= request.getAttribute("배송준비중") %></p>
+							</td>
+							
+							<td class="next_td">
+								>
 							</td>
 							
 							<td class="button_tr" onclick="alert('aa')">
 								<p id="o_proc_key3">배송중</p>
-								<p id="o_proc_val3"><%= request.getAttribute("배송중") %></p>
+								<p class="count" id="o_proc_val3"><%= request.getAttribute("배송중") %></p>
 							</td>
+							
+							<td class="next_td">
+								>
+							</td>
+							
 							<td class="button_tr" onclick="alert('aa')">
 								<p id="o_proc_key4">배송완료</p>
-								<p id="o_proc_val4"><%= request.getAttribute("배송완료") %></p>
+								<p class="count" id="o_proc_val4"><%= request.getAttribute("배송완료") %></p>
 							</td>
 						</tr>
 					</table>
@@ -192,11 +196,14 @@
 		
 		<div>
 			<div class="vertical">
-				<p>- 주문 상품 정보 -</p>
+				<div class="horizen">
+					<img class="icon" src="/IDMB/resources/img/ICON_orderList.png" /><span class="left">주문내역</span>
+					<span class="right"><a href="/IDMB/myOrderList.do">더보기 ></a></span>
+				</div>
 				
 				<table>
 				    <thead>
-				        <tr>
+				        <tr class="head" id="orderList" >
 				            <th>주문번호</th>
 				            <th>이미지</th>
 				            <th>상품정보</th>
@@ -205,6 +212,14 @@
 				            <th>배송상태</th>
 				        </tr>
 			        </thead>
+			        
+			        <c:if test="${myOrderList[0] eq null}">
+			        	<tr>
+			        		<td colspan="6">
+			        			<p>주문하신 상품이 없습니다.</p>
+			        		</td>
+			        	</tr>
+			        </c:if>
 			        
 			        <c:forEach var="order" items="${myOrderList}">
 				        <tr class="button_tr" onclick="orderDetail(${order.O_NUM})">
@@ -225,18 +240,28 @@
 		
 		<div>
 			<div class="vertical">
-				<p>- 최근 본 상품 -</p>
+				<div class="horizen">
+					<img class="icon" src="/IDMB/resources/img/ICON_viewedProduct.png" /><span class="left">최근 본 상품</span>
+				</div>
 				
 				<table>
 					<thead>
-						<tr>
-							<td>이미지</td>
-							<td>상품명</td>
-							<td>종류</td>
-							<td>판매가</td>
-							<td>찜</td>
+						<tr class="head" id="viewedProduct">
+							<th>이미지</th>
+							<th>상품명</th>
+							<th>종류</th>
+							<th>판매가</th>
+							<th>찜</th>
 						</tr>
 					</thead>
+					
+					<c:if test="${viewedProduct[0] eq null}">
+			        	<tr>
+			        		<td colspan="6">
+			        			<p>최근 본 상품이 없습니다.</p>
+			        		</td>
+			        	</tr>
+			        </c:if>
 					
 					<c:forEach var="product" items="${viewedProduct}">
 						<tr class="button_tr" onclick="productDetail(${product.P_CODE})">
@@ -253,17 +278,28 @@
 		
 		<div>
 			<div class="vertical">
-				<p>- 내 게시글 -</p>
+				<div class="horizen">
+					<img class="icon" src="/IDMB/resources/img/conversation.png" /><span class="left">문의내역</span>
+					<span class="right"><a href="/IDMB/myQnaList.do">더보기 ></a></span>
+				</div>
 				
 				<table>
-					<tr>
-						<td>번호</td>
-						<td>분류</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>작성일</td>
-						<td>상태</td>
+					<tr class="head" id="qnaList">
+						<th>번호</th>
+						<th>분류</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>상태</th>
 					</tr>
+					
+					<c:if test="${myQnaList[0] eq null}">
+			        	<tr>
+			        		<td colspan="6">
+			        			<p>작성하신 문의가 없습니다.</p>
+			        		</td>
+			        	</tr>
+			        </c:if>
 					
 					<c:forEach var="qna" items="${myQnaList}">
 				        <tr class="button_tr" onclick="qnaDetail(${qna.Q_NUM})">
@@ -282,19 +318,30 @@
 		
 		<div>
 			<div class="vertical">
-				<p>- 내가 작성한 리뷰 -</p>
+				<div class="horizen">
+					<img class="icon" src="/IDMB/resources/img/ICON_orderList.png" /><span class="left">나의리뷰</span>
+					<span class="right"><a href="/IDMB/reviewList.do">더보기 ></a></span>
+				</div>
 				
 				<table>
-					<tr>
-						<td>번호</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>작성일</td>
-						<td>조회</td>
+					<tr class="head" id="myReviewList">
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>조회</th>
 					</tr>
 					
+					<c:if test="${myReviewList[0] eq null}">
+			        	<tr>
+			        		<td colspan="6">
+			        			<p>작성하신 리뷰가 없습니다.</p>
+			        		</td>
+			        	</tr>
+			        </c:if>
+					
 					<c:forEach var="review" items="${myReviewList}">
-				        <tr class="button_tr" onclick="alert('aa')">
+				        <tr class="button_tr" onclick="reviewDetail(${review.R_NUM})">
 					        <td>${review.R_NUM}</td>
 					        <td>${review.R_NAME}</td>
 					        <td>${review.R_ID}</td>

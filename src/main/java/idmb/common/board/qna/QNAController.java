@@ -146,7 +146,7 @@ public class QNAController {
         
         model.addAttribute("myQnaList", myQnaList);
         
-		return "myQnaList";
+		return "qnaList";
 	}
 
 	@RequestMapping(value="/insertQnaForm.do")

@@ -12,114 +12,65 @@
 	<!-- Include jquery -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
-<script>
+	<script>
 	// 최근 본 상품 세션 등록
 	$(document).ready(function() {
 		// var maxCount = 10;
-		var check = true;
-		var checkIdx;
 		var temp;
 			
-		// 최근 본 상품 중 중복이 있는지 확인
-		for (var i=0; i<sessionStorage.length; i++) {
-			if (sessionStorage.getItem(i) == ${product.P_CODE}) {
-				check = false;
-				checkIdx = i;
-				console.log("check:false");
-				console.log(i + "번째 중복 확인 for");
-					
-				// 현재 인덱스 삭제
-				sessionStorage.removeItem(i);
-					
-				// 인덱스 삭제 후, 재정렬
-				for (var j=sessionStorage.length; j>i; j--) {
-					sessionStorage.setItem(j-1,sessionStorage.getItem(j));
-					sessionStorage.removeItem(sessionStorage.length);
-				}
-					
-				break;
-			}
-		}
-			
-		// array { 0 : value0 }, { 1 : value1 }, { 2 : value2 }
-		//              ↓               ↓               ↓
-		// array { 1 : value0 }, { 2 : value1 }, { 3 : value2 }
-		//      ↑
-		//     add { 0 : newValue } -- 한 칸씩 밀면서 새로 받은 값을 제일 앞에 저장
-			
-		// 중복 없음
-		if (check) {
-			// 세션 마지막 값부터 반복 시작
-			for (var i=sessionStorage.length; i>0; i--) {
-				// 현재 인덱스 앞에 있는 값을 저장
-				temp = sessionStorage.getItem(i-1);
-					
-				// 현재 인덱스 앞에 있는 값과 새로 넣을 값 중복 체크
-				if (temp == ${product.P_CODE}) {
-					// 중복이면 현재 인덱스 삭제
-					sessionStorage.removeItem(i);
-						
-					// 인덱스 삭제 후, 재정렬
-					for (var j=i; j<sessionStorage.length-1; j++) {
-						sessionStorage.setItem(j,sessionStorage.getItem(j+1));
-						sessionStorage.removeItem(sessionStorage.length);
-					}
-						
-					break;
-				}
-					
-				else
-					// 중복이 아니면 값 이동
-					sessionStorage.setItem(i,temp);	
-			}
+		// 세션 마지막 값부터 반복 시작
+		for (var i=sessionStorage.length; i>0; i--) {
+			// 현재 인덱스 앞에 있는 값을 저장
+			temp = sessionStorage.getItem(i-1);	
+			sessionStorage.setItem(i,temp);	
 		}
 			
 		// 상세페이지로 들어온 상품코드 첫 번째 인덱스에 저장
-		sessionStorage.setItem(0,${product.P_CODE});
+		sessionStorage.setItem(0,${ProductDetail.P_CODE});
 			
 		console.log(sessionStorage);
 	});
 		
-</script>
+	</script>
 
-<script>
-
-function select(){ 
-   
-       // select element에서 선택된 option의 value가 저장된다.
-    var p_count = $('#count option:selected').val();
-    
-    var price = ${ProductDetail.P_PRICE};
-       
-    var totalprice = p_count*price;
-    document.getElementById("tp").value = totalprice;
-}
-
-function order(){
-var p_count = $('#count option:selected').val();
-
-    var price = ${ProductDetail.P_PRICE};
-       
-    var totalprice = p_count*price;
-    document.getElementById("tp").value = totalprice;
-    
-    location.href='/IDMB/orderForm.do?p_code=${ProductDetail.P_CODE}&p_count='+p_count
-    
-}
-
- 
-function basketCheck() {
-	 var form = document.getElementById("insertBasketForm");
-	 var b_count = $('#count option:selected').val();
-	 document.getElementById("b_count").value = b_count
-	 
-	 if(confirm("장바구니에 담으시겠습니까?") == true){
-		 form.submit();
-	 }
+	<script>
 	
-}
-
-</script>
+	function select(){ 
+	   
+	       // select element에서 선택된 option의 value가 저장된다.
+	    var p_count = $('#count option:selected').val();
+	    
+	    var price = ${ProductDetail.P_PRICE};
+	       
+	    var totalprice = p_count*price;
+	    document.getElementById("tp").value = totalprice;
+	}
+	
+	function order(){
+	var p_count = $('#count option:selected').val();
+	
+	    var price = ${ProductDetail.P_PRICE};
+	       
+	    var totalprice = p_count*price;
+	    document.getElementById("tp").value = totalprice;
+	    
+	    location.href='/IDMB/orderForm.do?p_code=${ProductDetail.P_CODE}&p_count='+p_count
+	    
+	}
+	
+	 
+	function basketCheck() {
+		 var form = document.getElementById("insertBasketForm");
+		 var b_count = $('#count option:selected').val();
+		 document.getElementById("b_count").value = b_count
+		 
+		 if(confirm("장바구니에 담으시겠습니까?") == true){
+			 form.submit();
+		 }
+		
+	}
+	
+	</script>
 </head>
 <body>
 <h2>상품 상세정보</h2>
