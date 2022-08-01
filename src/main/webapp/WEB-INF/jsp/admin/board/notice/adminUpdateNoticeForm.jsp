@@ -6,7 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/admintop.css" type="text/css">
+<link rel="stylesheet" href="css/adminBoardForm.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -45,28 +46,30 @@ function cancel() {
 <body>
 	
 	<!-- 관리자 메인 툴바 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div class="box1" align="right">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="board-ad"style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
-	</div>
+	
 	<hr>
-<div style="width:490px; margin:auto; text-align:left;">	
-<a><img alt="noticelogo" src="img/notice.png" ></a>
-</div>
+		<div class="notice-img">	
+		<a><img alt="noticelogo" src="img/notice.png" ></a>
+		</div>
+	</div>
 
 <br>
-
-<form method="post" id="noticeUpdateForm"
+<div class="container">
+	<div>
+	<form method="post" id="noticeUpdateForm"
 	action="adminUpdateNotice.do?n_num=${adminNoticeBean.N_NUM}">
 	<table style="width:490px; margin:auto; text-align: left;">
-		<tbody>
+		<tbody class="tbody">
 			<tr>
 				<td><b>제목 </b></td>
 					<td>
@@ -86,25 +89,24 @@ function cancel() {
 				<td>${adminNoticeBean.N_HIT}</td>
 			</tr>	
 			<tr>
-				<td><b>내용</b></td>			
-			</tr>
+				<td><b>문의 내용</b></td>				
+			</tr>			
 		</tbody>
 	</table>
-
-	<div style="width:490px; height:285px; margin:auto;">
-		<textarea id="n_contents" name="n_contents"
-			style="width:490px; height:285px;" maxlength="500">${adminNoticeBean.N_CONTENTS}</textarea>
+		<div class="update-form">
+			<textarea id="n_contents" name="n_contents"maxlength="500" placeholder="내용을 입력해 주세요."
+				cols="30" rows="10" >${adminNoticeBean.N_CONTENTS}</textarea>		
+		</div>
+	</form>
 	</div>
-
+</div>
 	<br>
-	
-	<div style="margin:auto; text-align: center;">
-		<button type="button" onClick="updateCheck()">수 &emsp; 정</button>
-	       &emsp;&emsp;
-	    <button type="button" onClick="deleteCheck()">삭 &emsp; 제</button>
-	       &emsp;&emsp;
-		<button type="button" onclick="cancel()">취 &emsp; 소</button>	
+<div class="footer">	
+	<div class="mrc-btn"style="margin:auto; text-align: center;">
+		<button type="button" onClick="updateCheck()">수 정</button>
+	    <button type="button" onClick="deleteCheck()">삭 제</button>
+		<button type="button" onclick="cancel()">취 소</button>	
 	</div>
-</form>
+</div>
 </body>
 </html>

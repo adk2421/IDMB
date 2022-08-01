@@ -41,7 +41,7 @@ public class AdminProductController {
 		String searchValue = request.getParameter("searchValue");
 		
 		if(searchValue != null) {
-			searchUrl = searchValue;
+			searchUrl = "&searchValue=" + searchValue;
 		} else {
 			searchUrl = "";
 		}

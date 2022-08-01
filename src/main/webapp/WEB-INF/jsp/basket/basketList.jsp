@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
@@ -30,10 +31,18 @@
 					<th>기능</th>
 					<th>주문하기</th>
 				</tr>
-			
+			<c:choose>
+				<c:when test="${basketList == null || fn:length(basketList) == 0 }">
+				<tr>
+					<td colspan="6">
+						장바구니가 비어있습니다!
+						<!-- 상품페이지로 이동하는 링크가 추가되면 좋겠음. -->
+					</td>
+				</tr>
+				</c:when>
 				
-			<c:forEach var="basket" items="${basketList}">
-
+				<c:otherwise>
+				<c:forEach var="basket" items="${basketList}">
 				<tr>
 					<form method="post" action="updateBasket.do?b_num=${basket.B_NUM}">
 					<!-- 상품명 -->
@@ -73,29 +82,27 @@
 					
 					</form>
 				</tr>	
-			</c:forEach>
+				</c:forEach>
 
-			<tr>
-				<td colspan="6" align="right">
-					배송료 : 3000 원<br>
-					<c:set var="sum" value="0"/>
-					<c:forEach var="basket" items="${basketList}">
-						<c:set var="sum" value="${sum + basket.B_PRICE * basket.B_COUNT}"/>
-					</c:forEach>
-					총 주문 금액 : <fmt:formatNumber pattern="###,###,### 원" value="${sum}"/>
-				</td>
-			</tr>
+				<tr>
+					<td colspan="6" align="right">
+						배송료 : 3000 원<br>
+						<c:set var="sum" value="0"/>
+						<c:forEach var="basket" items="${basketList}">
+							<c:set var="sum" value="${sum + basket.B_PRICE * basket.B_COUNT}"/>
+						</c:forEach>
+						총 주문 금액 : <fmt:formatNumber pattern="###,###,### 원" value="${sum}"/>
+					</td>
+				</tr>				
+				</c:otherwise>
+			</c:choose>
 			</table>
-			</div>
-			<!-- BasketList div end -->
-			
-			
-			<c:forEach var="basket" items="${basketList}" begin="1" end="1">
-				<button type="button" onclick="location.href='basketListOrderForm.do?b_id=${basket.B_ID}'">주문하기</button>
-				<button type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
-			</c:forEach>
-			
-
-
+		</div>
+		<!-- BasketList div end -->
+				
+	<c:forEach var="basket" items="${basketList}" begin="1" end="1">
+		<button type="button" onclick="location.href='basketListOrderForm.do?b_id=${basket.B_ID}'">주문하기</button>
+		<button type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
+	</c:forEach>
 </body>
 </html>

@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/adminProduct.css" type="text/css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -73,20 +76,20 @@ function readImage(input) {
 <body>
 
 	<!-- 관리자 메인 툴바 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div class="box1"align="right">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="product-ad" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="title-text1" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
 	<hr>
 
-
+<div class="container">
 <form method="post" id="updateForm"
 	action="adminUpdateProduct.do?p_code=${adminProductBean.P_CODE}">
 	<table style="margin:auto; text-align: center;" border=1>
@@ -97,6 +100,7 @@ function readImage(input) {
 				</td>
 				<td>
 					<select name="p_kind" id="p_kind">
+						<option value="">--선택하세요--</option>
 						<option value="숄더백" <c:if test="${adminProductBean.P_KIND == '숄더백'}">selected</c:if>>숄더백</option>
 						<option value="클러치백" <c:if test="${adminProductBean.P_KIND == '클러치백'}">selected</c:if>>클러치백</option>
 						<option value="크로스백" <c:if test="${adminProductBean.P_KIND == '크로스백'}">selected</c:if>>크로스백</option>
@@ -191,13 +195,12 @@ function readImage(input) {
 		</tbody>
 	</table>
 	<br>
-	
-	<div style="margin:auto; text-align: center;">
-		<button type="button" onClick="formCheck()">수 &emsp; 정</button>
-      		&emsp;&emsp;
-		<button type="button" onclick="cancel()">취 &emsp; 소</button>		
+</form>
+</div>	
+	<div class="btn">
+		<button id="regis" type="button" onClick="formCheck()">수 정</button>
+		<button id="cancle" type="button" onclick="cancel()">취 소</button>		
 	</div>		
 	
 
-</form>
 </body>

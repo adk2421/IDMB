@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -61,11 +62,7 @@
 		</tbody>
 	</table>
 </form>
-	
-	
-	
 	<table style="display: flex; justify-content: center;" border=1>
-
 			<tr>
 				<th>글번호</th>
 				<th>상품명</th>
@@ -74,8 +71,16 @@
 				<th>작성일</th>
 				<th>상태</th>
 			</tr>
-
-		<c:forEach var="qna" items="${qnaList}">
+		<c:choose>
+			<c:when test="${qnaList == null || fn:length(qnaList) == 0 }">
+			<tr>
+				<td colspan="6">
+					조회 결과가 없습니다.
+				</td>
+			</tr>
+			</c:when>
+			<c:otherwise>
+			<c:forEach var="qna" items="${qnaList}">
 			<tr>
 				<td>
 					<c:if test="${qna.Q_ID != '관리자'}">${qna.Q_GROUPNUM}</c:if>
@@ -95,10 +100,13 @@
 				</td>
 				<td>${qna.Q_STATUS}</td>
 			</tr>
-		</c:forEach>
-
+			</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</table>
-
+	${paging.pageHtml}
+	<br><br>
+	
 <button type="button" onclick="location.href='insertQnaForm.do'">문 의 하 기</button>
 
 </body>

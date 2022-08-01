@@ -18,20 +18,50 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	
 	//-- 주문 관리 리스트 --
 	@Override
-	public List<Map<String, Object>> adminOrderList() throws Exception{
-		return adminOrderDAO.adminOrderList();
+	public List<Map<String, Object>> adminOrderList(int START, int END) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("START", START);
+		map.put("END", END);
+		
+		return adminOrderDAO.adminOrderList(map);
 	}
 	
 	//-- 주문 검색 --
 	@Override
-	public List<Map<String, Object>> adminSearchOrder(String searchValue
-			,String ostatus) throws Exception{
+	public List<Map<String, Object>> adminSearchOrder(
+			String searchValue, String ostatus, int START, int END) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("searchValue", searchValue);
 		map.put("ostatus", ostatus);
+		map.put("START", START);
+		map.put("END", END);
 		
 		return adminOrderDAO.adminSearchOrder(map);
+	}
+	
+	//-- 주문 개수 --
+	@Override
+	public int adminOrderCount() throws Exception{
+		Map<String, Object> map = adminOrderDAO.adminOrderCount();
+		
+		return Integer.parseInt(String.valueOf(map.get("COUNT")));	
+	}
+	
+	
+	//-- 검색 주문 개수 --
+	@Override
+	public int adminSearchOrderCount(String searchValue, String ostatus) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("searchValue", searchValue);
+		map.put("ostatus", ostatus);
+		
+		Map<String, Object> countMap = adminOrderDAO.adminSearchOrderCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		
+		return count;	
 	}
 	
 	//-- 주문 상세 정보 --

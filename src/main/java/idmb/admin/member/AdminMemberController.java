@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.model.MemberBean;
+import idmb.util.Paging;
 
 @Controller
 public class AdminMemberController {
@@ -27,30 +28,85 @@ public class AdminMemberController {
 	public String adminMemberList(
 			HttpServletRequest request, Model model) throws Exception {
 		
-		//검색 종류, 검색어
-		String SORT = null;
-		String searchValue = null;
+		/* 페이징을 위한 변수 */
+		int pageSize = 5; // 페이지당 출력할 회원의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
+		
+		int totalCount; // 전체 회원의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "adminMemberList.do";
+		String searchUrl = "";		
 		
 		//검색 종류, 검색어 입력받음
-		SORT = request.getParameter("SORT");
-		searchValue = request.getParameter("searchValue");
+		String SORT = request.getParameter("SORT");
+		String searchValue = request.getParameter("searchValue");
+		
+		//검색조건이 유무에 따른 searchUrl 설정
+		if(SORT != null) {
+			if(searchValue != null) {
+				searchUrl = "&SORT="+SORT+"&searchValue="+searchValue;
+			} else {
+				searchUrl = "&SORT="+SORT+"&searchValue=";
+			}
+		} else {
+			if(searchValue != null) {
+				searchUrl = "&SORT=&searchValue="+searchValue;
+			} else {
+				searchUrl = "";
+			}
+		}
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}		
+		
+		//검색 조건 유무에 따른 totalCount 개수 확인
+		if(SORT != null) {
+			if(searchValue != null) {
+				totalCount = adminMemberService.adminSearchMemberCount(searchValue, SORT);
+			} else {
+				totalCount = adminMemberService.adminSearchMemberCount(searchValue, SORT);
+			}
+		} else {
+			if(searchValue != null) {
+				totalCount = adminMemberService.adminSearchMemberCount(searchValue, SORT);
+			} else {
+				totalCount = adminMemberService.adminMemberCount();
+			}
+		}
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
 		
 		//member들의 리스트가 필요하므로 ArrayList형의 'list' 생성
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
-		//검색어가 없는 경우는 MemberList()
-		if(searchValue == null || searchValue.trim() =="") {
-			list = adminMemberService.adminMemberList();
-		}
-		//검색어가 있는 경우는 SearchMember()
-		else {
-			list = adminMemberService.adminSearchMember(searchValue, SORT);
+		//검색 조건이 있는 경우
+		if(SORT != null) {
+			if(searchValue != null) {
+				list = adminMemberService.adminSearchMember(searchValue, SORT, START, END);
+			} else {
+				list = adminMemberService.adminSearchMember(searchValue, SORT, START, END);				
+			}
+		} else {
+			if(searchValue != null) {
+				list = adminMemberService.adminSearchMember(searchValue, SORT, START, END);
+			} else { //검색 조건이 없는 경우
+				list = adminMemberService.adminMemberList(START, END);
+			}
 		}
 		
 		//model로 위에서 정의한 값 전송
 		model.addAttribute("SORT", SORT);
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("adminMemberList", list);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);
 		
 		//tiles.xml의 definition name="adminMemberList"로 이동
 		return "adminMemberList";

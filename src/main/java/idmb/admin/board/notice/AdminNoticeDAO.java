@@ -14,8 +14,12 @@ public class AdminNoticeDAO {
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<Map<String, Object>> adminNoticeList() throws Exception{
-		return sqlSessionTemplate.selectList("admin.adminNoticeList");
+	public List<Map<String, Object>> adminNoticeList(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("admin.adminNoticeList", map);
+	}
+	
+	public Map<String, Object> adminNoticeCount() throws Exception{
+		return sqlSessionTemplate.selectOne("admin.adminNoticeCount");
 	}
 	
 	public Map<String, Object> adminNoticeDetail(Map<String, Object> map) throws Exception{

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -38,8 +39,7 @@
 	</ul>
 	</div>
 	<hr>
-	
-	
+		
 <form action="adminQnaList.do" method="get">
 	<input type="hidden" name="q_category" id="q_category" value="${q_category}">
 	<table style="display: flex; justify-content: center;">
@@ -74,9 +74,7 @@
 			</tr>
 		</tbody>
 	</table>
-</form>	
-	
-	
+</form>
 	
 	<table style="display: flex; justify-content: center;" border=1>
 			<tr>
@@ -87,8 +85,16 @@
 				<th>작성일</th>
 				<th>상태</th>
 			</tr>
-
-		<c:forEach var="qna" items="${adminQnaList}">
+		<c:choose>
+			<c:when test="${adminQnaList == null || fn:length(adminQnaList) == 0 }">
+			<tr>
+				<td colspan="6">
+					조회 결과가 없습니다.
+				</td>
+			</tr>
+			</c:when>
+			<c:otherwise>
+			<c:forEach var="qna" items="${adminQnaList}">
 			<tr>
 				<td>
 					<c:if test="${qna.Q_ID != '관리자'}">${qna.Q_GROUPNUM}</c:if>
@@ -108,9 +114,10 @@
 				</td>
 				<td>${qna.Q_STATUS}</td>
 			</tr>
-		</c:forEach>
-
+			</c:forEach>			
+			</c:otherwise>
+		</c:choose>
 	</table>
-
+	${paging.pageHtml}
 </body>
 </html>

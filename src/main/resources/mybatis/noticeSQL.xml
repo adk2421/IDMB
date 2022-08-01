@@ -6,12 +6,24 @@
 	<!-- 공지사항 리스트 출력 -->
 	<select id="noticeList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT 
-				*
-			FROM
-				NOTICE
-			ORDER BY
-				N_NUM DESC
+			SELECT * FROM(
+				SELECT N_NUM, N_TITLE, N_DATE, N_HIT, ROWNUM R
+				FROM(
+					SELECT * FROM NOTICE
+					ORDER BY N_DATE DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
+		]]>
+	</select>
+	
+	<!-- 공지 수 -->
+	<select id="noticeCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM
+					NOTICE
 		]]>
 	</select>
 	

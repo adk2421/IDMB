@@ -7,16 +7,6 @@
 	<insert id="insertBasket" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO BASKET
-			(
-				B_NUM,
-				B_ID,
-				B_CODE,
-				B_NAME,
-				B_PRICE,
-				B_COUNT,
-				B_IMAGE,
-				B_KIND
-			)
 			VALUES
 			(
 				B_SEQ.NEXTVAL,
@@ -26,7 +16,7 @@
 				#{b_price},
 				#{b_count},
 				#{b_image},
-				#{b_kind});
+				#{b_kind}
 			)
 		]]>
 	</insert>

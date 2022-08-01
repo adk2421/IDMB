@@ -18,17 +18,19 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 	
 	//Qna리스트
 	@Override
-	public List<Map<String, Object>> adminQnaList(QNABean qna)throws Exception{
+	public List<Map<String, Object>> adminQnaList(QNABean qna, int START, int END)throws Exception{
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 		map.put("q_category",qna.getQ_category());
-		
+		map.put("START", START);
+		map.put("END", END);
+
 		return adminQnaDAO.adminQnaList(map);
 	}
 	
 	@Override
 	public List<Map<String, Object>> adminSearchQna(QNABean qna,
-			String searchValue, String SORT, String qst) throws Exception
+			String searchValue, String SORT, String qst, int START, int END) throws Exception
 	{
 		Map<String, Object> map = new HashMap<String,Object>();
 		
@@ -36,6 +38,8 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 		map.put("searchValue", searchValue);
 		map.put("SORT", SORT);
 		map.put("qst", qst);
+		map.put("START", START);
+		map.put("END", END);
 		
 		return adminQnaDAO.adminSearchQna(map);
 	}
@@ -58,7 +62,7 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 		return adminQnaDAO.adminQnaRe(map);
 	}
 	
-	
+	@Override
 	public void adminInsertQna(QNABean qna) throws Exception{
 		Map<String, Object>map = new HashMap<String, Object>();
 		
@@ -72,6 +76,7 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 		adminQnaDAO.adminInsertQna(map);
 	}
 	
+	@Override
 	public void adminUpdateQna(QNABean qna) throws Exception{
 		Map<String, Object>map = new HashMap<String, Object>();
 		
@@ -80,6 +85,7 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 		adminQnaDAO.adminUpdateQna(map);
 	}
 	
+	@Override
 	public void adminDeleteQna(QNABean qna) throws Exception{
 		Map<String, Object>map = new HashMap<String, Object>();
 		
@@ -87,4 +93,29 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 		
 		adminQnaDAO.adminDeleteQna(map);
 	}
+	
+	@Override
+	public int adminQnaCount(QNABean qna) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("q_category",qna.getQ_category());
+		
+		Map<String, Object> countMap = adminQnaDAO.adminQnaCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;
+	}
+	
+	@Override
+	public int adminSearchQnaCount(QNABean qna, String searchValue, String SORT, String qst) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("q_category",qna.getQ_category());
+		map.put("searchValue", searchValue);
+		map.put("SORT", SORT);
+		map.put("qst", qst);
+		
+		Map<String, Object> countMap = adminQnaDAO.adminSearchQnaCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;	
+	}	
 }

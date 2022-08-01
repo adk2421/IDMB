@@ -7,7 +7,9 @@ import idmb.model.NoticeBean;
 
 public interface NoticeService {
 	
-	public List<Map<String, Object>> noticeList() throws Exception;
+	public List<Map<String, Object>> noticeList(int START, int END) throws Exception;
+	
+	public int noticeCount() throws Exception;
 	
 	public Map<String, Object> noticeDetail(NoticeBean notice) throws Exception;
 	

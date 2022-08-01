@@ -3,24 +3,36 @@
 
 <mapper namespace="admin">
 
+<!-- ADMIN MEMBER -->
 	<!-- 사용자 리스트 -->
 	<select id="adminMemberList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from MEMBER
+			SELECT * FROM(
+				SELECT ID, PASSWD, NAME, PHONE, BIRTH, EMAIL, POSTCODE, ADDRESS1, ADDRESS2, RESERVE, JOINDATE, DELFLAG, ROWNUM R
+				FROM(
+					SELECT * FROM MEMBER
+					ORDER BY JOINDATE DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}	
 		]]>
 	</select>
 	
 	<!-- 사용자 상세정보 -->
 	<select id="adminMemberDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from MEMBER where ID = #{id}
+			SELECT * FROM MEMBER where ID = #{id}
 		]]>
 	</select>
 	
 	<!-- 사용자 검색 -->
 	<select id="adminSearchMember" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from MEMBER
+			SELECT * FROM(
+				SELECT ID, PASSWD, NAME, PHONE, BIRTH, EMAIL, POSTCODE, ADDRESS1, ADDRESS2, RESERVE, JOINDATE, DELFLAG, ROWNUM R
+				FROM(
+					SELECT * FROM MEMBER			
 		]]>
 		<trim prefix="WHERE">
 		<if test="SORT != NULL">
@@ -41,7 +53,49 @@
 			</if>
 		</if>
 		</trim>
+					ORDER BY JOINDATE DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}				
 	</select>
+	
+	<!-- 전체 회원 수 -->
+	<select id="adminMemberCount" resultType="hashmap">
+	<![CDATA[
+		SELECT COUNT(*) COUNT
+		FROM 
+			MEMBER
+	]]>
+	</select>
+	
+	<!-- 검색 회원 수 -->
+	<select id="adminSearchMemberCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM 
+					MEMBER	
+		]]>
+		<trim prefix="WHERE">
+		<if test="SORT != NULL">
+			<if test="SORT == 'id'">
+				<if test="searchValue != NULL">		
+				ID like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+			<if test="SORT == 'name'">
+				<if test="searchValue != NULL">		
+				NAME like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+			<if test="SORT == 'phone'">
+				<if test="searchValue != NULL">		
+				PHONE like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+		</if>
+		</trim>
+	</select>	
 	
 	<!-- 사용자 정보 수정 -->
 	<update id="adminUpdateMember" parameterType="hashmap">
@@ -50,18 +104,20 @@
     		where ID = #{id}
 		]]>
 	</update>
-	
+
+
+<!-- ADMIN PRODUCT -->	
 	<!-- 상품 리스트 --> 
 	<select id="adminProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from(
-				select P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
-					from(
+			SELECT * FROM(
+				SELECT P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+				FROM(
 					select * from PRODUCT
-						where P_DELFLAG = 'N'
+					where P_DELFLAG = 'N'
 					order by P_CODE DESC
 					)
-					order by R
+				order by R
 				)
 			where R between #{START} AND #{END}
 		]]>
@@ -70,9 +126,9 @@
 	<!-- 상품 검색 -->
 	<select id="adminSearchProduct" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from(
-				select P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
-					from(
+			SELECT * FROM(
+				SELECT P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+					FROM(
 					select * from PRODUCT		
 		]]>
 		<trim prefix="WHERE">
@@ -140,19 +196,34 @@
 	</update>
 	
 	
+<!-- ADMIN ORDER -->	
 	<!-- 주문 관리 리스트 -->
 	<select id="adminOrderList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from ORDERCOMMAND
-			order by O_NUM DESC
+			SELECT * FROM(
+				SELECT O_NUM, O_ID, O_CODE, O_DATE, O_NAME, O_COUNT, O_PRICE, O_TOTAL,
+					O_POSTCODE, O_ADDRESS1, O_ADDRESS2, O_STATUS, O_DELFLAG, O_RECIEVER, O_PHONE, ROWNUM R
+				FROM(
+					SELECT * FROM ORDERCOMMAND
+					where O_DELFLAG = 'N'
+					ORDER BY O_NUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 		]]>
 	</select>
 	
 	<!-- 주문 검색 -->
 	<select id="adminSearchOrder" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from ORDERCOMMAND
-			where O_ID like '%'||#{searchValue}||'%'
+			SELECT * FROM(
+				SELECT O_NUM, O_ID, O_CODE, O_DATE, O_NAME, O_COUNT, O_PRICE, O_TOTAL,
+					O_POSTCODE, O_ADDRESS1, O_ADDRESS2, O_STATUS, O_DELFLAG, O_RECIEVER, O_PHONE, ROWNUM R
+				FROM(
+					SELECT * FROM ORDERCOMMAND
+					WHERE O_ID like '%'||#{searchValue}||'%'
+					AND O_DELFLAG = 'N'
 		]]>
 		<trim prefix="AND">
 		<if test="ostatus != NULL">
@@ -166,10 +237,48 @@
 				O_STATUS = '배송완료'
 			</if>
 		</if>
-		</trim>	
-	
+		</trim>
+					ORDER BY O_NUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 	</select>
 	
+	<!-- 전체 주문 수량 -->
+	<select id="adminOrderCount" resultType="hashmap">
+	<![CDATA[
+		SELECT COUNT(*) COUNT
+		FROM 
+			ORDERCOMMAND
+		WHERE O_DELFLAG = 'N'
+	]]>
+	</select>
+	
+	<!-- 검색 주문 수량 -->
+	<select id="adminSearchOrderCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM 
+					ORDERCOMMAND
+				WHERE O_ID like '%'||#{searchValue}||'%'
+				AND O_DELFLAG = 'N'
+		]]>
+		<trim prefix="AND">
+		<if test="ostatus != NULL">
+			<if test="ostatus == 'wait'">
+				O_STATUS = '배송대기'
+			</if>
+			<if test="ostatus == 'ing'">
+				O_STATUS = '배송중'
+			</if>
+			<if test="ostatus == 'fin'">
+				O_STATUS = '배송완료'
+			</if>
+		</if>
+		</trim>
+	</select>
+			
 	<!-- 주문 상세 정보 -->
 	<select id="adminOrderDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -193,15 +302,32 @@
 			where O_NUM = #{o_num}
 		]]>
 	</update>	
-	
+
+<!-- ADMIN NOTICE -->	
 	<!-- 공지 리스트 -->
 	<select id="adminNoticeList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select N_NUM, N_TITLE, N_DATE, N_HIT from NOTICE
-			ORDER BY N_NUM DESC
+			SELECT * FROM(
+				SELECT N_NUM, N_TITLE, N_DATE, N_HIT, ROWNUM R
+				FROM(
+					SELECT * FROM NOTICE
+					ORDER BY N_DATE DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 		]]>
 	</select>
 	
+	<!-- 공지 수 -->
+	<select id="adminNoticeCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+				FROM
+					NOTICE
+		]]>
+	</select>
+
 	<!-- 공지 상세 정보 -->
 	<select id="adminNoticeDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -238,30 +364,73 @@
 			where N_NUM = #{n_num}
 		]]>
 	</update>
-	
+
+<!-- ADMIN REVIEW -->	
 	<!-- 후기 리스트 -->
 	<select id="adminReviewList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from REVIEW
-			where R_RELEVEL = '0'
-			ORDER BY R_GROUPNUM DESC
+			SELECT * FROM(
+				SELECT R_NUM, R_ID, R_CODE, R_DATE, R_NAME, R_CONTENTS, R_RATE,
+					R_RECOMMEND, R_RELEVEL, R_GROUPNUM, ROWNUM R
+				FROM(
+					SELECT * FROM REVIEW
+					WHERE R_RELEVEL = '0'
+					ORDER BY R_GROUPNUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 		]]>
 	</select>
-	
-	<!-- 후기 상세 -->
-	<select id="adminReviewDetail" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			select * from REVIEW
-			where R_NUM = #{r_num}
-		]]>
-	</select>
-	
-	
+
 	<!-- 후기 검색 -->
 	<select id="adminSearchReview" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from REVIEW
-			WHERE R_RELEVEL = '0'
+			SELECT * FROM(
+				SELECT R_NUM, R_ID, R_CODE, R_DATE, R_NAME, R_CONTENTS, R_RATE,
+					R_RECOMMEND, R_RELEVEL, R_GROUPNUM, ROWNUM R
+				FROM(
+					SELECT * FROM REVIEW
+					WHERE R_RELEVEL = '0'
+		]]>
+		<trim prefix="AND">
+		<if test="SORT != NULL">
+			<if test="SORT == 'id'">
+				<if test="searchValue != NULL">		
+				R_ID like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+			<if test="SORT == 'product'">
+				<if test="searchValue != NULL">		
+				R_NAME like '%'||#{searchValue}||'%'
+				</if>
+			</if>
+		</if>
+		</trim>		
+					ORDER BY R_GROUPNUM DESC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
+	</select>
+	
+	<!-- 전체 후기 수 -->
+	<select id="adminReviewCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM
+				REVIEW
+				WHERE R_RELEVEL = '0'
+		]]>
+	</select>
+
+	<!-- 검색 후기 수 -->
+	<select id="adminSearchReviewCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM
+				REVIEW
+				WHERE R_RELEVEL = '0'
 		]]>
 		<trim prefix="AND">
 			<if test="SORT != NULL">
@@ -275,11 +444,18 @@
 						R_NAME like '%'||#{searchValue}||'%'
 					</if>
 				</if>
-			</if>
-			ORDER BY R_GROUPNUM DESC 
+			</if>			
 		</trim>
 	</select>
-	
+		
+	<!-- 후기 상세 -->
+	<select id="adminReviewDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from REVIEW
+			where R_NUM = #{r_num}
+		]]>
+	</select>
+		
 	<!-- 후기 답변 작성 -->
 	<insert id="adminInsertReview" parameterType="hashmap">
 		<![CDATA[
@@ -297,22 +473,35 @@
 			where R_NUM = #{r_num}
 		]]>
 	</update>
-	
+
+<!-- ADMIN QNA -->	
 	<!-- QNA 리스트 -->
 	<select id="adminQnaList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from QNA_BOARD
-			where Q_CATEGORY = #{q_category}
-			order by Q_GROUPNUM DESC, Q_RELEVEL ASC
+			SELECT * FROM(
+				SELECT Q_NUM, Q_ID, Q_CODE, Q_CATEGORY, Q_TITLE, Q_CONTENTS, Q_DATE,
+					Q_PRODUCT, Q_STATUS, Q_CONTENTSPW, Q_RELEVEL, Q_GROUPNUM, ROWNUM R
+				FROM(
+					SELECT * FROM QNA_BOARD
+					WHERE Q_CATEGORY = #{q_category}
+					ORDER BY Q_GROUPNUM DESC, Q_RELEVEL ASC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 		]]>
 	</select>
 	
+	<!-- 검색 QNA 리스트 -->
 	<select id="adminSearchQna" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from QNA_BOARD
-			WHERE Q_CATEGORY = #{q_category}
+			SELECT * FROM(
+				SELECT Q_NUM, Q_ID, Q_CODE, Q_CATEGORY, Q_TITLE, Q_CONTENTS, Q_DATE,
+					Q_PRODUCT, Q_STATUS, Q_CONTENTSPW, Q_RELEVEL, Q_GROUPNUM, ROWNUM R
+				FROM(
+					SELECT * FROM QNA_BOARD
+					WHERE Q_CATEGORY = #{q_category}
 		]]>
-		
 		<trim prefix="AND">
 			<if test="SORT == 'title'">
 				Q_TITLE like '%'||#{searchValue}||'%'
@@ -335,10 +524,55 @@
 				Q_STATUS = '답변완료'
 			</if>
 		</trim>	
-		<trim prefix="ORDER BY">
-			Q_GROUPNUM DESC, Q_RELEVEL ASC 
-		</trim>
+					ORDER BY Q_GROUPNUM DESC, Q_RELEVEL ASC
+					)
+				ORDER BY R
+				)
+			WHERE R BETWEEN #{START} AND #{END}
 	</select>
+
+	<!-- 전체 QNA 전체 수 -->
+	<select id="adminQnaCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM
+				QNA_BOARD
+			WHERE Q_CATEGORY = #{q_category}
+		]]>		
+	</select>	
+	
+
+	<!-- 검색 QNA 수 -->
+	<select id="adminSearchQnaCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM
+				QNA_BOARD
+			WHERE Q_CATEGORY = #{q_category}
+		]]>
+		<trim prefix="AND">
+			<if test="SORT == 'title'">
+				Q_TITLE like '%'||#{searchValue}||'%'
+			</if>
+			
+			<if test="SORT == 'id'">
+				Q_ID like '%'||#{searchValue}||'%'
+			</if>
+			
+			<if test="SORT == 'product'">
+				Q_PRODUCT like '%'||#{searchValue}||'%'
+			</if>	
+		</trim>
+		
+		<trim prefix="AND">
+			<if test="qst == '답변대기'">
+				Q_STATUS = '답변대기'
+			</if>
+			<if test="qst == '답변완료'">
+				Q_STATUS = '답변완료'
+			</if>
+		</trim>
+	</select>	
 
 	<!-- QNA 상세 정보 -->
 	<select id="adminQnaDetail" parameterType="hashmap" resultType="hashmap">
@@ -347,7 +581,6 @@
 			where Q_NUM = #{q_num}
 		]]>
 	</select>
-	
 	
 	<!-- QNA 답변만 추출 -->
 	<select id="adminQnaRe" parameterType="hashmap" resultType="hashmap">
