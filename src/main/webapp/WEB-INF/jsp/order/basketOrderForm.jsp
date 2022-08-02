@@ -35,7 +35,6 @@ function orderCheck() {
 	}
 }
 
-
 </script>
 
 <!-- 우편 번호 API -->
@@ -95,10 +94,11 @@ function orderCheck() {
 		<h1> 주문 페이지 </h1>
 	</div>
 	
+	<!-- 상품 미리보기 이미지 -->
+	<img src="img/${basketBean.B_IMAGE}" width="300" border="0" id="previewImage">	
+	
 	<form method="post" id="basketOrderForm" action="basketOrder.do?b_num=${basketBean.B_NUM}">
-	
-	
-	<table border=1>
+		<table border=1>
 			<!-- 상 품 정 보 -->
 			<thead>
 				<tr>			
