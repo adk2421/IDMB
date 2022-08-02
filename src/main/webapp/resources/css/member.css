@@ -33,7 +33,7 @@
 	
 	/* -- 로그인 -- */
 	.login {
-		width: 50%;
+		width: 400px;
 		background: white;
 		border-radius: 20px;
 		display: flex;

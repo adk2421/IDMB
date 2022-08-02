@@ -32,6 +32,7 @@
 	div.vertical {
 		display: flex;
 		flex-direction: column;
+		text-align: center;
 	}
 	
 	div.leftVertical {
@@ -43,7 +44,25 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		justify-content: centers;
+		justify-content: flex-start;
+	}
+	
+	div.horizen div {
+		margin: 0px 30px 0px 30px;
+	}
+	
+	div.stdWidth {
+		width: fit-content;
+	}
+	
+	div.right {
+		display: flex;
+		align-items: center;
+		justify-content: right;
+	}
+	
+	div.width {
+		width: 200px;
 	}
 	
 	p.label {
@@ -110,3 +129,7 @@
 		height: 30px;
 	}
 	
+	img.thumbnail {
+		width: 110px;
+		height: 110px;
+	}

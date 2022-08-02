@@ -61,7 +61,7 @@
 			<ul style="list-style-type:none;">
 				<li style="text-align:center">${newr.R_ID }님</li>
 				<li>
-					<a href="productDetail.do?p_code=${newr.R_CODE}">
+					<a href="reviewDetail.do?r_groupnum=${newr.R_GROUPNUM}">
 					<img src="img/${newr.R_NAME}.jpg" width="150" height="150" border="0"
 						id="productImage"></a></li>
 				<li style="text-align:center">${newr.R_NAME}</li>

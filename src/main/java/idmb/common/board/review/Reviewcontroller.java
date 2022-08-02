@@ -1,6 +1,7 @@
 package idmb.common.board.review;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.common.product.ProductService;
+import idmb.model.ProductBean;
 import idmb.model.ReviewBean;
 
 @Controller
@@ -56,5 +58,17 @@ public class Reviewcontroller {
 		model.addAttribute("url", old_url);
 		
 		return "board/review/insertReview";
+	}
+	
+	@RequestMapping(value="/reviewDetail.do")
+	public String reviewDetail(ReviewBean review, HttpServletRequest request, Model model) throws Exception {
+		
+		List<Map<String, Object>> reviewDetail = new ArrayList<Map<String, Object>>();
+		
+		reviewDetail = reviewService.reviewDetail(review);
+		
+		model.addAttribute("reviewDetail", reviewDetail);
+		
+		return "board/review/reviewDetail";
 	}
 }

@@ -407,6 +407,22 @@ public class MemberController {
 
         myReviewList = reviewService.myReviewList(review);
         
+        for (Map<String, Object> reviewList : myReviewList) {
+        	String star = "";
+        	
+        	int rate = Integer.parseInt(reviewList.get("R_RATE").toString());
+        	
+        	for (int j=0; j<5; j++) {
+        		if (j > rate-1)
+        			star += "☆";
+        		
+        		else
+        			star += "★";
+        	}
+        	
+        	reviewList.put("R_RATE", star);
+        }
+        
         model.addAttribute("myReviewList", myReviewList);
            
 		return "myPage";

@@ -7,18 +7,23 @@
 	<select id="myReviewList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				R_NUM,
-				R_ID,
-				R_CODE,
-				R_NAME,
-				TO_CHAR(R_DATE, 'YYYY-MM-DD') R_DATE,
-				R_CONTENTS,
-				R_RATE,
-				R_RECOMMEND,
-				R_RELEVEL,
-				R_GROUPNUM
+				R.R_NUM,
+				R.R_ID,
+				R.R_CODE,
+				R.R_NAME,
+				TO_CHAR(R.R_DATE, 'YYYY-MM-DD') R_DATE,
+				R.R_CONTENTS,
+				R.R_RATE,
+				R.R_RECOMMEND,
+				R.R_RELEVEL,
+				R.R_GROUPNUM,
+				P.P_IMAGE
 			FROM
-				REVIEW
+				REVIEW R
+			INNER JOIN
+				PRODUCT P
+			ON
+				P.P_CODE = R.R_CODE
 			WHERE
 				R_ID = #{r_id}
 			ORDER BY
@@ -104,6 +109,34 @@
         			ORDER BY R_NUM DESC)
 			WHERE
 				ROWNUM <= 3
+		]]>
+	</select>
+	
+	<!-- 리뷰 상세 페이지 -->
+	<select id="reviewDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				R.R_NUM,
+				R.R_ID,
+				R.R_CODE,
+				R.R_NAME,
+				TO_CHAR(R.R_DATE, 'YYYY-MM-DD') R_DATE,
+				R.R_CONTENTS,
+				R.R_RATE,
+				R.R_RECOMMEND,
+				R.R_RELEVEL,
+				R.R_GROUPNUM,
+				P.P_IMAGE
+			FROM
+				REVIEW R
+			INNER JOIN
+				PRODUCT P
+			ON
+				P.P_CODE = R.R_CODE
+			WHERE
+				R.R_GROUPNUM = #{r_groupnum}
+			ORDER BY
+				R.R_RELEVEL ASC
 		]]>
 	</select>
 	
