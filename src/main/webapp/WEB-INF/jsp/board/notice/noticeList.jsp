@@ -39,7 +39,8 @@
 		<li style="display:inline"><a class="short" href="qnaMain.do" >1:1 문 의 &nbsp;&nbsp;</a></li>
 	</ul>
 	</div>
-
+	
+	<div class="container">
 	<table class="table table-borderless">
 		<thead class="table-light">
 			<tr >
@@ -68,5 +69,6 @@
 		</tbody>
 	</table>
 	${paging.pageHtml}
+	</div>
 </body>
 </html>

@@ -74,4 +74,82 @@ button{
 	border-spacing:50px;
 }
 
+/*qnalist*/
 
+.sort{
+	border-collapse:collapse;
+	border-spacing:0
+}
+
+.form-select{
+	
+	width:95px;
+	font-size:18px;
+	padding:3px;
+	color:black;
+	
+}
+
+.search{
+	background-color:#F2F0F0;
+	color: black;
+    width: 50px;
+    height:30px;
+    font-size:16px;
+	border-radius: 6px;
+	border: 1px;
+	border-color:black;
+ 	outline: 0;
+	
+}
+
+.wait, .end{
+	background-color:#F2F0F0;
+	color: black;
+    width: 70px;
+    height:30px;
+    font-size:16px;
+	border-radius: 6px;
+	border: 1px;
+	border-color:black;
+ 	outline: 0;
+	
+}
+.qnabtn{
+	background-color: #FFD228;
+	color: black;
+    width: 100px;
+    height:50px;
+    font-weight: 700;
+	border-radius: 6px;
+	border: 0;
+	border-color:grey;
+ 	outline: 0;
+}
+
+/*게시판 */
+table.qnatable {
+  border-collapse: collapse;
+  text-align: center;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  margin: 20px 10px;
+  
+}
+table.qnatable thead {
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  background: #F2F0F0;
+  
+}
+table.qnatable thead th {
+  width:300px;
+
+}
+
+table.qnatable td {
+  width: 300px;
+  padding: 10px;
+  
+  border-bottom: 1px solid #ccc;
+}
