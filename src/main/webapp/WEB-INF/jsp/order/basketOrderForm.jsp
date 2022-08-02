@@ -104,6 +104,7 @@ function orderCheck() {
 
 </head>
 <div style="text-align:center">
+		<p>
 		<h1> 주문 페이지 </h1>
 	</div>
 	
@@ -145,12 +146,13 @@ function orderCheck() {
 		<h2>주문자 정보</h2>
 		
 		<!-- 이름 -->
-		<h6>이 름
+		<h6>이 름 :
 			<input type="text" value="${name}" readonly>	
 		</h6>
+		<p>
 		
 		<!-- 핸드폰 번호 -->
-		<h6>핸 드 폰 번 호
+		<h6>핸 드 폰 번 호 :
 			<input type="text" id="o_phone" name="o_phone" maxlength="11" value="${phone}" >
 		</h6>
 		</div>

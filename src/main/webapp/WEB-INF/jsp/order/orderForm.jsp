@@ -105,6 +105,7 @@ function orderCheck() {
 
 <body>
 	<div style="text-align:center">
+		<p>
 		<h1> 주문 페이지 </h1>
 	</div>
 	
@@ -179,7 +180,6 @@ function orderCheck() {
 				<h6>주소	&nbsp;&nbsp;
 				<input type="text" name="o_address1" id="o_address1"
 					value="${address1}">
-				&emsp;
 				-
 				<input type="text" name="o_address2" id="o_address2"
 					value="${address2}">
