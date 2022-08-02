@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/adminBoard.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -47,6 +48,7 @@
 	<div class="container">
 	<form action="adminReviewList.do" method="get">
 		<select name="SORT" id="SORT">
+			<option value="" <c:if test="${SORT =='NULL'}">selected</c:if>>  선 택 ▼</option>
 			<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
 			<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 		</select>
@@ -70,16 +72,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:choose>
-			<c:when test="${adminReviewList == null || fn:length(adminReviewList) == 0 }">
-			<tr>
-				<td colspan="7">
-					조회 결과가 없습니다.
-				</td>
-			</tr>
-			</c:when>
-			<c:otherwise>
-			<c:forEach var="review" items="${adminReviewList}">
+		<c:forEach var="review" items="${adminReviewList}">
 			<tr>
 				<td>${review.R_GROUPNUM}</td>
 				<td>
@@ -102,9 +95,7 @@
 					</c:if>
 				</td>
 			</tr>		
-			</c:forEach>
-			</c:otherwise>
-		</c:choose>
+		</c:forEach>
 		</tbody>
 	</table>
 	</div>

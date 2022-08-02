@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/adminForm.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -36,26 +39,27 @@ function cancel() {
 <body>
 
 	<!-- 관리자 메인 바로가기 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div class="box1"align="right">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="board-ad"style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
 	<hr>
-	
+<div class="container">	
 <form method="post" id="faqInsertForm" action="adminInsertFaq.do">
-	<table style="width:800px; display: flex; justify-content: center;">
+	<table>
 		<tbody>
 			<tr>
-				<td><b>질문 종류</b></td>
+				<td id="td1"><strong>질문 종류</strong></td>
 				<td>
 					<select name="f_category" id="f_category">
+						<option value=""> ---- 선택하세요 ----  </option>
 						<option value="cost">주문/결제</option>
 						<option value="shippin">배송문의</option>
 						<option value="cancel">배송변경/취소</option>
@@ -65,28 +69,29 @@ function cancel() {
 				</td>
 			</tr>
 			<tr>
-				<td><b>질문 내용</b></td>
+				<td id="td1"><b>질문 내용</b></td>
 				<td>
-					<input type="text" maxlength="50" name="f_title" id="f_title" size="50"> 
+					<input type="text" maxlength="50" name="f_title" id="f_title" > 
 				</td>
 			</tr>
 			<tr>
-				<td><b>질문 답변</b></td>
+				<td id="td1"><b>질문 답변</b></td>
 				<td>
-					<textarea id="f_contents" name="f_contents"
-						style="width:600px;" maxlength="300"></textarea> 
+					<textarea id="f_contents" name="f_contents"maxlength="300"></textarea> 
 				</td>
 			</tr>	
 		</tbody>
 	</table>
-	
-	<br>
-	
-	<div style="display: flex; justify-content: center;">
-	<button type="button" onclick="insertCheck()">작 &emsp; 성</button>
-		&emsp;&emsp;&emsp;&emsp;
-	<button type="button" onclick="cancel()">취 &emsp; 소</button>
-	</div>
 </form>
+</div>	
+	<br>
+<div class="footer">	
+	<div class="fbtn"style="display: flex; justify-content: center;">
+	<button id="writing"type="button" onclick="insertCheck()">작 성</button>
+		&emsp;&emsp;&emsp;&emsp;
+	<button id="cancle"type="button" onclick="cancel()">취 소</button>
+	</div>
+</div>
+
 </body>
 </html>

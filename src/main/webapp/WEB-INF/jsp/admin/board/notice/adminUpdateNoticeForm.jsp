@@ -94,7 +94,7 @@ function cancel() {
 		</tbody>
 	</table>
 		<div class="update-form">
-			<textarea id="n_contents" name="n_contents"maxlength="500" placeholder="내용을 입력해 주세요."
+			<textarea id="n_contents" name="n_contents"maxlength="500" 
 				cols="30" rows="10" >${adminNoticeBean.N_CONTENTS}</textarea>		
 		</div>
 	</form>
@@ -102,10 +102,10 @@ function cancel() {
 </div>
 	<br>
 <div class="footer">	
-	<div class="mrc-btn"style="margin:auto; text-align: center;">
-		<button type="button" onClick="updateCheck()">수 정</button>
-	    <button type="button" onClick="deleteCheck()">삭 제</button>
-		<button type="button" onclick="cancel()">취 소</button>	
+	<div class="fbtn"style="margin:auto; text-align: center;">
+		<button id="mbtn"type="button" onClick="updateCheck()">수 정</button>
+	    <button id="rbtn"type="button" onClick="deleteCheck()">삭 제</button>
+		<button id="cbtn"type="button" onclick="cancel()">취 소</button>	
 	</div>
 </div>
 </body>

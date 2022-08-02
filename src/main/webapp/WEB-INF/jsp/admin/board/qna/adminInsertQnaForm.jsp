@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link type="text/css"href="css/adminQna.css"rel="stylesheet">  
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -29,80 +31,73 @@ function insertCheck() {
 <body>
 
 	<!-- 관리자 메인 툴바 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div class="box1"align="right">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
-			<li style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
-			<li style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
+			<li id="title-text1"style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
+			<li id="borad-ad"style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
 	<hr>
-	
-	<img src="img/${adminQnaBean.Q_CATEGORY}QNA.png" width="75" border="0" id="imageQNA">
-	<c:if test="${adminQnaBean.Q_CATEGORY == 'product'}">
-		<font size="25">상품 문의</font></c:if>
-	<c:if test="${adminQnaBean.Q_CATEGORY == 'preship'}">
-		<font size="25">배송 전 문의</font></c:if>
-	<c:if test="${adminQnaBean.Q_CATEGORY == 'aftership'}">
-		<font size="25">배송 후 문의</font></c:if>
-	<c:if test="${adminQnaBean.Q_CATEGORY == 'exchange'}">
-		<font size="25">교환/반품 문의</font></c:if>
-
-<form method="post" id="qnaInsertForm" action="adminInsertQna.do">	
-	<table>
-		<tbody>
-			<tr>
-				<td><b>제목</b></td>
-				<td><input type="text" value="${adminQnaBean.Q_TITLE}" readonly></td>
-				<td><b>작성일</b></td>
-				<td>
-					<fmt:formatDate value="${adminQnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>
-				</td>
-			</tr>
-			<tr>
-				<td><b>작성자</b></td>		
-				<td colspan="3"><input type="text" size="8" value="${adminQnaBean.Q_ID}" readonly></td>
-			</tr>
-			<tr>
-				<td><b>상품명</b></td>
-				<td colspan="3">
-					<input type="text" size="10" value="${adminQnaBean.Q_PRODUCT}" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td><b>문의 내용</b></td>
-				<td colspan="3">
-					<input type="text" style="width:400px;height:150px;"
-						 value="${adminQnaBean.Q_CONTENTS}" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td><b>답변 내용</b></td>
-				<td colspan="3">
-					<textarea id="q_contents" name="q_contents"
-						style="width:400px;height:150px;" maxlength="500"></textarea>
-				</td>
-			</tr>		
-		</tbody>
-	</table>
+<div class="container">	
+	<div class="top">
+		<img src="img/${adminQnaBean.Q_CATEGORY}QNA.png" width="75" border="0" id="imageQNA2">
+		<div id="qd-list">
+			<c:if test="${adminQnaBean.Q_CATEGORY == 'product'}">상품 문의</c:if>
+			<c:if test="${adminQnaBean.Q_CATEGORY == 'preship'}">배송 전 문의</c:if>
+			<c:if test="${adminQnaBean.Q_CATEGORY == 'aftership'}">배송 후 문의</c:if>
+			<c:if test="${adminQnaBean.Q_CATEGORY == 'exchange'}">교환/반품 문의</c:if>
+		</div>
+	</div>
+	<div class="q-form">	
+		<form method="post" id="qnaInsertForm" action="adminInsertQna.do">	
 		
+		<table>
+				<tr>
+					<td id="title-td">제&emsp;목
+					<input type="text" value="${adminQnaBean.Q_TITLE}" readonly></td>
+					<td id="day-td">작성일 &emsp;&emsp;
+						<fmt:formatDate value="${adminQnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>
+					</td>
+				</tr>
+			</table>	
+			<div class="q-form-list1">
+				<label>작성자</label>				
+					<input id="writer"type="text" size="8" value="${adminQnaBean.Q_ID}" readonly>
+			</div>		
+			<div class="q-form-list1">	
+				<label>상품명</label>
+						<input id="p_name" type="text" size="10" value="${adminQnaBean.Q_PRODUCT}" readonly>
+			</div>	
+			<div class="q-form-list4">		
+				<label>문의 내용</label>
+						<input  id="q_content2" type="text" style="width:393px;height:150px;"
+							 value="${adminQnaBean.Q_CONTENTS}" readonly>
+			</div>
+			<div class="q-form-list3">
+			<label>답변 내용</label>
+						<textarea id="q_contents" name="q_contents" maxlength="500"></textarea>		
+			</div>
+		</form>
+	</div>
+</div>		
 	<br><br>
-	
+<div class="footer">	
 	<input type="hidden" id="q_code" name="q_code" value="${adminQnaBean.Q_CODE}">
 	<input type="hidden" id="q_category" name="q_category" value="${adminQnaBean.Q_CATEGORY}">
 	<input type="hidden" id="q_title" name="q_title" value="[답변]${adminQnaBean.Q_TITLE}">
 	<input type="hidden" id="q_product" name="q_product" value="${adminQnaBean.Q_PRODUCT}">
 	<input type="hidden" id="q_groupnum" name="q_groupnum" value="${adminQnaBean.Q_GROUPNUM}">
 	
-	
-	<button type="button" onclick="insertCheck()">답 변 달 기</button>
-		&emsp;&emsp;
-	<button type="button" onclick="location.href='adminQnaDetail.do?q_num=${adminQnaBean.Q_NUM}'">돌 아 가 기</button>
+	<div class="fbtn">
+		<button id="ans-btn" type="button" onclick="insertCheck()">답 변 달 기</button>
+		<button id="back-btn" type="button" onclick="location.href='adminQnaDetail.do?q_num=${adminQnaBean.Q_NUM}'">돌 아 가 기</button>
+	</div>
+</div>
 
-</form>
 </body>
 </html>

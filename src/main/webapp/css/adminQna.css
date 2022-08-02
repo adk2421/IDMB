@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+#p_td{position:relative;left:60px;top:0;}
+.qst_btn{position:relative;left:23%;top:2rem;width:40%;align-items:center;}
+#q-list{text-align:center;width:130px;}
+button#qst{
+	background-color:#e6e6e6;
+	border-radius:5px;
+	border-style:none;
+	width:120px;height:30px;
+	color:black;
+	font-size:16px;
+	margin-left:25px;
+}
+	
+button#qst:hover, button#qst:focus, button#qst:active{
+	color:black;
+	outline:none;
+	background: #f5f5f5;
+	border-style:solid; 
+}	
+#SORT{float:left;}
+.search-box{position:absolute;top:93%;left:25%;}
+.search{float:right;} 
+input#search{float:left;}
+
+table#qnaList_tb{
+	width:100%;
+	position:relative;top:20px;left:40px;
+		width:90%;height:40%;
+ 		border-collapse:collapse;/*테두리한줄로 정리*/
+		border-spacing:20px 20px;/*td,th간의 여백설정*/
+	margin:20px;
+}
+ 
+th{ 
+	background:#e6e6e6;
+	border-top:1px solid #444;
+	border-bottom:1px solid #444;
+	text-align:center;
+	padding:10px;
+	}
+ td{
+	text-align:center;
+	padding:10px;
+	border-bottom:1px solid #444;
+	
+} 
+
+
+
+/*-------------- adminQnaDetail-------------*/
+
+.top{position:relative;left:3%;top:10%;
+	width:35%;}
+#imageQNA2{width:100px;}/*img*/	
+#qd-list{
+	font-size:2.8rem;
+	float:right;
+	margin-top:1rem;	
+}
+.q-form{/*Detail Form*/
+	width:90%;
+	margin-left:70px;
+	margin-top:30px;	
+	
+}
+.q-form-list1{
+	margin-left:11px;
+	width:300px;height:50px;
+}
+td#title-td,#day-td{
+	padding-bottom:1.2rem;
+	font-weight:bold;
+	text-align:left;
+	border:none;}
+td#day-td{
+	padding-left:6rem;}
+.q-form-list3{width:620px;height:180px;margin-left:11px;}
+
+label{float:left;font-weight:bold;align-items:center;}
+/*제목*/
+#pq-title{margin-left:21px;}
+/*작성자*/
+#writer{border-radius:5px;}
+/*상품명*/
+#p_name{border-radius:5px;}
+/*문의내용*/
+#q_content{float:right;border-radius:5px;}
+/*답변내용*/
+#a_content{float:right;border-radius:5px;}
+
+input{
+	font-size:10pt;
+	color:black;
+	padding-left:10px;
+	margin-left:26px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	
+}
+input:hover, input:focus, input:active{
+	outline:none;
+	background: #f5f2f2;
+	border-style:solid;
+	
+}
+
+/*버튼*/
+.fbtn{position:relative;left:28%;top:5%;width:50%;}
+button#ans-btn{
+	background-color:#e6e6e6;
+	border-radius:5px;
+	border-style:none;
+	width:100px;height:30px;
+	color:black;
+	font-size:15px;
+	margin-left:30px;
+	
+}
+button#q-rmbtn{
+	background-color:red;
+	border-radius:5px;
+	border-style:none;
+	width:100px;height:30px;
+	color:#fff;
+	font-size:15px;
+	margin-left:30px;
+}
+button#back-btn{
+	background-color:#444;
+	border-radius:5px;
+	border-style:none;
+	width:100px;height:30px;
+	color:#fff;
+	font-size:15px;
+	margin-left:30px;
+}
+	
+button#ans-btn:hover, button#ans-btn:focus, button#ans-btn:active{
+	color:black;
+	outline:none;
+	background: #f5f5f5;
+	border-style:solid; 
+}
+
+	
+button#q-rmbtn:hover, button#q-rmbtn:focus, button#q-rmbtn:active{
+	color:#f56464;
+	outline:none;
+	background: #fcdede;
+	border-style:solid;
+}	
+
+button#back-btn:hover, button#back-btn:focus, button#back-btn:active{
+	color:#fff;
+	outline:none;
+	background: lightgray;
+	border-style:solid; 
+}
+	
+/*adminInsertQnaForm*/
+.q-form-list4{width:515px;height:180px;}
+/* #a_content2{float:right;border-radius:5px;} */
+textarea#q_contents{
+	border-radius:5px;margin-left:13px;
+	resize:none;
+	width:408px;height:150px;
+}
+
+
+	

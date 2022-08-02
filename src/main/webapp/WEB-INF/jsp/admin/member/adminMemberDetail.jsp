@@ -44,7 +44,7 @@ function check() {
 	<hr>
 <div class="container">
 	<form method="post" id="memberDetailForm" action="adminUpdateMember.do?id=${adminMemberBean.ID}">
-		<table style="margin:auto; text-align: center;" border=1>
+		<table>
 			<tbody>
 				<tr>
 					<th><b>아이디</b></th>
@@ -108,8 +108,10 @@ function check() {
 </div>	
 	<br/>
 	<div class="footer">
-		<button id="mbtn" type="button" onClick="check()">수 정</button>
-		<button id="cancle"type="button" onclick="cancel()">취 소</button>
+		<div class="btn">
+			<button id="mbtn2" type="button" onClick="check()">수 정</button>
+			<button id="cancle2"type="button" onclick="cancel()">취 소</button>
+		</div>
 	</div>
 
 
