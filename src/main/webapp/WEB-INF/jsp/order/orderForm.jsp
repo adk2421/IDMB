@@ -48,7 +48,6 @@ function orderCheck() {
 	}
 }
 
-
 </script>
 
 <!-- 우편 번호 API -->
@@ -109,8 +108,10 @@ function orderCheck() {
 		<h1> 주문 페이지 </h1>
 	</div>
 	
+	<!-- 상품 미리보기 이미지 -->
+	<img src="img/${productDetail.P_IMAGE}" width="300" border="0" id="previewImage">
+
 	<form method="post" id="orderForm" action="insertOrder.do">
-	
 		<table class="table table-borderless">
 			<thead class="table-light">
 				<tr>

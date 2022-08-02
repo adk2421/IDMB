@@ -35,9 +35,6 @@ function orderCheck() {
 	}
 }
 
-
-</script>
-
 <!-- 우편 번호 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -95,9 +92,13 @@ function orderCheck() {
 		<h1> 주문 페이지 </h1>
 	</div>
 	
-	<form method="post" id="basketOrderForm" action="basketListOrder.do">
+	<!-- 상품 미리보기 이미지 -->
+	<c:forEach var="i" begin="0" end="${Size-1}">
+		<img src="img/${basketList[i].B_IMAGE}" width="300" border="0" id="previewImage">
+	</c:forEach>
 	
-	<table border=1>
+	<form method="post" id="basketOrderForm" action="basketListOrder.do">
+		<table border=1>
 			<!-- 상 품 정 보 -->
 			<thead>
 				<tr>
@@ -132,7 +133,6 @@ function orderCheck() {
 				</tr>
 			</c:forEach>
 			</tbody>
-		
 		</table>
 		
 		
