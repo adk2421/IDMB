@@ -7,6 +7,7 @@
 <html>
 <head>
 
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminBoard.css" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
@@ -30,9 +31,9 @@ function qnaList() {
 <body>
 
 	<!-- 관리자 메인 툴바 -->
-	<div>
+	<div class="header">
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
-		<div align="right">
+		<div class="box1"align="right">
 		<ul style="list-style-type:none">
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
 			<li id="title-text1"style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
@@ -40,10 +41,11 @@ function qnaList() {
 			<li id="board-ad"style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
-	</div>
+	
 	<hr>
 	
 	<!-- 관리자 게시판 바로가기 -->
+
 	<div style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
 		<li style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
@@ -52,10 +54,10 @@ function qnaList() {
 		<li id="qna-list"style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>
 	</ul>
 	</div>
-	
+</div>	
 	
 	<br>
-	
+<div class="container">	
 	<table id="qna-maintb">
 		<tbody>
 			<tr>
@@ -82,7 +84,8 @@ function qnaList() {
 			</tr>
 		</tbody>
 	</table>
-	
+</div>
+<div class="footer"></div>	
 
 </body>
 </html>

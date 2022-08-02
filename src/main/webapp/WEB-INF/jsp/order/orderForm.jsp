@@ -105,16 +105,18 @@ function orderCheck() {
 
 <body>
 	<div style="text-align:center">
+		<p>
 		<h1> 주문 페이지 </h1>
 	</div>
 	
 	<!-- 상품 미리보기 이미지 -->
-	<img src="img/${productDetail.P_IMAGE}" width="300" border="0" id="previewImage">
+	
 
 	<form method="post" id="orderForm" action="insertOrder.do">
 		<table class="table table-borderless">
 			<thead class="table-light">
 				<tr>
+					<th scope="col">상&emsp;품</th>
 					<th scope="col">상 품 명</th>
 					<th scope="col">상 품 금 액</th>
 					<th scope="col">구 매 수 량</th>
@@ -124,6 +126,7 @@ function orderCheck() {
 			
 			<tbody>
 				<tr>
+					<td><img src="img/${productDetail.P_IMAGE}" width="60" border="0" id="previewImage"></td>
 					<td>${productDetail.P_NAME }</td>
 					<td>${productDetail.P_PRICE }원</td>
 					<td>${p_count}개</td>
@@ -177,7 +180,6 @@ function orderCheck() {
 				<h6>주소	&nbsp;&nbsp;
 				<input type="text" name="o_address1" id="o_address1"
 					value="${address1}">
-				&emsp;
 				-
 				<input type="text" name="o_address2" id="o_address2"
 					value="${address2}">

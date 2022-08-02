@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+/*폰트*/
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*가운데정렬*/
+table{
+	text-align:center;
+}
+
+/*장바구니 확인*/
+h2 {
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:64px
+}
+
+/**/
+th,td{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:20px
+}
+
+/*주문 금액 배송비 총금액 */
+span{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:35px;
+	text-align:left;
+}
+
+/*수량*/
+.counter{
+    border-radius: 6px;
+	border: 0;
+	border-color:grey;
+ 	outline: 0;
+ 	text-align:center;
+   }
+
+
+/*수정 버튼*/
+.update{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:20px;
+	background-color:#b4b4b4;
+	color: white;
+    width: 70px;
+    height:50px;
+    font-weight: 700;
+	border-radius: 6px;
+	border: 0;
+	border-color:grey;
+ 	outline: 0;
+	
+	
+}
+/*삭제 버튼*/
+.delete{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:20px;
+	background-color: #F40D0D;
+	color: white;
+    width: 70px;
+    height:50px;
+    font-weight: 700;
+	border-radius: 6px;
+	border: 0;
+	border-color:grey;
+ 	outline: 0;
+}
+
+
+/*단일상품주문버튼*/
+.order{font-family: 'GangwonEdu_OTFBoldA';
+	font-size:20px;
+	background-color: #FFD228;
+	color: black;
+    width: 150px;
+    height:50px;
+    font-weight: 700;
+	border-radius: 6px;
+	border: 0;
+	border-color:grey;
+ 	outline: 0;
+	
+}
+
+/*전체상품주문버튼*/
+.allorder{font-family: 'GangwonEdu_OTFBoldA';
+	font-size:20px;
+	background-color: #F40D0D;
+	color: white;
+    width: 150px;
+    height:50px;
+    font-weight: 700;
+	border-radius: 6px;
+	border: 0;
+	border-color:grey;
+ 	outline: 0;
+	
+	
+}
+
+/*계속쇼핑하기버튼*/
+.back{font-family: 'GangwonEdu_OTFBoldA';
+	font-size:20px;
+	background-color: #b4b4b4;
+	color: white;
+    width: 150px;
+    height:50px;
+    font-weight: 700;
+	border-radius: 6px;
+	border: 0;
+	border-color:grey;
+ 	outline: 0;
+	
+}

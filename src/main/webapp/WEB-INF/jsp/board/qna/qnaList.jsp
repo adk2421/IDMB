@@ -9,6 +9,20 @@
 <head>
 <meta charset="UTF-8">
 <title>일단메봐</title>
+
+<!-- Bootstrap CSS CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+		rel="stylesheet" 
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+		crossorigin="anonymous">
+	<!-- Bootstrap JS CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+		crossorigin="anonymous"></script>
+
+	<!-- css연결 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css?v=<%=System.currentTimeMillis()%>">
+
 <script>
 function insertQna() {
 	if(${empty id}){
@@ -24,35 +38,38 @@ function insertQna() {
 </head>
 <body>
 
+	<hr><p>
+
 	<!-- 게시판 바로가기 -->
-	<div style="display: flex; justify-content: center;">
+	<div class="short" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
-		<li style="width:500px; display:inline"><a href="noticeList.do" >공 지 사 항</a></li>
-		<li style="display:inline"><a href="reviewList.do" >상 품 후 기</a></li>
-		<li style="display:inline"><a href="faqList.do?f_category=cost" >F A Q</a></li>
-		<li style="display:inline"><a href="qnaMain.do" >1:1 문 의</a></li>
+		<li style="width:500px; display:inline"><a class="short" href="noticeList.do" >공 지 사 항 &nbsp;&nbsp;</a></li>
+		<li style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
+		<li style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
+		<li style="display:inline"><a class="short" href="qnaMain.do" >1:1 문 의 &nbsp;&nbsp;</a></li>
 	</ul>
 	</div>
-	<hr>
-
-
+	
+	<br>
+	
+<div class="container">
 <form action="qnaList.do" method="get">
 	<input type="hidden" name="q_category" id="q_category" value="${q_category}">
-	<table>
+	<table class="sort">
 		<tbody>
 			<tr>
 				<td>
 					<img src="img/${q_category}QNA.png" width="75" border="0" id="imageQNA">
 				</td>
 				<td>
-					<select name="SORT" id="SORT">
-						<option value="title" <c:if test="${SORT =='title'}">selected</c:if>>제 &emsp; 목</option>
+					<select class="form-select" aria-label="Default select example" id="SORT" name="SORT">
+						<option value="title" <c:if test="${SORT =='title'}">selected</c:if>>제  목</option>
 						<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>작 성 자</option>
 						<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 					</select>
 					<br>
 					<input type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
-					<button type="submit">검색</button>
+					<button class="search" type="submit">검색</button>
 				</td>
 			</tr>
 			<tr>
@@ -62,16 +79,18 @@ function insertQna() {
 					<c:if test="${q_category == 'aftership'}"><b>배송 후 문의</b></c:if>
 					<c:if test="${q_category == 'exchange'}"><b>교환/반품 문의</b></c:if>
 				</td>
-
 				<td>
-					<button type="submit" name="qst" id="qst" value="답변대기">답변 대기</button>
-					<button type="submit" name="qst" id="qst" value="답변완료">답변 완료</button>
+					<button class="wait" type="submit" name="qst" id="qst" value="답변대기">답변 대기</button>
+					<button class="end" type="submit" name="qst" id="qst" value="답변완료">답변 완료</button>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </form>
-	<table style="display: flex; justify-content: center;" border=1>
+
+	<br>
+	<table class="qnatable">
+		<thead>
 			<tr>
 				<th>글번호</th>
 				<th>상품명</th>
@@ -80,6 +99,9 @@ function insertQna() {
 				<th>작성일</th>
 				<th>상태</th>
 			</tr>
+		</thead>
+		
+		<tbody>
 		<c:choose>
 			<c:when test="${qnaList == null || fn:length(qnaList) == 0 }">
 			<tr>
@@ -112,11 +134,12 @@ function insertQna() {
 			</c:forEach>
 			</c:otherwise>
 		</c:choose>
+		</tbody>
 	</table>
 	${paging.pageHtml}
 	<br><br>
 	
-<button type="button" onclick="insertQna()">문 의 하 기</button>
-
+<button class="qnabtn" type="button" onclick="insertQna()">문 의 하 기</button>
+</div>
 </body>
 </html>

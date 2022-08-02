@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminBoard.css" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
@@ -34,6 +35,19 @@ function insertNotice()	{
 
 
 <body>
+
+<!-- 상단카테고리  = main_header.jsp로 따로 분류하여 사용하는게 좋을듯함
+	<div id="nav_menu">
+	<ul style="list-style-type:none">
+		<li style="display:inline"><a href="loginForm.do">LOGIN</a></li>
+		<li style="display:inline"><a href="joinForm.do">JOIN</a></li>
+		<li style="display:inline"><a href="basketList.do">CART</a></li>
+		<li style="display:inline"><a href="mypage.do">MY PAGE</a></li>
+		<li style="display:inline"><a href="myOrderList.do">ORDER</a></li>
+		<li style="display:inline"><a href="community.do">COMMUNITY</a></li>
+	</ul>	
+	</div> -->
+	
 
 	<!-- 관리자 메인 툴바 -->
 	<div>

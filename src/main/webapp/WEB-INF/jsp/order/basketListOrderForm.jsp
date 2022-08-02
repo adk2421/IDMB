@@ -7,6 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>basketOrderForm</title>
+<!-- Bootstrap CSS CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+		rel="stylesheet" 
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+		crossorigin="anonymous">
+	<!-- Bootstrap JS CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+		crossorigin="anonymous"></script>
+
+	<!-- css연결 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/orderform.css?v=<%=System.currentTimeMillis()%>">
 
 <script>
 function orderCheck() {
@@ -89,26 +101,23 @@ function orderCheck() {
 
 </head>
 <div style="text-align:center">
+		<p>
 		<h1> 주문 페이지 </h1>
 	</div>
 	
-	<!-- 상품 미리보기 이미지 -->
-	<c:forEach var="i" begin="0" end="${Size-1}">
-		<img src="img/${basketList[i].B_IMAGE}" width="300" border="0" id="previewImage">
-	</c:forEach>
-	
 	<form method="post" id="basketOrderForm" action="basketListOrder.do">
-		<table border=1>
-			<!-- 상 품 정 보 -->
-			<thead>
-				<tr>
+		<table class="table table-borderless">
+			<thead class="table-light">
+				<tr> <!-- 상품 정보 -->
 					<th>번 호</th>
+					<th>상 품</th>
 					<th>상 품 명</th>
 					<th>상 품 금 액</th>
 					<th>구 매 수 량</th>
 					<th>총 합 계</th>
 				</tr>
-			</thead>	
+			</thead>
+				
 			<c:set var="sum" value="0" />
 			<c:forEach var="i" begin="0" end="${Size-1}">
 			<tbody>
@@ -116,6 +125,9 @@ function orderCheck() {
 					<td>
 						${i+1}
 								
+					</td>
+					<td>
+						<img src="img/${basketList[i].B_IMAGE}" width="60" border="0" id="previewImage">
 					</td>
 					<td>
 						${basketList[i].B_NAME}
@@ -135,53 +147,67 @@ function orderCheck() {
 			</tbody>
 		</table>
 		
-		
+		<div class="order_info" >
 		<!-- 주문자 정보 -->
 		<h2>주문자 정보</h2>
 		
 		<!-- 이름 -->
-		<h6>이 름</h6>
+		<h6>이 름 :
 			<input type="text" value="${name}" readonly>	
+		</h6>
+		<p>
 		
 		<!-- 핸드폰 번호 -->
-		<h6>핸 드 폰 번 호</h6>
+		<h6>핸 드 폰 번 호 :
 			<input type="text" id="o_phone" name="o_phone" maxlength="11" value="${phone}" >
-			
+		</h6>	
+		</div>
+		
 		<hr>
 		<br><br>				
 		<hr>
 
+		<div class="orderaddress">
 		<!-- 받는 사람 정보 -->
-		<h6>받으시는 분</h6>
+		<h6>받으시는 분&nbsp;
 		<input type="text" id="o_reciever" name="o_reciever" value="${name}">
-				
+		</h6>		
+		
 		<!-- 주소 -->
-		<h6>우편번호</h6>
+		<h6>우편번호&nbsp;
 		<input type="text" name="o_postcode" id="o_postcode"
 			value="${postcode}">
 								
 		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+		</h6>
 								
-		<h6>주소</h6>		
+		<h6>주소	&nbsp;&nbsp;
 		<input type="text" name="o_address1" id="o_address1"
 			value="${address1}">
-		&emsp;
+		-
 		<input type="text" name="o_address2" id="o_address2"
 			value="${address2}">
-														
+		</h6>	
+	</div>	
+	
+		<hr>
+		<br><br>	
+																		
 		<h2> 결 제 금 액 </h2>	
-				
+		<br>
+		
+		<div class="sum">		
 		<span>주 문 금 액</span>
-		<fmt:formatNumber pattern="###,###,###" value="${sum}" />원
-				
+		<span><fmt:formatNumber pattern="###,###,###" value="${sum}" />원</span>
+			&emsp;	
 	    <span>배 송 비</span>
 	    <span>3000원</span>
 	    	&emsp;
 	    						 
 	    <span>총 금 액</span>
-	    <fmt:formatNumber pattern="###,###,###" value="${sum+3000}" />원
+	    <span><fmt:formatNumber pattern="###,###,###" value="${sum+3000}" />원</span>
 		
-						
+		<br><br>			
 		<h2> 결 제 정 보 </h2>
 		<h6>무 통 장 입 금</h6>
 		<input type="text" value="우리은행 1234-56-7890" readonly>
@@ -189,7 +215,7 @@ function orderCheck() {
 		<!-- 버튼 -->
 		<button type="button" onclick="orderCheck()">주문하기</button>
 		
-		<br><br>
+		</div>
 	</form>	
 </body>
 </html>

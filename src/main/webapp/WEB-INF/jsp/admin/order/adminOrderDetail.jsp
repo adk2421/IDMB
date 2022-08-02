@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -67,12 +66,9 @@ function orderCancel(){
 			<tr>
 				<td>${adminOrderBean.O_NUM}</td>
 				<td>${adminOrderBean.O_ID}</td>
-				<td>
-					<fmt:formatNumber value="${adminOrderBean.O_TOTAL}"
-						pattern="###,###,###원"/>
-				</td>
+				<td>${adminOrderBean.O_TOTAL}</td>
 				<td>${adminOrderBean.O_NAME}</td>
-				<td>${adminOrderBean.O_COUNT}개</td>
+				<td>${adminOrderBean.O_COUNT}</td>
 				<td>
 					<button id="od-cancle"type="button" onclick="orderCancel()">주문취소</button>
 				</td>
@@ -99,20 +95,18 @@ function orderCancel(){
 				<td>${adminOrderBean.O_RECIEVER}</td>
 				<td><b>연락처</b></td>
 				<td>
-					<fmt:formatNumber var="phonenum" value="${adminOrderBean.O_PHONE}" pattern="###,###,####"/>
-					<c:out value="0${fn:replace(phonenum, ',', '-')}" />
+					01011112222
 				</td>
 			</tr>
 			<tr>
 				<td><b>우편번호</b></td>
 				<td>${adminOrderBean.O_POSTCODE}</td>
-				<td colspan="2"></td>
-			</tr>
-			<tr>
 				<td><b>주소</b></td>
 				<td>${adminOrderBean.O_ADDRESS1}</td>
+			</tr>
+			<tr>
 				<td><b>상세주소</b></td>
-				<td>${adminOrderBean.O_ADDRESS2}</td>
+				<td colspan="3">${adminOrderBean.O_ADDRESS2}</td>
 			</tr>
 			
 			<tr id="status">
@@ -127,7 +121,6 @@ function orderCancel(){
 					<input type="radio" name="o_status" value="배송완료"
 						<c:if test="${adminOrderBean.O_STATUS =='배송완료'}">checked</c:if>>
 					배송 완료
-				</td>
 			</tr>
 			
 		</tbody>

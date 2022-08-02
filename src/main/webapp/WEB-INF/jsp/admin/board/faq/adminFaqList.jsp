@@ -6,7 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminBoard.css" type="text/css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
@@ -78,8 +80,10 @@ function insertFaq()	{
 	
 	<div class="footer">
 		<button id="faqadd" type="button" onClick="insertFaq()">FAQ 작성</button>
+	
+		${paging.pageHtml}
 	</div>
-	${paging.pageHtml}
+	
 	
 </body>
 </html>
