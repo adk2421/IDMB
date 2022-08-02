@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/*폰트*/
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*가운데정렬*/
+table{
+	text-align:center;
+}
+
+/*thead&tbody*/
+th,td{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:20px
+}
+
+/*주문조회*/
+h1 {
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size:64px
+}

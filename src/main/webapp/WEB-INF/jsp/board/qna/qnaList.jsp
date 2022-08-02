@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>일단메봐</title>
+
 <script>
 function insertQna() {
 	if(${empty id}){
