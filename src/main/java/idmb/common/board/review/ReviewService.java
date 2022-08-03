@@ -16,4 +16,6 @@ public interface ReviewService {
 	public List<Map<String, Object>> bestReviewList() throws Exception;
 	
 	public List<Map<String, Object>> newReviewList() throws Exception;
+	
+	public List<Map<String, Object>> reviewDetail (ReviewBean review) throws Exception;
 }

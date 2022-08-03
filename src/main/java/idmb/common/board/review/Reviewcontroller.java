@@ -57,4 +57,16 @@ public class Reviewcontroller {
 		
 		return "board/review/insertReview";
 	}
+	
+	@RequestMapping(value="/reviewDetail.do")
+	public String reviewDetail(ReviewBean review, HttpServletRequest request, Model model) throws Exception {
+		
+		List<Map<String, Object>> reviewDetail = new ArrayList<Map<String, Object>>();
+		
+		reviewDetail = reviewService.reviewDetail(review);
+		
+		model.addAttribute("reviewDetail", reviewDetail);
+		
+		return "board/review/reviewDetail";
+	}
 }

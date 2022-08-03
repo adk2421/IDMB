@@ -56,5 +56,15 @@ public class ReviewServiceImpl implements ReviewService {
     public List<Map<String, Object>> newReviewList() throws Exception{
     	return reviewDAO.newReviewList();
     }
+    
+    @Override
+	public List<Map<String, Object>> reviewDetail (ReviewBean review) throws Exception {
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	
+    	map.put("r_groupnum", review.getR_groupnum());
+
+    	return reviewDAO.reviewDetail(map);
+    }
+
 
 }

@@ -30,6 +30,11 @@ public class ProductDAO {
 		return sqlSessionTemplate.selectList("product.searchProduct", map);
 	}
 	
+	//상품 검색 수량
+	public Map<String, Object> searchProductCount(Map<String,Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("product.searchProductCount", map);
+	}
+	
 	// 신상품순 상품리스트
 	public List<Map<String, Object>> newProductList(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("product.newProductList", map);
@@ -45,6 +50,11 @@ public class ProductDAO {
 		return sqlSessionTemplate.selectList("product.kindProductList", map);
 	}
 	
+	//종류별 상품 수량
+	public Map<String, Object> kindProductCount(Map<String,Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("product.kindProductCount", map);
+	}
+	
 	// 상품상세
 	public Map<String, Object> productDetail(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectOne("product.productDetail", map);
@@ -58,5 +68,20 @@ public class ProductDAO {
 	//상품 후기 수
 	public Map<String, Object> productReviewCount(Map<String, Object> map) throws Exception{
 		return sqlSessionTemplate.selectOne("product.productReviewCount",map);
+	}
+	
+	//상품 찜하기
+	public void productZim(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.update("product.productZim",map);
+	}
+	
+	//zim DB추가
+	public void zimDb(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.insert("product.zimDb",map);
+	}
+	
+	//찜하기 확인
+	public Map<String, Object> zimCheck(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("product.zimCheck",map);
 	}
 }

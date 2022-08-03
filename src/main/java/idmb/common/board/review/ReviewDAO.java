@@ -34,4 +34,7 @@ public class ReviewDAO {
 		return sqlSessionTemplate.selectList("newReviewList");
 	}
 	
+	public List<Map<String, Object>> reviewDetail (Map<String, Object> map) throws Exception {
+		return sqlSessionTemplate.selectList("reviewDetail", map);
+	}
 }

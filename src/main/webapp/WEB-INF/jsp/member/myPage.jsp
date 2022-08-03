@@ -98,15 +98,14 @@
 			<p><a href="/IDMB/myInfoModifyForm.do">회원정보 수정</a> | 배송주소록 관리</p>
 		</div>
 		
-		<div>
+		<div class="stdWidth">
 			<img src="/IDMB/resources/img/user.png" style="width:200px; height:200px; padding:15px" />
 			
-			<div class="leftVertical">
+			<div class="vertical">
 				<p>${name}님, 환영합니다.</p>
 				<br/>
 				<p>
 					<a href="javascript:focusdiv('orderList');">주문내역</a> | 
-					<a href="javascript:focusdiv('basket');">장바구니</a> | 
 					관심상품 | 
 					<a href="javascript:focusdiv('viewedProduct');">최근 본 상품</a> | 
 					<a href="javascript:focusdiv('qnaList');">문의내역</a> | 
@@ -134,7 +133,7 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="stdWidth">
 			<div class="vertical">
 			<p class="label">- 회원님의 혜택 정보 -</p>
 				
@@ -148,7 +147,7 @@
 		<br/>
 		<br/>
 		
-		<div>
+		<div class="stdWidth">
 			<div class="vertical">
 				<div class="horizen">
 					<img class="icon" src="/IDMB/resources/img/ICON_orderProc.png" /><span class="left">주문처리 현황</span>
@@ -194,7 +193,7 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="stdWidth">
 			<div class="vertical">
 				<div class="horizen">
 					<img class="icon" src="/IDMB/resources/img/ICON_orderList.png" /><span class="left">주문내역</span>
@@ -238,7 +237,7 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="stdWidth">
 			<div class="vertical">
 				<div class="horizen">
 					<img class="icon" src="/IDMB/resources/img/ICON_viewedProduct.png" /><span class="left">최근 본 상품</span>
@@ -276,10 +275,10 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="stdWidth">
 			<div class="vertical">
 				<div class="horizen">
-					<img class="icon" src="/IDMB/resources/img/conversation.png" /><span class="left">문의내역</span>
+					<img class="icon" src="/IDMB/resources/img/ICON_QNA.png" /><span class="left">문의내역</span>
 					<span class="right"><a href="/IDMB/myQnaList.do">더보기 ></a></span>
 				</div>
 				
@@ -316,40 +315,49 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="stdWidth">
 			<div class="vertical">
 				<div class="horizen">
-					<img class="icon" src="/IDMB/resources/img/ICON_orderList.png" /><span class="left">나의리뷰</span>
+					<img class="icon" src="/IDMB/resources/img/ICON_review.png" /><span class="left">나의리뷰</span>
 					<span class="right"><a href="/IDMB/reviewList.do">더보기 ></a></span>
 				</div>
 				
-				<table>
-					<tr class="head" id="myReviewList">
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회</th>
-					</tr>
-					
-					<c:if test="${myReviewList[0] eq null}">
-			        	<tr>
-			        		<td colspan="6">
-			        			<p>작성하신 리뷰가 없습니다.</p>
-			        		</td>
-			        	</tr>
-			        </c:if>
-					
+				<div id="myReviewList">
+					<hr/>
+				</div>
+				
+				<c:if test="${myReviewList[0] eq null}">
+        			<p>작성하신 리뷰가 없습니다.</p>
+		        </c:if>
+				
+				<div class="leftVertical">
 					<c:forEach var="review" items="${myReviewList}">
-				        <tr class="button_tr" onclick="reviewDetail(${review.R_NUM})">
-					        <td>${review.R_NUM}</td>
-					        <td>${review.R_NAME}</td>
-					        <td>${review.R_ID}</td>
-					        <td>${review.R_DATE}</td>
-					        <td>${review.R_RECOMMEND}</td>
-				        </tr>
+						<div class="horizen">
+							<div>
+								<img class="thumbnail" src="/IDMB/img/${review.P_IMAGE}" />
+							</div>
+							
+							<div class="leftVertical">
+								<div class="width">
+									<p>${review.R_NAME}</p>
+									<p>${review.R_RATE}</p>
+									<p>${review.R_CONTENTS}</p>
+									<p><img class="icon" src="/IDMB/resources/img/ICON_like.png" />${review.R_RECOMMEND}</p>
+								</div>
+							</div>
+							
+							<div class="right">
+								<div>
+									<p>${review.R_DATE}</p>
+								</div>
+							</div>
+						</div>
+						
+						<div>
+							<hr/>
+						</div>
 				    </c:forEach>
-				</table>
+			    </div>
 			</div>
 		</div>
 		

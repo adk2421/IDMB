@@ -15,7 +15,7 @@
 <body>
 	<div class="nav">
 		<div class="left" align="left">
-			<a href="mainpageProductList.do">
+			<a href="/IDMB/">
 				<img class="logo" src="/IDMB/img/simple_logo.png"/> IDMB
 			</a>
 		</div>

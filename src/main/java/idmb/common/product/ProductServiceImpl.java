@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService{
 		
 	@Override
 	public List<Map<String, Object>> searchProduct(
-			String searchValue, int priceValue1, int priceValue2, String SORT) 
+			String searchValue, int priceValue1, int priceValue2, String SORT, int START, int END) 
 			throws Exception{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -41,41 +41,59 @@ public class ProductServiceImpl implements ProductService{
 		map.put("priceValue1", priceValue1);
 		map.put("priceValue2", priceValue2);
 		map.put("SORT", SORT);
+		map.put("START", START);
+		map.put("END", END);
 		
 		return productDAO.searchProduct(map);
+	}
+	
+	@Override
+	public int searchProductCount(String searchValue, int priceValue1, int priceValue2) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
 		
+		map.put("searchValue", searchValue);
+		map.put("priceValue1", priceValue1);
+		map.put("priceValue2", priceValue2);
+		
+		Map<String, Object> countMap = productDAO.searchProductCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;
 	}
 
 	@Override
-	public List<Map<String, Object>> newProductList(String searchValue, int priceValue1, int priceValue2)
-			throws Exception{
+	public List<Map<String, Object>> newProductList(
+			String searchValue, int priceValue1, int priceValue2, int START, int END) throws Exception{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 	
 		map.put("searchValue", searchValue);
 		map.put("priceValue1", priceValue1);
 		map.put("priceValue2", priceValue2);
-	
+		map.put("START", START);
+		map.put("END", END);
+		
 		return productDAO.newProductList(map);
-	
 	}	
 
 	@Override
-	public List<Map<String, Object>> bestProductList (String searchValue, int priceValue1, int priceValue2) throws Exception{
+	public List<Map<String, Object>> bestProductList(
+			String searchValue, int priceValue1, int priceValue2, int START, int END) throws Exception{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		map.put("searchValue", searchValue);
 		map.put("priceValue1", priceValue1);
 		map.put("priceValue2", priceValue2);
+		map.put("START", START);
+		map.put("END", END);
 		
-		return productDAO.bestProductList(map);
-		
+		return productDAO.bestProductList(map);	
 	}
 
 	@Override
-	public List<Map<String, Object>> kindProductList (
-			ProductBean product, String searchValue, int priceValue1, int priceValue2, String SORT) throws Exception{
+	public List<Map<String, Object>> kindProductList(
+			ProductBean product, String searchValue, int priceValue1, int priceValue2, String SORT,
+			 int START, int END) throws Exception{
 	
 		Map<String,Object> map = new HashMap<String,Object>();
 	
@@ -84,10 +102,27 @@ public class ProductServiceImpl implements ProductService{
 		map.put("priceValue1", priceValue1);
 		map.put("priceValue2", priceValue2);
 		map.put("SORT", SORT);
-	
+		map.put("START", START);
+		map.put("END", END);
+		
 		return productDAO.kindProductList(map);
-	
 	}
+	
+	@Override
+	public int kindProductCount(ProductBean product,String searchValue, int priceValue1, int priceValue2) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("p_kind", product.getP_kind());
+		map.put("searchValue", searchValue);
+		map.put("priceValue1", priceValue1);
+		map.put("priceValue2", priceValue2);
+		
+		Map<String, Object> countMap = productDAO.kindProductCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;
+	}
+	
+	
 	
 	@Override
 	public Map<String, Object> productDetail(ProductBean product) throws Exception{
@@ -119,5 +154,36 @@ public class ProductServiceImpl implements ProductService{
 		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
 		return count;
 	}
+	
+	@Override
+	public void productZim(ProductBean product) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("p_code", product.getP_code());
+		
+		productDAO.productZim(map);
+	}
+	
+	@Override
+	public void zimDb(ProductBean product, String id) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("id", id);
+		map.put("p_code", product.getP_code());
+		map.put("p_name", product.getP_name());
+		
+		productDAO.zimDb(map);
+	}
+	
+	@Override
+	public Map<String, Object> zimCheck(ProductBean product, String id) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("id", id);
+		map.put("p_code", product.getP_code());
+		
+		return productDAO.zimCheck(map);
+	}
+	
 }
 	

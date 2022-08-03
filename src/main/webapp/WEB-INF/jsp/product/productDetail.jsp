@@ -107,8 +107,18 @@ function productZim() {
 		alert('로그인이 필요합니다!');
 		location.href='/IDMB/loginForm.do';
 	}
-	else{
+	else {
 		
+		if(confirm("상품을 찜하시겠습니까?") == true){
+			if(${empty zimCheck}){
+				var form = document.getElementById("insertZimForm");
+				form.submit();
+			}
+			else {
+				alert('이미 찜한 상품입니다.');
+				return false;
+			}
+		}	
 	}
 }
 
@@ -193,11 +203,15 @@ function insertReview() {
 	
 	<!-- 주문, 찜, 장바구니 버튼 -->
 	<button onclick="order()">주문하기</button>
-    	&nbsp;
-	<button onclick="productZim()">찜하기</button>
-    	&nbsp;
-    <br><br>
-	
+    
+    <form method="post" id="insertZimForm" action="insertZim.do">
+    	<input type="hidden" id="id" name="id" value="${id}">
+    	<input type="hidden" id="p_code" name="p_code" value="${ProductDetail.P_CODE }">
+    	<input type="hidden" id="p_name" name="p_name" value="${ProductDetail.P_NAME }">
+		<button type="button" onclick="productZim()">찜하기</button>
+    </form>
+   
+
     <form method="post" id="insertBasketForm" action="insertBasket.do">
         <input type="hidden" id="b_id" name="b_id" value="${id }"/>
         <input type="hidden" id="b_code" name="b_code" value="${ProductDetail.P_CODE }"/>

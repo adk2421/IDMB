@@ -146,11 +146,11 @@
 	
 	<!-- 전체 상품 수량 -->
 	<select id="adminProductCount" resultType="hashmap">
-	<![CDATA[
-		SELECT COUNT(*) COUNT
-		FROM 
-			PRODUCT
-	]]>
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM 
+				PRODUCT
+		]]>
 	</select>
 	
 	<!-- 검색 상품 수량 -->
