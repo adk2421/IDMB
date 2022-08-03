@@ -11,6 +11,51 @@
 
 </head>
 <body>
+<!-- 메인페이지 로고 -->
+<a href="/IDMB/">
+	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
+</a>
+<br><br>
+
+<!-- 상품 종류별로 이동 -->
+<table style="
+	width: 70%; height: 50px;
+	margin-left:15%;
+	margin-right:15%;
+	border:1px solid gray; text-align:center;">
+	<tbody>
+		<tr>
+			<td>
+				<a href="bestProductList.do"><b>BEST</b></a>
+			</td>
+			<td>
+				<a href="newProductList.do"><b>NEW</b></a>
+				
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=숄더백"><b>숄더백</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=크로스백"><b>크로스백</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=메신저백"><b>메신저백</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=클러치백"><b>클러치백</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=백팩"><b>백팩</b></a>
+			</td>
+			<td>
+				<a href="kindProductList.do?p_kind=미니백"><b>미니백</b></a>
+			</td>
+		</tr>
+	</tbody>	
+</table>
+
+<br>
+
 검색창
 <form action="searchProduct.do" method="get">
 검색어

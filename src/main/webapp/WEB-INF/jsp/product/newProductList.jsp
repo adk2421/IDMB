@@ -52,9 +52,18 @@ border-left: none;
 <title>신상품 목록</title>
 </head>
 <body>
+<!-- 메인페이지 로고 -->
+<div style="margin: auto; width:150px; height:180px;">
+	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
+</div>
+<br>
 
 <!-- 상품 종류별로 이동 -->
-<table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;">
+<table style="
+	width: 70%; height: 50px;
+	margin-left:15%;
+	margin-right:15%;
+	border:1px solid gray; text-align:center;">
 	<tbody>
 		<tr>
 			<td>
