@@ -181,18 +181,22 @@ public class ProductController {
 	// 신상품순 상품 리스트
 	@RequestMapping(value="/newProductList.do") // URL mapping
 	public String newProductList(HttpServletRequest request, Model model) throws Exception{		
-				
-		//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-				
-		// 검색어 입력받기	
-		String searchValue = null;
+		
+		/* 페이징을 위한 변수 */
+		int pageSize = 10; // 페이지당 출력할 상품의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
+		
+		int totalCount; // 전체 상품의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "newProductList.do";
+		String searchUrl = "";
+		
+		// 변수값 설정	
+		String searchValue = request.getParameter("searchValue");;
 		int priceValue1 = -1;
 		int priceValue2 = -1;
-				
-			
-		// 변수값 설정
-		searchValue = request.getParameter("searchValue");
 		if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
 			priceValue1 = 0;
 		} else {
@@ -203,14 +207,62 @@ public class ProductController {
 			priceValue2 = 99999999;
 		} else {
 			priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+		}				
+		
+		//검색조건 유무에 따른 searchUrl 설정
+		if(searchValue == null) {
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "";
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&searchValue=&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue=&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue=&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}	
+		} else { //searchValue != null
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&searchValue="+searchValue;
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
 		}
-						
-		list = productService.newProductList(searchValue, priceValue1, priceValue2);
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}
+		
+		//totalCount 개수 확인
+		totalCount = productService.searchProductCount(searchValue, priceValue1, priceValue2);
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+		
+		//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
+						
+		list = productService.newProductList(searchValue, priceValue1, priceValue2, START, END);
+		
 		model.addAttribute("searchValue",searchValue);
 		model.addAttribute("priceValue1",priceValue1);
 		model.addAttribute("priceValue2",priceValue2);
 		model.addAttribute("newList", list);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);
 				
 		//tiles.xml에서 defination name="newProductList.jsp" 로 보냄
 		return "newProductList";
@@ -219,14 +271,22 @@ public class ProductController {
 	// 인기순 상품 리스트
 	@RequestMapping(value="/bestProductList.do")
 	public String bestProductList(HttpServletRequest request, Model model)throws Exception{
-			
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-				
-		String searchValue = null;
+		
+		/* 페이징을 위한 변수 */
+		int pageSize = 10; // 페이지당 출력할 상품의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
+		
+		int totalCount; // 전체 상품의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "bestProductList.do";
+		String searchUrl = "";
+		
+		// 변수값 설정	
+		String searchValue = request.getParameter("searchValue");;
 		int priceValue1 = -1;
 		int priceValue2 = -1;
-				
-		searchValue = request.getParameter("searchValue");
 		if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
 			priceValue1 = 0;
 		} else {
@@ -237,54 +297,187 @@ public class ProductController {
 			priceValue2 = 99999999;
 		} else {
 			priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
+		}				
+		
+		//검색조건 유무에 따른 searchUrl 설정
+		if(searchValue == null) {
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "";
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&searchValue=&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue=&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue=&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}	
+		} else { //searchValue != null
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&searchValue="+searchValue;
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
 		}
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}
+		
+		//totalCount 개수 확인
+		totalCount = productService.searchProductCount(searchValue, priceValue1, priceValue2);
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+		
+		//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 				
-		list = productService.bestProductList(searchValue, priceValue1, priceValue2);
+		list = productService.bestProductList(searchValue, priceValue1, priceValue2, START, END);
 				
 		model.addAttribute("bestList", list);
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("priceValue1", priceValue1);
 		model.addAttribute("priceValue2", priceValue2);
-				
-		return "bestProductList";
-								
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);
+		
+		return "bestProductList";							
 	}
 
 	//상품별 리스트
 	@RequestMapping(value="/kindProductList.do")
 	public String kindProductList(ProductBean product, HttpServletRequest request, Model model)throws Exception{
-				
-		String p_kind = request.getParameter("p_kind");
+
+		/* 페이징을 위한 변수 */
+		int pageSize = 10; // 페이지당 출력할 상품의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
 		
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-				
+		int totalCount; // 전체 상품의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "kindProductList.do";
+		String searchUrl = "";
+		
+		// 검색어 입력받기	
 		String searchValue = null;
+		String SORT = null;
+		String p_kind = request.getParameter("p_kind");
+		searchValue = request.getParameter("searchValue");
+		SORT = request.getParameter("SORT");
 		int priceValue1 = -1;
 		int priceValue2 = -1;
-				
-		searchValue = request.getParameter("searchValue");
+		
 		if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
 			priceValue1 = 0;
 		} else {
 			priceValue1 = Integer.parseInt(request.getParameter("priceValue1"));
 		}
-			
+				
 		if(request.getParameter("priceValue2") == null || request.getParameter("priceValue2").trim()=="") {
 			priceValue2 = 99999999;
 		} else {
 			priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
 		}
-				
-		list = productService.kindProductList(product, searchValue, priceValue1, priceValue2, searchValue);
+		
+		//검색조건 유무에 따른 searchUrl 설정
+		if(searchValue == null) {
+			if(SORT == null) {
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&p_kind="+p_kind+"&searchValue=";
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue=&SORT=&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue=&SORT=&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue=&SORT=&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
+			} else { //SORT != null
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&p_kind="+p_kind+"&searchValue=&SORT="+SORT+"&priceValue1=&priceValue2=";
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue=&SORT="+SORT+"&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue=&SORT="+SORT+"&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue=&SORT="+SORT+"&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
+			}	
+		} else { //searchValue != null
+			if(SORT == null) {
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&p_kind="+p_kind+"&searchValue="+searchValue;
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue="+searchValue+"&SORT=&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue="+searchValue+"&SORT=&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue="+searchValue+"&SORT=&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
+			} else { //SORT != null
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&p_kind="+p_kind+"&searchValue="+searchValue+"&SORT="+SORT+"&priceValue1=&priceValue2=";
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue="+searchValue+"&SORT="+SORT+"&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue="+searchValue+"&SORT="+SORT+"&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&p_kind="+p_kind+"&searchValue="+searchValue+"&SORT="+SORT+"&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
+			}
+		}
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}
+		
+		//totalCount 개수 확인
+		product.setP_kind(p_kind);
+		totalCount = productService.kindProductCount(product, searchValue, priceValue1, priceValue2);
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+		
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+					
+		list = productService.kindProductList(product, searchValue, priceValue1, priceValue2, SORT, START, END);
 
 		model.addAttribute("p_kind", p_kind);
 		model.addAttribute("kindList", list);
 		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("priceValue1", priceValue1);
 		model.addAttribute("priceValue2", priceValue2);
-				
-		return "kindProductList";
-				
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);
+		
+		return "kindProductList";				
 	}
 
 	// 상품 디테일

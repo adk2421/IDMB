@@ -41,7 +41,7 @@
 	<tfoot>
 		<c:if test="${searchList.size() == 0}">
 			<br>
-			상품이 없습니다.
+			검색된 상품이 없습니다.
 		</c:if>
 	</tfoot>
 	

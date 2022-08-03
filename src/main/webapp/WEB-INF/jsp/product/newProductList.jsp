@@ -88,15 +88,7 @@ border-left: none;
 
 <br>
 
-<form action="newProductList.do" method="get">
-	<select name="SORT" id="SORT">
-		<option value="" <c:if test="${SORT == null}">selected</c:if>>전 체</option>
-		<option value="newproduct" <c:if test="${SORT =='newproduct'}">selected</c:if>>최 신 순</option>
-		<option value="bestproduct" <c:if test="${SORT =='bestproduct'}">selected</c:if>>인 기 순</option>
-		<option value="highproduct" <c:if test="${SORT == 'highproduct'}">selected</c:if>>높은 가격순</option>
-		<option value="lowproduct" <c:if test="${SORT =='lowproduct'}">selected</c:if>>낮은 가격순</option>	
-	</select>
-	
+<form action="newProductList.do" method="get">	
 	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	
 	<br>
@@ -114,8 +106,14 @@ border-left: none;
 신상품!
 
 <table>
-<tbody>
-	<c:forEach var="product" items="${newList}" begin="0" end ="4">
+	<tfoot>
+		<c:if test="${newList.size() == 0}">
+			<br>
+			 검색된 상품이 없습니다.
+		</c:if>
+	</tfoot>
+	<tbody>
+		<c:forEach var="product" items="${newList}" begin="0" end ="4">
 			<td width="200" height="200">
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
@@ -125,19 +123,20 @@ border-left: none;
 		
 
 			</td>
-	</c:forEach>
-	<tr></tr>
-	<c:forEach var="product" items="${newList}" begin="5" end ="9">
+		</c:forEach>
+		
+		<tr></tr>
+		
+		<c:forEach var="product" items="${newList}" begin="5" end ="9">
 			<td width="200" height="200">
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
 				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
-				</c:forEach>
-
-	
+		</c:forEach>
 	</tbody>
 </table>
+${paging.pageHtml}
 </body>
 </html>

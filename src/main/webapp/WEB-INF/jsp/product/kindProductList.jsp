@@ -91,6 +91,7 @@ border-left: none;
 <br>
 
 <form action="kindProductList.do" method="get">
+	<input type="hidden" name="p_kind" id="p_kind" value="${p_kind}">
 	<select name="SORT" id="SORT">
 		<option value="" <c:if test="${SORT == null}">selected</c:if>>전 체</option>
 		<option value="newproduct" <c:if test="${SORT =='newproduct'}">selected</c:if>>최 신 순</option>
@@ -113,36 +114,39 @@ border-left: none;
 
 <br><br>
 
-${p_kind}
+${p_kind}!
 
 <table>
-<tbody>
-
-	<c:forEach var="product" items="${kindList}" begin="0" end ="4">
+	<tfoot>
+		<c:if test="${kindList.size() == 0}">
+			<br>
+			 검색된 상품이 없습니다.
+		</c:if>
+	</tfoot>
+	<tbody>
+		<c:forEach var="product" items="${kindList}" begin="0" end ="4">
 			<td width="200" height="200">
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
 				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+			</td>
+		</c:forEach>
 		
-
-			</td>
-	</c:forEach>
-	<tr></tr>
+		<tr></tr>
 	
-	<c:forEach var="product" items="${kindList}" begin="5" end ="9">
+		<c:forEach var="product" items="${kindList}" begin="5" end ="9">
 			<td width="200" height="200">
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
 				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
-			
-
 			</td>
-	</c:forEach>
+		</c:forEach>
 	</tbody>
 </table>
+${paging.pageHtml}
 </body>
 </html>

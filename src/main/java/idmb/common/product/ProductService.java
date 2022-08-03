@@ -16,12 +16,16 @@ public interface ProductService {
 	
 	public int searchProductCount(String searchValue, int priceValue1, int priceValue2) throws Exception;
 	
-	public List<Map<String, Object>> newProductList(String searchValue, int priceValue1, int priceValue2) throws Exception;
+	public List<Map<String, Object>> newProductList(
+			String searchValue, int priceValue1, int priceValue2, int START, int END) throws Exception;
 	
-	public List<Map<String, Object>> bestProductList (String searchValue, int priceValue1, int priceValue2) throws Exception;
+	public List<Map<String, Object>> bestProductList (
+			String searchValue, int priceValue1, int priceValue2, int START, int END) throws Exception;
 	
 	public List<Map<String, Object>> kindProductList (
-			ProductBean product, String searchValue, int priceValue1, int priceValue2 ,String SORT) throws Exception;
+			ProductBean product, String searchValue, int priceValue1, int priceValue2 ,String SORT, int START, int END) throws Exception;
+	
+	public int kindProductCount(ProductBean product, String searchValue, int priceValue1, int priceValue2) throws Exception;
 	
 	public Map<String, Object> productDetail(ProductBean product) throws Exception;
 	
