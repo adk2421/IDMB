@@ -494,9 +494,14 @@ public class ProductController {
 		//해당 상품을 id가 주문했는지 확인용
 		String id = (String) request.getSession().getAttribute("id");
 		if(id == null) {id="";}
-		Map<String, Object> idmap = new HashMap<String, Object>();
-		idmap = orderService.orderCheck(product, id);
-	
+		
+		Map<String, Object> idMap = new HashMap<String, Object>();
+		idMap = orderService.orderCheck(product, id);
+		
+		//해당 상품을 id가 찜했는지 확인
+		Map<String, Object> zimMap = new HashMap<String, Object>();
+		zimMap = productService.zimCheck(product, id);
+
 		/* 페이징을 위한 변수 */
 		int pageSize = 5; // 페이지당 출력할 후기의 수
 		int START = 1;
@@ -527,7 +532,8 @@ public class ProductController {
 		list = productService.productReviewList(product, START, END);
 		
 		model.addAttribute("ProductDetail", map);
-		model.addAttribute("orderIdCheck", idmap);
+		model.addAttribute("orderIdCheck", idMap);
+		model.addAttribute("zimCheck", zimMap);
 		model.addAttribute("p_count", p_count);
 		model.addAttribute("productReviewList", list);
 		model.addAttribute("currentPage", currentPage);
@@ -536,11 +542,10 @@ public class ProductController {
 				
 		return "productDetail";
 	
-	}
-			
+	}			
 			
 	@RequestMapping(value="/insertBasket.do")
-	public String inputBasket(BasketBean basket, HttpServletRequest request, Model model ) throws Exception{
+	public String insertBasket(BasketBean basket, HttpServletRequest request, Model model ) throws Exception{
 				
 		basketService.insertBasket(basket);
 		
@@ -551,5 +556,22 @@ public class ProductController {
 		model.addAttribute("url", old_url);
 			
 		return "/product/insertBasket";
+	}
+	
+	@RequestMapping(value="/insertZim.do")
+	public String insertZim(ProductBean product, HttpServletRequest request, Model model) throws Exception{
+				
+		String id = (String) request.getSession().getAttribute("id");
+		
+		productService.zimDb(product, id);
+		productService.productZim(product);
+		
+		//이전페이지로 돌아가기
+		String old_url = request.getHeader("REFERER");
+		
+		model.addAttribute("msg", "상품을 찜했습니다.");
+		model.addAttribute("url", old_url);
+			
+		return "/product/insertZim";
 	}
 }

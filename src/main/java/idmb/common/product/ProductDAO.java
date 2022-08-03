@@ -69,4 +69,19 @@ public class ProductDAO {
 	public Map<String, Object> productReviewCount(Map<String, Object> map) throws Exception{
 		return sqlSessionTemplate.selectOne("product.productReviewCount",map);
 	}
+	
+	//상품 찜하기
+	public void productZim(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.update("product.productZim",map);
+	}
+	
+	//zim DB추가
+	public void zimDb(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.insert("product.zimDb",map);
+	}
+	
+	//찜하기 확인
+	public Map<String, Object> zimCheck(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("product.zimCheck",map);
+	}
 }

@@ -358,4 +358,39 @@
 				AND R_RELEVEL = '0'
 		]]>
 	</select>
+	
+	<!-- 상품 찜하기 -->
+	<update id="productZim" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PRODUCT SET P_ZIM = P_ZIM + 1
+			WHERE P_CODE = #{p_code}
+		]]>
+	</update>
+	
+	<!-- 찜하기 DB 삽입-->
+	<insert id="zimDb" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO ZIM
+			VALUES(
+				#{id},
+				#{p_code},
+				#{p_name}
+				)
+		]]>
+	</insert>
+	
+	<!-- 찜하기 확인 -->
+	<select id="zimCheck" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				Z_ID
+			FROM
+				ZIM
+			WHERE Z_CODE = #{p_code}
+				AND Z_ID = #{id}
+		]]>
+	</select>
+	
+	
 </mapper>

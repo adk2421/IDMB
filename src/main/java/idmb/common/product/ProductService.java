@@ -32,4 +32,11 @@ public interface ProductService {
 	public List<Map<String, Object>> productReviewList(ProductBean product, int START, int END) throws Exception;
 	
 	public int productReviewCount(ProductBean product) throws Exception;
+	
+	public void productZim(ProductBean product) throws Exception;
+	
+	public void zimDb(ProductBean product, String id) throws Exception;
+	
+	public Map<String, Object> zimCheck(ProductBean product, String id) throws Exception;
+	
 }

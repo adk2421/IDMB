@@ -154,5 +154,36 @@ public class ProductServiceImpl implements ProductService{
 		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
 		return count;
 	}
+	
+	@Override
+	public void productZim(ProductBean product) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("p_code", product.getP_code());
+		
+		productDAO.productZim(map);
+	}
+	
+	@Override
+	public void zimDb(ProductBean product, String id) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("id", id);
+		map.put("p_code", product.getP_code());
+		map.put("p_name", product.getP_name());
+		
+		productDAO.zimDb(map);
+	}
+	
+	@Override
+	public Map<String, Object> zimCheck(ProductBean product, String id) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("id", id);
+		map.put("p_code", product.getP_code());
+		
+		return productDAO.zimCheck(map);
+	}
+	
 }
 	

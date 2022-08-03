@@ -1,7 +1,6 @@
 package idmb.common.board.review;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.common.product.ProductService;
-import idmb.model.ProductBean;
 import idmb.model.ReviewBean;
 
 @Controller
