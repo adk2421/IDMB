@@ -16,6 +16,7 @@ import idmb.common.basket.BasketService;
 import idmb.common.order.OrderService;
 import idmb.model.BasketBean;
 import idmb.model.ProductBean;
+import idmb.util.Paging;
 import idmb.util.ReviewPaging;
 
 @Controller
@@ -55,21 +56,25 @@ public class ProductController {
 	@RequestMapping(value="/searchProduct.do") // URL mapping
 	public String searchProduct(HttpServletRequest request, Model model) throws Exception{		
 		
-		//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		/* 페이징을 위한 변수 */
+		int pageSize = 10; // 페이지당 출력할 상품의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
+		
+		int totalCount; // 전체 상품의 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		String url = "searchProduct.do";
+		String searchUrl = "";
 		
 		// 검색어 입력받기	
 		String searchValue = null;
 		String SORT = null;
-		
+		searchValue = request.getParameter("searchValue");
+		SORT = request.getParameter("SORT");
 		int priceValue1 = -1;
 		int priceValue2 = -1;
 		
-		
-		// 변수값 설정
-		searchValue = request.getParameter("searchValue");
-		SORT = request.getParameter("SORT");
-				
 		if(request.getParameter("priceValue1") == null || request.getParameter("priceValue1").trim()=="") {
 			priceValue1 = 0;
 		} else {
@@ -81,14 +86,93 @@ public class ProductController {
 		} else {
 			priceValue2 = Integer.parseInt(request.getParameter("priceValue2"));
 		}
+		
+		
+		//검색조건 유무에 따른 searchUrl 설정
+		if(searchValue == null) {
+			if(SORT == null) {
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&searchValue=";
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&searchValue=&SORT=&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue=&SORT=&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue=&SORT=&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
+			} else { //SORT != null
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&searchValue=&SORT="+SORT+"&priceValue1=&priceValue2=";
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&searchValue=&SORT="+SORT+"&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue=&SORT="+SORT+"&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue=&SORT="+SORT+"&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
+			}	
+		} else { //searchValue != null
+			if(SORT == null) {
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&searchValue="+searchValue;
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&SORT=&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&SORT=&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&SORT=&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
+			} else { //SORT != null
+				if(priceValue1 == 0 && priceValue2 == 99999999)  {
+					searchUrl = "&searchValue="+searchValue+"&SORT="+SORT+"&priceValue1=&priceValue2=";
+				}
+				else if(priceValue1 != 0 && priceValue2 == 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&SORT="+SORT+"&priceValue1="+priceValue1+"&priceValue2=";
+				}
+				else if(priceValue1 == 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&SORT="+SORT+"&priceValue1=&priceValue2="+priceValue2;
+				}
+				else if(priceValue1 != 0 && priceValue2 != 99999999) {
+					searchUrl = "&searchValue="+searchValue+"&SORT="+SORT+"&priceValue1="+priceValue1+"&priceValue2="+priceValue2;
+				}
+			}
+		}
+		
+		//기본 페이지가 아닌 경우
+		if(request.getParameter("page")!=null) {
+			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			END = pageSize * currentPage;
+		}
+		
+		//totalCount 개수 확인
+		totalCount = productService.searchProductCount(searchValue, priceValue1, priceValue2);
+		
+		//페이징
+		Paging paging = new Paging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
 				
-		list = productService.searchProduct(searchValue, priceValue1, priceValue2, SORT);
+		
+		//Product들의 리스트가 필요하므로 ArrayList형의 'list' 생성
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+				
+		list = productService.searchProduct(searchValue, priceValue1, priceValue2, SORT, START, END);
 	
 		model.addAttribute("searchValue",searchValue);
 		model.addAttribute("priceValue1",priceValue1);
 		model.addAttribute("priceValue2",priceValue2);
 		model.addAttribute("SORT", SORT);
 		model.addAttribute("searchList", list);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("paging",paging);
 		
 		//tiles.xml에서 defination name="searchProduct.jsp" 로 보냄
 		return "searchProduct";

@@ -12,7 +12,9 @@ public interface ProductService {
 	public List<Map<String, Object>> mainNewList() throws Exception;
 	
 	public List<Map<String, Object>> searchProduct(
-			String searchValue, int priceValue1, int priceValue2, String SORT) throws Exception;
+			String searchValue, int priceValue1, int priceValue2, String SORT, int START, int END) throws Exception;
+	
+	public int searchProductCount(String searchValue, int priceValue1, int priceValue2) throws Exception;
 	
 	public List<Map<String, Object>> newProductList(String searchValue, int priceValue1, int priceValue2) throws Exception;
 	

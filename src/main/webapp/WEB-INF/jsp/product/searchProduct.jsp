@@ -78,7 +78,7 @@
 	
 	</tbody>
 	</table>
-
+	${paging.pageHtml}
 
 </body>
 </html>

@@ -51,15 +51,13 @@ border-left: none;
 
 </head>
 <body>
-			
-<!-- 검색창 -->
-<form action="searchProduct.do" method="get">
-	
-	<input type=text name="searchValue" id="searchValue" placeholder="검색어....." >
-	
-	<button type="submit">검색</button>
-</form>
+
+<!-- 메인페이지 로고 -->
+<a href="/IDMB/">
+	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
+</a>
 <br><br>
+
 
 <!-- 상품 종류별로 이동 -->
 <table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;

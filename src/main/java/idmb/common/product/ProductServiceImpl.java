@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService{
 		
 	@Override
 	public List<Map<String, Object>> searchProduct(
-			String searchValue, int priceValue1, int priceValue2, String SORT) 
+			String searchValue, int priceValue1, int priceValue2, String SORT, int START, int END) 
 			throws Exception{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -41,9 +41,23 @@ public class ProductServiceImpl implements ProductService{
 		map.put("priceValue1", priceValue1);
 		map.put("priceValue2", priceValue2);
 		map.put("SORT", SORT);
+		map.put("START", START);
+		map.put("END", END);
 		
 		return productDAO.searchProduct(map);
+	}
+	
+	@Override
+	public int searchProductCount(String searchValue, int priceValue1, int priceValue2) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
 		
+		map.put("searchValue", searchValue);
+		map.put("priceValue1", priceValue1);
+		map.put("priceValue2", priceValue2);
+		
+		Map<String, Object> countMap = productDAO.searchProductCount(map);
+		int count = Integer.parseInt(String.valueOf(countMap.get("COUNT")));
+		return count;
 	}
 
 	@Override
