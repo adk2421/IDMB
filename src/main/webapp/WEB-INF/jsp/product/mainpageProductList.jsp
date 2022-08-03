@@ -58,11 +58,15 @@ border-left: none;
 <br>
 
 <!-- 상품 종류별로 이동 -->
+
+<table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;
+"> 
 <table style="
 	width: 70%; height: 50px;
 	margin-left:15%;
 	margin-right:15%;
 	border:1px solid gray; text-align:center;">
+
 	<tbody>
 		<tr>
 			<td>

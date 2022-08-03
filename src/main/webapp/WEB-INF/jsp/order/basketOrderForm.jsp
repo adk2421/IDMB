@@ -103,6 +103,8 @@ function orderCheck() {
 </script>
 
 </head>
+<body>
+<div class="container">
 <div style="text-align:center">
 		<p>
 		<h1> 주문 페이지 </h1>
@@ -143,7 +145,7 @@ function orderCheck() {
 		
 		<div class="order_info" >
 		<!-- 주문자 정보 -->
-		<h2>주문자 정보</h2>
+		<h2><b>주문자 정보</b></h2>
 		
 		<!-- 이름 -->
 		<h6>이 름 :
@@ -205,14 +207,18 @@ function orderCheck() {
 		<br><br>	
 		<h2> 결 제 정 보 </h2>
 		<h6>무 통 장 입 금</h6>
-		<input type="text" value="우리은행 1234-56-7890" readonly>
-				
-		<!-- 버튼 -->
-		<button type="button" onclick="orderCheck()">주문하기</button>
-		
-		<br><br>
 		</div>
 		
+		<div class="orderbtn">	
+		<input type="text" value="우리은행 1234-56-7890">
+			
+		<!-- 버튼 -->
+		<button type="button" onclick="orderCheck()">주문하기</button>
+		</div>
+		<br><br>
+		
+		
 	</form>	
+</div>
 </body>
 </html>

@@ -59,17 +59,17 @@ function insertQna() {
 		<tbody>
 			<tr>
 				<td>
-					<img src="img/${q_category}QNA.png" width="75" border="0" id="imageQNA">
+					<img src="img/${q_category}QNA.png" width="105" border="0" id="imageQNA">
 				</td>
-				<td>
+				<td style= "margin:auto;">
 					<select class="form-select" aria-label="Default select example" id="SORT" name="SORT">
 						<option value="title" <c:if test="${SORT =='title'}">selected</c:if>>제  목</option>
 						<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>작 성 자</option>
 						<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 					</select>
-					<br>
-					<input type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
-					<button class="search" type="submit">검색</button>
+					<p></p>
+					<input class="insearch" type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
+					<button class="search" type="submit"><b>검색</b></button>
 				</td>
 			</tr>
 			<tr>
@@ -80,8 +80,8 @@ function insertQna() {
 					<c:if test="${q_category == 'exchange'}"><b>교환/반품 문의</b></c:if>
 				</td>
 				<td>
-					<button class="wait" type="submit" name="qst" id="qst" value="답변대기">답변 대기</button>
-					<button class="end" type="submit" name="qst" id="qst" value="답변완료">답변 완료</button>
+					<button class="wait" type="submit" name="qst" id="qst" value="답변대기"><b>답변 대기</b></button>
+					<button class="end" type="submit" name="qst" id="qst" value="답변완료"><b>답변 완료</b></button>
 				</td>
 			</tr>
 		</tbody>
@@ -92,12 +92,12 @@ function insertQna() {
 	<table class="qnatable">
 		<thead>
 			<tr>
-				<th>글번호</th>
-				<th>상품명</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>상태</th>
+				<th>&nbsp;&nbsp;글번호</th>
+				<th>&nbsp;&nbsp;상품명</th>
+				<th class="title">제목</th>
+				<th>&nbsp;&nbsp;작성자</th>
+				<th>&nbsp;&nbsp;작성일</th>
+				<th>&nbsp;&nbsp;상태&nbsp;&nbsp;</th>
 			</tr>
 		</thead>
 		
@@ -139,7 +139,7 @@ function insertQna() {
 	${paging.pageHtml}
 	<br><br>
 	
-<button class="qnabtn" type="button" onclick="insertQna()">문 의 하 기</button>
+<button class="qnabtn" type="button" onclick="insertQna()"><b>문 의 하 기</b></button>
 </div>
 </body>
 </html>
