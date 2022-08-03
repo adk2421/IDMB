@@ -140,5 +140,12 @@
 		]]>
 	</select>
 	
+	<update id="recommendUp" parameterType="hashmap">
+		<![CDATA[
+			UPDATE REVIEW SET R_RECOMMEND = R_RECOMMEND + 1
+			WHERE R_NUM = #{r_num}
+		]]>
+	</update>
+	
 
 </mapper>

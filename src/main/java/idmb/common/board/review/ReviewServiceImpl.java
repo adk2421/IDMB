@@ -65,6 +65,13 @@ public class ReviewServiceImpl implements ReviewService {
 
     	return reviewDAO.reviewDetail(map);
     }
-
-
+    
+    @Override
+    public void recommendUp(ReviewBean review) throws Exception{
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	
+    	map.put("r_num", review.getR_num());
+    	
+    	reviewDAO.recommendUp(map);
+    }
 }

@@ -69,4 +69,18 @@ public class Reviewcontroller {
 		
 		return "board/review/reviewDetail";
 	}
+	
+	@RequestMapping(value="/recommendUp.do")
+	public String recommendUp(ReviewBean review, HttpServletRequest request, Model model) throws Exception {
+		
+		reviewService.recommendUp(review);
+		
+		//이전페이지로 돌아가기
+		String old_url = request.getHeader("REFERER");
+		
+		model.addAttribute("msg", "추천했습니다.");
+		model.addAttribute("url", old_url);
+			
+		return "board/review/recommendUp";
+	}
 }

@@ -250,7 +250,12 @@ function insertReview() {
 			</tr>
 			<tr>
 				<td><b>내용</b></td>
-				<td colspan="7" style="width:500px;">${pReview.R_CONTENTS}</td>	
+				<td colspan="6" style="width:450px;">${pReview.R_CONTENTS}</td>	
+				<td>
+				<c:if test="${!empty id}">
+					<button type="button" onclick="location.href='recommendUp.do?r_num=${pReview.R_NUM}'">추천</button>
+				</c:if>
+				</td>
 			</tr>
 		</tbody>
 	</table>

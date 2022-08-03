@@ -37,4 +37,8 @@ public class ReviewDAO {
 	public List<Map<String, Object>> reviewDetail (Map<String, Object> map) throws Exception {
 		return sqlSessionTemplate.selectList("reviewDetail", map);
 	}
+	
+	public void recommendUp(Map<String, Object> map) throws Exception{
+		sqlSessionTemplate.update("review.recommendUp", map);
+	}
 }
