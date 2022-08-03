@@ -30,6 +30,11 @@ public class ProductDAO {
 		return sqlSessionTemplate.selectList("product.searchProduct", map);
 	}
 	
+	//상품 검색 수량
+	public Map<String, Object> searchProductCount(Map<String,Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("product.searchProductCount", map);
+	}
+	
 	// 신상품순 상품리스트
 	public List<Map<String, Object>> newProductList(Map<String,Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("product.newProductList", map);

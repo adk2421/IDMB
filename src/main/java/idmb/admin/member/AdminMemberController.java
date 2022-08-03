@@ -43,7 +43,7 @@ public class AdminMemberController {
 		String SORT = request.getParameter("SORT");
 		String searchValue = request.getParameter("searchValue");
 		
-		//검색조건이 유무에 따른 searchUrl 설정
+		//검색조건 유무에 따른 searchUrl 설정
 		if(SORT != null) {
 			if(searchValue != null) {
 				searchUrl = "&SORT="+SORT+"&searchValue="+searchValue;
