@@ -2,12 +2,14 @@
 
 /*폰트*/
 @font-face {
-    font-family: 'GangwonEdu_OTFBoldA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-family: 'LeferiPoint-WhiteObliqueA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-
+*{
+	 font-family: 'LeferiPoint-WhiteObliqueA';
+}
 /*가운데정렬*/
 table{
 	text-align:center;
@@ -15,19 +17,16 @@ table{
 
 /*장바구니 확인*/
 h2 {
-	font-family: 'GangwonEdu_OTFBoldA';
 	font-size:64px
 }
 
 /**/
 th,td{
-	font-family: 'GangwonEdu_OTFBoldA';
 	font-size:20px
 }
 
 /*주문 금액 배송비 총금액 */
 span{
-	font-family: 'GangwonEdu_OTFBoldA';
 	font-size:35px;
 	text-align:left;
 }
@@ -44,7 +43,6 @@ span{
 
 /*수정 버튼*/
 .update{
-	font-family: 'GangwonEdu_OTFBoldA';
 	font-size:20px;
 	background-color:#b4b4b4;
 	color: white;
@@ -60,7 +58,6 @@ span{
 }
 /*삭제 버튼*/
 .delete{
-	font-family: 'GangwonEdu_OTFBoldA';
 	font-size:20px;
 	background-color: #F40D0D;
 	color: white;
@@ -75,7 +72,7 @@ span{
 
 
 /*단일상품주문버튼*/
-.order{font-family: 'GangwonEdu_OTFBoldA';
+.order{
 	font-size:20px;
 	background-color: #FFD228;
 	color: black;
@@ -90,7 +87,7 @@ span{
 }
 
 /*전체상품주문버튼*/
-.allorder{font-family: 'GangwonEdu_OTFBoldA';
+.allorder{
 	font-size:20px;
 	background-color: #F40D0D;
 	color: white;
@@ -106,7 +103,7 @@ span{
 }
 
 /*계속쇼핑하기버튼*/
-.back{font-family: 'GangwonEdu_OTFBoldA';
+.back{
 	font-size:20px;
 	background-color: #b4b4b4;
 	color: white;

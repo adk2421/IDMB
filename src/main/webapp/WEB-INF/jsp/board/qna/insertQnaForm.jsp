@@ -8,6 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>일단메봐</title>
+<!-- Bootstrap CSS CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+		rel="stylesheet" 
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+		crossorigin="anonymous">
+	<!-- Bootstrap JS CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+		crossorigin="anonymous"></script>
+
+	<!-- css연결 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/insertqnaform.css?v=<%=System.currentTimeMillis()%>">
+
 <script>
 function insertCheck() {
 	
@@ -37,33 +50,36 @@ function insertCheck() {
 </script>
 </head>
 <body>
-
+	<br>
+	
+<div class="container">
+	
 	<img src="img/insertQNA.jpg" width="75" border="0" id="qnaimage">
-		<font size="25">문의 하기</font>
+		<font size="25"><b>문의 하기</b></font>
 	
 <form method="post" id="qnaInsertForm" action="insertQna.do">	
-	<table>
-		<tbody>
+	<table style="width:900px;">
+		<tbody style= "margin:auto;">
 			<tr>
 				<td><b>제목</b></td>
-				<td><input type="text" name="q_title" id="q_title" value="상품 문의 합니다."></td>
+				<td style="float:left; padding-left:15px;"><input style="width:300px;" type="text" name="q_title" id="q_title" value="상품 문의 합니다."></td>
 				<td><b>작성자</b></td>		
-				<td><input type="text" size="8" value="${id}" readonly>
+				<td style="float:left; width: 100px;"><input style="width: 100px;"type="text" size="8" value="${id}" readonly>
 					<input type="hidden" name="q_id" id="q_id" value="${id}">
 				</td>
-				<td><b>작성일</b></td>
-				<td>
+				
+				<td style="width: 100px; "><b>작성일</b></td>
+				<td style="float:left;">
 					<c:set var="ymd" value="<%=new java.util.Date()%>" />
 					<input type="text" size="8"
-						value="<fmt:formatDate value="${ymd}" pattern="yyyy.MM.dd"/>" readonly>
+						value="<fmt:formatDate value="${ymd}" pattern="yyyy.MM.dd"/>" readonly style="width: 100px; ">
 				</td>
-				
-				
 			</tr>
+			
 			<tr>
 				<td><b>문의 종류</b></td>
-				<td>
-					<select name="q_category" id="q_category">
+				<td style="padding-left:18px; height: 20px">
+					<select class="form-select" name="q_category" id="q_category">
 						<option value="product">상품 문의</option>
 						<option value="preship">배송 전 문의</option>
 						<option value="aftership">배송 후 문의</option>
@@ -72,29 +88,31 @@ function insertCheck() {
 				</td>
 			
 				<td><b>상품명</b></td>
-				<td colspan="3">
-					<input type="text" size="10" name="q_product" id="q_product">
+				<td style="float:left;" colspan="3">
+					<input type="text" size="10" name="q_product" id="q_product" style="width: 100px; ">
 					<input type="hidden" name="q_code" id="q_code" value="2">
 				</td>
 			</tr>
-			<tr>
+			
+			<tr style="padding: 20px 20px 20px 20px;">
 				<td><b>문의 내용</b></td>
 				<td colspan="5">
 					<textarea id="q_contents" name="q_contents"
-						style="width:400px; height:150px; text-align:left;"
+						style="margin:auto; width:800px; height: 200px; text-align:left;"
 						maxlength="500"></textarea>
 				</td>
 			</tr>
+			
 			<tr>
 				<td><b>답변 내용</b></td>
 				<td colspan="5">
-					<div style="border:1px solid black; width:400px; height:150px;">
+					<div style="margin:auto; border:1px solid black; width:800px; height:200px; text-align:left;">
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td><b>비밀번호</b></td>
-				<td colspan="5">
+				<td><b>비밀번호&nbsp;</b></td>
+				<td style="float:left; padding-left:15px" colspan="5">
 					<input type="password" name="q_contentspw" id="q_contentspw" size="8">
 				</td>
 			</tr>
@@ -105,10 +123,11 @@ function insertCheck() {
 	<br><br>
 	
 	
-	<button type="button" onclick="insertCheck()">문 의 작 성</button>
+	<button class="insert" type="button" onclick="insertCheck()">문 의 작 성</button>
 		&emsp;&emsp;
-	<button type="button" onclick="location.href='qnaMain.do'">돌 아 가 기</button>
+	<button class="back" type="button" onclick="location.href='qnaMain.do'">돌 아 가 기</button>
 
 </form>
+</div>
 </body>
 </html>

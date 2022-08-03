@@ -65,7 +65,7 @@
         			<div class="size">
         			<c:forEach var="faq" items="${faqList}">
 
-               	 	Q. ${faq.F_TITLE}
+               	 	<b>Q. ${faq.F_TITLE}</b>
                	 	</c:forEach>
                 	</div>
 
@@ -74,7 +74,7 @@
               <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
       			<div class="accordion-body">
                     <c:forEach var="faq" items="${faqList}">
-                        A. ${faq.F_CONTENTS}
+                       <b> A. ${faq.F_CONTENTS}</b>
 
                     </c:forEach>
                 </div>

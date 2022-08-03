@@ -63,7 +63,7 @@ border-left: none;
 
 <!-- 상품 종류별로 이동 -->
 <table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;
-	">
+	"> 
 	<tbody>
 		<tr>
 			<td>
