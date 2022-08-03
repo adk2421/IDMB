@@ -51,17 +51,22 @@ border-left: none;
 
 </head>
 <body>
-
 <!-- 메인페이지 로고 -->
-<a href="/IDMB/">
-	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
-</a>
-<br><br>
-
+<div style="margin: auto; width:150px; height:180px;">
+	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
+</div>
+<br>
 
 <!-- 상품 종류별로 이동 -->
+
 <table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;
-	">
+"> 
+<table style="
+	width: 70%; height: 50px;
+	margin-left:15%;
+	margin-right:15%;
+	border:1px solid gray; text-align:center;">
+
 	<tbody>
 		<tr>
 			<td>
@@ -107,7 +112,11 @@ border-left: none;
 <b>[BEST 3]</b>
 <br><br>
 
-<table>
+<table style="
+	width: 70%;
+	margin-left:15%;
+	margin-right:15%;
+	text-align:center;">
 	<tbody>
 		<c:forEach var="bestProduct" items="${productBestList}">
 		<td width="300">

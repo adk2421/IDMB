@@ -81,10 +81,7 @@
 			</trim>
 			
 			<trim prefix="ORDER BY">
-				<if test="SORT == NULL">
-				P_CODE DESC
-				</if>
-				<if test="SORT == ''">
+				<if test="SORT == NULL || SORT == ''">
 				P_CODE DESC
 				</if>
 				<if test="SORT == 'newproduct'">
@@ -106,7 +103,7 @@
 			where R between #{START} AND #{END}	
 	</select>
 	
-	
+	<!-- 검색 상품 수량 -->
 	<select id="searchProductCount" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT COUNT(*) COUNT
@@ -143,12 +140,15 @@
 	<!-- 신상품순 상품 리스트 -->
 	<select id="newProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT
-				*
-			FROM
-				PRODUCT
-			WHERE
-				P_DELFLAG = 'N'
+			SELECT * FROM(
+				SELECT P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+					FROM(
+						SELECT
+							*
+						FROM
+							PRODUCT
+						WHERE
+							P_DELFLAG = 'N'
 		]]>
 		<trim prefix="AND">
 			<if test="searchValue != NULL">
@@ -173,21 +173,25 @@
 				</if>
 			</if>	
 		</trim>
-
-		<trim prefix="ORDER BY">
-		P_DATE DESC	
-		</trim>
+						ORDER BY P_DATE DESC
+						)
+					ORDER BY R
+					)
+				where R between #{START} AND #{END}
 	</select>
 	
 	<!-- 인기순 상품 리스트 -->
 	<select id="bestProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT
-				*
-			FROM
-				PRODUCT
-			WHERE
-				P_DELFLAG = 'N'
+			SELECT * FROM(
+				SELECT P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+					FROM(
+						SELECT
+							*
+						FROM
+							PRODUCT
+						WHERE
+							P_DELFLAG = 'N'
 		]]>
 		<trim prefix="AND">
 			<if test="searchValue != NULL">
@@ -210,23 +214,26 @@
 				</if>
 			</if>
 		</trim>
-		
-		<trim prefix="ORDER BY">
-		P_ZIM DESC	
-		</trim>
-		
+						ORDER BY P_ZIM DESC
+						)
+					ORDER BY R
+					)
+				where R between #{START} AND #{END}		
 	</select>
 	
 	<!-- 종류별 상품 리스트 -->
 	<select id="kindProductList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT
-				*
-			FROM
-				PRODUCT
-			WHERE
-				P_DELFLAG = 'N'
-				AND P_KIND = #{p_kind}
+			SELECT * FROM(
+				SELECT P_CODE, P_NAME, P_IMAGE, P_PRICE, P_STOCK, P_SELL, P_KIND, P_DATE, P_DETAIL, P_ZIM, P_DELFLAG, ROWNUM R
+					FROM(
+						SELECT
+							*
+						FROM
+							PRODUCT
+						WHERE
+							P_DELFLAG = 'N'
+							AND P_KIND = #{p_kind}
 			]]>
 			<trim prefix="AND">
 				<if test="searchValue != NULL">
@@ -251,7 +258,7 @@
 			</trim>
 			
 			<trim prefix="ORDER BY">
-				<if test="SORT == NULL">
+				<if test="SORT == NULL || SORT == ''">
 				P_CODE DESC
 				</if>
 				<if test="SORT == 'newproduct'">
@@ -267,7 +274,47 @@
 				P_PRICE ASC
 	            </if>
 			</trim>
+						)
+					ORDER BY R
+					)
+				where R between #{START} AND #{END}				
 	</select>
+	
+	<!-- 검색 상품 수량 -->
+	<select id="kindProductCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) COUNT
+			FROM 
+				PRODUCT
+			WHERE
+				P_DELFLAG = 'N'
+				AND P_KIND = #{p_kind}
+		]]>
+		<trim prefix="AND">
+			<if test="searchValue != NULL">
+				P_NAME LIKE '%'||#{searchValue}||'%'
+			</if>
+		</trim>
+			
+		<trim prefix="AND">
+			<if test="priceValue1 != NULL">
+				<if test="priceValue2 != NULL">
+					P_PRICE BETWEEN #{priceValue1} AND #{priceValue2}
+				</if>
+				<if test="priceValue2 == NULL">
+					P_PRICE BETWEEN #{priceValue1} AND 99999999
+				</if>
+			</if>
+			<if test="priceValue1 == NULL">
+				<if test="priceValue2 != NULL">
+					P_PRICE BETWEEN 0 AND #{priceValue2}
+				</if>
+				<if test="priceValue2 == NULL">
+				</if>
+			</if>	
+		</trim>		
+	</select>
+	
 	
 	<!-- 상품 상세 -->
 	<select id="productDetail" parameterType="hashmap" resultType="hashmap">
@@ -311,4 +358,39 @@
 				AND R_RELEVEL = '0'
 		]]>
 	</select>
+	
+	<!-- 상품 찜하기 -->
+	<update id="productZim" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PRODUCT SET P_ZIM = P_ZIM + 1
+			WHERE P_CODE = #{p_code}
+		]]>
+	</update>
+	
+	<!-- 찜하기 DB 삽입-->
+	<insert id="zimDb" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO ZIM
+			VALUES(
+				#{id},
+				#{p_code},
+				#{p_name}
+				)
+		]]>
+	</insert>
+	
+	<!-- 찜하기 확인 -->
+	<select id="zimCheck" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				Z_ID
+			FROM
+				ZIM
+			WHERE Z_CODE = #{p_code}
+				AND Z_ID = #{id}
+		]]>
+	</select>
+	
+	
 </mapper>

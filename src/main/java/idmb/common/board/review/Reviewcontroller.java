@@ -1,7 +1,6 @@
 package idmb.common.board.review;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import idmb.common.product.ProductService;
-import idmb.model.ProductBean;
 import idmb.model.ReviewBean;
 
 @Controller
@@ -70,5 +68,19 @@ public class Reviewcontroller {
 		model.addAttribute("reviewDetail", reviewDetail);
 		
 		return "board/review/reviewDetail";
+	}
+	
+	@RequestMapping(value="/recommendUp.do")
+	public String recommendUp(ReviewBean review, HttpServletRequest request, Model model) throws Exception {
+		
+		reviewService.recommendUp(review);
+		
+		//이전페이지로 돌아가기
+		String old_url = request.getHeader("REFERER");
+		
+		model.addAttribute("msg", "추천했습니다.");
+		model.addAttribute("url", old_url);
+			
+		return "board/review/recommendUp";
 	}
 }

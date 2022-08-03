@@ -51,9 +51,18 @@ border-left: none;
 <title>신상품 목록</title>
 </head>
 <body>
+<!-- 메인페이지 로고 -->
+<div style="margin: auto; width:150px; height:180px;">
+	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
+</div>
+<br>
 
 <!-- 상품 종류별로 이동 -->
-<table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;">
+<table style="
+	width: 70%; height: 50px;
+	margin-left:15%;
+	margin-right:15%;
+	border:1px solid gray; text-align:center;">
 	<tbody>
 		<tr>
 			<td>
@@ -88,14 +97,6 @@ border-left: none;
 <br>
 
 <form action="bestProductList.do" method="get">
-	<select name="SORT" id="SORT">
-		<option value="" <c:if test="${SORT == null}">selected</c:if>>전 체</option>
-		<option value="newproduct" <c:if test="${SORT =='newproduct'}">selected</c:if>>최 신 순</option>
-		<option value="bestproduct" <c:if test="${SORT =='bestproduct'}">selected</c:if>>인 기 순</option>
-		<option value="highproduct" <c:if test="${SORT == 'highproduct'}">selected</c:if>>높은 가격순</option>
-		<option value="lowproduct" <c:if test="${SORT =='lowproduct'}">selected</c:if>>낮은 가격순</option>	
-	</select>
-	
 	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	
 	<br>
@@ -113,28 +114,36 @@ border-left: none;
 인기 상품!
 
 <table>
-<tbody>
-	<c:forEach var="product" items="${bestList}" begin="0" end ="4">
+	<tfoot>
+		<c:if test="${bestList.size() == 0}">
+			<br>
+			 검색된 상품이 없습니다.
+		</c:if>
+	</tfoot>
+	<tbody>
+		<c:forEach var="product" items="${bestList}" begin="0" end ="4">
 			<td width="200" height="200">
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
 				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
-		</td>
-	</c:forEach>
-	<tr></tr>
-	<c:forEach var="product" items="${bestList}" begin="5" end ="9">
+			</td>
+		</c:forEach>
+		
+		<tr></tr>
+		
+		<c:forEach var="product" items="${bestList}" begin="5" end ="9">
 			<td width="200" height="200">
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
 				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
-				</c:forEach>
-				
+			</td>
+		</c:forEach>			
 	</tbody>
 </table>
-
+${paging.pageHtml}
 </body>
 </html>

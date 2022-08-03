@@ -25,7 +25,8 @@
 
 </head>
 <body>
-	
+
+<div class="container">	
 	<div style="text-align:center">
 	<p>
 		<h2>장바구니 확인</h2>
@@ -142,5 +143,6 @@
 		<button class="back" type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
 	</c:forEach>
 	</div>
+</div>
 </body>
 </html>
