@@ -26,6 +26,11 @@
 			value="/WEB-INF/jsp/member/loginForm.jsp" />
 	</definition>
 	
+	<definition name="joinForm" extends="main_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/member/joinForm.jsp" />
+	</definition>
+	
 	<definition name="joinSuccess" extends="main_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/member/joinSuccess.jsp" />

@@ -13,8 +13,6 @@
 		var address1 = document.getElementById("address1");
 		var address2 = document.getElementById("address2");
 		
-		console.log("formCheck 실행");
-		
 		if(id.value.trim() == ""){
 			alert("아이디를 입력해주세요.");
 			id.focus();
@@ -109,9 +107,8 @@
 	}
 	
 	// 가입 취소하고 메인 페이지로 이동
-	function cancle(form) {
-		console.log("cancle 실행")
-		location.href = "/IDMB/main.do";
+	function cancle() {
+		location.href = "/IDMB/loginForm.do";
 	}
 	
 	/* 특수문자 없이 영어, 숫자만 받기 */

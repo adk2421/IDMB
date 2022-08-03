@@ -32,6 +32,16 @@
 		}
 	}
 	
+	function sessionFindId(url, value) {
+		sessionStorage.setItem("findId", value);
+		location.href='/IDMB/' + url + '.do';
+	}
+	
+	function getSessionFindId() {
+		var findId = sessionStorage.getItem("findId");
+		return findId;
+	}
+	
 	/* 비밀번호를 다 입력하고 엔터키 입력시 로그인 시도 */
 	function keyPress() {
 		if (window.event.keyCode == 13) {
@@ -39,13 +49,23 @@
 		}
 	}
 
-	$(document).on("keyup", "input[numberOnly]", function() {$(this).val( $(this).val().replace(/[^0-9]/gi,"") );})
-	$(document).on("keyup", "input[noBlank]", function() {$(this).val( $(this).val().replace(/\s/gi,"") );})
-	$(document).on("keyup", "input[noBlank]", function() {$(this).val( $(this).val().replace("관리자","") );})
-	$(document).on("keyup", "input[noSpecial]", function() {$(this).val($(this).val().replace(/[^ㄱ-힣a-zA-Z0-9@]/gi, ""));})
-
 	/* 첫 화면 로딩 시 포커스 */
 	window.onload = function() {
 		document.getElementById("name").focus();
+	}
+	
+	/* 특수문자 없이 영어, 숫자만 받기 */
+	function inputNoSpecial(key)  {
+		key.value = key.value.replace(/[^a-z0-9]/ig, '')
+	}
+	
+	/* 공백 받지 않기 */
+	function inputNoBlank(key)  {
+		key.value = key.value.replace(/\s/ig, '')
+	}
+	
+	/* 숫자만 받기 */
+	function inputNumberOnly(key)  {
+		key.value = key.value.replace(/[^0-9]/ig, '')
 	}
 	

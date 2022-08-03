@@ -95,7 +95,7 @@
 		</div>
 		
 		<div>
-			<p><a href="/IDMB/myInfoModifyForm.do">회원정보 수정</a> | 배송주소록 관리</p>
+			<p><a href="/IDMB/myInfoModifyForm.do">회원정보 수정</a>　|　배송주소록 관리</p>
 		</div>
 		
 		<div class="stdWidth">
@@ -105,11 +105,11 @@
 				<p>${name}님, 환영합니다.</p>
 				<br/>
 				<p>
-					<a href="javascript:focusdiv('orderList');">주문내역</a> | 
-					관심상품 | 
-					<a href="javascript:focusdiv('viewedProduct');">최근 본 상품</a> | 
-					<a href="javascript:focusdiv('qnaList');">문의내역</a> | 
-					<a href="javascript:focusdiv('myReviewList');">나의리뷰</a>
+					<a href="javascript:focusdiv('orderList');">주문내역</a>　|　
+					<!-- 관심상품　|　 -->
+					<a href="javascript:focusdiv('viewedProduct');">최근 본 상품</a>　|　
+					<a href="javascript:focusdiv('qnaList');">문의내역</a>　|　
+					<a href="javascript:focusdiv('myReviewList');">나의 리뷰</a>
 				</p>
 				
 				<table>
@@ -318,7 +318,8 @@
 		<div class="stdWidth">
 			<div class="vertical">
 				<div class="horizen">
-					<img class="icon" src="/IDMB/resources/img/ICON_review.png" /><span class="left">나의리뷰</span>
+					<img class="icon" src="/IDMB/resources/img/ICON_review.png" /><span class="left">나의 리뷰</span>
+					<span>　　　　　　　　</span>
 					<span class="right"><a href="/IDMB/reviewList.do">더보기 ></a></span>
 				</div>
 				
