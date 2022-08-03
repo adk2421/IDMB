@@ -397,6 +397,27 @@ public class MemberController {
 
         myQnaList = qnaService.myQnaList(qna);
         
+        for (Map<String, Object> qnaList : myQnaList) {
+        	
+		    switch(qnaList.get("Q_CATEGORY").toString()) {
+		    	case "product":
+		    		qnaList.put("Q_CATEGORY", "상품 문의");
+		    		break;
+		    		
+		    	case "preship":
+		    		qnaList.put("Q_CATEGORY", "배송 전 문의");
+		    		break;
+		    		
+		    	case "aftership":
+		    		qnaList.put("Q_CATEGORY", "배송 후 문의");
+		    		break;
+		    		
+		    	case "exchange":
+		    		qnaList.put("Q_CATEGORY", "교환/반품 문의");
+		    		break;
+		    }
+        }
+        
         model.addAttribute("myQnaList", myQnaList);
         
         // 내 Review List
