@@ -165,14 +165,15 @@
 	<!-- 문의 삭제 -->
 	<update id="deleteQna" parameterType="hashmap">
 		<![CDATA[
-			 update
-			 	QNA_BOARD
-			 set
-			 	Q_ID = '', Q_TITLE = '[삭제됨]',
-			 	Q_STATUS = ''
+			UPDATE
+				QNA_BOARD
+			SET
+				Q_ID = '', Q_TITLE = '[삭제됨]',
+			 	Q_STATUS = '',
 			 	Q_CONTENTS = '삭제된 문의입니다.',
 			 	Q_CONTENTSPW = ''
-			 	where Q_NUM = #{q_num}
+			WHERE
+				Q_NUM = #{q_num}
 		]]>
 	</update>
 	

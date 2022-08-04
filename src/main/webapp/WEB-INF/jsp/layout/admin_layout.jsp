@@ -10,7 +10,7 @@
 </head>
 <body>
 <header style="height: 10%;">
-	<tiles:insertAttribute name="header"/>
+	<tiles:insertAttribute name="admin_header"/>
 </header>
 
 

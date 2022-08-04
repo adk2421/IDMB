@@ -15,9 +15,14 @@ function insertCheck() {
 	var form = document.getElementById("faqInsertForm");
 	var F_TITLE = document.getElementById("f_title");
 	var F_CONTENTS = document.getElementById("f_contents");
+	var F_CATEGORY = document.getElementById("f_category");
 	
 	if(confirm("FAQ를 작성하시겠습니까?") == true){
-		if(F_TITLE.value.trim()==""){
+		if(F_CATEGORY == null || F_CATEGORY.value.trim()==""){
+			alert("질문 종류를 선택해주세요.");
+			F_CATEGORY.focus();
+			return false;
+		} else if(F_TITLE.value.trim()==""){
 			alert("질문 내용을 작성해주세요.");
 			F_TITLE.focus();
 			return false;

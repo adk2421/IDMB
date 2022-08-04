@@ -85,8 +85,7 @@ public class QNAServiceImpl implements QNAService {
 		
 		map.put("q_num", QNA.getQ_num());
 		
-		qnaDAO.deleteQna(map);
-		
+		qnaDAO.deleteQna(map);	
 	}
 	
 	@Override

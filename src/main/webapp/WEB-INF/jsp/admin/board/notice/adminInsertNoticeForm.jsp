@@ -18,11 +18,11 @@ function insertCheck() {
 	var N_CONTENTS = document.getElementById("n_contents");
 	
 	if(confirm("공지를 작성하시겠습니까?") == true){
-		if(N_TITLE == null){
+		if(N_TITLE == null || N_TITLE.value.trim()==""){
 			alert("제목을 작성해주세요.");
 			N_TITLE.focus();
 			return false;
-		} else if (N_CONTENTS == null){
+		} else if (N_CONTENTS == null || N_CONTENTS.value.trim()==""){
 			alert("내용을 작성해주세요.");
 			N_CONTENTS.focus();
 			return false;
@@ -78,15 +78,16 @@ function cancel() {
 				</tr>			
 			</tbody>
 		</table>
+		<div style="width:490px; height:285px; margin:auto;">
+			<textarea id="n_contents" name="n_contents" maxlength="500" placeholder="내용을 입력해 주세요.."></textarea>
+		</div>
 	</form>	
-	<div style="width:490px; height:285px; margin:auto;">
-		<textarea id="n_contents" name="n_contents" maxlength="500" placeholder="내용을 입력해 주세요.."></textarea>
-	</div>
+
 </div>
 	<br>
 <div class="footer">	
 	<div class="fbtn" style="margin:auto; text-align: center;">
-		<button id="wbtn"type="button" onClick="insertCheck()">작 성</button>
+		<button id="wbtn" type="button" onClick="insertCheck()">작 성</button>
 		<button id="cancle"type="button" onclick="cancel()">취 소</button>
 	</div>
 </div>

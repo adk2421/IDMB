@@ -14,7 +14,7 @@
 	
 	<!-- admin layout -->	
 	<definition name="admin_layout" template="/WEB-INF/jsp/layout/admin_layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+		<put-attribute name="admin_header" value="/WEB-INF/jsp/layout/admin_header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
 		<put-attribute name="left" value="/WEB-INF/jsp/layout/left.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/body.jsp" />
@@ -111,8 +111,6 @@
 			value="/WEB-INF/jsp/order/orderForm.jsp" />
 	</definition>
 	
-	
-
 
 	<!-- basket -->
 	<definition name="basketList" extends="main_layout">
@@ -129,7 +127,6 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/order/basketListOrderForm.jsp" />
 	</definition>
-	
 	
 	
 	<!-- board -->
@@ -180,8 +177,13 @@
 	</definition>
 	
 	
-
 	<!-- admin -->
+	
+	<definition name="adminMain" extends="admin_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/adminMain.jsp" />
+	</definition>	
+	
 	<definition name="adminMemberList" extends="admin_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/member/adminMemberList.jsp" />
