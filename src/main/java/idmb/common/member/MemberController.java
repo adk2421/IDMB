@@ -333,7 +333,8 @@ public class MemberController {
 	// 마이페이지
 	@RequestMapping(value = "/myPage.do")
 	public String myInfoOrder(Model model, HttpServletRequest request) throws Exception {
-
+		List<Map<String, Object>> listMap =  new ArrayList<Map<String, Object>>();
+		
 		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
 		OrderBean order = new OrderBean();
@@ -405,10 +406,19 @@ public class MemberController {
         	}
         	
         	reviewList.put("R_RATE", star);
+     	
+        	review.setR_groupnum(Integer.parseInt(reviewList.get("R_GROUPNUM").toString()));
+
+        	listMap = reviewService.answerReviewList(review);
+        	
+        	if (!listMap.isEmpty()) {
+	        	reviewList.put("A_DATE", listMap.get(0).get("R_DATE"));
+	        	reviewList.put("A_CONTENTS", listMap.get(0).get("R_CONTENTS"));
+        	}
         }
         
         model.addAttribute("myReviewList", myReviewList);
-           
+        
 		return "myPage";
 	}
 	
@@ -420,8 +430,6 @@ public class MemberController {
 		ProductBean product = new ProductBean();
 		
 		List<Map<String, Object>> viewedProduct = new ArrayList<Map<String, Object>>();
-		
-		System.out.println("Arr.size : " + Arr.size());
 		
 		for (int i = 0; i < Arr.size(); i++) {
 			product.setP_code(Integer.parseInt((String) Arr.get("P_CODE["+ i + "]")));

@@ -13,6 +13,13 @@
 	
 	<script src="/IDMB/resources/js/find.js?v=<%=System.currentTimeMillis()%>"></script>
 
+	<script>
+		// 페이지 로딩 시, 자동 실행
+		$(document).ready(function() {
+			document.getElementById("name").focus();
+		});
+	</script>
+
 	<title>IDMB</title>
 
 </head>
