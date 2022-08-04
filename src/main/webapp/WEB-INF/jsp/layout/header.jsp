@@ -23,7 +23,7 @@
 				<img class="logo" src="/IDMB/img/simple_logo.png"/> IDMB
 			</a>
 		</div>
-		
+		<br>
 		<div class="right">
 			<c:if test="${ empty id }">
 				<ul>

@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: ￬ﾝﾀ￫ﾯﾸ
-=======
-Built-By: KJS
->>>>>>> 55313d66511884d333ac031607413fe890312c60
 Build-Jdk: 11.0.14
 Created-By: Maven Integration for Eclipse
 

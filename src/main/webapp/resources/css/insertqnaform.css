@@ -56,7 +56,7 @@ input {
 	border: 0;
 	border-color:grey;
 	outline: 0;
-	
+	text-align:center;
 }
 
 .back{
@@ -71,4 +71,5 @@ input {
 	border: 0;
 	border-color:grey;
 	outline: 0;
+	text-align:center;
 }
