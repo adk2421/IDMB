@@ -60,7 +60,7 @@ function updateCheck() {
 				<td><input style="float:left; width:250px;" type="text" value="${qnaBean.Q_TITLE}" readonly></td>
 				<td><b>작성일</b></td>
 				<td>
-					<input style="border:none; width:100px float:left" type="text" size="8" value=
+					<input style="border:none; width:100px;" type="text" size="8" value=
 						"<fmt:formatDate value="${qnaBean.Q_DATE}" pattern="yyyy.MM.dd"/>" readonly>
 				</td>
 			</tr>

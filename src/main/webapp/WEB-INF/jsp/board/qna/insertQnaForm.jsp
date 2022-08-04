@@ -21,6 +21,11 @@
 	<!-- css연결 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/insertqnaform.css?v=<%=System.currentTimeMillis()%>">
 
+	<!-- icon -->
+	<!-- 문의하기 -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<!-- 비밀번호 -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script>
 function insertCheck() {
 	
@@ -54,7 +59,10 @@ function insertCheck() {
 	
 <div class="container">
 	
-	<img src="img/insertQNA.jpg" width="75" border="0" id="qnaimage">
+	<span id="qnaimage" class="material-symbols-outlined" style="font-size:40px; margin:auto;">
+edit
+</span>
+	<!-- <img src="img/insertQNA.jpg" width="75" border="0" id="qnaimage"> -->
 		<font size="25"><b>문의 하기</b></font>
 	
 <form method="post" id="qnaInsertForm" action="insertQna.do">	
@@ -96,7 +104,7 @@ function insertCheck() {
 			
 			<tr style="padding: 20px 20px 20px 20px;">
 				<td><b>문의 내용</b></td>
-				<td colspan="5">
+				<td style="padding-left:14px;" colspan="5">
 					<textarea id="q_contents" name="q_contents"
 						style="margin:auto; width:800px; height: 200px; text-align:left;"
 						maxlength="500"></textarea>
@@ -111,9 +119,13 @@ function insertCheck() {
 				</td>
 			</tr>
 			<tr>
-				<td><b>비밀번호&nbsp;</b></td>
+				<td><b>비밀번호</b></td>
+				
+				
 				<td style="float:left; padding-left:15px" colspan="5">
-					<input type="password" name="q_contentspw" id="q_contentspw" size="8">
+				
+				<input type="password" name="q_contentspw" id="q_contentspw" size="8">
+				
 				</td>
 			</tr>
 					
