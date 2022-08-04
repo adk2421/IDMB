@@ -11,11 +11,13 @@
 
 </head>
 <body>
+<br>
+
 <!-- 메인페이지 로고 -->
-<a href="/IDMB/">
-	<img src="img/logo.png"  width="150" height="180" border="0" id="previewImage">
-</a>
-<br><br>
+<div style="margin: auto; width:150px; height:180px;">
+	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
+</div>
+<br>
 
 <!-- 상품 종류별로 이동 -->
 <table style="
@@ -56,9 +58,9 @@
 
 <br>
 
-검색창
+<div style="margin-left:15%;">
 <form action="searchProduct.do" method="get">
-검색어
+
 	<select name="SORT" id="SORT">
 		<option value="" <c:if test="${SORT == null}">selected</c:if>>전 체</option>
 		<option value="newproduct" <c:if test="${SORT =='newproduct'}">selected</c:if>>최 신 순</option>
@@ -68,8 +70,9 @@
 	</select>
 	
 	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
+	
 	<br>
-검색 가격
+
 	<input type="number" name="priceValue1"  id="priceValue1" placeholder="최소금액...." 
 		<c:if test = "${priceValue1 != '0'}">value="${priceValue1}"</c:if>> ~ 
 	<input type="number" name="priceValue2"  id="priceValue2" placeholder="최대금액...."
@@ -77,19 +80,19 @@
 
 	<input type="submit" value="검색"/>
 </form>
+</div>
 
 <br><br>
 
-<b>전체</b>
+<div style="margin: auto; text-align:center; font-size:30px;">▼ 전체 상품<br><br></div>
+
+	<div style="margin: auto; text-align:center;">
+		<c:if test="${searchList.size() == 0}">
+			 검색된 상품이 없습니다.
+		</c:if>
+	</div>
 
 <table>
-	<tfoot>
-		<c:if test="${searchList.size() == 0}">
-			<br>
-			검색된 상품이 없습니다.
-		</c:if>
-	</tfoot>
-	
 	<tbody>
 	<c:forEach var="product" items="${searchList}" begin="0" end ="4">
 			<td width="200" height="200">
