@@ -80,14 +80,14 @@ function updateCheck() {
 				<td colspan="5">
 					<textarea id="q_contents" name="q_contents"
 						style="width:800px; height:200px; text-align:left;"
-						maxlength="500">&emsp;${qnaBean.Q_CONTENTS}</textarea>
+						maxlength="500">${qnaBean.Q_CONTENTS}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td><b>답변 내용</b></td>
 				<td colspan="5">
 					<div style="border:1px solid black; width:800px; height:200px;">
-						<br>&emsp;${qnaReBean.Q_CONTENTS}
+						<br>${qnaReBean.Q_CONTENTS}
 					</div>
 				</td>
 			</tr>		

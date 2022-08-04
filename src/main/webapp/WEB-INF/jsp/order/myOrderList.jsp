@@ -37,9 +37,8 @@
 	<table class="table table-borderless">
     	<thead class="table-light">
        		<tr>
-            	<th scope="col">주문상품코드</th>
+       			<th scope="col">주문날짜</th>
             	<th scope="col">주문상품이름</th>
-            	<th scope="col">주문날짜</th>
             	<th scope="col">주문개수</th>
             	<th scope="col">주문가격</th>
             	<th scope="col">총&emsp;합</th>
@@ -59,9 +58,8 @@
       		<c:otherwise>
 			<c:forEach var="order" items="${myOrderList}">
        		<tr>
-				<td>${order.O_CODE}</td>
+       			<td>${order.O_DATE}</td>
 				<td>${order.O_NAME}</td>
-				<td>${order.O_DATE}</td>
 				<td>${order.O_COUNT}개</td>
 				<td>
 					<fmt:formatNumber value="${order.O_PRICE}" pattern="###,###,###원"/>

@@ -39,6 +39,7 @@ function pinsert() {
 		<thead>
 			<tr>
 				<th>종류</th>
+				<th></th>
 				<th>상품명</th>
 				<th>가격</th>
 				<th>재고</th>
@@ -50,9 +51,11 @@ function pinsert() {
 		<c:forEach var="product" items="${adminProductList}">
 		<tr>
 			<td>${product.P_KIND}</td>
-			<td><a href="productDetail.do?p_code=${product.P_CODE}">
-				${product.P_NAME}</a></td>
-			<td>${product.P_PRICE}</td>
+			<td>
+				<img src="img/${product.P_IMAGE}" width="80" border="0">
+			</td>
+			<td>${product.P_NAME}</td>
+			<td>${product.P_PRICE}원</td>
 			<td>${product.P_STOCK}</td>
 			<td>${product.P_SELL}</td>
 			<td><button id="mbtn" type="button"
