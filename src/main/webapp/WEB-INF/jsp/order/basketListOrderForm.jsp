@@ -46,7 +46,7 @@ function orderCheck() {
 		}
 	}
 }
-
+</script>
 <!-- 우편 번호 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -125,8 +125,7 @@ function orderCheck() {
 			<tbody>
 				<tr>
 					<td>
-						${i+1}
-								
+						${i+1}		
 					</td>
 					<td>
 						<img src="img/${basketList[i].B_IMAGE}" width="60" border="0" id="previewImage">
