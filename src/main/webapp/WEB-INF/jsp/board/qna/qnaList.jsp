@@ -22,6 +22,10 @@
 
 	<!-- css연결 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css?v=<%=System.currentTimeMillis()%>">
+	
+	<!-- icon -->
+	<!-- search아이콘인데 input안에 아이콘 넣고싶은데 어케할지 몰라서 냅둠일단 -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 <script>
 function insertQna() {
@@ -68,7 +72,9 @@ function insertQna() {
 						<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 					</select>
 					<p></p>
+					 
 					<input class="insearch" type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
+					
 					<button class="search" type="submit"><b>검색</b></button>
 				</td>
 			</tr>

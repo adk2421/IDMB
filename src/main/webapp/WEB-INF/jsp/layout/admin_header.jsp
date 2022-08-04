@@ -19,9 +19,7 @@
 <body>
 	<div class="nav">
 		<div class="left" align="left">
-			<a href="/IDMB/">
-				<img class="logo" src="/IDMB/img/simple_logo.png"/> IDMB
-			</a>
+			<img class="logo" src="/IDMB/img/simple_logo.png"/> IDMB
 		</div>
 		<br>
 		<div class="right">
@@ -36,10 +34,8 @@
 			<c:if test="${! empty id }">
 				<ul>
 					<li><a href="logout.do">LOGOUT</a>　|　</li>
-					<li><a href="basketList.do">CART</a>　|　</li>
-					<li><a href="myPage.do">MY PAGE</a>　|　</li>
-					<li><a href="myOrderList.do">ORDER</a>　|　</li>
-					<li><a href="noticeList.do">COMMUNITY</a></li>　
+					<li><a href="adminMain.do">MANAGEMENT</a>　|　</li>
+					<li><a href="adminNoticeList.do">COMMUNITY</a></li>　
 				</ul>
 			</c:if>
 		</div>

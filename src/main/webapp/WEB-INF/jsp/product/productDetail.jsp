@@ -160,13 +160,14 @@ function insertReview() {
 </head>
 <body>
 
+<div style="margin:auto; width: 500px; height:1500px;">
 <h2>${ProductDetail.P_NAME}</h2>
 	
 	<!-- 상품 정보 -->
-	<table style="width:600px; height:400px;" border ="1">
+	<table style="width:600px; height:400px; border-spacing: 45 0px ;">
 		<tr align = "center">
-			<td rowspan="5">
-				<img src="img/${ProductDetail.P_IMAGE}"  width="300" height="400" border="0" id="previewImage">
+			<td rowspan="5" colspan="2">
+				<img src="img/${ProductDetail.P_IMAGE}"  width="200" height="200" border="0" id="previewImage">
 			</td>
 			<td><b>상품명</b></td> 
             <td>${ProductDetail.P_NAME}</td>
@@ -196,7 +197,8 @@ function insertReview() {
             	
             	<input type="text" id="tp" size="10" value="${ProductDetail.P_PRICE}" readonly/>원
 			</td>
-        </tr>				
+        </tr>
+        		
 	</table>
 	
 	<br>
@@ -287,6 +289,6 @@ function insertReview() {
 		<button type="button" onclick="insertReview()">후기작성</button>
 	</form>
 	${paging.pageHtml}
-
+</div>
     </body>
  </html>

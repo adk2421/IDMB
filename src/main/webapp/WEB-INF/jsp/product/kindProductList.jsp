@@ -54,6 +54,8 @@ border-left: none;
 <title>신상품 목록</title>
 </head>
 <body>
+<br>
+
 <!-- 메인페이지 로고 -->
 <div style="margin: auto; width:150px; height:180px;">
 	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
@@ -99,15 +101,9 @@ border-left: none;
 
 <br>
 
+<div style="margin-left:15%;">
 <form action="kindProductList.do" method="get">
 	<input type="hidden" name="p_kind" id="p_kind" value="${p_kind}">
-	<select name="SORT" id="SORT">
-		<option value="" <c:if test="${SORT == null}">selected</c:if>>전 체</option>
-		<option value="newproduct" <c:if test="${SORT =='newproduct'}">selected</c:if>>최 신 순</option>
-		<option value="bestproduct" <c:if test="${SORT =='bestproduct'}">selected</c:if>>인 기 순</option>
-		<option value="highproduct" <c:if test="${SORT == 'highproduct'}">selected</c:if>>높은 가격순</option>
-		<option value="lowproduct" <c:if test="${SORT =='lowproduct'}">selected</c:if>>낮은 가격순</option>	
-	</select>
 	
 	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	
@@ -119,19 +115,26 @@ border-left: none;
 		<c:if test = "${priceValue2 != '99999999'}">value="${priceValue2}"</c:if>>
 
 	<input type="submit" value="검색"/>
+	
+	<br><br>
+	
+	<button type="submit" name="SORT" id="SORT" value="newproduct">최신순</button>
+	<button type="submit" name="SORT" id="SORT" value="bestproduct">인기순</button>
+	<button type="submit" name="SORT" id="SORT" value="highproduct">높은 가격순</button>
+	<button type="submit" name="SORT" id="SORT" value="lowproduct">낮은 가격순</button>
 </form>
-
+</div>
 <br><br>
 
-${p_kind}!
+<div style="margin: auto; text-align:center; font-size:30px;">▼ ${p_kind}!<br><br></div>
 
-<table>
-	<tfoot>
+	<div style="margin: auto; text-align:center;">
 		<c:if test="${kindList.size() == 0}">
-			<br>
 			 검색된 상품이 없습니다.
 		</c:if>
-	</tfoot>
+	</div>
+
+<table>
 	<tbody>
 		<c:forEach var="product" items="${kindList}" begin="0" end ="4">
 			<td width="200" height="200">

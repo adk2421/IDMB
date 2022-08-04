@@ -177,7 +177,7 @@ public class MemberController {
 				session.setAttribute("delflag", map.get("DELFLAG"));
 
 				// 관리자 체크
-				if (map.get("ID").equals("ADMIN")) {
+				if (map.get("ID").equals("admin")) {
 					model.addAttribute("url", "/adminMain.do");
 				
 				} else {

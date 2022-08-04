@@ -51,16 +51,15 @@ border-left: none;
 
 </head>
 <body>
+<br>
+
 <!-- 메인페이지 로고 -->
 <div style="margin: auto; width:150px; height:180px;">
-	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
+	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180"></a>
 </div>
 <br>
 
 <!-- 상품 종류별로 이동 -->
-
-<table style="width:900px; heigth:100px; border:1px solid gray; text-align:center;
-"> 
 <table style="
 	width: 70%; height: 50px;
 	margin-left:15%;
@@ -100,6 +99,7 @@ border-left: none;
 
 <br>
 
+<div style="margin-left:15%;">
 <!-- 검색창 -->
 <form action="searchProduct.do" method="get">
 	
@@ -107,9 +107,29 @@ border-left: none;
 	
 	<button type="submit">검색</button>
 </form>
+</div>
 
 <br><br>
-<b>[BEST 3]</b>
+
+
+<table style="
+	width: 70%;
+	margin-left:15%;
+	margin-right:15%;
+	text-align:center;">
+	<tbody>
+		<tr>
+			<td colspan="3" style="font-size:30px;"><b>▼ BEST 3!</b></td>
+		</tr>
+		<c:forEach var="bestProduct" items="${productBestList}">
+		<td width="300">
+			<a href="productDetail.do?p_code=${bestProduct.P_CODE}">
+			<img src="img/${bestProduct.P_IMAGE}" width="200"></a>
+		</td>
+		</c:forEach>
+	</tbody>
+</table>
+
 <br><br>
 
 <table style="
@@ -118,24 +138,13 @@ border-left: none;
 	margin-right:15%;
 	text-align:center;">
 	<tbody>
-		<c:forEach var="bestProduct" items="${productBestList}">
-		<td width="300">
-			<a href="productDetail.do?p_code=${bestProduct.P_CODE}">
-			<img src="img/${bestProduct.P_IMAGE}" width="200" id="previewImage"></a>
-		</td>
-		</c:forEach>
-	</tbody>
-</table>
-
-<b>[NEW 3]</b>
-<br><br>
-
-<table>
-	<tbody>
+		<tr>
+			<td colspan="3" style="font-size:30px;"><b>▼ NEW 3!</b></td>
+		</tr>
 		<c:forEach var="newProduct" items="${productNewList}">
 		<td width="300">
 			<a href="productDetail.do?p_code=${newProduct.P_CODE}">
-			<img src="img/${newProduct.P_IMAGE}" width="200" id="previewImage"></a>
+			<img src="img/${newProduct.P_IMAGE}" width="200"></a>
 		</td>
 		</c:forEach>
 	</tbody>

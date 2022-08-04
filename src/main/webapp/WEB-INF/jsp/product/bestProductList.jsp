@@ -51,6 +51,8 @@ border-left: none;
 <title>신상품 목록</title>
 </head>
 <body>
+<br>
+
 <!-- 메인페이지 로고 -->
 <div style="margin: auto; width:150px; height:180px;">
 	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
@@ -96,6 +98,7 @@ border-left: none;
 
 <br>
 
+<div style="margin-left:15%;">
 <form action="bestProductList.do" method="get">
 	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	
@@ -108,21 +111,22 @@ border-left: none;
 
 	<input type="submit" value="검색"/>
 </form>
+</div>
 
 <br><br>
 
-인기 상품!
+<div style="margin: auto; text-align:center; font-size:30px;">▼ 인기 상품!<br><br></div>
 
-<table>
-	<tfoot>
+	<div style="margin: auto; text-align:center;">
 		<c:if test="${bestList.size() == 0}">
-			<br>
 			 검색된 상품이 없습니다.
 		</c:if>
-	</tfoot>
+	</div>
+	
+<table>
 	<tbody>
 		<c:forEach var="product" items="${bestList}" begin="0" end ="4">
-			<td width="200" height="200">
+			<td>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
@@ -134,7 +138,7 @@ border-left: none;
 		<tr></tr>
 		
 		<c:forEach var="product" items="${bestList}" begin="5" end ="9">
-			<td width="200" height="200">
+			<td>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
@@ -144,6 +148,7 @@ border-left: none;
 		</c:forEach>			
 	</tbody>
 </table>
+
 ${paging.pageHtml}
 </body>
 </html>

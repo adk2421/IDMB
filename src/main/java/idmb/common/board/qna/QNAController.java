@@ -205,8 +205,12 @@ public class QNAController {
 		
 		qnaService.updateQna(qna);
 		
+		int qnum = qna.getQ_num();
+		
+		
+		
 		model.addAttribute("msg", "문의가 수정되었습니다.");
-		model.addAttribute("url", "/qnaMain.do");
+		model.addAttribute("url", "/qnaDetail.do?q_num="+qnum);
 		
 		return "board/qna/updateQna";
 	}
@@ -214,7 +218,7 @@ public class QNAController {
 	
 	@RequestMapping(value="/deleteQna.do")
 	public String deleteQna(
-			QNABean qna, Model model) throws Exception{
+			QNABean qna, HttpServletRequest request, Model model) throws Exception{
 		
 		qnaService.deleteQna(qna);
 		

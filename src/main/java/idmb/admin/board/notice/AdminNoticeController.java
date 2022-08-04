@@ -90,10 +90,10 @@ public class AdminNoticeController {
 			NoticeBean notice, HttpServletRequest request, Model model) throws Exception{
 		
 		//textarea 형식으로 상세정보를 입력받았기 때문에 enter를 문자 처리 해주어야함.
-		String n_contents = request.getParameter("n_contents");
-		n_contents = n_contents.replace("\r\n","<br>");
+		String ncs = request.getParameter("n_contents");
+		ncs = ncs.replace("\r\n","<br>");
 		
-		notice.setN_contents(n_contents);
+		notice.setN_contents(ncs);
 		
 		adminNoticeService.adminInsertNotice(notice);
 		
