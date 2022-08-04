@@ -57,9 +57,41 @@ public class MemberController {
 	@RequestMapping(value = "/joinForm.do")
 	public String joinForm(Model model) {
 
-		return "member/joinForm";
+		return "joinForm";
 	}
 
+	// 회원가입
+	@RequestMapping(value = "/joinSuccess.do")
+	public String joinSuccess(MemberBean member, BindingResult result, Model model) throws Exception {
+
+		// new MemberValidator().validate(member, result);
+		
+		System.out.println("joinSuccess 실행");
+		
+		if (result.hasErrors()) {
+			// 회원가입 실패
+			model.addAttribute("msg", "회원가입에 실패했습니다.");
+			model.addAttribute("url", "/joinForm.do");
+		}
+
+		Map<String, Object> map = joinService.checkId(member);
+
+		if (map != null) {
+			// 중복회원 가입시 실패
+			model.addAttribute("msg", "이미 가입된 아이디입니다.");
+			model.addAttribute("url", "/joinForm.do");
+
+		} else {
+			// 회원가입 성공
+			joinService.insertMember(member);
+			
+			model.addAttribute("msg", "가입 완료 되었습니다.");
+			model.addAttribute("url", "/loginForm.do");
+		}
+
+		return "joinSuccess";
+	}
+	
 	// 회원가입 아이디 중복확인
 	@RequestMapping(value = "/confirmIdAjax.do")
 	@ResponseBody
@@ -95,68 +127,6 @@ public class MemberController {
 		
 		return msg;
 	
-	}
-	
-	/*
-	@RequestMapping(value = "/confirmId.do")
-	public String confirmId(MemberBean member, Model model) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		// 공백을 입력 받았을 경우 
-		if (member.getId().trim().equals("")) {
-			model.addAttribute("msg", "아이디를 입력해주세요");
-			model.addAttribute("url","/joinForm.do");
-			return "/member/confirmId";
-		}
-		 
-		// 관리자 아이디를 입력 받았을 경우
-		if (member.getId().trim().equals("ADMIN")) {
-			model.addAttribute("msg", "이 아이디는 사용할 수 없습니다.");
-			model.addAttribute("url", "/joinForm.do");
-			return "/member/confirmId"; 
-		}
-
-		map = joinService.checkId(member);
-
-		if (map != null) { // 중복된 아이디 있음 
-			model.addAttribute("msg", "이미 가입된 아이디입니다.");
-			model.addAttribute("url", "/joinForm.do"); } else { //중복된 아이디 없음
-			model.addAttribute("msg", "사용할 수 있는 아이디입니다."); model.addAttribute("url","/joinForm.do"); }
-
-		return "/member/confirmId";
-	}
-	*/
-
-	// 회원가입
-	@RequestMapping(value = "/joinSuccess.do")
-	public String joinSuccess(MemberBean member, BindingResult result, Model model) throws Exception {
-
-		// new MemberValidator().validate(member, result);
-		
-		System.out.println("joinSuccess 실행");
-		
-		if (result.hasErrors()) {
-			// 회원가입 실패
-			model.addAttribute("msg", "회원가입에 실패했습니다.");
-			model.addAttribute("url", "/joinForm.do");
-		}
-
-		Map<String, Object> map = joinService.checkId(member);
-
-		if (map != null) {
-			// 중복회원 가입시 실패
-			model.addAttribute("msg", "이미 가입된 아이디입니다.");
-			model.addAttribute("url", "/joinForm.do");
-
-		} else {
-			// 회원가입 성공
-			joinService.insertMember(member);
-			
-			model.addAttribute("msg", "가입 완료 되었습니다.");
-			model.addAttribute("url", "/loginForm.do");
-		}
-
-		return "joinSuccess";
 	}
 	
 	// 로그인 폼 이동
@@ -257,7 +227,7 @@ public class MemberController {
 			
 		} else {
 			// 조회 성공 시 ID 값 넘기기
-			model.addAttribute("id", map.get("ID"));
+			model.addAttribute("findId", map.get("ID"));
 		}
 		
 		return "findIdResult";
@@ -288,19 +258,12 @@ public class MemberController {
 
 		return "findPwResult";
 	}
-
-	// 마이페이지 이동
-	//@RequestMapping(value = "/myPage.do")
-	//public String myPage(Model model) throws Exception {
-		
-	//	return "/member/myPage";
-	//}
 	
 	// 메인페이지 이동
-	@RequestMapping(value = "/main.do")
+	@RequestMapping(value = "/")
 	public String mainPage(Model model) throws Exception {
 		
-		return "/main";
+		return "../../index";
 	}
 	
 	// 회원정보 폼
@@ -358,7 +321,7 @@ public class MemberController {
 		myInfoService.deleteMember(member);
 		// 회원탈퇴 성공
 		model.addAttribute("msg", "이용해주셔서 감사합니다.");
-		model.addAttribute("url","/main.do");
+		model.addAttribute("url","/");
 
 		// 세션 무효화
 		request.getSession().invalidate();

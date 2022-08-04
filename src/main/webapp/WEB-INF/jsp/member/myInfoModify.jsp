@@ -4,16 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>IDMB</title>
+	<meta charset="UTF-8">
+	<title>IDMB</title>
 </head>
 <body>
 
 	<script>
-	if(${! empty msg}) {
-		alert('${msg}');
-	}
-	location.href='${pageContext.request.contextPath}${url}';
+	
+		if(${! empty msg}) {
+			alert('${msg}');
+		}
+		
+		location.href='/IDMB${url}';
+		
 	</script>
     
 </body>

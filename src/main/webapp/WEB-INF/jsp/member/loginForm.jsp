@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
     <link rel="canonical" href="loginform.jsp">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css?v=<%=System.currentTimeMillis()%>">
+    <link rel="stylesheet" href="/IDMB/resources/css/member.css?v=<%=System.currentTimeMillis()%>">
 
-	<script src="${pageContext.request.contextPath}/resources/js/login.js?v=<%=System.currentTimeMillis()%>"></script>
+	<script src="/IDMB/resources/js/login.js?v=<%=System.currentTimeMillis()%>"></script>
 
     <title>IDMB</title>
     

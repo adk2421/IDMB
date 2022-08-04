@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
     <link rel="canonical" href="joinform.jsp">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css?v=<%=System.currentTimeMillis()%>">
+    <link rel="stylesheet" href="/IDMB/resources/css/member.css?v=<%=System.currentTimeMillis()%>">
     
     <!-- Include Bootstrap -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
@@ -20,8 +20,8 @@
     <!-- Include DaumMapAPI -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-	<script src="${pageContext.request.contextPath}/resources/js/modify.js?v=<%=System.currentTimeMillis()%>"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/addressAPI.js?v=<%=System.currentTimeMillis()%>"></script>
+	<script src="/IDMB/resources/js/modify.js?v=<%=System.currentTimeMillis()%>"></script>
+	<script src="/IDMB/resources/js/addressAPI.js?v=<%=System.currentTimeMillis()%>"></script>
 	
     <title>IDMB</title>
     
@@ -95,7 +95,7 @@
                 <div class="button">
                     <input type="button" class="btn btn-outline-secondary" value="변경" onclick="return formCheck()" />
                     <input type="button" class="btn btn-outline-secondary" value="탈퇴" onclick="return resign(myInfoModifyForm)" />
-                    <input type="button" class="btn btn-outline-secondary" value="취소" onclick="cancle('${pageContext.request.contextPath}')" />
+                    <input type="button" class="btn btn-outline-secondary" value="취소" onclick="cancle()" />
                 </div>
             </div>
         </div>

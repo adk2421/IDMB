@@ -7,45 +7,39 @@
 <head>
 	<meta charset="UTF-8">
 	
+	<link rel="stylesheet" href="/IDMB/resources/css/member.css?v=<%=System.currentTimeMillis()%>">
+	
 	<title>IDMB</title>
 
 </head>
 <body>
-
-	<div style="text-align: center">
-		<br>
-			<span style="font-size: xx-large; color: #82ae46;">
-				<b>비밀번호찾기 결과</b>
-			</span>
-	</div>
-	<hr>
-	<div style="text-align: center">
-		<c:if test="${empty Find}">
-			<br>
-			<br>
-			<br>
-        	고객님의 비밀번호는 ${passwd} 입니다.
-        </c:if>
-        
-		<br> <br> <br>
+	<div class="wrap">
+		<div class="find">
 		
-		<c:if test="${!empty Find}">
-			<br>
-			<br>
-			<br>
-        	존재하지 않는 회원 입니다.
-        </c:if>
-        
-		<br> <br> <br>
+			<h2 class="result">비밀번호 찾기 결과</h2>
+			<hr>
+			
+			<div style="text-align: center">
+				<c:if test="${empty Find}">
 
-		<p></p>
+					<p>고객님의 비밀번호는 "${passwd}" 입니다.</p>
+					
+					<div class="result">
+						<input type="button" value="로그인" onClick="location.href='/IDMB/loginForm.do'">
+						<input type="button" value="비밀번호 찾기" onClick="location.href='/IDMB/findPw.do'">
+					</div>
+				</c:if>
 
-		<input type="button" value="로그인" class="btn btn-primary py-2 px-4"
-			onClick="location.href='/IDMB/loginForm.do'">
-
-		<p></p>
-
+				<c:if test="${!empty Find}">
+				
+					<p>존재하지 않는 회원입니다.</p>
+					
+					<div class="result">
+						<input type="button" value="로그인" onClick="location.href='/IDMB/loginForm.do'">
+					</div>
+				</c:if>
+			</div>
+		</div>
 	</div>
-
 </body>
 </html>
