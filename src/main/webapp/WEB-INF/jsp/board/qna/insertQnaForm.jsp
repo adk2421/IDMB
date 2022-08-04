@@ -70,7 +70,7 @@ edit
 		<tbody style= "margin:auto;">
 			<tr>
 				<td><b>제목</b></td>
-				<td style="float:left; padding-left:15px;"><input style="width:300px;" type="text" name="q_title" id="q_title" value="상품 문의 합니다."></td>
+				<td style="float:left; padding-left:15px;"><input style="width:300px;" type="text" name="q_title" id="q_title" value="상품 문의 합니다." readonly></td>
 				<td><b>작성자</b></td>		
 				<td style="float:left; width: 100px;"><input style="width: 100px;"type="text" size="8" value="${id}" readonly>
 					<input type="hidden" name="q_id" id="q_id" value="${id}">
