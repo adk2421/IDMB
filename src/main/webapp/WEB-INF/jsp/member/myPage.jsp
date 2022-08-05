@@ -32,8 +32,6 @@
 			$('#o_proc_val3').text("0");
 			if (<%= request.getAttribute("베송완료") %> == null)
 			$('#o_proc_val4').text("0");
-			
-			console.log(sessionStorage.length);
 		}
 		
 		// 메인페이지 이동
@@ -122,7 +120,7 @@
 						
 						<td>
 							<p>적립금</p>
-							<p>${reserve}원 <button>조회</button></p>
+							<p>${reserve}원</p>
 						</td>
 						
 						<td>
@@ -133,20 +131,6 @@
 				</table>
 			</div>
 		</div>
-		
-		<div class="stdWidth">
-			<div class="vertical">
-			<p class="label">- 회원님의 혜택 정보 -</p>
-				
-				<div class="vertical">
-					<p>[welcome] 등급 회원입니다.</p>
-					<p>[lucky] 등급까지 남은 구매금액은 30,000,000원입니다.</p>
-					<p>승급 기준에 따른 예상 금액이므로 총 주문 금액과 다를 수 있습니다.</p>
-				</div>
-			</div>
-		</div>
-		<br/>
-		<br/>
 		
 		<div class="stdWidth">
 			<div class="vertical">
@@ -334,23 +318,29 @@
 				
 				<div class="leftVertical">
 					<c:forEach var="review" items="${myReviewList}">
-						<div class="horizen_button" onclick="reviewDetail(${review.R_GROUPNUM})">
+						<div class="horizen">
 							<div>
-								<img class="thumbnail" src="/IDMB/img/${review.P_IMAGE}" />
+								<img class="thumbnail" src="/IDMB/img/${review.P_IMAGE}" onclick="productDetail(${review.R_CODE})" />
 							</div>
 							
 							<div class="leftVertical">
 								<div class="width">
 									<p>${review.R_NAME}</p>
 									<p>${review.R_RATE}</p>
-									<p>${review.R_CONTENTS}</p>
-									<input id="check-btn" type="checkbox" />
-    								<label for="check-btn">답글보기</label>
-									<div class="answer">
-										<p>${review.A_DATE}</p>
-										<p>${review.A_CONTENTS}</p>
-									</div>
+									<p class="contents">${review.R_CONTENTS}</p>
 								</div>
+								
+								<c:if test="${review.A_CONTENTS != null}">
+									<br/>
+									<div>
+										<input id="answer-btn" type="checkbox" />
+	    								<label class="answer-btn" for="answer-btn">답글보기 ▼</label>
+										<div class="answer">
+											<p class="contents">${review.A_DATE}</p>
+											<p class="contents">${review.A_CONTENTS}</p>
+										</div>
+									</div>
+								</c:if>
 							</div>
 							
 							<div class="right">
