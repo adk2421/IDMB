@@ -27,7 +27,7 @@
 </script>
 </head>
 <body>
-
+	<br><br><br><br>
 	<hr><p>
 	
 	<!-- 게시판 바로가기 -->
@@ -40,9 +40,9 @@
 	</ul>
 	</div>
 	
-	<div class="container">
-	<table class="table table-borderless">
-		<thead class="table-light">
+	
+	<table class="noticelist" style="width: 99%;">
+		<thead>
 			<tr >
 				<th scope="col">공지번호</th>
 				<th scope="col">작성일자</th>
@@ -68,7 +68,8 @@
 		</c:forEach>
 		</tbody>
 	</table>
+	<br>
 	${paging.pageHtml}
-	</div>
+	
 </body>
 </html>

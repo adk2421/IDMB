@@ -160,7 +160,7 @@ function insertReview() {
 </head>
 <body>
 
-<div style="margin:auto; width: 500px; height:1500px;">
+<div style="margin:auto; width: 600px; height:1500px;">
 <h2>${ProductDetail.P_NAME}</h2>
 	
 	<!-- 상품 정보 -->

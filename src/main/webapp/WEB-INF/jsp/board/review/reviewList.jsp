@@ -28,7 +28,8 @@
 </script>
 </head>
 <body>
-
+	
+	<br><br><br><br>
 	<hr><p>
 
 	<!-- 게시판 바로가기 -->

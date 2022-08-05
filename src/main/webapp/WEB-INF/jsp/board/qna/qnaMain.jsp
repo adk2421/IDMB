@@ -28,7 +28,7 @@
 </head>
 <body>
 
-
+	<br><br><br><br>
 	<hr><p>
 
 	<!-- 게시판 바로가기 -->
@@ -41,7 +41,6 @@
 	</ul>
 	</div>
 	
-	<br>
 	
 	<table class="tableimg" style="margin:auto; text-align: center; ">
 		<tbody>
