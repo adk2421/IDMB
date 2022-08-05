@@ -73,8 +73,9 @@
 			location.href = "qnaDetail.do?q_num=" + q_num;
 		}
 		
-		function reviewDetail(r_num) {
-			location.href = "reviewDetail.do?q_num=" + r_num;
+		function reviewDetail(r_groupnum) {
+			console.log(r_groupnum);
+			location.href = "reviewDetail.do?r_groupnum=" + r_groupnum;
 		}
 		
 		// 페이지 로딩 시, 자동 실행
@@ -333,7 +334,7 @@
 				
 				<div class="leftVertical">
 					<c:forEach var="review" items="${myReviewList}">
-						<div class="horizen">
+						<div class="horizen_button" onclick="reviewDetail(${review.R_GROUPNUM})">
 							<div>
 								<img class="thumbnail" src="/IDMB/img/${review.P_IMAGE}" />
 							</div>
@@ -343,13 +344,19 @@
 									<p>${review.R_NAME}</p>
 									<p>${review.R_RATE}</p>
 									<p>${review.R_CONTENTS}</p>
-									<p><img class="icon" src="/IDMB/resources/img/ICON_like.png" />${review.R_RECOMMEND}</p>
+									<input id="check-btn" type="checkbox" />
+    								<label for="check-btn">답글보기</label>
+									<div class="answer">
+										<p>${review.A_DATE}</p>
+										<p>${review.A_CONTENTS}</p>
+									</div>
 								</div>
 							</div>
 							
 							<div class="right">
 								<div>
 									<p>${review.R_DATE}</p>
+									<p><img class="icon" src="/IDMB/resources/img/ICON_like.png" />${review.R_RECOMMEND}</p>
 								</div>
 							</div>
 						</div>

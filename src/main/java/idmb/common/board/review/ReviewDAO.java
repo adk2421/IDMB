@@ -18,6 +18,10 @@ public class ReviewDAO {
 		return sqlSessionTemplate.selectList("review.myReviewList", map);
 	}
 	
+	public List<Map<String, Object>> answerReviewList (Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectList("review.answerReviewList", map);
+	}
+	
 	public List<Map<String, Object>> productReview (Map<String, Object> map) throws Exception{
 		return sqlSessionTemplate.selectList("review.productReview", map);
 	}

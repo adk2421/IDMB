@@ -32,13 +32,17 @@
 		}
 	}
 	
+	// findIdResult에서 찾은 아이디를 세션에 저장
 	function sessionFindId(url, value) {
 		sessionStorage.setItem("findId", value);
 		location.href='/IDMB/' + url + '.do';
 	}
 	
+	// 세션에 저장된 findId 값을 input value에 삽입
 	function getSessionFindId() {
 		var findId = sessionStorage.getItem("findId");
+		sessionStorage.clear();
+		document.getElementById("id").value = findId;
 		return findId;
 	}
 	
@@ -47,11 +51,6 @@
 		if (window.event.keyCode == 13) {
 			return formCheck();
 		}
-	}
-
-	/* 첫 화면 로딩 시 포커스 */
-	window.onload = function() {
-		document.getElementById("name").focus();
 	}
 	
 	/* 특수문자 없이 영어, 숫자만 받기 */

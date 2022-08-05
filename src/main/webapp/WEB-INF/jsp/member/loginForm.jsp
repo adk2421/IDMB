@@ -21,7 +21,7 @@
         <div class="wrap">
             <div class="login">
             
-                <h2>로 그 인</h2>
+                <h2>로그인</h2>
                 
                 <div class="login_sns">
                     <li><a href=""><i class="fab fa-instagram"></i></a></li>

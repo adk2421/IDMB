@@ -13,10 +13,17 @@
 		padding-top: 30px;
 		color: #7791a7;
 		font-size: 2.5em;
+		letter-spacing: 8px;
 	}
 	
 	input {
 		font-size: 16px;
+	}
+	
+	input[type='text']:focus,
+	input[type='password']:focus {
+		border-color:#666666;
+    	outline: none;
 	}
 	
 	.wrap {
@@ -27,14 +34,6 @@
 		background: white;
 		font-size: 18px;
 	}
-	
-	.div_wrap {
-		width: 70%;
-		padding-top: 3px;
-		padding-bottom: 3px;
-		
-	}
-	
 	
 	/* -- 로그인 -- */
 	.login {
@@ -113,36 +112,63 @@
 	
 	/* -- 회원가입 -- */
 	.join {
-		width: 30%;
-		height: 710px;
+		width: 400px;
 		background: white;
 		border-radius: 20px;
 		display: flex;
-		justify-content: center;
+		justify-content: space-evenly;
 		align-items: center;
 		flex-direction: column;
 	}
 	
-	h2.join_h2 {
-		color: #7791a7;
-		font-size: 2.5em;
-		letter-spacing: 8px;
-		padding-bottom: 20px;
+	.join div {
+		margin-bottom: 10px;
 	}
 	
 	.join input {
+		width: 324px;
+		height: 45px;
+		border-radius: 5px;
+		padding: 0px 20px;
+		margin-left: 1px;
+		margin-right: -5px;
 		border: 1px solid lightgray;
-		font-size: 14px;
+		outline: none;
 	}
 	
-	.join button {
+	.join input[type='button'] {
 		border: 1px solid lightgray;
 		color: black;
+		width: 94px;
+		height: 47px;
 		font-size: 14px;
+		cursor: pointer;
 	}
 	
-	.button {
-		padding-top: 3px;
+	.join input[type='button']:hover {
+		background-color: #7791a7;
+		color: white;
+	}
+	
+	.join_input input[type='text'] {
+		width: 230px;
+		border-radius: 5px 0px 0px 5px;
+	}
+	
+	.join_input input[type='button'] {
+		width: 94px;
+		padding: 0px 20px;
+		border: 1px solid lightgray;
+		outline: none;
+		border-left: none;
+		border-radius: 0px 5px 5px 0px;
+		font-size: 14px;
+		align-items: center;
+		padding-top: 2px;
+	}
+	
+	.button input {
+		margin: 10px;
 	}
 	
 	
@@ -182,6 +208,11 @@
 		outline: none;
 	}
 	
+	.find input[type='text']:focus {
+		border-color:#666666;
+    	outline: none;
+	}
+	
 	h2.result {
 		margin-top: 150px;
 	}
@@ -214,7 +245,7 @@
 		margin-top: 10px;
 		outline: none;
 		border-radius: 40px;
-		background: linear-gradient(to right, #7791a7, #acb6e5);
+		background: linear-gradient(to right, #9eaeac, #7791a7);
 		color: white;
 		font-size: 1.2em;
 		letter-spacing: 2px;

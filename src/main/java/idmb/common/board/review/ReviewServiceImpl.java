@@ -24,6 +24,15 @@ public class ReviewServiceImpl implements ReviewService {
 
         return reviewDAO.myReviewList(map);
     }
+    
+    @Override
+    public List<Map<String, Object>> answerReviewList(ReviewBean review) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("r_groupnum", review.getR_groupnum());
+
+        return reviewDAO.answerReviewList(map);
+    }
 	
     @Override
 	public List<Map<String, Object>> productReview(ReviewBean review) throws Exception {

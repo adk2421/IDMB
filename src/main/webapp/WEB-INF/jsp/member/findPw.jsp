@@ -13,6 +13,14 @@
 	
 	<script src="/IDMB/resources/js/find.js?v=<%=System.currentTimeMillis()%>"></script>
 
+	<script>
+		// 페이지 로딩 시, 자동 실행
+		$(document).ready(function() {
+			getSessionFindId();
+			document.getElementById("name").focus();
+		});
+	</script>
+	
 	<title>IDMB</title>
 
 </head>
@@ -26,7 +34,7 @@
 				
 				<div align="center">
 					<h4>아이디</h4>
-					<input type="text" name="id" id="id" maxlength="8" oninput="inputNoSpecial(this)" />
+					<input type="text" name="id" id="id" value=""maxlength="8" oninput="inputNoSpecial(this)" />
 				</div>
 				
 				<div align="center">

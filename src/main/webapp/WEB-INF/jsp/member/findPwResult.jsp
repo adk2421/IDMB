@@ -26,7 +26,6 @@
 					
 					<div class="result">
 						<input type="button" value="로그인" onClick="location.href='/IDMB/loginForm.do'">
-						<input type="button" value="비밀번호 찾기" onClick="location.href='/IDMB/findPw.do'">
 					</div>
 				</c:if>
 

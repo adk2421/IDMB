@@ -41,12 +41,14 @@ function insertQna() {
 </script>
 </head>
 <body>
-
+<div class="container">	
+	<br><br><br><br>
 	<hr><p>
 
 	<!-- 게시판 바로가기 -->
 	<div class="short" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
+		
 		<li style="width:500px; display:inline"><a class="short" href="noticeList.do" >공 지 사 항 &nbsp;&nbsp;</a></li>
 		<li style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
 		<li style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
@@ -56,7 +58,7 @@ function insertQna() {
 	
 	<br>
 	
-<div class="container">
+
 <form action="qnaList.do" method="get">
 	<input type="hidden" name="q_category" id="q_category" value="${q_category}">
 	<table class="sort">
@@ -142,10 +144,16 @@ function insertQna() {
 		</c:choose>
 		</tbody>
 	</table>
+	
+	
+	<br>
+	<!-- 문의 버튼 -->
+	<button class="qnabtn" style="display:block;"type="button" onclick="insertQna()"><b>문 의 하 기</b></button>
+	<br><br><br>
+
 	${paging.pageHtml}
 	<br><br>
 	
-<button class="qnabtn" type="button" onclick="insertQna()"><b>문 의 하 기</b></button>
 </div>
 </body>
 </html>
