@@ -6,7 +6,6 @@
 <head>
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminForm.css" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 
 <meta charset="UTF-8">
 <title>일단메봐</title>
@@ -93,7 +92,7 @@ function cancel() {
 				<td id="td1"><b>질문 답변</b></td>
 				<td>
 					<textarea id="f_contents" name="f_contents"
-						style="width:700px;" maxlength="300">${adminFaqBean.F_CONTENTS}</textarea> 
+						style="width:700px;padding:5px;" maxlength="300">${adminFaqBean.F_CONTENTS}</textarea> 
 				</td>
 			</tr>	
 		</tbody>

@@ -99,7 +99,7 @@
 		</tbody>
 	</table>
 	</div>
-	<div class="footer">
+	<div class="footer1">
 	${paging.pageHtml}</div>
 </body>
 </html>

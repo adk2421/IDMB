@@ -30,7 +30,6 @@
 <body>
 
 	<div style="text-align:center">
-		<p>
 		<h1> 주 문 조 회 </h1>
 	</div>
 	

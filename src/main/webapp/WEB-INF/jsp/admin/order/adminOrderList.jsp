@@ -8,6 +8,7 @@
 <head>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/adminod.css" type="text/css"> 
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 </head>
@@ -71,7 +72,7 @@
 	</tbody>
 	</table>
 </div>	
-   <div class="footer">
+   <div class="footer1">
 			${paging.pageHtml}
 		
 	</div>

@@ -6,9 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/adminMember.css" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/adminMember.css" type="text/css"> 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 </head>
@@ -30,44 +31,49 @@
 	<hr>
 	
 	<div class="container">
+	
 	<form action="adminMemberList.do" method="get">
-	 <label> 검색어 </label>
-		<select name="SORT" id="SORT">
-			<option value="" <c:if test="${SORT =='NULL'}">selected</c:if>>선&emsp;택 ▼</option>
-			<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
-			<option value="name" <c:if test="${SORT =='name'}">selected</c:if>>이 &emsp; 름</option>
-			<option value="phone" <c:if test="${SORT =='phone'}">selected</c:if>>전 화 번 호</option>			
-		</select>
-		<input type="search" name="searchValue" id="search" placeholder="검색어 ..." value="${searchValue}"/>
-		<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
-	</form>
+	 <div class="search-box2">
+		 <label> 검색어 </label>
+			<select name="SORT" id="SORT">
+				<option value="" <c:if test="${SORT =='NULL'}">selected</c:if>>선&emsp;택 ▼</option>
+				<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>아 이 디</option>
+				<option value="name" <c:if test="${SORT =='name'}">selected</c:if>>이 &emsp; 름</option>
+				<option value="phone" <c:if test="${SORT =='phone'}">selected</c:if>>전 화 번 호</option>			
+			</select>
+			<input type="search" name="searchValue" id="search" placeholder="검색어 ..." value="${searchValue}"/>
+			<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
+	</div>
 	
-	
-	<table>
-		<thead>
+	<div class="membertb">
+		<table>
+			<thead>
+				<tr>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>가입일</th>
+					<th>탈퇴여부</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="member" items="${adminMemberList}">
 			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>전화번호</th>
-				<th>가입일</th>
-				<th>탈퇴여부</th>
+				<td ><a href="adminMemberDetail.do?id=${member.ID}">
+					${member.ID}</a></td>
+				<td >${member.NAME}</td>
+				<td >${member.PHONE}</td>
+				<td >${member.JOINDATE}</td>
+				<td >${member.DELFLAG}</td>
 			</tr>
-		</thead>
-		<tbody>
-		<c:forEach var="member" items="${adminMemberList}">
-		<tr>
-			<td ><a href="adminMemberDetail.do?id=${member.ID}">
-				${member.ID}</a></td>
-			<td >${member.NAME}</td>
-			<td >${member.PHONE}</td>
-			<td >${member.JOINDATE}</td>
-			<td >${member.DELFLAG}</td>
-		</tr>
-		</c:forEach>
-	</tbody>
-	</table>
+			</c:forEach>
+		</tbody>
+		</table>
+	</div>
+	</form>
 </div>
-<div class="footer">${paging.pageHtml}</div>	
+
+<div class="footer1">${paging.pageHtml}</div>	
 	
 </body>
 </html>

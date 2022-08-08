@@ -7,7 +7,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/adminBoardForm.css" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -60,12 +60,12 @@ function cancel() {
 		</table>
 	
 
-		<div class="notice-content" style="width:400px; height:280px; border:1px solid black; margin:auto;border-radius:5px;">
+		<div class="notice-content" style="width:400px; height:280px; border:1px solid black; margin:auto;border-radius:5px;padding:5px;">
 			${adminNoticeBean.N_CONTENTS}
 		</div>
 	</div>
 <br>
-	<div class="footer">
+	<div class="footer1">
 		<div class="fbtn"style="margin:auto; text-align: center;">
 			<button id="mbtn"type="button" onclick="update()">수 정</button>
 			<button id="b_btn"type="button" onclick="cancel()">돌 아 가 기</button>

@@ -5,48 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
-<style>
-
-#menu ul {
-
-list-style-type:none;
-
-/* 좌측 여백 없애기 */
-
-padding-left:0px;
-
-/* 우측 정렬 하기 */
-
-float:right;
-
-}
-
-#menu ul li {
-
-display:inline;
-
-border-left: 1px solid #c0c0c0;
-
-/* 테두리와 메뉴 간격 벌리기. padding: 위 오른쪽 아래 왼쪽; */
-
-padding: 0px 10px 0px 10px;
-
-/* 메뉴와 테두리 사이 간격 벌리기. margin: 위 오른쪽 아래 왼쪽; */
-
-margin: 5px 0px 5px 0px;
-
-}
-
-#menu ul li:first-child {
-
-border-left: none;
-
-}
-
-</style>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/kindProduct.css?v=<%=System.currentTimeMillis()%>">
 <meta charset="UTF-8">
 <title>신상품 목록</title>
 </head>
@@ -54,47 +14,23 @@ border-left: none;
 <br>
 
 <!-- 메인페이지 로고 -->
-<div style="margin: auto; width:150px; height:180px;">
-	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
-</div>
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
 <br>
 
 <!-- 상품 종류별로 이동 -->
-<table style="
-	width: 70%; height: 50px;
-	margin-left:15%;
-	margin-right:15%;
-	border:1px solid gray; text-align:center;">
-	<tbody>
-		<tr>
-			<td>
-				<a href="bestProductList.do"><b>BEST</b></a>
-			</td>
-			<td>
-				<a href="newProductList.do"><b>NEW</b></a>
-				
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=숄더백"><b>숄더백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=크로스백"><b>크로스백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=메신저백"><b>메신저백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=클러치백"><b>클러치백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=백팩"><b>백팩</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=미니백"><b>미니백</b></a>
-			</td>
-		</tr>
-	</tbody>	
-</table>
+<nav id="topMenu">
+	<ul>
+		<li><a class="menuLink" href="bestProductList.do"><b>BEST</b></a></li>
+		<li><a class="menuLink" href="newProductList.do"><b>NEW</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=숄더백"><b>숄더백</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=크로스백"><b>크로스백</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=메신저백"><b>메신저백</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=클러치백"><b>클러치백</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=백팩"><b>백팩</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=미니백"><b>미니백</b></a></li>
+	</ul>
+</nav>
+
 
 <br>
 
@@ -109,7 +45,7 @@ border-left: none;
 	<input type="number" name="priceValue2"  id="priceValue2" placeholder="최대금액...."
 		<c:if test = "${priceValue2 != '99999999'}">value="${priceValue2}"</c:if>>
 
-	<input type="submit" value="검색"/>
+	<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
 </form>
 </div>
 

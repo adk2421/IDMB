@@ -7,7 +7,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/adminod.css" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 
@@ -129,7 +129,7 @@ function orderCancel(){
 	<br/>
 	</div>
 	
-	<div class="footer">
+	<div class="footer1">
 		<div class="rcbtn">
 			<button id="mbtn"type="button" onClick="check()">수 정</button>
 			<button id="rmbtn"type="button" onclick="cancel()">취 소</button>

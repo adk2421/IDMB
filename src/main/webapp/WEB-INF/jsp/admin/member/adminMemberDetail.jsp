@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminMember.css" type="text/css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 
@@ -107,7 +107,7 @@ function check() {
 	</form>
 </div>	
 	<br/>
-	<div class="footer">
+	<div class="footer1">
 		<div class="btn">
 			<button id="mbtn2" type="button" onClick="check()">수 정</button>
 			<button id="cancle2"type="button" onclick="cancel()">취 소</button>

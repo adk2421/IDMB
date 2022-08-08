@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/adminList.css" type="text/css">
 <meta charset="UTF-8">
 <title>관리자 공지리스트</title>
 <!-- Bootstrap CSS CDN -->
@@ -29,18 +28,18 @@
 <body>
 	<br><br><br><br>
 	<hr><p>
-	
+<div class="header">
 	<!-- 게시판 바로가기 -->
 	<div class="short" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
-		<li style="width:500px; display:inline"><a class="short" href="noticeList.do" >공 지 사 항 &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="qnaMain.do" >1:1 문 의 &nbsp;&nbsp;</a></li>
+		<li id="notice-list"style="width:500px; display:inline"><a class="short" href="noticeList.do" >공 지 사 항 &nbsp;&nbsp;</a></li>
+		<li id="title-text1"style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
+		<li id="title-text1"style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
+		<li id="title-text1"style="display:inline"><a class="short" href="qnaMain.do" >1:1 문 의 &nbsp;&nbsp;</a></li>
 	</ul>
 	</div>
-	
-	
+</div>		
+<div class="container">	
 	<table class="noticelist" style="width: 99%;">
 		<thead>
 			<tr >
@@ -68,6 +67,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
+</div>	
 	<br>
 	${paging.pageHtml}
 	

@@ -9,7 +9,7 @@
 <link type="text/css"href="css/adminQna.css"rel="stylesheet"> 
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -65,7 +65,7 @@
 			</div>
 				<div class="search-box">
 					<select name="SORT" id="SORT" >
-						<option value="" <c:if test="${SORT =='NULL'}">selected</c:if>>선&emsp;택▼</option>
+						<option value="" <c:if test="${SORT =='NULL'}">selected</c:if>>선&emsp;택&nbsp;▼</option>
 						<option value="title" <c:if test="${SORT =='title'}">selected</c:if>>제 &emsp; 목</option>
 						<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>작 성 자</option>
 						<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
@@ -78,7 +78,7 @@
 					
 		
 
-</form>	
+
 	
 	
 	<div class="tb1">	
@@ -116,8 +116,9 @@
 
 	</table>
 	</div>
-</div>
-<div class="footer">	
+</form>	
+</div><br>
+<div class="footer1">	
 	${paging.pageHtml}
 </div>	
 </body>

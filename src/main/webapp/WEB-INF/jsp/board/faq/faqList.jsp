@@ -33,9 +33,9 @@
 	<div class="short" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
 		<li style="width:500px; display:inline"><a class="short" href="noticeList.do" >공 지 사 항 &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="qnaMain.do" >1:1 문 의 &nbsp;&nbsp;</a></li>
+		<li id="title=text2"style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
+		<li id="faq-list"style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
+		<li id="title-text2"style="display:inline"><a class="short" href="qnaMain.do" >1:1 문 의 &nbsp;&nbsp;</a></li>
 	</ul>
 	</div>
 	
@@ -43,15 +43,10 @@
 	
 	<div class="button" style="margin:auto; text-align: center;">
 	<form action="faqList.do" method="get">
-			&emsp;
 		<button type="submit" name="f_category" id="f_category" value="cost">주문/결제</button>
-			&emsp;
 		<button type="submit" name="f_category" id="f_category" value="shipping">배송문의</button>
-			&emsp;
 		<button type="submit" name="f_category" id="f_category" value="cancel">배송변경/취소</button>
-			&emsp;
 		<button type="submit" name="f_category" id="f_category" value="exchange">교환/반품</button>
-			&emsp;
 		<button type="submit" name="f_category" id="f_category" value="logon">회원가입/로그인</button>	
 	</form>
 	</div>

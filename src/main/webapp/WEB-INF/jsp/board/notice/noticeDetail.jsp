@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/adminBoardForm.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -38,13 +39,13 @@ function cancel() {
 	</tbody>
 </table>
 
-<div style="width:490px; height:285px; border:1px solid black; margin:auto;">
+<div  class="notice-content" style="width:400px; height:280px; border:1px solid black; margin:auto;border-radius:5px; padding:5px;">
 	${noticeBean.N_CONTENTS}
 </div>
 
 <br>
 <div style="margin:auto; text-align: center;">
-<button type="button" onclick="cancel()">돌 아 가 기</button>
+<button id="back"type="button" onclick="cancel()">돌 아 가 기</button>
 </div>
 </body>
 </html>

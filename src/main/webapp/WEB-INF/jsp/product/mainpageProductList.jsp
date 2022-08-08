@@ -5,150 +5,95 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+ <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+        crossorigin="anonymous"></script>
+
+<!-- css연결 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainpageProductList.css?v=<%=System.currentTimeMillis()%>">
 <meta charset="UTF-8">
 <title>상품 목록</title>
-
-<style>
-
-#menu ul {
-
-list-style-type:none;
-
-/* 좌측 여백 없애기 */
-
-padding-left:0px;
-
-/* 우측 정렬 하기 */
-
-float:right;
-
-}
-
-#menu ul li {
-
-display:inline;
-
-border-left: 1px solid #c0c0c0;
-
-/* 테두리와 메뉴 간격 벌리기. padding: 위 오른쪽 아래 왼쪽; */
-
-padding: 0px 10px 0px 10px;
-
-/* 메뉴와 테두리 사이 간격 벌리기. margin: 위 오른쪽 아래 왼쪽; */
-
-margin: 5px 0px 5px 0px;
-
-}
-
-#menu ul li:first-child {
-
-border-left: none;
-
-}
-
-</style>
 
 
 </head>
 <body>
-<br>
-
+<div class="header">
 <!-- 메인페이지 로고 -->
-<div style="margin: auto; width:150px; height:180px;">
-	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180"></a>
-</div>
-<br>
+
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+
+			
+<!-- 검색창 -->
+	<div class="search-box">
+		<form action="searchProduct.do" method="get">
+			<input type=text name="searchValue" id="search" placeholder="검색어....." >
+			<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
+		</form>
+	</div>
+<br><br>
 
 <!-- 상품 종류별로 이동 -->
-<table style="
-	width: 70%; height: 50px;
-	margin-left:15%;
-	margin-right:15%;
-	border:1px solid gray; text-align:center;">
 
-	<tbody>
-		<tr>
-			<td>
-				<a href="bestProductList.do"><b>BEST</b></a>
-			</td>
-			<td>
-				<a href="newProductList.do"><b>NEW</b></a>
-				
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=숄더백"><b>숄더백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=크로스백"><b>크로스백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=메신저백"><b>메신저백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=클러치백"><b>클러치백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=백팩"><b>백팩</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=미니백"><b>미니백</b></a>
-			</td>
-		</tr>
-	</tbody>	
-</table>
 
+<nav id="topMenu">
+	<ul>
+		<li><a class="menuLink" href="bestProductList.do">BEST</a></li>
+		<li><a class="menuLink" href="newProductList.do">NEW</a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=숄더백">숄더백</a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=크로스백">크로스백</a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=메신저백">메신저백</a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=클러치백">클러치백</a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=백팩">백팩</a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=미니백">미니백</a></li>
+	</ul>
+</nav>
+</div>
 <br>
 
-<div style="margin-left:15%;">
-<!-- 검색창 -->
-<form action="searchProduct.do" method="get">
+<br><br>
+
+<div class="container">
+	<div>
+		<h2>&lt;&nbsp;BEST 3&nbsp;&gt;</h2>
+	</div>
+	<br><br>
 	
-	<input type=text name="searchValue" id="searchValue" placeholder="검색어....." >
+	<table id="best_tb">
+		<tbody>
+			<c:forEach var="bestProduct" items="${productBestList}">
+			<td width="300" style="padding-left:100px;">
+				
+				<a href="productDetail.do?p_code=${bestProduct.P_CODE}">
+				<img src="img/${bestProduct.P_IMAGE}" width="250" id="previewImage"></a>
+				<div style="text-align:center;"><h4>${bestProduct.P_NAME}</h4>
+				<p>가격 : ${bestProduct.P_PRICE}</p></div>
+			</td>
+			</c:forEach>
+		</tbody>
+	</table>
 	
-	<button type="submit">검색</button>
-</form>
+	<br><br>
+	<hr>
+	<br><br>
+	<div><h2>&lt;&nbsp;NEW ITEM&nbsp;&gt;</h2></div>
+	<br><br>
+	<table id="newitem_tb">
+		<tbody>
+			<c:forEach var="newProduct" items="${productNewList}">
+			<td width="300" style="padding-left:100px;">
+				<a href="productDetail.do?p_code=${newProduct.P_CODE}">
+				<img src="img/${newProduct.P_IMAGE}" width="250" id="previewImage"></a>
+				<div style="text-align:center;"><h4>${newProduct.P_NAME}</h4>
+				<p>가격 : ${newProduct.P_PRICE}</p></div>
+			</td>
+			</c:forEach>
+		</tbody>
+	</table>
+
 </div>
 
-<br><br>
-
-
-<table style="
-	width: 70%;
-	margin-left:15%;
-	margin-right:15%;
-	text-align:center;">
-	<tbody>
-		<tr>
-			<td colspan="3" style="font-size:30px;"><b>▼ BEST 3!</b></td>
-		</tr>
-		<c:forEach var="bestProduct" items="${productBestList}">
-		<td width="300">
-			<a href="productDetail.do?p_code=${bestProduct.P_CODE}">
-			<img src="img/${bestProduct.P_IMAGE}" width="200"></a>
-		</td>
-		</c:forEach>
-	</tbody>
-</table>
-
-<br><br>
-
-<table style="
-	width: 70%;
-	margin-left:15%;
-	margin-right:15%;
-	text-align:center;">
-	<tbody>
-		<tr>
-			<td colspan="3" style="font-size:30px;"><b>▼ NEW 3!</b></td>
-		</tr>
-		<c:forEach var="newProduct" items="${productNewList}">
-		<td width="300">
-			<a href="productDetail.do?p_code=${newProduct.P_CODE}">
-			<img src="img/${newProduct.P_IMAGE}" width="200"></a>
-		</td>
-		</c:forEach>
-	</tbody>
-</table>
 
 </body>
 </html>

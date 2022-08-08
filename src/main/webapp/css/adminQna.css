@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #p_td{position:relative;left:60px;top:0;}
-.qst_btn{position:relative;left:23%;top:2rem;width:40%;align-items:center;}
+.qst_btn{position:relative;left:200px;;top:2rem;width:40%;align-items:center;}
 #q-list{text-align:center;width:130px;}
 button#qst{
 	background-color:#e6e6e6;
@@ -19,17 +19,18 @@ button#qst:hover, button#qst:focus, button#qst:active{
 	background: #f5f5f5;
 	border-style:solid; 
 }	
+/*검색창*/
 #SORT{float:left;}
-.search-box{position:absolute;top:93%;left:25%;}
+.search-box{width:380px;height:100px;position:absolute;top:355px;left:220px;}
 .search{float:right;} 
 input#search{float:left;}
 
 table#qnaList_tb{
 	width:100%;
-	position:relative;top:20px;left:40px;
-		width:90%;height:40%;
- 		border-collapse:collapse;/*테두리한줄로 정리*/
-		border-spacing:20px 20px;/*td,th간의 여백설정*/
+	position:relative;top:20px;left:30px;
+	width:90%;height:40%;
+ 	border-collapse:collapse;/*테두리한줄로 정리*/
+	border-spacing:20px 20px;/*td,th간의 여백설정*/
 	margin:20px;
 }
  
@@ -165,7 +166,7 @@ button#back-btn:hover, button#back-btn:focus, button#back-btn:active{
 /* #a_content2{float:right;border-radius:5px;} */
 textarea#q_contents{
 	border-radius:5px;margin-left:13px;
-	resize:none;
+	resize:none; padding:5px;
 	width:408px;height:150px;
 }
 

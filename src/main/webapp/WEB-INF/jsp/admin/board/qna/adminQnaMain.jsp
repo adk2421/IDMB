@@ -85,7 +85,7 @@ function qnaList() {
 		</tbody>
 	</table>
 </div>
-<div class="footer"></div>	
+<div class="footer1"></div>	
 
 </body>
 </html>

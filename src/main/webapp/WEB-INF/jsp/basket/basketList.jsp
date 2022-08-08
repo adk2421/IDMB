@@ -26,13 +26,10 @@
 </head>
 <body>
 
-<div class="container">	
-	<div style="text-align:center">
-	<p>
+<div class="header">	
 		<h2>장바구니 확인</h2>
-	</div>
-	
-	<p>
+</div>	
+<div class="container">
 		<!-- 상품정보 div -->	
 		<div class="basketList">
 			<table class="table table-borderless">
@@ -112,7 +109,7 @@
 				
 				
 				<tr>
-					<td colspan="6" align="right">
+					<td id="sum_price" colspan="6" align="right">
 						<span>배송료 : 3000 원<br></span>
 						<c:set var="sum" value="0"/>
 						<c:forEach var="basket" items="${basketList}">
@@ -127,21 +124,23 @@
 			</table>
 		
 		</div>
-		
+</div><!-- container div end -->		
+<div class="footer1">
 	<div class="button">			
-	<c:forEach var="basket" items="${basketList}" begin="1" end="1">
+		<c:forEach var="basket" items="${basketList}" begin="1" end="1">
+		
+		<script>
+			function blistOrder() {
+				if(confirm("장바구니 상품을 전부 주문하시겠습니까?") == true){
+					location.href='basketListOrderForm.do?b_id=${basket.B_ID}';
+				}	
+			}
+		</script>
+		
+			<button class="allorder" type="button" onclick="blistOrder()">전체 주문하기</button>
+			<button class="back" type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
+		</c:forEach>
 	
-	<script>
-		function blistOrder() {
-			if(confirm("장바구니 상품을 전부 주문하시겠습니까?") == true){
-				location.href='basketListOrderForm.do?b_id=${basket.B_ID}';
-			}	
-		}
-	</script>
-	
-		<button class="allorder" type="button" onclick="blistOrder()">전체 주문하기</button>
-		<button class="back" type="button" onclick="location.href='searchProduct.do'">계속 쇼핑하기</button>
-	</c:forEach>
 	</div>
 </div>
 </body>

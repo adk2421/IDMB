@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminBoard.css" type="text/css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -22,6 +21,7 @@ function insertFaq()	{
 <div class="header">
 	<!-- 관리자 메인 바로가기 -->
 	<div class="box1">
+
 		<a href="adminMain.do"><img alt="adminlogo" src="img/adminLogo.png" ></a>
 		<div align="right">
 		<ul style="list-style-type:none">
@@ -48,6 +48,7 @@ function insertFaq()	{
 	<br>
 </div>	
 	<div class="container" >
+	<div class="contain2">
 	<form class="f_box"action="adminFaqList.do" method="get">
 		<button type="submit" name="f_category" id="f_category" value="cost">주문/결제</button>
 		<button type="submit" name="f_category" id="f_category" value="shipping">배송문의</button>
@@ -76,11 +77,11 @@ function insertFaq()	{
 	</table>
 	
 	<br><br>
+	</div>
 	
-	
-	<div class="footer">
+	<div class="footer1">
 		<button id="faqadd" type="button" onClick="insertFaq()">FAQ 작성</button>
-
+		${paging.pageHtml}
 	</div>
 	
 	

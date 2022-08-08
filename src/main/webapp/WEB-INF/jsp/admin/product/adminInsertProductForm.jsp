@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminProduct.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
@@ -176,7 +177,7 @@ function readImage(input) {
 	</form>
 </div>	
 <br>
-<div class="footer">	
+<div class="footer1">	
 	<div class="fbtn"style="margin:auto; text-align: center;">
 		<button id="regis"type="button" onClick="formCheck()">등 록</button>
 		<button id="cancle"type="button" onclick="cancel()">취 소</button>

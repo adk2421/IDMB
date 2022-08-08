@@ -6,7 +6,7 @@
 <head>
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminForm.css" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -90,7 +90,7 @@ function cancel() {
 </form>
 </div>	
 	<br>
-<div class="footer">	
+<div class="footer1">	
 	<div class="fbtn"style="display: flex; justify-content: center;">
 	<button id="writing"type="button" onclick="insertCheck()">작 성</button>
 		&emsp;&emsp;&emsp;&emsp;

@@ -24,9 +24,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css?v=<%=System.currentTimeMillis()%>">
 	
 	<!-- icon -->
-	<!-- search아이콘인데 input안에 아이콘 넣고싶은데 어케할지 몰라서 냅둠일단 -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script>
 function insertQna() {
 	if(${empty id}){
@@ -41,7 +39,7 @@ function insertQna() {
 </script>
 </head>
 <body>
-<div class="container">	
+<div class="header">	
 	<br><br><br><br>
 	<hr><p>
 
@@ -50,15 +48,15 @@ function insertQna() {
 	<ul style="list-style-type:none">
 		
 		<li style="width:500px; display:inline"><a class="short" href="noticeList.do" >공 지 사 항 &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
-		<li style="display:inline"><a class="short" href="qnaMain.do" >1:1 문 의 &nbsp;&nbsp;</a></li>
+		<li id="title-text2"style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
+		<li id="title-text2"style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
+		<li id="qna-list"style="display:inline"><a class="short" href="qnaMain.do" >1:1 문 의 &nbsp;&nbsp;</a></li>
 	</ul>
 	</div>
-	
+</div>	
 	<br>
 	
-
+<div class="container">
 <form action="qnaList.do" method="get">
 	<input type="hidden" name="q_category" id="q_category" value="${q_category}">
 	<table class="sort">
@@ -67,17 +65,17 @@ function insertQna() {
 				<td>
 					<img src="img/${q_category}QNA.png" width="105" border="0" id="imageQNA">
 				</td>
-				<td style= "margin:auto;">
+				<td id="td2" style= "margin:auto;">
 					<select class="form-select" aria-label="Default select example" id="SORT" name="SORT">
 						<option value="title" <c:if test="${SORT =='title'}">selected</c:if>>제  목</option>
 						<option value="id" <c:if test="${SORT =='id'}">selected</c:if>>작 성 자</option>
 						<option value="product" <c:if test="${SORT =='product'}">selected</c:if>>상 품 명</option>	
 					</select>
 					<p></p>
-					 
-					<input class="insearch" type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>
-					
-					<button class="search" type="submit"><b>검색</b></button>
+			 	<div class="search">
+					<input class="insearch" type="text" name="searchValue" id="searchValue" placeholder="검색어 ..." value="${searchValue}"/>	
+					<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
+				</div>
 				</td>
 			</tr>
 			<tr>
@@ -100,12 +98,12 @@ function insertQna() {
 	<table class="qnatable">
 		<thead>
 			<tr>
-				<th>&nbsp;&nbsp;글번호</th>
-				<th>&nbsp;&nbsp;상품명</th>
-				<th class="title">제목</th>
-				<th>&nbsp;&nbsp;작성자</th>
-				<th>&nbsp;&nbsp;작성일</th>
-				<th>&nbsp;&nbsp;상태&nbsp;&nbsp;</th>
+				<th>글번호</th>
+				<th>상품명</th>
+				<th id="title_th">제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>상태</th>
 			</tr>
 		</thead>
 		
@@ -144,16 +142,16 @@ function insertQna() {
 		</c:choose>
 		</tbody>
 	</table>
-	
+</div> <!-- container div  end -->	
 	
 	<br>
+<div class="footer1">	
 	<!-- 문의 버튼 -->
 	<button class="qnabtn" style="display:block;"type="button" onclick="insertQna()"><b>문 의 하 기</b></button>
 	<br><br><br>
 
 	${paging.pageHtml}
-	<br><br>
-	
+	<br><br>	
 </div>
 </body>
 </html>

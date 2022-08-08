@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminBoardForm.css" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -85,7 +85,7 @@ function cancel() {
 
 </div>
 	<br>
-<div class="footer">	
+<div class="footer1">	
 	<div class="fbtn" style="margin:auto; text-align: center;">
 		<button id="wbtn" type="button" onClick="insertCheck()">작 성</button>
 		<button id="cancle"type="button" onclick="cancel()">취 소</button>

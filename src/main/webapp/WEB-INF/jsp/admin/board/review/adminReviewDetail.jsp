@@ -7,7 +7,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/adminDetail.css" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <meta charset="UTF-8">
 <title>일단메봐</title>
 <script>
@@ -104,7 +104,7 @@ function cancel() {
 	</div>
 </div>
 <br>
-<div class="footer">
+<div class="footer1">
 	<div class="rb-btn"style="margin:auto; text-align: center;">
 		<button id="rc-btn" type="button" onClick="deleteCheck()">후 기 삭 제</button>
 			&emsp;&emsp;

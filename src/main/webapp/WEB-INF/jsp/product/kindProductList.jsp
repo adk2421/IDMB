@@ -5,51 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
-<style>
-
-#menu ul {
-
-list-style-type:none;
-
-/* 좌측 여백 없애기 */
-
-padding-left:0px;
-
-/* 우측 정렬 하기 */
-
-float:right;
-
-}
-
-#menu ul li {
-
-display:inline;
-
-border-left: 1px solid #c0c0c0;
-
-/* 테두리와 메뉴 간격 벌리기. padding: 위 오른쪽 아래 왼쪽; */
-
-padding: 0px 10px 0px 10px;
-
-/* 메뉴와 테두리 사이 간격 벌리기. margin: 위 오른쪽 아래 왼쪽; */
-
-margin: 5px 0px 5px 0px;
-
-}
-
-#menu ul li:first-child {
-
-border-left: none;
-
-}
-
-</style>
-
-<link rel="stylesheet" href="css/menutop.css" type="text/css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/kindProduct.css?v=<%=System.currentTimeMillis()%>">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>신상품 목록</title>
 </head>
@@ -58,107 +15,88 @@ border-left: none;
 
 <!-- 메인페이지 로고 -->
 <div style="margin: auto; width:150px; height:180px;">
-	<a href="/IDMB/"><img src="img/logo.png" width="150" height="180" id="previewImage"></a>
+	<a href="/IDMB/"><img src="img/logo.png" width="150" id="previewImage"></a>
 </div>
 <br>
 
 <!-- 상품 종류별로 이동 -->
-<table style="
-	width: 70%; height: 50px;
-	margin-left:15%;
-	margin-right:15%;
-	border:1px solid gray; text-align:center;">
-	<tbody>
-		<tr>
-			<td>
-				<a href="bestProductList.do"><b>BEST</b></a>
-			</td>
-			<td>
-				<a href="newProductList.do"><b>NEW</b></a>
-				
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=숄더백"><b>숄더백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=크로스백"><b>크로스백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=메신저백"><b>메신저백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=클러치백"><b>클러치백</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=백팩"><b>백팩</b></a>
-			</td>
-			<td>
-				<a href="kindProductList.do?p_kind=미니백"><b>미니백</b></a>
-			</td>
-		</tr>
-	</tbody>	
-</table>
+<nav id="topMenu">
+	<ul>
+		<li><a class="menuLink" href="bestProductList.do"><b>BEST</b></a></li>
+		<li><a class="menuLink" href="newProductList.do"><b>NEW</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=숄더백"><b>숄더백</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=크로스백"><b>크로스백</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=메신저백"><b>메신저백</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=클러치백"><b>클러치백</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=백팩"><b>백팩</b></a></li>
+		<li><a class="menuLink" href="kindProductList.do?p_kind=미니백"><b>미니백</b></a></li>
+	</ul>
+</nav>
+
 
 <br>
 
-<div style="margin-left:15%;">
-<form action="kindProductList.do" method="get">
-	<input type="hidden" name="p_kind" id="p_kind" value="${p_kind}">
+	<div id="search_detail">
+	<form action="kindProductList.do" method="get">
+		<input type="hidden" name="p_kind" id="p_kind" value="${p_kind}">
+		
+		<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
+		
+		<br>
 	
-	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
-	
-	<br>
+		<input type="number" name="priceValue1"  id="priceValue1" placeholder="최소금액...." 
+			<c:if test = "${priceValue1 != '0'}">value="${priceValue1}"</c:if>> ~ 
+			<input type="number" name="priceValue2"  id="priceValue2" placeholder="최대금액...."
+			<c:if test = "${priceValue2 != '99999999'}">value="${priceValue2}"</c:if>>
+			<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
+			
+	</div>
+		<br><br>
+		<div id="orderby">
+				<button type="submit" name="SORT" id="SORT" value="newproduct">최신순</button>
+				<button type="submit" name="SORT" id="SORT" value="bestproduct">인기순</button>
+				<button type="submit" name="SORT" id="SORT" value="highproduct">높은 가격순</button>
+				<button type="submit" name="SORT" id="SORT" value="lowproduct">낮은 가격순</button>
+		</div>
+	</form>
 
-	<input type="number" name="priceValue1"  id="priceValue1" placeholder="최소금액...." 
-		<c:if test = "${priceValue1 != '0'}">value="${priceValue1}"</c:if>> ~ 
-	<input type="number" name="priceValue2"  id="priceValue2" placeholder="최대금액...."
-		<c:if test = "${priceValue2 != '99999999'}">value="${priceValue2}"</c:if>>
-
-	<input type="submit" value="검색"/>
-	
-	<br><br>
-	
-	<button type="submit" name="SORT" id="SORT" value="newproduct">최신순</button>
-	<button type="submit" name="SORT" id="SORT" value="bestproduct">인기순</button>
-	<button type="submit" name="SORT" id="SORT" value="highproduct">높은 가격순</button>
-	<button type="submit" name="SORT" id="SORT" value="lowproduct">낮은 가격순</button>
-</form>
-</div>
 <br><br>
 
-<div style="margin: auto; text-align:center; font-size:30px;">▼ ${p_kind}!<br><br></div>
-
-	<div style="margin: auto; text-align:center;">
-		<c:if test="${kindList.size() == 0}">
-			 검색된 상품이 없습니다.
-		</c:if>
-	</div>
-
-<table>
-	<tbody>
-		<c:forEach var="product" items="${kindList}" begin="0" end ="4">
-			<td width="200" height="200">
-				<a href="productDetail.do?p_code=${product.P_CODE}">
-				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
-				<a href="productDetail.do?p_code=${product.P_CODE}">
-				${product.P_NAME}</a><br>
-				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
-			</td>
-		</c:forEach>
-		
-		<tr></tr>
+<div class="container">
+	<div style="margin: auto; text-align:center; font-size:30px;">▼ ${p_kind}!<br><br></div>
 	
-		<c:forEach var="product" items="${kindList}" begin="5" end ="9">
-			<td width="200" height="200">
-				<a href="productDetail.do?p_code=${product.P_CODE}">
-				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
-				<a href="productDetail.do?p_code=${product.P_CODE}">
-				${product.P_NAME}</a><br>
-				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
-			</td>
-		</c:forEach>
-	</tbody>
-</table>
+		<div style="margin: auto; text-align:center;">
+			<c:if test="${kindList.size() == 0}">
+				 검색된 상품이 없습니다.
+			</c:if>
+		</div>
+	
+	<table>
+		<tbody>
+			<c:forEach var="product" items="${kindList}" begin="0" end ="4">
+				<td width="200" height="200">
+					<a href="productDetail.do?p_code=${product.P_CODE}">
+					<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
+					<a href="productDetail.do?p_code=${product.P_CODE}">
+					${product.P_NAME}</a><br>
+					<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+				</td>
+			</c:forEach>
+			
+			<tr></tr>
+		
+			<c:forEach var="product" items="${kindList}" begin="5" end ="9">
+				<td width="200" height="200">
+					<a href="productDetail.do?p_code=${product.P_CODE}">
+					<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
+					<a href="productDetail.do?p_code=${product.P_CODE}">
+					${product.P_NAME}</a><br>
+					<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+				</td>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>	
 ${paging.pageHtml}
 </body>
 </html>
