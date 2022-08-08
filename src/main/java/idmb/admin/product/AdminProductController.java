@@ -122,13 +122,6 @@ public class AdminProductController {
 		//P_CODE 값을 이용하여 상품 정보를 읽어와 전달
 		map = adminProductService.adminSearchProductCode(product);
 		
-		
-	//	String pd = (String) product.getP_detail();		
-	//	pd = pd.replace("<br>","\r\n");
-	//	map.put("p_detail", pd);
-	//	해결방법 못찾음
-		
-		
 		model.addAttribute("adminProductBean", map);
 		
 		//tiles.xml의 definition name="adminUpdateProductForm"로 이동
