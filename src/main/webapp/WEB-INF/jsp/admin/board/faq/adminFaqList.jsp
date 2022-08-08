@@ -80,8 +80,7 @@ function insertFaq()	{
 	
 	<div class="footer">
 		<button id="faqadd" type="button" onClick="insertFaq()">FAQ 작성</button>
-	
-		${paging.pageHtml}
+
 	</div>
 	
 	

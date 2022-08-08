@@ -1,13 +1,10 @@
 package idmb.util;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Map;
 
 import idmb.model.BasketBean;
 import idmb.model.MemberBean;
-import idmb.model.OrderBean;
-import idmb.model.ProductBean;
 
 public class MapToBean {
     

@@ -129,24 +129,33 @@ public class OrderController {
     @RequestMapping(value = "/basketListOrder.do")
     public String basketListOrder(OrderBean order, HttpServletRequest request, Model model) throws Exception {
     	System.out.println(order.getO_id());
+    	
+    	//새로운 basketBean 생성
 		BasketBean basket = new BasketBean();
+		
+		//session으로 부터 id 불러오기
 		String id = (String) request.getSession().getAttribute("id");
 		basket.setB_id(id);
     	
+		//불러온 id에 해당하는 basket 목록 불러오기
     	List<Map<String,Object>> blist = new ArrayList<Map<String,Object>>();
     	blist = basketService.basketList(basket);
 		
 		List<BasketBean> basketBeanList = new ArrayList<BasketBean>();
-		  
+		
+		//새로운 arrayList에 blist의 정보 삽입 
 		for(Map<String, Object> mapObject : blist) {
 			basketBeanList.add(MapToBean.mapToBasket(mapObject));
 		}
     	
+		//생성된 basketBeanList에서 정보들을 bean형식으로 추출
 		for(BasketBean bas : basketBeanList) {
 			
+			//새 map 객체 생성
 			Map<String, Object> map = new HashMap<String, Object>();
 			map = basketService.searchBasket(bas);
 			
+			//새로운 map 객체에 basketBeanList의 해당값을을 차례로 set
 			order.setO_id((String)map.get("B_ID"));
 			order.setO_code(Integer.parseInt(String.valueOf(map.get("B_CODE"))));
 			order.setO_name((String)map.get("B_NAME"));
@@ -155,8 +164,11 @@ public class OrderController {
 			order.setO_total((Integer.parseInt(String.valueOf(map.get("B_PRICE"))))
 					*(Integer.parseInt(String.valueOf(map.get("B_COUNT")))));
 			
+			//주문 DB에 삽입, 장바구니 DB에서 삭제
 	    	orderService.insertOrder(order);
 	    	basketService.deleteBasket(bas);
+	    	
+	    	//장바구니가 List가 끝날때까지 반복
 		}    
  	
     	model.addAttribute("msg", "주문이 등록되었습니다.");
