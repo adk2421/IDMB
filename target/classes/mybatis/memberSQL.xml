@@ -157,4 +157,26 @@
 		]]>
 	</select>
 	
+	<!-- 주문자 아이디 찾기 -->
+	<select id="memberArticleCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				(SELECT COUNT(*)
+		        FROM ORDERCOMMAND
+		        WHERE O_ID = 'aaa') ORDERCNT,
+		        
+		        (SELECT COUNT(*)
+		        FROM QNA_BOARD
+		        WHERE Q_ID = 'aaa') QNACNT,
+		        
+		        (SELECT COUNT(*)
+		        FROM REVIEW
+		        WHERE R_ID = 'aaa') REVIEWCNT
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+		]]>
+	</select>
+	
 </mapper>

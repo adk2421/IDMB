@@ -7,7 +7,7 @@ import idmb.model.ReviewBean;
 
 public interface ReviewService {
 	
-	public List<Map<String, Object>> myReviewList (ReviewBean review) throws Exception;
+	public List<Map<String, Object>> myReviewList (ReviewBean review, int START, int END) throws Exception;
 	
 	public List<Map<String, Object>> answerReviewList (ReviewBean review) throws Exception;
 	

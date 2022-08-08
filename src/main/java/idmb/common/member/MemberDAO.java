@@ -54,4 +54,9 @@ public class MemberDAO {
 		sqlSessionTemplate.update("member.deleteMember",map);
 	}
 	
+	// 회원 작성 게시물 수
+	public Map<String, Object> memberArticleCount(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("member.memberArticleCount",map);
+	}
+	
 }

@@ -28,6 +28,7 @@ import idmb.model.ProductBean;
 import idmb.model.QNABean;
 import idmb.model.ReviewBean;
 import idmb.util.MapToBean;
+import idmb.util.ReviewPaging;
 
 @Controller
 public class MemberController {
@@ -160,7 +161,7 @@ public class MemberController {
 					return "/member/login";
 				}
 
-				// 세션 등록
+				// 회원 정보 세션 등록
 				session.setAttribute("id", map.get("ID"));
 				session.setAttribute("name", map.get("NAME"));
 				session.setAttribute("reserve", map.get("RESERVE"));
@@ -263,7 +264,7 @@ public class MemberController {
 	@RequestMapping(value = "/")
 	public String mainPage(Model model) throws Exception {
 		
-		return "../../index";
+		return "mainpageProductList";
 	}
 	
 	// 회원정보 폼
@@ -333,10 +334,29 @@ public class MemberController {
 	// 마이페이지
 	@RequestMapping(value = "/myPage.do")
 	public String myInfoOrder(Model model, HttpServletRequest request) throws Exception {
-		List<Map<String, Object>> listMap =  new ArrayList<Map<String, Object>>();
-		
 		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
+		
+		/* 페이징을 위한 변수 */
+		int pageSize = 5; // 페이지당 출력할 후기의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
+		
+		int pageBlock = 5; // 표시할 페이지의 수
+		
+		String url = "myPage.do";
+		String searchUrl = "";
+		
+		MemberBean member = new MemberBean();
+		member.setId(id);
+		Map<String, Object> cnt = myInfoService.memberArticleCount(member);
+		
+		int orderCnt = Integer.parseInt(cnt.get("ORDERCNT").toString());
+		int qnaCnt = Integer.parseInt(cnt.get("QNACNT").toString());
+		int reviewCnt = Integer.parseInt(cnt.get("REVIEWCNT").toString());
+		
+		// 주문 정보 가져오기
 		OrderBean order = new OrderBean();
 		order.setO_id(id);
 		
@@ -384,13 +404,25 @@ public class MemberController {
         
         model.addAttribute("myQnaList", myQnaList);
         
+        // 기본 페이지가 아닌 경우
+     	if (request.getParameter("page")!=null) {
+ 			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
+ 			START = 1 + pageSize * (currentPage - 1); //1,11,21 단위로 상품 출력
+ 			END = pageSize * currentPage;
+ 		}
+ 		
+ 		// 페이징
+ 		ReviewPaging paging = new ReviewPaging(reviewCnt, pageBlock, pageSize, currentPage, url, searchUrl);
+ 		model.addAttribute("paging", paging);
+        
         // 내 Review List
         ReviewBean review = new ReviewBean();
 		review.setR_id(id);
 		
         List<Map<String, Object>> myReviewList = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> listMap =  new ArrayList<Map<String, Object>>();
 
-        myReviewList = reviewService.myReviewList(review);
+        myReviewList = reviewService.myReviewList(review, START, END);
         
         for (Map<String, Object> reviewList : myReviewList) {
         	String star = "";

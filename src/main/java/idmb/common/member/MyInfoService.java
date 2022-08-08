@@ -5,6 +5,7 @@ import java.util.Map;
 
 import idmb.model.MemberBean;
 import idmb.model.OrderBean;
+import idmb.model.ProductBean;
 
 public interface MyInfoService {
 
@@ -15,5 +16,7 @@ public interface MyInfoService {
     public void updateMember(MemberBean member) throws Exception;
 
     public void deleteMember(MemberBean member) throws Exception;
+    
+    public Map<String, Object> memberArticleCount(MemberBean member) throws Exception;
 
 }

@@ -7,27 +7,39 @@
 	<select id="myReviewList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				R.R_NUM,
-				R.R_ID,
-				R.R_CODE,
-				R.R_NAME,
-				TO_CHAR(R.R_DATE, 'YYYY-MM-DD') R_DATE,
-				R.R_CONTENTS,
-				R.R_RATE,
-				R.R_RECOMMEND,
-				R.R_RELEVEL,
-				R.R_GROUPNUM,
-				P.P_IMAGE
-			FROM
-				REVIEW R
-			INNER JOIN
-				PRODUCT P
-			ON
-				P.P_CODE = R.R_CODE
+                *
+			FROM(
+				SELECT
+					R_NUM,
+					R_ID,
+					R_CODE,
+					R_NAME,
+					TO_CHAR(R_DATE, 'YYYY-MM-DD') R_DATE,
+					R_CONTENTS,
+					R_RATE,
+					R_RECOMMEND,
+					R_RELEVEL,
+					R_GROUPNUM,
+					P_IMAGE,
+					ROWNUM R
+				FROM(
+					SELECT
+						*
+					FROM
+						REVIEW R
+					INNER JOIN
+						PRODUCT P
+					ON
+						P.P_CODE = R.R_CODE
+					WHERE
+						R_ID = 'aaa'
+					ORDER BY
+						R_NUM DESC
+				)
+				ORDER BY R
+			)
 			WHERE
-				R_ID = #{r_id}
-			ORDER BY
-				R_NUM DESC
+                R BETWEEN 1 AND 5
 		]]>
 	</select>
 	

@@ -94,7 +94,7 @@
 		</div>
 		
 		<div>
-			<p><a href="/IDMB/myInfoModifyForm.do">회원정보 수정</a>　|　배송주소록 관리</p>
+			
 		</div>
 		
 		<div class="stdWidth">
@@ -102,7 +102,7 @@
 			
 			<div class="vertical">
 				<p>${name}님, 환영합니다.</p>
-				<br/>
+				<p><a href="/IDMB/myInfoModifyForm.do">회원정보 수정</a></p>
 				<p>
 					<a href="javascript:focusdiv('orderList');">주문내역</a>　|　
 					<!-- 관심상품　|　 -->
@@ -356,6 +356,7 @@
 						</div>
 				    </c:forEach>
 			    </div>
+				${paging.pageHtml}
 			</div>
 		</div>
 		

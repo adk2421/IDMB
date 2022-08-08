@@ -17,10 +17,12 @@ public class ReviewServiceImpl implements ReviewService {
     private ReviewDAO reviewDAO;
     
     @Override
-    public List<Map<String, Object>> myReviewList(ReviewBean review) throws Exception {
+    public List<Map<String, Object>> myReviewList(ReviewBean review, int START, int END) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("r_id", review.getR_id());
+		map.put("START", START);
+		map.put("END", END);
 
         return reviewDAO.myReviewList(map);
     }
