@@ -11,7 +11,7 @@
 	
 	h2 {
 		padding-top: 30px;
-		color: #7791a7;
+		color: black;
 		font-size: 2.5em;
 		letter-spacing: 8px;
 	}
@@ -107,6 +107,11 @@
 	
 	.login_etc div {
 		width: 60px;
+	}
+	
+	i img {
+		width: 27px;
+		margin-top: 10px;
 	}
 	
 	
@@ -245,7 +250,7 @@
 		margin-top: 10px;
 		outline: none;
 		border-radius: 40px;
-		background: linear-gradient(to right, #9eaeac, #7791a7);
+		background: #B8C6DB;
 		color: white;
 		font-size: 1.2em;
 		letter-spacing: 2px;

@@ -29,6 +29,12 @@
                     <li><a href=""><i class="fab fa-twitter"></i></a></li>
                 </div>
                 
+                <!-- <div class="login_sns">
+                    <li><a href=""><i><img src="/IDMB/resources/img/ICON_facebook.png" /></i></a></li>
+                    <li><a href=""><i><img src="/IDMB/resources/img/ICON_kakaotalk.png" /></i></a></li>
+                    <li><a href=""><i><img src="/IDMB/resources/img/ICON_instagram.png" /></i></a></li>
+                </div> -->
+                
                 <div class="login_div">
                     <h4 class="login_H4">ID</h4>
                     <input class="login_input" type="text" name="id" id="id" placeholder="아이디" oninput="inputNoSpecial(this)" />

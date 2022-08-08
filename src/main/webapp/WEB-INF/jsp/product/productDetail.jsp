@@ -16,20 +16,20 @@
 	<script>
 	// 최근 본 상품 세션 등록
 	$(document).ready(function() {
-		// var maxCount = 10;
+		var maxCount = 10;
 		var temp;
 			
 		// 세션 마지막 값부터 반복 시작
-		for (var i=sessionStorage.length; i>0; i--) {
+		for (var i = sessionStorage.length; i>0; i--) {
 			// 현재 인덱스 앞에 있는 값을 저장
-			temp = sessionStorage.getItem(i-1);	
-			sessionStorage.setItem(i,temp);	
+			if (i < maxCount) {
+				temp = sessionStorage.getItem(i-1);
+				sessionStorage.setItem(i,temp);
+			}
 		}
 			
 		// 상세페이지로 들어온 상품코드 첫 번째 인덱스에 저장
 		sessionStorage.setItem(0,${ProductDetail.P_CODE});
-			
-		console.log(sessionStorage);
 	});
 		
 	</script>
@@ -160,7 +160,7 @@ function insertReview() {
 </head>
 <body>
 
-<div style="margin:auto; width: 600px; height:1500px;">
+<div style="margin:auto; width: 600px;">
 <h2>${ProductDetail.P_NAME}</h2>
 	
 	<!-- 상품 정보 -->
