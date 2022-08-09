@@ -28,7 +28,7 @@ import idmb.model.ProductBean;
 import idmb.model.QNABean;
 import idmb.model.ReviewBean;
 import idmb.util.MapToBean;
-import idmb.util.ReviewPaging;
+import idmb.util.MyPagePaging;
 
 @Controller
 public class MemberController {
@@ -412,7 +412,7 @@ public class MemberController {
  		}
  		
  		// 페이징
- 		ReviewPaging paging = new ReviewPaging(reviewCnt, pageBlock, pageSize, currentPage, url, searchUrl);
+ 		MyPagePaging paging = new MyPagePaging(reviewCnt, pageBlock, pageSize, currentPage, url, searchUrl);
  		model.addAttribute("paging", paging);
         
         // 내 Review List
@@ -471,5 +471,5 @@ public class MemberController {
 		session.setAttribute("viewedProduct", viewedProduct);
 				
 		return "redirect:myPage";
-	} 
+	}
 }

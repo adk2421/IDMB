@@ -63,6 +63,7 @@
 			});
 		}
 		
+		// 페이지 이동
 		function productDetail(p_code) {			
 			location.href = "productDetail.do?p_code=" + p_code;
 		}
@@ -72,8 +73,12 @@
 		}
 		
 		function reviewDetail(r_groupnum) {
-			console.log(r_groupnum);
 			location.href = "reviewDetail.do?r_groupnum=" + r_groupnum;
+		}
+		
+		// 페이징
+		function pagingAjax(curPage) {
+			console.log(curPage);
 		}
 		
 		// 페이지 로딩 시, 자동 실행
@@ -357,6 +362,13 @@
 				    </c:forEach>
 			    </div>
 				${paging.pageHtml}
+				
+				<div style="margin:auto; text-align: center;">
+					<ul style="list-style-type: none;">
+						<li style="display:inline"><a href="">3</a>&emsp;</li>
+						<li style="display:inline"><span>3</span>&emsp;</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		
