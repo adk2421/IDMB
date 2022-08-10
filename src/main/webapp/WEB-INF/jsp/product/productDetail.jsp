@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/productDetail.css?v=<%=System.currentTimeMillis()%>">
+	<link rel="stylesheet" href="/IDMB/resources/css/productDetail.css?v=<%=System.currentTimeMillis()%>">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/6.1.2/css/font-awesome.min.css" rel="stylesheet">
 	<title>상품 상세 보기</title>
 	
