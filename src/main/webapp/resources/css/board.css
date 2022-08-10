@@ -104,6 +104,9 @@ button{
 	margin-left:18px;
 	padding-top:8px;
 }
+#q_btn{
+	margin-left:27%;
+}
 
 /*accordion*/
 .accordion{
@@ -212,21 +215,14 @@ select:disabled {
 }
 
 /*qnatable */
-.tb1{position:relative;height:50%;}
-
-table#qnatable{
-	/* text-align:center;
-	width:99%;height:40%;
- 	border-collapse:collapse;테두리한줄로 정리
-	border-spacing:20px 20px;td,th간의 여백설정
-	margin-left:80px;
-   */
-   width:1500px;
-	position:relative;
-	width:100%;height:40%;
+form{margin-left:150px;}
+.qnatable table{
+	text-align:center;
+	width:80%;height:80%;
  	border-collapse:collapse;/*테두리한줄로 정리*/
 	border-spacing:20px 20px;/*td,th간의 여백설정*/
-	margin:20px;
+	margin:auto;
+  
 }
 th{
 		
@@ -238,7 +234,7 @@ th{
 	
 }
 
-td#qnatable{text-align:center;
+ .qnatable td{text-align:center;
 	padding:10px;
 	border-bottom:1px solid #444;
 	

@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/IDMB/resources/css/productDetail.css?v=<%=System.currentTimeMillis()%>">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/productDetail.css?v=<%=System.currentTimeMillis()%>">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/6.1.2/css/font-awesome.min.css" rel="stylesheet">
 	<title>상품 상세 보기</title>
 	
@@ -17,20 +17,20 @@
 	<script>
 	// 최근 본 상품 세션 등록
 	$(document).ready(function() {
-		var maxCount = 10;
+		// var maxCount = 10;
 		var temp;
 			
 		// 세션 마지막 값부터 반복 시작
-		for (var i = sessionStorage.length; i>0; i--) {
+		for (var i=sessionStorage.length; i>0; i--) {
 			// 현재 인덱스 앞에 있는 값을 저장
-			if (i < maxCount) {
-				temp = sessionStorage.getItem(i-1);
-				sessionStorage.setItem(i,temp);
-			}
+			temp = sessionStorage.getItem(i-1);	
+			sessionStorage.setItem(i,temp);	
 		}
 			
 		// 상세페이지로 들어온 상품코드 첫 번째 인덱스에 저장
 		sessionStorage.setItem(0,${ProductDetail.P_CODE});
+			
+		console.log(sessionStorage);
 	});
 		
 	</script>
@@ -167,8 +167,8 @@ function insertReview() {
 </head>
 <body>
 
-<div style="margin:auto; width: 600px;">
-<h2>${ProductDetail.P_NAME}</h2>
+<div id="container">
+<h2>&lt;&nbsp;${ProductDetail.P_NAME}&nbsp;&gt;</h2>
 	
 	<!-- 상품 정보 -->
 	<table id="product_info_tb">
@@ -236,14 +236,15 @@ function insertReview() {
 		    </form>
 		</div>
 	</div>
-	<br>
+	<br><hr>
 	
 	<!-- 상품상세 -->
+	<div id="p_form">
 		<h4>상품 상세</h4>
 		<div id="productDetail">
 			${ProductDetail.P_DETAIL}
 		</div>
-
+	</div>
 	<br>
 	
 	<!-- 상품 후기 -->
@@ -252,13 +253,13 @@ function insertReview() {
 	<table id="review_tb">
 		<tbody>
 			<tr>
-				<td class="r_tb" style="width:50px;"><b>작성자</b></td>
+				<td class="r_th" style="width:50px;"><b>작성자</b></td>
 				<td class="r_tb" style="width:100px;">${pReview.R_ID}</td>
-				<td class="r_tb" style="width:50px;"><b>작성일</b></td>
+				<td class="r_th" style="width:50px;"><b>작성일</b></td>
 				<td class="r_tb" style="width:120px;"><fmt:formatDate value="${pReview.R_DATE}" pattern="yy.MM.dd hh:mm"/></td>
-				<td class="r_tb" style="width:50px;"><b>추천수</b></td>
+				<td class="r_th" style="width:50px;"><b>추천수</b></td>
 				<td class="r_tb" style="width:30px;">${pReview.R_RECOMMEND}</td>
-				<td class="r_tb" style="width:50px;"><b>별점</b></td>
+				<td class="r_th" style="width:50px;"><b>별점</b></td>
 				<td class="r_tb" style="width:120px;">
 					<span class="star">
 					 ★★★★★
@@ -269,10 +270,10 @@ function insertReview() {
 				</td>
 			</tr>
 			<tr>
-				<td class="r_tb"><b>내용</b></td>
-				<td colspan="6" style="width:450px;">${pReview.R_CONTENTS}</td>	
-				<td>
-				<c:if test="${!empty id}">
+				<td class="r_th"><b>내용</b></td>
+				<td class="r_tb" colspan="6" style="width:450px;">${pReview.R_CONTENTS}</td>	
+				<td class="r_tb">
+				<c:if test="${!empty id}" >
 					<button type="button" onclick="location.href='recommendUp.do?r_num=${pReview.R_NUM}'">추천</button>
 				</c:if>
 				</td>
@@ -288,33 +289,39 @@ function insertReview() {
 		<input type="hidden" id="r_id" name="r_id" value="${id}">
 		<input type="hidden" id="r_code" name="r_code" value="${ProductDetail.P_CODE}">
 		<input type="hidden" id="r_name" name="r_name" value="${ProductDetail.P_NAME}">
-	
-		<table id="review_write_tb">
-			<tbody>
-				<tr>
-					<td id="r_rate"style="width:50px;"><b>별점</b></td>
-					<td>
-					<span class="star">
-					 ★★★★★
-						<span>★★★★★</span>
-						<input type="range" oninput="drawStar(this)"
-						id="r_rate" name="r_rate" step="1" min="1" max="5" value="5"></td>
-					</span>
-				</tr>
-				<tr>
-					<td class="rw" style="width:50px;"><b>내용</b></td>
-					<td class="rw">
-						<textarea id="r_contents" name="r_contents"></textarea>
-					</td>	
-				</tr>
-			</tbody>
+	<table id="review_write">
+		<tr>
+			<td id="rc"><b>별 점</b></td>&emsp;
+			<td id="r_rating">
+			<div class="star-rating space-x-4 mx-auto">
+				<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+				<label for="5-stars" class="star pr-4">★</label>
+				<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+				<label for="4-stars" class="star">★</label>
+				<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+				<label for="3-stars" class="star">★</label>
+				<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+				<label for="2-stars" class="star">★</label>
+				<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
+				<label for="1-star" class="star">★</label>
+			</div>
+			</td>
+		</tr>
+			<tr>	
+				<td id="rc2"><b>내용</b></td>		
+				<td id="rc2"><textarea class="form-control" id="r_contents" type="text" name="r_contents"
+						placeholder="상품후기를 작성해주세요.";></textarea>			
+				</td>
+			</tr>
 		</table>
+	</form>		
+	
 		<button id="rb_wbtn"type="button" onclick="insertReview()">후기작성</button>
-	</form>
-	<div>
-	${paging.pageHtml}
+	
+		<div>
+		${paging.pageHtml}
 		
+		</div>
 	</div>
-</div>
     </body>
  </html>

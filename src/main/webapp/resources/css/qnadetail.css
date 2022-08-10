@@ -28,7 +28,9 @@ input {
     border-color:#787878;
 	outline: 0;
 }
-
+#btn_box{
+	margin-left:38%;
+}
 /*버튼*/
 .upbtn{
 	text-align:center;

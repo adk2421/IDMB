@@ -2,13 +2,17 @@
 
 /*Notice List-css*/
 .contain2{position:relative;top:30px;}
+
+
 #mbtn{/*수정버튼*/
 	background-color:#36b3e0;
+	margin:auto;
 	border-radius:5px;
 	border-style:none;
 	width:50px;height:30px;
 	color:white;
-}
+	}
+	
 
 button#mbtn:hover, button#mbtn:focus, button#mbtn:active{
 	color:blue;
@@ -181,9 +185,10 @@ button#f_category:hover, button#f_category:focus, button#f_category:active{
 
 #mbtn2{/*수정버튼*/
 	background-color:#36b3e0;
-	border-radius:5px;
+	border-radius:100%;
 	border-style:none;
 	width:50px;height:35px;
+	margin-left:10px;
 	color:white;
 	font-size:13px;
 }

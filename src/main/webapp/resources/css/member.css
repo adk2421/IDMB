@@ -256,7 +256,3 @@
 		cursor: pointer;
 	}
 	
-	input[readonly] {
-		background-color: lightgray;
-	}
-	

@@ -42,7 +42,7 @@ function insertFaq()	{
 			<li style="display:inline"><a href="adminMemberList.do" >회원 관리</a></li>
 			<li id="title-text1" style="display:inline"><a href="adminProductList.do" >상품 관리</a></li>
 			<li id="title-text1" style="display:inline"><a href="adminOrderList.do" >주문 관리</a></li>
-			<li id="board-ad" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
+			<li id="board-faq" style="display:inline"><a href="adminNoticeList.do" >게시판 관리</a></li>
 		</ul>	
 		</div>
 	</div>
@@ -53,7 +53,7 @@ function insertFaq()	{
 	<ul style="list-style-type:none">
 		<li style="width:500px; display:inline"><a href="adminNoticeList.do" >공 지 사 항</a></li>
 		<li id="title-text2" style="display:inline"><a href="adminReviewList.do" >상 품 후 기</a></li>
-		<li id="faq-list" style="display:inline"><a href="adminFaqList.do?f_category=cost" >F A Q</a></li>
+		<li id="faq-btn" style="display:inline"><a href="adminFaqList.do?f_category=cost" >F A Q</a></li>
 		<li id="title-text2" style="display:inline"><a href="adminQnaMain.do" >1:1 문 의</a></li>
 	</ul>
 	</div>

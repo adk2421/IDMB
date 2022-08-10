@@ -12,6 +12,7 @@
 	 font-family: 'LeferiPoint-WhiteObliqueA';
 	 text-align:left;
 }
+body{margin-top:60px;}
 
 /*공통적으로 쓰는 css*/
 table{
@@ -42,15 +43,19 @@ input {
 	color:black;
 	
 }
-
+textarea{
+	resize: none;
+}
 /*작성/돌아가기버튼*/
-
+#fbtn{
+	margin-left:43%
+}
 .insert{
 	background-color: #FFD228;
 	color: black;
-	width: 125px;
-	height:50px;
-	font-size: 22px;
+	width: 120px;
+	height:40px;
+	font-size: 19px;
 	font-weight: 700;
 	border-radius: 6px;
 	border: 0;
@@ -60,12 +65,12 @@ input {
 }
 
 .back{
-	
+	margin-left:20px;
 	background-color: #F2F0F0;
 	color: black;
-	width: 125px;
-	height:50px;
-	font-size: 22px;
+	width: 120px;
+	height:40px;
+	font-size: 19px;
 	font-weight: 700;
 	border-radius: 6px;
 	border: 0;

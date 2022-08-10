@@ -43,8 +43,8 @@
 	
 	<br>
 	
-	<div class="button" style="margin:auto; text-align: center;">
-	<form action="faqList.do" method="get">
+	<div >
+	<form id="q_btn" action="faqList.do" method="get">
 		<button type="submit" name="f_category" id="f_category" value="cost">주문/결제</button>
 		<button type="submit" name="f_category" id="f_category" value="shipping">배송문의</button>
 		<button type="submit" name="f_category" id="f_category" value="cancel">배송변경/취소</button>

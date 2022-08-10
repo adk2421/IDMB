@@ -11,6 +11,11 @@
 	 font-family: 'LeferiPoint-WhiteObliqueA';
 }
 body{margin-top:65px;height:100%;width:100%;}
+#container{
+	display:inline-block;
+	margin-left:25%;
+	width: 700px; height:1200px;
+}
 button{
 	 -webkit-appearance: none;
   -moz-appearance: none;
@@ -55,6 +60,7 @@ input#tp{
 	width:80px;height:25px;background:#fff; /*검색창 크기와 배경색*/
 	border:0.5px solid #444;font-size:10pt;
 	color:black;
+	text-align:right;
 	padding:auto;
 	margin-right:5px;
 	-webkit-border-radius:5px;
@@ -96,7 +102,7 @@ button#od_btn:hover#od_btn:focus{
 	border-radius:4px;
 	font-size:0.8rem;
 	text-align:center;
-	margin: 15px 0 15px 28px;
+	margin: 15px 0 15px 18px;
 }
 
 /*장바구니 담기 버튼*/
@@ -105,7 +111,7 @@ button#od_btn:hover#od_btn:focus{
 
 }  */
 #basket_btn{
-	width:130px; height:30px;
+	width:110px; height:30px;
 	padding:5px;
 	border-radius:4px;
 	background-color:#fff;
@@ -115,10 +121,8 @@ button#od_btn:hover#od_btn:focus{
 }	
 	
 /*상품상세*/
-.detailform{
-	height:280px;
-}
-h4{margin-left:30px;margin-top:140px;}	
+#p_form{margin-left:30px;margin-top:60px;}
+h3{margin-left:50px;}	
 #productDetail{
 	width: 600px; height:200px; border: 1px solid black; 
 	padding:15px;border-radius:4px; 
@@ -129,14 +133,19 @@ h4{margin-left:30px;margin-top:140px;}
 
 /*상품 후기 테이블*/	
 #review_tb{
-	width:750px;
-	position:relative;
-	margin:0 auto;
+	width:750px;height:100px;
+	margin:10px auto;
 	border-collapse:collapse;
-	border-bottom:1px solid #444;
-	border:1px solid #444;
+
+
 }	
+.r_th{
+	border-top:1px solid #444;
+	border-bottom:1px solid #444;
+	background:#f0f0f0;
+	padding:10px 5px;}
 .r_tb{
+	border-top:1px solid #444;
 	border-bottom:1px solid #444;
 
 	
@@ -144,20 +153,23 @@ h4{margin-left:30px;margin-top:140px;}
 }
 
 
-#review_write_tb{
+#review_write{
 	width:650px;
 	border-collapse:collapse;
 	border-bottom:1px solid #444;
 	border-top:1px solid #444;
-}	
+}	 
+
+
 /*별점*/
 #r_rate{border-bottom:1px solid #444;}
+#r_rating{margin-left:30px;}
 .star{
-	pdding:10px;
+	padding:10px;
 	margin:10px;
 	position:relative;
 	font-size:1.5rem;
-	color:#ddd;
+	color:#fae04d;
 }
 .star input{
 	width:100%;
@@ -175,21 +187,51 @@ h4{margin-left:30px;margin-top:140px;}
 	overflow:hidden;
 	pointer-events:none;
 }
-
-td .rw{
-	border-left:1px solidt #444;
-	border-bottom:1px solid #444;
-	padding:10px;
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0.2em 2em;
+  text-align: center;
+  width: 5em;
 }
-td .rw:irst-child{
-border-left:none;}
-	
-textarea{
-	width:600px; height:100px;
-	border: none;
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: gold;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+
+
+
+/*내용*/
+#rc{background:#f0f0f0; padding:0 10px; width:auto;}
+#rc2{background:#f0f0f0;border-top:1px solid #444;height:160px;}
+textarea#r_contents{
+	width:600px; height:150px;
+	border: solid 1.5px #d3d3d3;
+	border-radius:5px;
+	box-sizing:border-box;
     resize: none;
-    padding:7px;
-    font-size:11px;
+    padding:10px;
+    margin-top:5px;
+    font-size:15px;
 }	
 	
 /*후기 작성 버튼*/	
@@ -201,8 +243,8 @@ textarea{
 	font-weight:bold;
 	text-align:center;
 	padding:auto;
-	margin-top:30px;
-	margin-left:265px;
+	margin:40px 0;
+	margin-left:45%;
 }	
 	
 	

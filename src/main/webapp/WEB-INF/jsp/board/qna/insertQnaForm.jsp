@@ -63,7 +63,7 @@ function insertCheck() {
 edit
 </span>
 	<!-- <img src="img/insertQNA.jpg" width="75" border="0" id="qnaimage"> -->
-		<font size="25"><b>문의 하기</b></font>
+		<font size="18"><b>문의 하기</b></font>
 	
 <form method="post" id="qnaInsertForm" action="insertQna.do">	
 	<table style="width:900px;">
@@ -106,7 +106,7 @@ edit
 				<td><b>문의 내용</b></td>
 				<td style="padding-left:14px;" colspan="5">
 					<textarea id="q_contents" name="q_contents"
-						style="margin:auto; width:800px; height: 200px; text-align:left;"
+						style="margin:auto; width:800px; height: 200px; text-align:left;border-radius:5px;"
 						maxlength="500"></textarea>
 				</td>
 			</tr>
@@ -114,7 +114,7 @@ edit
 			<tr>
 				<td><b>답변 내용</b></td>
 				<td colspan="5">
-					<div style="margin:auto; border:1px solid black; width:800px; height:200px; text-align:left;">
+					<div style="margin:auto; border:1px solid black; width:800px; height:200px; text-align:left;border-radius:5px;">
 					</div>
 				</td>
 			</tr>
@@ -134,11 +134,10 @@ edit
 		
 	<br><br>
 	
-	
-	<button class="insert" type="button" onclick="insertCheck()">문 의 작 성</button>
-		&emsp;&emsp;
-	<button class="back" type="button" onclick="location.href='qnaMain.do'">돌 아 가 기</button>
-
+	<div id="fbtn">
+		<button class="insert" type="button" onclick="insertCheck()">문 의 작 성</button>
+		<button class="back" type="button" onclick="location.href='qnaMain.do'">돌 아 가 기</button>
+	</div>
 </form>
 </div>
 </body>
