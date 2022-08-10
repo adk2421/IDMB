@@ -26,7 +26,9 @@
 </script>
 </head>
 <body>
-	<br><br><br><br>
+	<br><br>
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+	<br><br>
 	<hr><p>
 
 	<!-- 게시판 바로가기 -->

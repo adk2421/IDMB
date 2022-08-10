@@ -12,6 +12,7 @@
 	 font-family: 'LeferiPoint-WhiteObliqueA';
 	 
 }
+body{margin-top:40px;}
 
 /*공통적으로 쓰는 css*/
 table{
@@ -33,9 +34,9 @@ input {
 	text-align:center;
 	background-color: #3296FF;
 	color: white;
-	width: 125px;
-	height:50px;
-	font-size: 20px;
+	width: 100px;
+	height:35px;
+	font-size: 15px;
 	font-weight: 700;
 	border-radius: 6px;
 	border: 0;
@@ -48,9 +49,9 @@ input {
 	text-align:center;
 	background-color: #EB3232;
 	color: white;
-	width: 125px;
-	height:50px;
-	font-size: 20px;
+	width: 100px;
+	height:35px;
+	font-size: 15px;
 	font-weight: 700;
 	border-radius: 6px;
 	border: 0;
@@ -62,9 +63,9 @@ input {
 	text-align:center;
 	background-color: #F2F0F0;
 	color: black;
-	width: 125px;
-	height:50px;
-	font-size: 20px;
+	width: 100px;
+	height:35px;
+	font-size:15px;
 	font-weight: 700;
 	border-radius: 6px;
 	border: 0;

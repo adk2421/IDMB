@@ -40,13 +40,14 @@ function insertQna() {
 </head>
 <body>
 <div class="header">	
-	<br><br><br><br>
+	<br><br>
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+	<br><br>
 	<hr><p>
 
 	<!-- 게시판 바로가기 -->
 	<div class="short" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
-		
 		<li style="width:500px; display:inline"><a class="short" href="noticeList.do" >공 지 사 항 &nbsp;&nbsp;</a></li>
 		<li id="title-text2"style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
 		<li id="title-text2"style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
@@ -79,22 +80,23 @@ function insertQna() {
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td id="categ">
 					<c:if test="${q_category == 'product'}"><b>상품 문의</b></c:if>
 					<c:if test="${q_category == 'preship'}"><b>배송 전 문의</b></c:if>
 					<c:if test="${q_category == 'aftership'}"><b>배송 후 문의</b></c:if>
 					<c:if test="${q_category == 'exchange'}"><b>교환/반품 문의</b></c:if>
 				</td>
-				<td>
+				<td id="td2">
 					<button class="wait" type="submit" name="qst" id="qst" value="답변대기"><b>답변 대기</b></button>
 					<button class="end" type="submit" name="qst" id="qst" value="답변완료"><b>답변 완료</b></button>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-</form>
+
 
 	<br>
+	<div>
 	<table class="qnatable">
 		<thead>
 			<tr>
@@ -142,6 +144,8 @@ function insertQna() {
 		</c:choose>
 		</tbody>
 	</table>
+	</div>
+	</form>
 </div> <!-- container div  end -->	
 	
 	<br>

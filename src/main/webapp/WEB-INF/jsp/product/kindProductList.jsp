@@ -15,7 +15,7 @@
 
 <!-- 메인페이지 로고 -->
 <div style="margin: auto; width:150px; height:180px;">
-	<a href="/IDMB/"><img src="img/logo.png" width="150" id="previewImage"></a>
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
 </div>
 <br>
 
@@ -40,7 +40,7 @@
 	<form action="kindProductList.do" method="get">
 		<input type="hidden" name="p_kind" id="p_kind" value="${p_kind}">
 		
-		<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
+		<input type="search" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 		
 		<br>
 	

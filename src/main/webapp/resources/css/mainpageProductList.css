@@ -15,16 +15,17 @@ body{width:100%;height:100%;margin-top:55px;overflow:auto;}
 .header{width:100%;height:100%;}
 .container{width:100%;height:100%;}
 
-
 .main_logo{
-	margin-left:45%;
-	
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }
+
 .search-box{
 	position:relative;
 	float:right;
-	margin-right:110px;
-	margin-top:200px;
+	margin-right:150px;
+	margin-top:10px;
 }
  input#search{
  	float:left;
@@ -46,12 +47,17 @@ input#search:hover, input#search:focus, input#search:active{
 .search-icon{
 	border:none;
 	height:35px;width:35px;top:20px; left:0;
-	color:black;/*icon색*/
+	color:black;/* icon색 */
 	font-size:12pt;
 	background:#fff;
+	border-radius:100%;
 	
+} 
+button:hover, button:focus, button:active{
+	color:black;
+	outline:none;
+	border-style:solid; 
 }
-
 #topMenu{
 	height:50px;
 	width:100%;
@@ -114,8 +120,9 @@ h2{text-align:center;
 }
 
 table{
-	width:700px;
-	margin-left:190px;
+	width:90%;height:90%;
+	margin:auto;
+	text-align:center;
 }
 td{padding:20px;}
 

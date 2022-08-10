@@ -10,11 +10,13 @@
 *{
 	 font-family: 'LeferiPoint-WhiteObliqueA';
 }
+
+body{margin-top:50px;}
 /*가운데정렬*/
 table{
 	text-align:center;
 }
-
+h1{font-size:50px;}
 /*주문 금액 배송비 총금액 */
 span{
 	font-size:35px;

@@ -96,7 +96,7 @@ input#search:hover, input#search:focus, input#search:active{
 
 /*목록*/
  	table{
-		top:30px;
+		margin-top:40px;
 		width: 99%;
 		border:none;
 		border-top:1px solid #444444;

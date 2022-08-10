@@ -74,7 +74,7 @@ function deleteCheck() {
 			<tr>
 				<td style="padding-right:18px;"><b>문의 내용</b></td>
 				<td colspan="3">
-					<div style="border:1px solid black; width:800px; height:200px;">
+					<div style="border:1px solid black; width:800px; height:200px;border-radius:5px;">
 						<br>&emsp;${qnaBean.Q_CONTENTS}
 					</div>
 				</td>
@@ -82,7 +82,7 @@ function deleteCheck() {
 			<tr>
 				<td><b>답변 내용</b></td>
 				<td colspan="3">
-					<div style="border:1px solid black; width:800px; height:200px;">
+					<div style="border:1px solid black; width:800px; height:200px;border-radius:5px;">
 						<br>&emsp;${qnaReBean.Q_CONTENTS}
 					</div>
 				</td>

@@ -14,7 +14,9 @@
 <br>
 
 <!-- 메인페이지 로고 -->
+<div style="margin: auto; width:150px; height:180px;">
 	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+</div>
 <br>
 
 <!-- 상품 종류별로 이동 -->
@@ -36,7 +38,7 @@
 
 <div style="margin-left:15%;">
 <form action="bestProductList.do" method="get">
-	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
+	<input type="search" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	
 	<br>
 
