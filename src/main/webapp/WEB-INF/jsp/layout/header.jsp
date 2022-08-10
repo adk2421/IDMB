@@ -35,6 +35,7 @@
 			
 			<c:if test="${! empty id }">
 				<ul>
+					<li>${id} 님 환영합니다.　|　</li>
 					<li><a href="logout.do">LOGOUT</a>　|　</li>
 					<li><a href="basketList.do">CART</a>　|　</li>
 					<li><a href="myPage.do">MY PAGE</a>　|　</li>

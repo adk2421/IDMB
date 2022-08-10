@@ -100,7 +100,9 @@
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
-				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/><br>
+				<img src="img/zimicon.png" height="20">
+				<div style="color: red;">${product.P_ZIM}</div>
 			</td>
 	</c:forEach>
 	<tr></tr>
@@ -110,7 +112,9 @@
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
-				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/><br>
+				<img src="img/zimicon.png" height="20">
+				<div style="color: red;">${product.P_ZIM}</div>
 			</td>
 	</c:forEach>
 	<tr></tr>
@@ -120,7 +124,9 @@
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
-				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/><br>
+				<img src="img/zimicon.png" height="20">
+				<div style="color: red;">${product.P_ZIM}</div>
 			</td>
 	</c:forEach>
 	
