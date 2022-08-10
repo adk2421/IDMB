@@ -101,12 +101,13 @@ function orderCheck() {
 
 </head>
 <body>
+<br>
 <div class="container">
 <div style="text-align:center">
 		<p>
 		<h1> 주문 페이지 </h1>
 	</div>
-	
+<br>	
 	<form method="post" id="basketOrderForm" action="basketListOrder.do">
 		<table class="table table-borderless">
 			<thead class="table-light">

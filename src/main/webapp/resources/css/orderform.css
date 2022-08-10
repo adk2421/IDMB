@@ -16,32 +16,32 @@ body{margin-top:50px;}
 table{
 	text-align:center;
 }
-h1{font-size:50px;}
+h1{font-size:22px;}
 /*주문 금액 배송비 총금액 */
 span{
-	font-size:35px;
+	font-size:22px;
 	text-align:left;
 }
 
 /*주문페이지*/
 h1 {
-	font-size:64px
+	font-size:48px
 }
 
 /*thead&tbody*/
 th,td{
-	font-size:26px
+	font-size:22px
 }
 
 /*주문자정보*/
 h2{
-	font-size:26px;
+	font-size:22px;
 	text-align:left;
 }
 
 /*이름,핸드폰번호,받으시는분,우편번호,주소,버튼 전부*/
 h6,input,button{
-	font-size:24px
+	font-size:22px
 }
 
 /*주문자 정보*/
@@ -50,7 +50,7 @@ h6,input,button{
 	color: black;
             width: 300px;
             height:50px;
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 700;
           	border-top:none;
           	border-left:none;
@@ -60,11 +60,11 @@ h6,input,button{
             outline: 0;
 }
 .order_info h2{
-	font-size:40px;
+	font-size:22px;
 	text-align:left;
 }
 .order_info h6{
-	font-size:26px;
+	font-size:22px;
 	text-align:left;
 }
 
@@ -75,7 +75,7 @@ h6,input,button{
             color: black;
             width: 300px;
             height:50px;
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 700;
           	border-top:none;
           	border-left:none;
@@ -94,7 +94,7 @@ h6,input,button{
 			color: white;
             width: 150px;
             height:50px;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 700;
             border-radius: 6px;
             border: 0;
@@ -106,7 +106,7 @@ h6,input,button{
 	 color: black;
             width: 300px;
             height:50px;
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 700;
           	border-top:none;
           	border-left:none;
@@ -121,7 +121,7 @@ h6,input,button{
 			color: white;
             width: 150px;
             height:50px;
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 700;
             border-radius: 6px;
             border: 0;
@@ -134,7 +134,7 @@ h6,input,button{
 	 color: black;
             width: 310px;
             height:50px;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
           	border-top:none;
           	border-left:none;

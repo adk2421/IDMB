@@ -212,14 +212,21 @@ select:disabled {
 }
 
 /*qnatable */
-form{margin-left:40px;}
-.qnatable table{
-	text-align:center;
+.tb1{position:relative;height:50%;}
+
+table#qnatable{
+	/* text-align:center;
 	width:99%;height:40%;
+ 	border-collapse:collapse;테두리한줄로 정리
+	border-spacing:20px 20px;td,th간의 여백설정
+	margin-left:80px;
+   */
+   width:1500px;
+	position:relative;
+	width:100%;height:40%;
  	border-collapse:collapse;/*테두리한줄로 정리*/
 	border-spacing:20px 20px;/*td,th간의 여백설정*/
-	margin-left:80px;
-  
+	margin:20px;
 }
 th{
 		
@@ -231,7 +238,7 @@ th{
 	
 }
 
- .qnatable td{text-align:center;
+td#qnatable{text-align:center;
 	padding:10px;
 	border-bottom:1px solid #444;
 	

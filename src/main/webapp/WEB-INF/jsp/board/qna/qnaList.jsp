@@ -96,13 +96,13 @@ function insertQna() {
 
 
 	<br>
-	<div>
-	<table class="qnatable">
+	<div  class="tb1">
+	<table id="qnatable">
 		<thead>
 			<tr>
 				<th>글번호</th>
 				<th>상품명</th>
-				<th id="title_th">제목</th>
+				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
 				<th>상태</th>
@@ -121,23 +121,23 @@ function insertQna() {
 			<c:otherwise>
 			<c:forEach var="qna" items="${qnaList}">
 			<tr>
-				<td>
+				<td style="border-bottom:1px solid #444; padding:10px;">
 					<c:if test="${qna.Q_ID != '관리자'}">${qna.Q_GROUPNUM}</c:if>
 				</td>
-				<td>
+				<td style="border-bottom:1px solid #444; padding:10px;">
 					<c:if test="${qna.Q_ID != '관리자'}">${qna.Q_PRODUCT}</c:if>
 				</td>
-				<td>
+				<td style="border-bottom:1px solid #444; padding:10px;">
 					<c:if test="${qna.Q_ID != '관리자'}">
 						<a href="qnaDetail.do?q_num=${qna.Q_NUM}">${qna.Q_TITLE}</a>
 					</c:if>
 					<c:if test="${qna.Q_ID == '관리자'}">&emsp;${qna.Q_TITLE}</c:if>
 				</td>
-				<td>${qna.Q_ID}</td>
-				<td>
+				<td style="border-bottom:1px solid #444; padding:10px;">${qna.Q_ID}</td>
+				<td style="border-bottom:1px solid #444; padding:10px;">
 					<fmt:formatDate value="${qna.Q_DATE}" pattern="yy.MM.dd"/>
 				</td>
-				<td>${qna.Q_STATUS}</td>
+				<td style="border-bottom:1px solid #444; padding:10px;">${qna.Q_STATUS}</td>
 			</tr>
 			</c:forEach>
 			</c:otherwise>
@@ -151,7 +151,7 @@ function insertQna() {
 	<br>
 <div class="footer1">	
 	<!-- 문의 버튼 -->
-	<button class="qnabtn" style="display:block;"type="button" onclick="insertQna()"><b>문 의 하 기</b></button>
+	&nbsp;<button class="qnabtn" style="display:block;"type="button" onclick="insertQna()"><b>문 의 하 기</b></button>
 	<br><br><br>
 
 	${paging.pageHtml}
