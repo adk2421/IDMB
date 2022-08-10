@@ -36,7 +36,7 @@ public class MyPagePaging {
 		
 		for(int i=startPage;i<=endPage;i++) {
 			if(i!=currentPage) {
-				pageHtml.append("<li style=\"display:inline\"><a onClick=\"pagingAjax(" + i + ")\">" + i + "</a>&emsp;</li>");
+				pageHtml.append("<li style=\"display:inline\"><a href=\"javascript: pagingAjax(" + i + ")\">" + i + "</a>&emsp;</li>");
 				// pageHtml.append("<li style=\"display:inline\"><a href=\"" + url + "&page=" + i + searchUrl + "\">" + i + "</a>&emsp;</li>");				
 			} else {
 				pageHtml.append("<li style=\"display:inline\"><span>" + i+ "</span>&emsp;</li>");				

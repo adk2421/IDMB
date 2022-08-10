@@ -32,14 +32,14 @@
 					ON
 						P.P_CODE = R.R_CODE
 					WHERE
-						R_ID = 'aaa'
+						R_ID = #{r_id}
 					ORDER BY
 						R_NUM DESC
 				)
 				ORDER BY R
 			)
 			WHERE
-                R BETWEEN 1 AND 5
+                R BETWEEN #{START} AND #{END}
 		]]>
 	</select>
 	

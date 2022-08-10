@@ -10,9 +10,10 @@
 	<!-- Include jquery -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css?v=<%=System.currentTimeMillis()%>">
+	<link rel="stylesheet" href="/IDMB/resources/css/mypage.css?v=<%=System.currentTimeMillis()%>">
 		
 	<script>
+	
 		// 포커스 이동
 		function focusdiv(id) {
 			console.log("focus 실행");
@@ -21,6 +22,12 @@
 		
 			// 사용법 <a href="javascript:focusdiv();">
 		}
+		
+		<%-- function setMyReviewListFirst() {
+			<%
+				session.setAttribute("myReviewList", session.getAttribute("myReviewListFirst"));
+			%>
+		} --%>
 		
 		// 주문 처리 현황 값이 NULL이면 0으로 변경
 		function orderProc() {
@@ -59,7 +66,7 @@
 				
 				success: function(data) {
 					console.log("성공");
-				  }
+				}
 			});
 		}
 		
@@ -79,12 +86,45 @@
 		// 페이징
 		function pagingAjax(curPage) {
 			console.log(curPage);
+			
+			$.ajax({
+				url :"pagingAjax.do",
+				data: { curPage },
+				type : "post",
+				dataType : "text",
+				
+				success: function(data) {
+					console.log("성공" + data);
+					
+					/* var arr = ['P_IMAGE', 'R_NAME', 'R_RATE', 'R_CONTENTS', 'A_DATE', 'A_CONTENTS', 'R_DATE', 'R_RECOMMEND'];
+					var ID = [];
+					var ATTR;
+					
+					for (var i=0; i<5; i++) {
+						for(var j=0; j<8; j++) {
+							ID.push("'#review" + arr[j] + i +"'");
+							console.log(ID[j]);
+						}
+						
+						$('#reviewP_IMAGE0').attr({'src':'/IDMB/img/${pagingMyReviewList[0]['P_IMAGE']}', 'onClick':'productDetail(${pagingMyReviewList[0]['R_CODE']})'});
+						$('#reviewR_NAME0').text('${pagingMyReviewList[0]['R_NAME']}');
+						$('#reviewR_RATE0').text('${pagingMyReviewList[0]['R_RATE']}');
+						$('#reviewR_CONTENTS0').text('${pagingMyReviewList[0]['R_CONTENTS']}');
+						$('#reviewA_DATE0').text('${pagingMyReviewList[0]['A_DATE']}');
+						$('#reviewA_CONTENTS0').text('${pagingMyReviewList[0]['A_CONTENTS']}');
+						$('#reviewR_DATE0').text('${pagingMyReviewList[0]['R_DATE']}');
+						$('#reviewR_RECOMMEND0').html('<img class="icon" src="/IDMB/resources/img/ICON_like.png" />${pagingMyReviewList[0]['R_RECOMMEND']}');
+					} */
+				}
+			});
+			
 		}
 		
 		// 페이지 로딩 시, 자동 실행
 		$(document).ready(function() {
 			orderProc();
 			viewedProduct();
+			/* setMyReviewListFirst(); */
 		});
 		
 	</script>
@@ -321,18 +361,18 @@
         			<p>작성하신 리뷰가 없습니다.</p>
 		        </c:if>
 				
-				<div class="leftVertical">
-					<c:forEach var="review" items="${myReviewList}">
+				<div id="myReviewListFor" class="leftVertical">
+					<c:forEach var="review" items="${myReviewList}" varStatus="status">
 						<div class="horizen">
 							<div>
-								<img class="thumbnail" src="/IDMB/img/${review.P_IMAGE}" onclick="productDetail(${review.R_CODE})" />
+								<img id="reviewP_IMAGE${status.index}" class="thumbnail" src="/IDMB/img/${review.P_IMAGE}" onclick="productDetail(${review.R_CODE})" />
 							</div>
 							
 							<div class="leftVertical">
 								<div class="width">
-									<p>${review.R_NAME}</p>
-									<p>${review.R_RATE}</p>
-									<p class="contents">${review.R_CONTENTS}</p>
+									<p id="reviewR_NAME${status.index}">${review.R_NAME}</p>
+									<p id="reviewR_RATE${status.index}">${review.R_RATE}</p>
+									<p id="reviewR_CONTENTS${status.index}" class="contents">${review.R_CONTENTS}</p>
 								</div>
 								
 								<c:if test="${review.A_CONTENTS != null}">
@@ -341,8 +381,8 @@
 										<input id="answer-btn" type="checkbox" />
 	    								<label class="answer-btn" for="answer-btn">답글보기 ▼</label>
 										<div class="answer">
-											<p class="contents">${review.A_DATE}</p>
-											<p class="contents">${review.A_CONTENTS}</p>
+											<p id="reviewA_DATE${status.index}" class="contents">${review.A_DATE}</p>
+											<p id="reviewA_CONTENTS${status.index}" class="contents">${review.A_CONTENTS}</p>
 										</div>
 									</div>
 								</c:if>
@@ -350,8 +390,8 @@
 							
 							<div class="right">
 								<div>
-									<p>${review.R_DATE}</p>
-									<p><img class="icon" src="/IDMB/resources/img/ICON_like.png" />${review.R_RECOMMEND}</p>
+									<p id="reviewR_DATE${status.index}">${review.R_DATE}</p>
+									<p id="reviewR_RECOMMEND${status.index}"><img class="icon" src="/IDMB/resources/img/ICON_like.png" />${review.R_RECOMMEND}</p>
 								</div>
 							</div>
 						</div>
@@ -362,18 +402,8 @@
 				    </c:forEach>
 			    </div>
 				${paging.pageHtml}
-				
-				<div style="margin:auto; text-align: center;">
-					<ul style="list-style-type: none;">
-						<li style="display:inline"><a href="">3</a>&emsp;</li>
-						<li style="display:inline"><span>3</span>&emsp;</li>
-					</ul>
-				</div>
 			</div>
 		</div>
-		
-		
-		
 	</div>
 </body>
 </html>

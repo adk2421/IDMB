@@ -333,7 +333,7 @@ public class MemberController {
 	
 	// 마이페이지
 	@RequestMapping(value = "/myPage.do")
-	public String myInfoOrder(Model model, HttpServletRequest request) throws Exception {
+	public String myInfoOrder(Model model, HttpServletRequest request, HttpSession session) throws Exception {
 		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
 		
@@ -405,9 +405,9 @@ public class MemberController {
         model.addAttribute("myQnaList", myQnaList);
         
         // 기본 페이지가 아닌 경우
-     	if (request.getParameter("page")!=null) {
- 			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
- 			START = 1 + pageSize * (currentPage - 1); //1,11,21 단위로 상품 출력
+     	if (request.getParameter("page") != null) {
+ 			currentPage = Integer.parseInt(request.getParameter("page")); // 현재 페이지
+ 			START = 1 + pageSize * (currentPage - 1); // 1,11,21 단위로 상품 출력
  			END = pageSize * currentPage;
  		}
  		
@@ -415,13 +415,22 @@ public class MemberController {
  		MyPagePaging paging = new MyPagePaging(reviewCnt, pageBlock, pageSize, currentPage, url, searchUrl);
  		model.addAttribute("paging", paging);
         
-        // 내 Review List
+ 		session.setAttribute("myReviewList", myPageReviewList(id, START, END));
+
+ 		System.out.println("first session : " + session.getAttribute("myReviewList"));
+ 		
+		return "myPage";
+	}
+	
+	public List<Map<String, Object>> myPageReviewList(String id, int START, int END) throws Exception {
+		
+		// 내 Review List
         ReviewBean review = new ReviewBean();
 		review.setR_id(id);
 		
         List<Map<String, Object>> myReviewList = new ArrayList<Map<String, Object>>();
         List<Map<String, Object>> listMap =  new ArrayList<Map<String, Object>>();
-
+        
         myReviewList = reviewService.myReviewList(review, START, END);
         
         for (Map<String, Object> reviewList : myReviewList) {
@@ -449,9 +458,7 @@ public class MemberController {
         	}
         }
         
-        model.addAttribute("myReviewList", myReviewList);
-        
-		return "myPage";
+        return myReviewList;
 	}
 	
 	// 최근 본 상품 Session 등록
@@ -471,5 +478,56 @@ public class MemberController {
 		session.setAttribute("viewedProduct", viewedProduct);
 				
 		return "redirect:myPage";
+	}
+	
+	// 페이징
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, value = "/pagingAjax.do")
+	public List<Map<String, Object>> pagingAjax(@RequestParam int curPage, Model model, HttpSession session, HttpServletRequest request) throws Exception {
+		String id = (String) request.getSession().getAttribute("id");
+		
+		MemberBean member = new MemberBean();
+		member.setId(id);
+		Map<String, Object> cnt = myInfoService.memberArticleCount(member);
+		
+		int orderCnt = Integer.parseInt(cnt.get("ORDERCNT").toString());
+		int qnaCnt = Integer.parseInt(cnt.get("QNACNT").toString());
+		int reviewCnt = Integer.parseInt(cnt.get("REVIEWCNT").toString());
+		
+		/* 페이징을 위한 변수 */
+		int pageSize = 5; // 페이지당 출력할 후기의 수
+		int START = 1;
+		int END = pageSize;
+		int currentPage = 1; // 현재 페이지
+		
+		int totalCount; // 전체 항목 수
+		int pageBlock = 5; // 표시할 페이지의 수
+		
+		String url = "myPage.do";
+		String searchUrl = "";
+		
+		System.out.println("curPage : " + curPage);
+		
+		System.out.println("request.getParameter(\"page\") : " + request.getParameter("page"));
+		
+		// 기본 페이지가 아닌 경우
+     	if (curPage != 1) {
+ 			currentPage = curPage; // 현재 페이지
+ 			START = 1 + pageSize * (currentPage - 1); // 1,11,21 단위로 상품 출력
+ 			END = pageSize * currentPage;
+ 		}
+     	
+     	totalCount = reviewCnt;
+ 		
+ 		// 페이징
+ 		MyPagePaging paging = new MyPagePaging(totalCount, pageBlock, pageSize, currentPage, url, searchUrl);
+ 		
+ 		model.addAttribute("paging", paging);
+ 			
+ 		session.setAttribute("pagingMyReviewList", myPageReviewList(id, START, END));
+ 		
+ 		System.out.println("paging session : " + session.getAttribute("pagingMyReviewList"));
+ 		
+		return myPageReviewList(id, START, END);
 	}
 }
