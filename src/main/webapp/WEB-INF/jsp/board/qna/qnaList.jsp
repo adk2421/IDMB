@@ -40,13 +40,14 @@ function insertQna() {
 </head>
 <body>
 <div class="header">	
-	<br><br><br><br>
+	<br><br>
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+	<br><br>
 	<hr><p>
 
 	<!-- 게시판 바로가기 -->
 	<div class="short" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
-		
 		<li style="width:500px; display:inline"><a class="short" href="noticeList.do" >공 지 사 항 &nbsp;&nbsp;</a></li>
 		<li id="title-text2"style="display:inline"><a class="short" href="reviewList.do" >상 품 후 기 &nbsp;&nbsp;</a></li>
 		<li id="title-text2"style="display:inline"><a class="short" href="faqList.do?f_category=cost" >F A Q &nbsp;&nbsp;</a></li>
@@ -79,28 +80,29 @@ function insertQna() {
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td id="categ">
 					<c:if test="${q_category == 'product'}"><b>상품 문의</b></c:if>
 					<c:if test="${q_category == 'preship'}"><b>배송 전 문의</b></c:if>
 					<c:if test="${q_category == 'aftership'}"><b>배송 후 문의</b></c:if>
 					<c:if test="${q_category == 'exchange'}"><b>교환/반품 문의</b></c:if>
 				</td>
-				<td>
+				<td id="td2">
 					<button class="wait" type="submit" name="qst" id="qst" value="답변대기"><b>답변 대기</b></button>
 					<button class="end" type="submit" name="qst" id="qst" value="답변완료"><b>답변 완료</b></button>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-</form>
+
 
 	<br>
-	<table class="qnatable">
+	<div  class="tb1">
+	<table id="qnatable">
 		<thead>
 			<tr>
 				<th>글번호</th>
 				<th>상품명</th>
-				<th id="title_th">제목</th>
+				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
 				<th>상태</th>
@@ -119,35 +121,37 @@ function insertQna() {
 			<c:otherwise>
 			<c:forEach var="qna" items="${qnaList}">
 			<tr>
-				<td>
+				<td style="border-bottom:1px solid #444; padding:10px;">
 					<c:if test="${qna.Q_ID != '관리자'}">${qna.Q_GROUPNUM}</c:if>
 				</td>
-				<td>
+				<td style="border-bottom:1px solid #444; padding:10px;">
 					<c:if test="${qna.Q_ID != '관리자'}">${qna.Q_PRODUCT}</c:if>
 				</td>
-				<td>
+				<td style="border-bottom:1px solid #444; padding:10px;">
 					<c:if test="${qna.Q_ID != '관리자'}">
 						<a href="qnaDetail.do?q_num=${qna.Q_NUM}">${qna.Q_TITLE}</a>
 					</c:if>
 					<c:if test="${qna.Q_ID == '관리자'}">&emsp;${qna.Q_TITLE}</c:if>
 				</td>
-				<td>${qna.Q_ID}</td>
-				<td>
+				<td style="border-bottom:1px solid #444; padding:10px;">${qna.Q_ID}</td>
+				<td style="border-bottom:1px solid #444; padding:10px;">
 					<fmt:formatDate value="${qna.Q_DATE}" pattern="yy.MM.dd"/>
 				</td>
-				<td>${qna.Q_STATUS}</td>
+				<td style="border-bottom:1px solid #444; padding:10px;">${qna.Q_STATUS}</td>
 			</tr>
 			</c:forEach>
 			</c:otherwise>
 		</c:choose>
 		</tbody>
 	</table>
+	</div>
+	</form>
 </div> <!-- container div  end -->	
 	
 	<br>
 <div class="footer1">	
 	<!-- 문의 버튼 -->
-	<button class="qnabtn" style="display:block;"type="button" onclick="insertQna()"><b>문 의 하 기</b></button>
+	&nbsp;<button class="qnabtn" style="display:block;"type="button" onclick="insertQna()"><b>문 의 하 기</b></button>
 	<br><br><br>
 
 	${paging.pageHtml}

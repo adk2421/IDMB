@@ -14,7 +14,9 @@
 <br>
 
 <!-- 메인페이지 로고 -->
+<div style="margin: auto; width:150px; height:180px;">
 	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+</div>
 <br>
 
 <!-- 상품 종류별로 이동 -->
@@ -36,7 +38,7 @@
 
 <div style="margin-left:15%;">
 <form action="bestProductList.do" method="get">
-	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
+	<input type="search" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	
 	<br>
 
@@ -67,10 +69,13 @@
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
-				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/><br>
+				<img src="img/zimicon.png" height="20">
+				<div style="color: red;">${product.P_ZIM}</div>
 			</td>
 		</c:forEach>
 		
+		<tr></tr>
 		<tr></tr>
 		
 		<c:forEach var="product" items="${bestList}" begin="5" end ="9">
@@ -79,7 +84,9 @@
 				<img src="img/${product.P_IMAGE}" width="150" height="150" border="0" id="productImage"/></a><br>
 				<a href="productDetail.do?p_code=${product.P_CODE}">
 				${product.P_NAME}</a><br>
-				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/>
+				<fmt:formatNumber pattern="###,###,### 원" value="${product.P_PRICE}"/><br>
+				<img src="img/zimicon.png" height="20">
+				<div style="color: red;">${product.P_ZIM}</div>
 			</td>
 		</c:forEach>			
 	</tbody>

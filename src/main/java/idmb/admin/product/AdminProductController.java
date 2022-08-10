@@ -36,7 +36,6 @@ public class AdminProductController {
 		int pageBlock = 5; // 표시할 페이지의 수
 		String url = "adminProductList.do";
 		String searchUrl = "";
-		
 		//검색어
 		String searchValue = request.getParameter("searchValue");
 		
@@ -45,11 +44,10 @@ public class AdminProductController {
 		} else {
 			searchUrl = "";
 		}
-		
 		//기본 페이지가 아닌 경우
 		if(request.getParameter("page")!=null) {
 			currentPage = Integer.parseInt(request.getParameter("page")); //현재 페이지
-			START = 1 + pageSize * (currentPage-1); //1,11,21 단위로 상품 출력
+			START = 1 + pageSize * (currentPage-1); //1,6,11 단위로 상품 출력
 			END = pageSize * currentPage;
 		}
 		

@@ -11,6 +11,17 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>일단메봐</title>
+<!-- Bootstrap CSS CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+		rel="stylesheet" 
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+		crossorigin="anonymous">
+	<!-- Bootstrap JS CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+		crossorigin="anonymous"></script>
+
+
 <script>
 function insertFaq()	{
 	location.href = "/IDMB/adminInsertFaqForm.do"
@@ -18,6 +29,9 @@ function insertFaq()	{
 </script>
 </head>
 <body>
+
+<br><br>
+
 <div class="header">
 	<!-- 관리자 메인 바로가기 -->
 	<div class="box1">
@@ -58,23 +72,35 @@ function insertFaq()	{
 	</form>
 	</div>
 	
-	<br>
-	
-	<table id="faq-tb">
-		<tbody>
+	<br><br><br>
+
+	<div class="accordion" id="accordionFlushExample">
+ 		<div class="accordion-item">
+    		<h2 class="accordion-header" id="flush-headingOne">
+     			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        			<div class="size">
+
 		<c:forEach var="faq" items="${adminFaqList}">
-			<tr>
-				<td id="faq-td"><b>Q. ${faq.F_TITLE}</b>
-					<br>
-					A. ${faq.F_CONTENTS}
-				</td>
-				<td id="faq-td">
+			<b>Q. ${faq.F_TITLE}</b>
+			</c:forEach>
+					</div>
+			</button>
+			</h2>	
+				<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      				<div class="accordion-body">
+      					<c:forEach var="faq" items="${adminFaqList}">
+							<b>A. ${faq.F_CONTENTS}</b>
+				
+			
 					<button id="mbtn2" type="button" onClick="location.href='adminUpdateFaqForm.do?f_num=${faq.F_NUM}'">수정</button>
-				</td>
-			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
+				</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
+			
+		
+		
 	
 	<br><br>
 	</div>

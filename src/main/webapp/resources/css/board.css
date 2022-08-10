@@ -1,7 +1,5 @@
 @charset "UTF-8";
-/*  *{box-sizing:border-box;
-	border: 1px solid red!important;
-}  */
+
 /*폰트*/
 @font-face {
     font-family: 'LeferiPoint-WhiteObliqueA';
@@ -12,8 +10,16 @@
 *{
 	 font-family: 'LeferiPoint-WhiteObliqueA';
 }
+.main_logo{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
 
-
+h2{text-align:center;
+	font-size:2rem;
+	color:gray;
+}
 
 #notice-list,#product-review,#faq-list,#qna-list{
 	background-color:#f0f0f0;
@@ -120,9 +126,10 @@ button{
 
 .sort{
 	border-collapse:collapse;
-	border-spacing:0
+	border-spacing:0;
+	margin-left:50px;
 }
-
+td{padding-left:25px;text-align:center;}
 .form-select{
 	text-align:center;
 	width:90px;
@@ -172,18 +179,14 @@ select:disabled {
 	border:none;
 	width:38px;height:35px;top:20px; 
 	color:black;
-	
-
-	
-/*   width: 50px;
-    height:30px; */
     font-size:21px;
 	border: 1px;
 	border-color:black;
+ 	border-radius:100%;
  	outline: 0;
 	
 } 
-
+#categ{text-align:center;}
 .wait, .end{
 	background-color:#e3e3e3;
 	color: black;
@@ -209,14 +212,21 @@ select:disabled {
 }
 
 /*qnatable */
-.qnatable table{
-	text-align:center;
-	position:relative;top:20px;left:40px;
-	width:800px;
+.tb1{position:relative;height:50%;}
+
+table#qnatable{
+	/* text-align:center;
+	width:99%;height:40%;
+ 	border-collapse:collapse;테두리한줄로 정리
+	border-spacing:20px 20px;td,th간의 여백설정
+	margin-left:80px;
+   */
+   width:1500px;
+	position:relative;
+	width:100%;height:40%;
  	border-collapse:collapse;/*테두리한줄로 정리*/
 	border-spacing:20px 20px;/*td,th간의 여백설정*/
 	margin:20px;
-  
 }
 th{
 		
@@ -228,7 +238,7 @@ th{
 	
 }
 
- .qnatable td{text-align:center;
+td#qnatable{text-align:center;
 	padding:10px;
 	border-bottom:1px solid #444;
 	

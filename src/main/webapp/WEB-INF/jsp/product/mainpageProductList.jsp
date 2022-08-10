@@ -22,13 +22,13 @@
 <div class="header">
 <!-- 메인페이지 로고 -->
 
-	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
-
+		<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+	
 			
 <!-- 검색창 -->
 	<div class="search-box">
 		<form action="searchProduct.do" method="get">
-			<input type=text name="searchValue" id="search" placeholder="검색어....." >
+			<input type="search" name="searchValue" id="search" placeholder="검색어....." >
 			<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
 		</form>
 	</div>
@@ -68,7 +68,10 @@
 				<a href="productDetail.do?p_code=${bestProduct.P_CODE}">
 				<img src="img/${bestProduct.P_IMAGE}" width="250" id="previewImage"></a>
 				<div style="text-align:center;"><h4>${bestProduct.P_NAME}</h4>
-				<p>가격 : ${bestProduct.P_PRICE}</p></div>
+					<p>가격 : ${bestProduct.P_PRICE}</p>
+					<img src="img/zimicon.png" height="20">
+					<div style="color: red;">${bestProduct.P_ZIM}</div>
+				</div>
 			</td>
 			</c:forEach>
 		</tbody>
@@ -86,7 +89,10 @@
 				<a href="productDetail.do?p_code=${newProduct.P_CODE}">
 				<img src="img/${newProduct.P_IMAGE}" width="250" id="previewImage"></a>
 				<div style="text-align:center;"><h4>${newProduct.P_NAME}</h4>
-				<p>가격 : ${newProduct.P_PRICE}</p></div>
+					<p>가격 : ${newProduct.P_PRICE}</p>
+					<img src="img/zimicon.png" height="20">
+					<div style="color: red;">${newProduct.P_ZIM}</div>
+				</div>	
 			</td>
 			</c:forEach>
 		</tbody>

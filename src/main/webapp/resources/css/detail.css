@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/*폰트*/
+@font-face {
+    font-family: 'LeferiPoint-WhiteObliqueA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+	 font-family: 'LeferiPoint-WhiteObliqueA';
+}
+.main_logo{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#product-review{
+
+	text-decoration:none;
+	background-color:#f0f0f0;
+	border-radius:5px;  
+	margin-left:15px;
+	font-size:12pt;
+	padding:11px 0 6px 12px ; 
+	text-align:center;
+	
+	
+}
+#title-text2{
+	margin-left:15px;
+	
+}
+table{
+	width:80%;height:90%;
+	margin:auto;
+	text-align:center;
+	border-collapse:collapse;
+	border-bottom:1px solid #444;
+	}
+td{
+	border-bottom:1px solid #444;
+	border:none;
+	border-top: 1px solid #444;
+	padding:10px;
+}

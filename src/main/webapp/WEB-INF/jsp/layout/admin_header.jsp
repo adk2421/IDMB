@@ -33,6 +33,7 @@
 			
 			<c:if test="${! empty id }">
 				<ul>
+					<li>관리자 님 환영합니다.　|　</li>
 					<li><a href="logout.do">LOGOUT</a>　|　</li>
 					<li><a href="adminMain.do">MANAGEMENT</a>　|　</li>
 					<li><a href="adminNoticeList.do">COMMUNITY</a></li>　

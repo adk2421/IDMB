@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+/*   *{box-sizing:border-box;
+	border: 1px solid red!important;
+ }*/  
 
 body{
 	margin-top:40px;
