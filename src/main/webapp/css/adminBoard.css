@@ -41,8 +41,8 @@ button#notice-add:hover, button#notice-add:focus, button#notice-add:active{
 		width: 99%;
 		border-top:1px solid #444444;
 		border-collapse:collapse;
-		float: center;
 		min-width:500px;
+		margin:auto;
 	}
 
 	th{background-color: #e6e3e3;

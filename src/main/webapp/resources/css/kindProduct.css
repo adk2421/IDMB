@@ -6,11 +6,15 @@ body{
 	overflow:auto;
 }
 
-
+.main_logo{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
 
 #topMenu{
 	height:50px;
-	width:100%;
+	width:1350px;
 	margin-left:60px;
 }
 ul li:first-child{border-left:none;}
@@ -44,15 +48,20 @@ ul li:first-child{border-left:none;}
 
 
 table{
-	width: 70%; height: 50px;
-	margin-left:15%;
-	margin-right:15%;
-	border:1px solid gray; text-align:center;}
+	width:90%; height:90%;
+	border:1px solid gray; text-align:center;
+	border:none;
+	padding:15px;
+	margin:auto;
+	
+	
+	}
 	
 	
 	
 .main_logo{
-	margin-left:45%;
+/* 	margin-left:300px; */
+	margin-bottom:30px;
 	
 }
 .search-box{
@@ -95,8 +104,47 @@ input#search:hover, input#search:focus, input#search:active{
 
 
 
+select{
+		/*디폴트 제공 디자인값 제거.*/
+		-moz-appearance: none;
+		 -webkit-appearance: none;
+		 appearance: none;
+		 
+	  text-align:center; 
+	  font-size: 0.9rem;
+	  font-weight: 400;
+	  line-height: 1;
+	
+	  color: #444;/*select글자색*/
+	  background-color:#fff;/*select 배경색*/
+	
+	  padding: 0.8em 0.8em 0.5em 0.8em;
+	  margin: 0 15px 0 15px;
+	
+	  border: 1px solid #aaa;/*select 테두리색*/
+	  border-radius: 0.5em;
+	  box-shadow: 0 1px 0 1px #f0f0f0;
+
+}
+
+select:hover {
+  border-color: #888;
+}
+
+select:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+
+select:disabled {
+  opacity: 0.5;
+}	
+
  input{
-	width:190px;height:32px;background:#f2eded; /*검색창 크기와 배경색*/
+	width:200px;height:32px;background:#f2eded; /*검색창 크기와 배경색*/
 	border:1px solid #444;font-size:13px;
 	color:black;
 	padding-left:13px;
@@ -114,10 +162,11 @@ input:hover, input:focus, input:active{
 
 .search-icon{
 	border:none;
-	padding-top:5px;
-	height:40px;width:35px;
+	margin-top:10px;
+	height:35px;width:35px;
 	color:black;/*icon색*/
 	font-size:18px;
+	border-radius:100%;
 
 	
 }
@@ -138,6 +187,7 @@ input:hover, input:focus, input:active{
 	
 	width:auto;
 	border:none;
+	line-height: 1;
 	
 }
 #SORT:hover{
@@ -153,5 +203,3 @@ button:hover, button:focus, button:active{
 }	
 
 
-
-table{border:none;}

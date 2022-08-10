@@ -7,7 +7,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/productDetail.css?v=<%=System.currentTimeMillis()%>">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/6.1.2/css/font-awesome.min.css" rel="stylesheet">
 	<title>상품 상세 보기</title>
 	
 	<!-- Include jquery -->
@@ -157,17 +158,23 @@ function insertReview() {
 	}
 }
 </script>
+<script>
+	const drawStar=(target)=>{
+		document.querySelector('.star span').style.width = '${target.value * 5}%';
+	}
+</script>
+
 </head>
 <body>
 
-<div style="margin:auto; width: 600px; height:1500px;">
-<h2>${ProductDetail.P_NAME}</h2>
+<div style="margin:auto; width: 600px; height:1200px;">
+<h2>&lt;&nbsp;${ProductDetail.P_NAME}&nbsp;&gt;</h2>
 	
 	<!-- 상품 정보 -->
-	<table style="width:600px; height:400px; border-spacing: 45 0px ;">
-		<tr align = "center">
+	<table id="product_info_tb">
+		<tr>
 			<td rowspan="5" colspan="2">
-				<img src="img/${ProductDetail.P_IMAGE}"  width="200" height="200" border="0" id="previewImage">
+				<img id="p_img"src="img/${ProductDetail.P_IMAGE}"  width="200" height="200" border="0" id="previewImage">
 			</td>
 			<td><b>상품명</b></td> 
             <td>${ProductDetail.P_NAME}</td>
@@ -191,9 +198,9 @@ function insertReview() {
            			<option value="6">6</option>
             	</select>&nbsp;개
 			</td>
- 		<tr align = "center">
-            <td><b>총 금액</b></td>
-            <td>
+ 		<tr>
+            <td id="total_a"><b>총 금액</b></td>
+            <td id="total_a">
             	
             	<input type="text" id="tp" size="10" value="${ProductDetail.P_PRICE}" readonly/>원
 			</td>
@@ -204,54 +211,65 @@ function insertReview() {
 	<br>
 	
 	<!-- 주문, 찜, 장바구니 버튼 -->
-	<button onclick="order()">주문하기</button>
-    
-    <form method="post" id="insertZimForm" action="insertZim.do">
-    	<input type="hidden" id="id" name="id" value="${id}">
-    	<input type="hidden" id="p_code" name="p_code" value="${ProductDetail.P_CODE }">
-    	<input type="hidden" id="p_name" name="p_name" value="${ProductDetail.P_NAME }">
-		<button type="button" onclick="productZim()">찜하기</button>
-    </form>
-   
-
-    <form method="post" id="insertBasketForm" action="insertBasket.do">
-        <input type="hidden" id="b_id" name="b_id" value="${id }"/>
-        <input type="hidden" id="b_code" name="b_code" value="${ProductDetail.P_CODE }"/>
-        <input type="hidden" id="b_name" name="b_name" value="${ProductDetail.P_NAME }"/>
-        <input type="hidden" id="b_price" name="b_price" value="${ProductDetail.P_PRICE }"/>
-        <input type="hidden" id="b_kind" name="b_kind" value="${ProductDetail.P_KIND }"/>
-        <input type="hidden" id="b_count" name="b_count" value=""/>
-        <input type="hidden" id="b_image" name="b_image" value="${ProductDetail.P_IMAGE }"/> 
-        
-       
-        <button type="button" onclick="basketCheck()">장바구니에 담기</button>
-    </form>
+	<div id="all-btn">
+		<button id="od_btn" onclick="order()">주문하기</button>
+	    <div class="btn_box">
+		    <form method="post" id="insertZimForm" action="insertZim.do">
+		    	<input type="hidden" id="id" name="id" value="${id}">
+		    	<input type="hidden" id="p_code" name="p_code" value="${ProductDetail.P_CODE }">
+		    	<input type="hidden" id="p_name" name="p_name" value="${ProductDetail.P_NAME }">
+				<button id="zim_btn" type="button" onclick="productZim()">♥ 찜하기</button>
+		    </form>
+	   
 	
+		    <form method="post" id="insertBasketForm" action="insertBasket.do">
+		        <input type="hidden" id="b_id" name="b_id" value="${id }"/>
+		        <input type="hidden" id="b_code" name="b_code" value="${ProductDetail.P_CODE }"/>
+		        <input type="hidden" id="b_name" name="b_name" value="${ProductDetail.P_NAME }"/>
+		        <input type="hidden" id="b_price" name="b_price" value="${ProductDetail.P_PRICE }"/>
+		        <input type="hidden" id="b_kind" name="b_kind" value="${ProductDetail.P_KIND }"/>
+		        <input type="hidden" id="b_count" name="b_count" value=""/>
+		        <input type="hidden" id="b_image" name="b_image" value="${ProductDetail.P_IMAGE }"/> 
+		        
+		       
+		        <button id="basket_btn" type="button" onclick="basketCheck()"><i class="fa-light fa-basket-shopping"></i>장바구니 담기</button>
+		    </form>
+		</div>
+	</div>
 	<br>
 	
-	<div style="width: 600px; height: 500px; border: 1px solid black;" >
-		${ProductDetail.P_DETAIL}
-	</div>
-	
+	<!-- 상품상세 -->
+		<h4>상품 상세</h4>
+		<div id="productDetail">
+			${ProductDetail.P_DETAIL}
+		</div>
+
 	<br>
 	
 	<!-- 상품 후기 -->
 	<b>상품 후기 (${reviewCount})</b>
 	<c:forEach var="pReview" items="${productReviewList}">
-	<table style="width:600px;" border="1">
+	<table id="review_tb">
 		<tbody>
 			<tr>
-				<td style="width:50px;"><b>작성자</b></td>
-				<td style="width:100px;">${pReview.R_ID}</td>
-				<td style="width:50px;"><b>작성일</b></td>
-				<td style="width:120px;"><fmt:formatDate value="${pReview.R_DATE}" pattern="yy.MM.dd hh:mm"/></td>
-				<td style="width:50px;"><b>추천수</b></td>
-				<td style="width:30px;">${pReview.R_RECOMMEND}</td>
-				<td style="width:50px;"><b>별점</b></td>
-				<td style="width:120px;">${pReview.R_RATE}</td>
+				<td class="r_tb" style="width:50px;"><b>작성자</b></td>
+				<td class="r_tb" style="width:100px;">${pReview.R_ID}</td>
+				<td class="r_tb" style="width:50px;"><b>작성일</b></td>
+				<td class="r_tb" style="width:120px;"><fmt:formatDate value="${pReview.R_DATE}" pattern="yy.MM.dd hh:mm"/></td>
+				<td class="r_tb" style="width:50px;"><b>추천수</b></td>
+				<td class="r_tb" style="width:30px;">${pReview.R_RECOMMEND}</td>
+				<td class="r_tb" style="width:50px;"><b>별점</b></td>
+				<td class="r_tb" style="width:120px;">
+					<span class="star">
+					 ★★★★★
+						<span>★★★★★</span>
+						<input type="range" oninput="drawStar(this)"
+						id="r_rate" name="r_rate" step="1" min="1" max="5" value="${pReview.R_RATE}"></td>
+					</span>
+				</td>
 			</tr>
 			<tr>
-				<td><b>내용</b></td>
+				<td class="r_tb"><b>내용</b></td>
 				<td colspan="6" style="width:450px;">${pReview.R_CONTENTS}</td>	
 				<td>
 				<c:if test="${!empty id}">
@@ -271,24 +289,32 @@ function insertReview() {
 		<input type="hidden" id="r_code" name="r_code" value="${ProductDetail.P_CODE}">
 		<input type="hidden" id="r_name" name="r_name" value="${ProductDetail.P_NAME}">
 	
-		<table style="width:600px;" border="1">
+		<table id="review_write_tb">
 			<tbody>
 				<tr>
-					<td style="width:50px;"><b>별점</b></td>
-					<td><input type="number" id="r_rate" name="r_rate" min="1" max="5" value="5"></td>
+					<td id="r_rate"style="width:50px;"><b>별점</b></td>
+					<td>
+					<span class="star">
+					 ★★★★★
+						<span>★★★★★</span>
+						<input type="range" oninput="drawStar(this)"
+						id="r_rate" name="r_rate" step="1" min="1" max="5" value="5"></td>
+					</span>
 				</tr>
 				<tr>
-					<td style="width:50px;"><b>내용</b></td>
-					<td>
-						<textarea style="width:530px; height:100px;"
-							id="r_contents" name="r_contents"></textarea>
+					<td class="rw" style="width:50px;"><b>내용</b></td>
+					<td class="rw">
+						<textarea id="r_contents" name="r_contents"></textarea>
 					</td>	
 				</tr>
 			</tbody>
 		</table>
-		<button type="button" onclick="insertReview()">후기작성</button>
+		<button id="rb_wbtn"type="button" onclick="insertReview()">후기작성</button>
 	</form>
+	<div>
 	${paging.pageHtml}
+		
+	</div>
 </div>
     </body>
  </html>

@@ -8,7 +8,7 @@
 <head>
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/adminBoard.css" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+
 <meta charset="UTF-8">
 <title>관리자 공지리스트</title>
 <script>
