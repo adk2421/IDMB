@@ -1,9 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Hahmlet&family=Noto+Sans+KR&display=swap");
-body{width:100%;height:100%;overflow:auto;margin-top:50px;}
+/* @import url("https://fonts.googleapis.com/css2?family=Hahmlet&family=Noto+Sans+KR&display=swap");
+
 	* {
 		font-family: "Noto Sans KR", sans-serif;
-	}
+	} */
 	
+	body {
+		margin-top: 100px;
+	}
 	
 	h2 {
 		text-align: center;
@@ -25,7 +28,7 @@ body{width:100%;height:100%;overflow:auto;margin-top:50px;}
 		align-items: center;
 		justify-content: center;
 		background: rgba(0, 0, 0, 0);
-		font-size: 18px;
+		font-size: 17px;
 		text-align: center;
 	}
 	
@@ -51,22 +54,6 @@ body{width:100%;height:100%;overflow:auto;margin-top:50px;}
 		margin: 0px 30px 0px 30px;
 	}
 	
-	div.horizen_button {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-start;
-		cursor: pointer;
-	}
-	
-	div.horizen_button:hover {
-		background-color: #CCCCCC;
-	}
-	
-	div.horizen_button div {
-		margin: 0px 30px 0px 30px;
-	}
-	
 	div.stdWidth {
 		width: fit-content;
 	}
@@ -78,21 +65,28 @@ body{width:100%;height:100%;overflow:auto;margin-top:50px;}
 	}
 	
 	div.width {
-		width: 200px;
+		width: 250px;
 	}
-
+	
+	p a {
+		text-decoration: underline;
+	}
 	
 	p.label {
 		font-size: 26px;
 	}
 	
-	P.count {
+	p.count {
 		font-size: 30px;
 		font-weight: bold;
 	}
+	
+	p.contents {
+		font-size: 14px;
+	}
 		
 	tr.head {
-		border: hidden;
+		border: 1px solid lightgray;
 		background-color: lightgray;
 	}
 	
@@ -109,7 +103,8 @@ body{width:100%;height:100%;overflow:auto;margin-top:50px;}
 	}
 	
 	td {
-		padding: 15px 30px 15px 30px;
+		padding: 22px 30px 15px 30px;
+		border-bottom: 1px solid lightgray;
 	}
 	
 	td img {
@@ -132,16 +127,17 @@ body{width:100%;height:100%;overflow:auto;margin-top:50px;}
 	
 	span.left {
 		font-size: 26px;
+		margin-top: 8px;
 		margin-right: auto;
 	}
 	
 	span.right {
 		font-size: 16px;
-		margin: 20px 10px 0px auto;
+		margin: 30px 10px 0px auto;
 	}
 	
 	img.icon {
-		margin: 4px 12px 0px 10px;
+		margin: 0px 12px 0px 10px;
 		width: 30px;
 		height: 30px;
 	}
@@ -149,16 +145,30 @@ body{width:100%;height:100%;overflow:auto;margin-top:50px;}
 	img.thumbnail {
 		width: 110px;
 		height: 110px;
+		cursor: pointer;
 	}
 	
-	#check-btn {
+	#answer-btn {
 		display: none;
 	}
 
-	#check-btn:checked ~ .answer {
+	#answer-btn:checked ~ .answer {
 		display: block;
 	}
+	
+	.answer-btn {
+		cursor: pointer;
+	}
+	
+	.answer-btn:hover {
+		color: #CCCCCC;
+	}
 	 
-	.menubars {
+	.answer {
 		display: none;
 	}
+	
+	.answer p.contents {
+		margin-left: -30px;
+	}
+	

@@ -6,18 +6,21 @@
 	}
 */
 
-@font-face {
-    font-family: 'LeferiBaseType-RegularA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+	@font-face {
+	    font-family: 'LeferiBaseType-RegularA';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
 
-*{
+	* {
+		font-family: 'LeferiBaseType-RegularA';
+	}	
 	
-	 font-family: 'LeferiBaseType-RegularA';
-}	
-	body{padding-top:10px;}
+	body {
+		padding-top:10px;
+	}
+	
 	a {
 		text-decoration: none;
 		color: black;
@@ -28,9 +31,9 @@
 	}
 	
 	div.nav {
-		padding-top:7px;
 		display: flex;
 		position: fixed;
+		padding-top:6px;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -52,7 +55,7 @@
 		margin-left: 25px;
 		margin-top: 6px;
 		margin-bottom: auto;
-		font-size: 20px;
+		font-size: 25px;
 		justify-content: left;
 		text-align: left;
 	}
@@ -71,25 +74,33 @@
 	}
 	
 	img.logo {
-		padding-top:3px;
-		width: 21px;
+		margin-top: 5px;
+		width: 20px;
 		cursor: pointer;
 	}
 	
 	
-	/* header */
+	/* body */
+	
+	.body {
+		margin-top: 100px;
+	}
+	
+	
+	/* footer */
 	
 	footer {
 		margin: 100px 0px 0px 0px;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
 	}
 	
 	div.footer {
 		display: flex;
     	position: relative;
 		height: 230px;
-		bottom: 0;
-		left: 0;
-		right: 0;
 		justify-content: flex-start;
 		align-items: center;
 		background-color: #e6e6e6;
@@ -97,10 +108,11 @@
 	
 	div.footer_contents {
 		font-size: 12px;
-		margin-left: 40px;
+		margin-left: 60px;
 	}
 	
 	img.footer_logo {
 		width: 100px;
-		margin-left: 30px;
+		margin-left: 50px;
 	}
+	
