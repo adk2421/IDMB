@@ -104,7 +104,6 @@ function orderCheck() {
 </head>
 
 <body>
-
 <div class="container">
 	<div style="text-align:center">
 		<p>

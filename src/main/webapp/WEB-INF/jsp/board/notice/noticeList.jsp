@@ -26,9 +26,10 @@
 </script>
 </head>
 <body>
-	<br><br><br><br>
-	<hr><p>
+	<br><br>
 <div class="header">
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+	<br><hr>
 	<!-- 게시판 바로가기 -->
 	<div class="short" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">

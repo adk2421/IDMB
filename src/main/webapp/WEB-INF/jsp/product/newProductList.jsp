@@ -15,7 +15,7 @@
 
 <!-- 메인페이지 로고 -->
 <div style="margin: auto; width:150px; height:180px;">
-	<a href="/IDMB/"><img src="img/logo.png" width="150" id="previewImage"></a>
+	<a href="/IDMB/"><img src="img/logo.png" width="140" id="previewImage"></a>
 </div>
 <br>
 
@@ -38,7 +38,7 @@
 
 <div style="margin-left:15%;">
 <form action="newProductList.do" method="get">	
-	<input type="text" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
+	<input type="search" name="searchValue"  id="searchValue" placeholder="검색어...." value="${searchValue}">
 	
 	<br>
 	

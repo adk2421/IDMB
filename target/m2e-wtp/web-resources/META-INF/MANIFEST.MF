@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: EZEN
+=======
+Built-By: ￬ﾝﾀ￫ﾯﾸ
+>>>>>>> c5649c744591187db935d8b347540c7795a0269a
 Build-Jdk: 11.0.14
 Created-By: Maven Integration for Eclipse
 

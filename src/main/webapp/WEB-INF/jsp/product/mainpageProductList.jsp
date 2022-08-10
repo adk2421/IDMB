@@ -22,13 +22,13 @@
 <div class="header">
 <!-- 메인페이지 로고 -->
 
-	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
-
+		<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+	
 			
 <!-- 검색창 -->
 	<div class="search-box">
 		<form action="searchProduct.do" method="get">
-			<input type=text name="searchValue" id="search" placeholder="검색어....." >
+			<input type="search" name="searchValue" id="search" placeholder="검색어....." >
 			<button type="submit" class="search-icon" ><i class="fa fa-search"></i></button>
 		</form>
 	</div>

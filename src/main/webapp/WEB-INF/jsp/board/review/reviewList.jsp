@@ -28,9 +28,11 @@
 </head>
 <body>
 	
-	<br><br><br><br>
-	<hr><p>
+	<br><br>
 
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+	<hr>
+	
 	<!-- 게시판 바로가기 -->
 	<div class="short" style="display: flex; justify-content: center;">
 	<ul style="list-style-type:none">
@@ -44,10 +46,10 @@
 	<br>
 	
 	<!-- BEST 리뷰 -->
-	<div style="display: flex; justify-content: center;
-		font-size:30px; font-color:red;">
-		▼ BEST 리뷰!
+	<div style="display: flex; justify-content: center;">
+		<h2>▼ BEST 리뷰!</h2>
 	</div>
+	<br><br>
 	
 	<div style="display: flex; justify-content: center;">
 		<c:forEach var="best" items="${bestReviewList}">
@@ -67,7 +69,7 @@
 			</ul>
 		</c:forEach>
 	</div>
-	
+	<br><br>
 	<!-- NEW 리뷰 -->
 	<div style="display: flex; justify-content: center;
 		font-size:30px; font-color:red;">
