@@ -23,4 +23,6 @@ public interface OrderService {
 	//주문 확인
 	public Map<String,Object> orderCheck(ProductBean product, String id) throws Exception;
 	
+	//총 주문 금액
+	public Map<String,Object> orderTotal(String id) throws Exception;
 }

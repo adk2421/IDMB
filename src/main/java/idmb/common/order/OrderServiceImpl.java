@@ -76,4 +76,13 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.orderCheck(map);
 	}
 
+	//총 주문 금액
+	@Override
+	public Map<String,Object> orderTotal(String id) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id", id);
+		
+		return orderDAO.orderTotal(map);
+	}
 }

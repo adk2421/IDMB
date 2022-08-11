@@ -39,5 +39,10 @@ public class OrderDAO {
 	public Map<String,Object> orderCheck(Map<String, Object> map) throws Exception{
 		return sqlSessionTemplate.selectOne("order.orderCheck", map);
 	}
+	
+	//총 주문 금액
+	public Map<String,Object> orderTotal(Map<String, Object> map) throws Exception{
+		return sqlSessionTemplate.selectOne("order.orderTotal", map);
+	}
 
 }

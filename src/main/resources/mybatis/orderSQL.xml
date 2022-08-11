@@ -98,5 +98,18 @@
 				AND O_ID = #{id}
 		]]>
 	</select>
+	
+	<!-- 총 주문 금액 -->
+	<select id="orderTotal" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				SUM(O_TOTAL) ORDERTOTAL
+			FROM
+				ORDERCOMMAND
+			WHERE
+				O_ID = #{id} AND
+				O_STATUS IN ('배송대기', '배송준비중', '배송중', '배송완료')
+		]]>
+	</select>
 
 </mapper>

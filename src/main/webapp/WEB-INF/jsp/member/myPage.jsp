@@ -160,7 +160,7 @@
 					<tr>
 						<td>
 							<p>총 주문</p>
-							<p>331,944,300원</p>
+							<p>${orderTotal.ORDERTOTAL}원</p>
 						</td>
 						
 						<td>
@@ -186,7 +186,7 @@
 				<div class="vertical">
 					<table>
 						<tr>
-							<td class="button_tr" onclick="alert('aa')">
+							<td class="button_tr" onclick="alert('IDMB 화이팅')">
 								<p id="o_proc_key1">배송대기</p>
 								<p class="count" id="o_proc_val1"><%= request.getAttribute("배송대기") %></p>
 							</td>

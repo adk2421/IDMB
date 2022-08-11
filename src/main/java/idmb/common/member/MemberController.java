@@ -1,5 +1,6 @@
 package idmb.common.member;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -337,6 +338,17 @@ public class MemberController {
 		// 세션 id 값 받아오기
 		String id = (String) request.getSession().getAttribute("id");
 		
+		// 숫자 회계 포맷
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		
+		// 총 주문 금액
+		Map<String, Object> orderTotal = orderService.orderTotal(id);
+		orderTotal.put("ORDERTOTAL", formatter.format(orderTotal.get("ORDERTOTAL")));
+		model.addAttribute("orderTotal", orderTotal);
+		
+		// 적립금 포맷
+		session.setAttribute("reserve", formatter.format(session.getAttribute("reserve")));
+				
 		/* 페이징을 위한 변수 */
 		int pageSize = 5; // 페이지당 출력할 후기의 수
 		int START = 1;
@@ -370,6 +382,9 @@ public class MemberController {
         List<Map<String, Object>> myOrderList = new ArrayList<Map<String, Object>>();
 
         myOrderList = orderService.myOrderList(order);
+        
+        for (Map<String, Object> orderList : myOrderList)
+        	orderList.put("O_TOTAL", formatter.format(orderList.get("O_TOTAL")));
 
         model.addAttribute("myOrderList", myOrderList);
         
