@@ -297,7 +297,7 @@
 							<td><img src="/IDMB/img/${product.P_IMAGE}" /></td>
 							<td>${product.P_NAME}</td>
 							<td>${product.P_KIND}</td>
-							<td>${product.P_PRICE}</td>
+							<td>${product.P_PRICE}원</td>
 							<td>${product.P_ZIM}</td>
 						</tr>
 					</c:forEach>

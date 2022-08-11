@@ -343,11 +343,11 @@ public class MemberController {
 		
 		// 총 주문 금액
 		Map<String, Object> orderTotal = orderService.orderTotal(id);
-		orderTotal.put("ORDERTOTAL", formatter.format(orderTotal.get("ORDERTOTAL")));
+		orderTotal.put("ORDERTOTAL", formatter.format(Integer.parseInt(orderTotal.get("ORDERTOTAL").toString())));
 		model.addAttribute("orderTotal", orderTotal);
 		
 		// 적립금 포맷
-		session.setAttribute("reserve", formatter.format(session.getAttribute("reserve")));
+		session.setAttribute("reserve", formatter.format(Integer.parseInt(session.getAttribute("reserve").toString().replace(",", ""))));
 				
 		/* 페이징을 위한 변수 */
 		int pageSize = 5; // 페이지당 출력할 후기의 수
@@ -384,7 +384,7 @@ public class MemberController {
         myOrderList = orderService.myOrderList(order);
         
         for (Map<String, Object> orderList : myOrderList)
-        	orderList.put("O_TOTAL", formatter.format(orderList.get("O_TOTAL")));
+        	orderList.put("O_TOTAL", formatter.format(Integer.parseInt(orderList.get("O_TOTAL").toString())));
 
         model.addAttribute("myOrderList", myOrderList);
         
@@ -480,6 +480,8 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/viewedProductAjax.do")
 	public String viewedProductAjax(@RequestParam Map<String, Object> Arr, Model model, HttpSession session) throws Exception {
+		// 숫자 회계 포맷
+		DecimalFormat formatter = new DecimalFormat("###,###");
 		
 		ProductBean product = new ProductBean();
 		
@@ -489,6 +491,9 @@ public class MemberController {
 			product.setP_code(Integer.parseInt((String) Arr.get("P_CODE["+ i + "]")));
 			viewedProduct.add(productService.productDetail(product));
 		}
+		
+		for (Map<String, Object> viewedProducts : viewedProduct)
+			viewedProducts.put("P_PRICE", formatter.format(Integer.parseInt(viewedProducts.get("P_PRICE").toString())));
 		
 		session.setAttribute("viewedProduct", viewedProduct);
 				
