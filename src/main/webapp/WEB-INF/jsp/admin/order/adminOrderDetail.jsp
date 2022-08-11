@@ -95,7 +95,7 @@ function orderCancel(){
 				<td>${adminOrderBean.O_RECIEVER}</td>
 				<td><b>연락처</b></td>
 				<td>
-					01011112222
+					${adminOrderBean.O_PHONE}
 				</td>
 			</tr>
 			<tr>
