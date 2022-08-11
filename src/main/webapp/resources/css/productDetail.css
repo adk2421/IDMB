@@ -162,7 +162,7 @@ h3{margin-left:50px;}
 
 
 /*별점*/
-#r_rate{border-bottom:1px solid #444;}
+#r_rate{font-size:1.5rem;}
 #r_rating{margin-left:30px;}
 .star{
 	padding:10px;
@@ -183,7 +183,6 @@ h3{margin-left:50px;}
 	width:0;
 	position:absolute;
 	left:0;
-	color:#fae04d;
 	overflow:hidden;
 	pointer-events:none;
 }

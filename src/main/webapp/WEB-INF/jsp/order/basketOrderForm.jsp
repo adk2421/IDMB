@@ -104,10 +104,16 @@ function orderCheck() {
 
 </head>
 <body>
+
+<!-- 메인페이지 로고 -->
+<div style="margin: auto; width:150px; height:180px;">
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo"></a>
+</div>
+<br><hr><br>
 <div class="container">
 <div style="text-align:center">
 		<p>
-		<h1> 주문 페이지 </h1>
+		<h1>&lt;&nbsp;주문 페이지&nbsp;&gt; </h1>
 	</div>
 	
 
@@ -126,7 +132,7 @@ function orderCheck() {
 			<c:set var="sum" value="0" />	
 			<tbody>
 				<tr>
-					<td><img src="img/${basketBean.B_IMAGE}" width="60" border="0" id="previewImage"></td>
+					<td id="ordertd"><img src="img/${basketBean.B_IMAGE}" width="60" border="0" id="previewImage"></td>
 					<td>${basketBean.B_NAME}</td> 
 					<td>${basketBean.B_PRICE}원</td>
 					<td>${basketBean.B_COUNT}개</td>
@@ -142,21 +148,21 @@ function orderCheck() {
 		<input type="hidden" id="o_name" name="o_name" value="${basketBean.B_NAME}">
 		<input type="hidden" id="o_count" name="o_count" value="${basketBean.B_COUNT}">		
 		<input type="hidden" id="o_price" name="o_price" value="${basketBean.B_PRICE}">
-		
+	<div id="order-form">
 		<div class="order_info" >
-		<!-- 주문자 정보 -->
-		<h2><b>주문자 정보</b></h2>
-		
-		<!-- 이름 -->
-		<h6>이 름 :
-			<input type="text" value="${name}" readonly>	
-		</h6>
-		<p>
-		
-		<!-- 핸드폰 번호 -->
-		<h6>핸 드 폰 번 호 :
-			<input type="text" id="o_phone" name="o_phone" maxlength="11" value="${phone}" >
-		</h6>
+			<!-- 주문자 정보 -->
+			<h2><b>&lt;&nbsp;주문자 정보&nbsp;&gt;</b></h2>
+			
+			<!-- 이름 -->
+			<h6>이 름 :
+				<input type="text" value="${name}" readonly>	
+			</h6>
+			<p>
+			
+			<!-- 핸드폰 번호 -->
+			<h6>핸 드 폰 번 호 :
+				<input type="text" id="o_phone" name="o_phone" maxlength="11" value="${phone}" >
+			</h6>
 		</div>
 		
 		<hr>
@@ -165,19 +171,19 @@ function orderCheck() {
 		
 		<div class="orderaddress">
 		<!-- 받는 사람 정보 -->
-		<h6>받으시는 분
+		<h6>받으시는 분 : &nbsp;&nbsp;
 		<input type="text" id="o_reciever" name="o_reciever" value="${name}">
 		</h6>	
 			
 		<!-- 주소 -->
-		<h6>우편번호 &nbsp;
+		<h6>우편번호 :&nbsp;&nbsp;
 		<input type="text" name="o_postcode" id="o_postcode"
 			value="${postcode}">
 								
 		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 		</h6>		
 						
-		<h6>주소&nbsp;&nbsp;
+		<h6>주소 :&nbsp;&nbsp;
 		<input type="text" name="o_address1" id="o_address1"
 			value="${address1}">
 		-
@@ -189,24 +195,24 @@ function orderCheck() {
 		<hr>
 		<br><br>	
 						
-		<h2> 결 제 금 액 </h2>
+		<h2><b>&nbsp;&gt;&nbsp;결 제 금 액</b></h2>
 		<br>
 		
 		<div class="sum">		
-		<span>주 문 금 액</span>
-		<span><fmt:formatNumber pattern="###,###,###" value="${sum}" />원</span>
-			&emsp;
-	    <span>배 송 비</span>
-	    <span>3000원</span>
-	    &emsp;
-	    						 
-	    <span>총 금 액</span>
-	    <span><fmt:formatNumber pattern="###,###,###" value="${sum+3000}" />원</span>
-	    <input type="hidden" id="o_total" name="o_total" value="${sum+3000}">
-				
-		<br><br>	
-		<h2> 결 제 정 보 </h2>
-		<h6>무 통 장 입 금</h6>
+			<span>주 문 금 액</span>
+			<span><fmt:formatNumber pattern="###,###,###" value="${sum}" />원</span>
+				&emsp;
+		    <span>배 송 비</span>
+		    <span>3000원</span>
+		    &emsp;
+		    						 
+		    <span>총 금 액</span>
+		    <span><fmt:formatNumber pattern="###,###,###" value="${sum+3000}" />원</span>
+		    <input type="hidden" id="o_total" name="o_total" value="${sum+3000}">
+					
+			<br><br>	
+			<h2><b>&nbsp;&gt;&nbsp;결 제 정 보</b></h2>
+			<h6>무 통 장 입 금</h6>
 		</div>
 		
 		<div class="orderbtn">	
@@ -216,7 +222,7 @@ function orderCheck() {
 		<button type="button" onclick="orderCheck()">주문하기</button>
 		</div>
 		<br><br>
-		
+	</div>
 		
 	</form>	
 </div>

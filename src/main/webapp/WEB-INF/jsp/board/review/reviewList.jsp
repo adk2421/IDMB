@@ -23,7 +23,9 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css?v=<%=System.currentTimeMillis()%>">
 
 <script>
-
+	const drawStar=(target)=>{
+		document.querySelector('.star span').style.width = '${target.value * 5}%';
+	}
 </script>
 </head>
 <body>
@@ -63,8 +65,12 @@
 				
 				<li style="text-align:left;">${best.R_CONTENTS }</li>
 				<li style="text-align:center">
-					<img src="img/rate${best.R_RATE}.png" width="150" height="30" border="0"
-						id="rateImage"></li>
+					<span class="star">
+						 ★
+						<input type="range" oninput="drawStar(this)"
+						id="r_rate" name="r_rate" step="1" min="1" max="5" value="">${best.R_RATE}
+					</span>
+					</li>
 				<li style="text-align:left">추천수 : ${best.R_RECOMMEND }</li>
 			</ul>
 		</c:forEach>
@@ -88,8 +94,12 @@
 				
 				<li style="text-align:left;">${newr.R_CONTENTS }</li>
 				<li style="text-align:center">
-					<img src="img/rate${newr.R_RATE}.png" width="150" height="30" border="0"
-						id="rateImage"></li>
+					<span class="star">
+						 ★
+						<input type="range" oninput="drawStar(this)"
+						id="r_rate" name="r_rate" step="1" min="1" max="5" value="">${newr.R_RATE}
+					</span>
+				</li>
 				<li style="text-align:left">추천수 : ${newr.R_RECOMMEND }</li>
 			</ul>
 		</c:forEach>

@@ -53,7 +53,12 @@
 				<td>${reviewDetail[1].R_NAME}</td>
 				<td>${reviewDetail[1].R_DATE}</td>
 				<td>${reviewDetail[1].R_CONTENTS}</td>
-				<td>${reviewDetail[1].R_RATE}</td>
+				<td><span class="star">
+					 ★
+						<input type="range" oninput="drawStar(this)"
+						id="r_rate" name="r_rate" step="1" min="1" max="5" value="">${reviewDetail[1].R_RATE}
+					</span>
+					</td>
 				<td></td>
 			</tr>
 		</c:if>

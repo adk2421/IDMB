@@ -245,3 +245,32 @@ th#title_th{
 	width:480px;
 	/* padding:0 240px; */
 }
+
+/*별점*/
+.star{
+	padding:10px;
+	margin:10px;
+	position:relative;
+	font-size:1.5rem;
+	color:#fae04d;
+}
+.star input{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	opacity:0;
+	margin:8px;
+}
+.star span{
+	width:0;
+	position:absolute;
+	left:0;
+	/* color:#f5d002; */
+	overflow:hidden;
+	pointer-events:none;
+}
+#r_rate{font-size:15px;} 
+
+
+

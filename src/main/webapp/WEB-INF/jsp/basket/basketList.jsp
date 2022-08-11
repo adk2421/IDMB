@@ -26,8 +26,13 @@
 </head>
 <body>
 
-<div class="header">	
-		<h2>장바구니 확인</h2>
+<!-- 메인페이지 로고 -->
+<div style="margin: auto; width:150px; height:180px;">
+	<a href="/IDMB/"><img src="img/logo.png" width="140" class="main_logo "></a>
+</div>
+<br><hr><br>
+<div class="header">
+		<h2>&lt;&nbsp;장바구니 확인&nbsp;&gt;</h2>
 </div>	
 <div class="container">
 		<!-- 상품정보 div -->	

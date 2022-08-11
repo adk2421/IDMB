@@ -202,7 +202,7 @@ function insertReview() {
             <td id="total_a"><b>총 금액</b></td>
             <td id="total_a">
             	
-            	<input type="text" id="tp" size="10" value="${ProductDetail.P_PRICE}" readonly/>원
+            	<input type="text" id="tp" size="10" value="${ProductDetail.P_PRICE}" readonly pattern="###,###,###원"/>원
 			</td>
         </tr>
         		
@@ -262,10 +262,9 @@ function insertReview() {
 				<td class="r_th" style="width:50px;"><b>별점</b></td>
 				<td class="r_tb" style="width:120px;">
 					<span class="star">
-					 ★★★★★
-						<span>★★★★★</span>
+					 ★
 						<input type="range" oninput="drawStar(this)"
-						id="r_rate" name="r_rate" step="1" min="1" max="5" value="${pReview.R_RATE}"></td>
+						id="r_rate" name="r_rate" step="1" min="1" max="5" value="">${pReview.R_RATE}</td>
 					</span>
 				</td>
 			</tr>

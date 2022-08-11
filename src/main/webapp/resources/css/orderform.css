@@ -11,12 +11,23 @@
 	 font-family: 'LeferiPoint-WhiteObliqueA';
 }
 
-body{margin-top:70px;}
-/*가운데정렬*/
+body{margin-top:60px;}
+
+form{	
+	margin-left:40px;
+	margin-top:30px;}
+#order-form{
+	width:90%;
+	margin-left:50px;
+	margin-top:40px;
+}	
+/*글자가운데정렬*/
 table{
 	text-align:center;
+	border-bottom:1px solid #444;
+	
 }
-h{font-size:45px;}
+
 /*주문 금액 배송비 총금액 */
 span{
 	font-size:35px;
@@ -25,8 +36,8 @@ span{
 
 /*주문페이지*/
 h1 {
-	font-size:50px;
-	margin-bottom:15px;
+	font-size:40px;
+	margin-bottom:20px;
 }
 
 /*thead&tbody*/
@@ -36,23 +47,26 @@ th,td{
 
 /*주문자정보*/
 h2{
-	font-size:20px;
+	font-size:22px;
 	text-align:left;
 }
 
 /*이름,핸드폰번호,받으시는분,우편번호,주소,버튼 전부*/
 h6,input,button{
-	font-size:24px;
+	font-size:18px;
 }
 
 /*주문자 정보*/
+.order_info{
+	margin-top:30px;
+}
 .order_info input{
 	text-align: left;
 	color: black;
             width: 300px;
             height:50px;
-            font-size: 26px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: 600;
           	border-top:none;
           	border-left:none;
           	border-right:none;
@@ -61,11 +75,11 @@ h6,input,button{
             outline: 0;
 }
 .order_info h2{
-	font-size:40px;
+	font-size:20px;
 	text-align:left;
 }
 .order_info h6{
-	font-size:26px;
+	font-size:20px;
 	text-align:left;
 }
 
@@ -76,7 +90,7 @@ h6,input,button{
             color: black;
             width: 300px;
             height:50px;
-            font-size: 26px;
+            font-size: 18px;
             font-weight: 700;
           	border-top:none;
           	border-left:none;
@@ -91,12 +105,13 @@ h6,input,button{
 }
 
 .orderaddress input[type=button]{
+			margin-left:20px;
 			background-color: #aaaaaa;
 			color: white;
-            width: 150px;
-            height:50px;
-            font-size: 22px;
-            font-weight: 700;
+            width: 120px;
+            height:35px;
+            font-size: 18px;
+            font-weight: 550;
             border-radius: 6px;
             border: 0;
             border-color:grey;
@@ -106,8 +121,8 @@ h6,input,button{
 .sum input{
 	 color: black;
             width: 300px;
-            height:50px;
-            font-size: 26px;
+            height:40px;
+            font-size: 20px;
             font-weight: 700;
           	border-top:none;
           	border-left:none;
@@ -117,25 +132,33 @@ h6,input,button{
             outline: 0;
 
 }
+#o_total{font-size:20px;}
 .orderbtn button{
 		background-color: #EB3232;
 			color: white;
-            width: 150px;
-            height:50px;
-            font-size: 26px;
-            font-weight: 700;
+            width: 100px;
+            height:35px;
+            font-size: 18px;
+            font-weight: 600;
             border-radius: 6px;
             border: 0;
             border-color:grey;
             outline: 0;
+            margin-left:20px;
 }
-
+	
+.orderbtn:hover.orderbtn:focus button{
+	color:white;
+	outline:none;
+	background:#fca2a2;
+	border-style: 1px solid red; 
+}	
 
 .orderbtn input{
-	 color: black;
+		 color: black;
             width: 310px;
             height:50px;
-            font-size: 24px;
+            font-size:18px;
             font-weight: 700;
           	border-top:none;
           	border-left:none;
