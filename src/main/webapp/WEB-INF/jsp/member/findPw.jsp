@@ -48,7 +48,7 @@
 				</div>
 				
 				<div class="submit">
-					<input type="button" value="찾기" onClick="return formCheck()">
+					<input class="submit_find" type="button" value="찾기" onClick="return formCheck()">
 				</div>			
 			</div>
 		</div>			

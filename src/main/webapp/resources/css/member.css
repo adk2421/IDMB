@@ -191,7 +191,7 @@
 	
 	/* -- 아이디/비밀번호 찾기 -- */
 	.find {
-		width: 400px;
+		width: 4800px;
 		background: white;
 		border-radius: 20px;
 		margin-top: -20px;
@@ -240,6 +240,9 @@
 	.submit {
 		margin-top: 20px;
 		width: 80%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	
 	.submit input {
@@ -254,6 +257,10 @@
 		font-size: 1.2em;
 		letter-spacing: 2px;
 		cursor: pointer;
+	}
+	
+	.submit input.submit_find {
+		width: 300px;
 	}
 	
 	input[readonly] {

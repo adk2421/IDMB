@@ -186,7 +186,7 @@
 				<div class="vertical">
 					<table>
 						<tr>
-							<td class="button_tr" onclick="alert('IDMB 화이팅')">
+							<td class="button_tr" onclick="alert('범근 화이팅')">
 								<p id="o_proc_key1">배송대기</p>
 								<p class="count" id="o_proc_val1"><%= request.getAttribute("배송대기") %></p>
 							</td>
@@ -195,7 +195,7 @@
 								>
 							</td>
 							
-							<td class="button_tr" onclick="alert('aa')">
+							<td class="button_tr" onclick="alert('나연 화이팅')">
 								<p id="o_proc_key2">배송준비중</p>
 								<p class="count" id="o_proc_val2"><%= request.getAttribute("배송준비중") %></p>
 							</td>
@@ -204,7 +204,7 @@
 								>
 							</td>
 							
-							<td class="button_tr" onclick="alert('aa')">
+							<td class="button_tr" onclick="alert('은미 화이팅')">
 								<p id="o_proc_key3">배송중</p>
 								<p class="count" id="o_proc_val3"><%= request.getAttribute("배송중") %></p>
 							</td>
@@ -213,7 +213,7 @@
 								>
 							</td>
 							
-							<td class="button_tr" onclick="alert('aa')">
+							<td class="button_tr" onclick="alert('서영 화이팅')">
 								<p id="o_proc_key4">배송완료</p>
 								<p class="count" id="o_proc_val4"><%= request.getAttribute("배송완료") %></p>
 							</td>
