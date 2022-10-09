@@ -1,2 +1,2 @@
 # IDMB
-> 일단메봐
+> EZEN Academy Project 일단메봐
